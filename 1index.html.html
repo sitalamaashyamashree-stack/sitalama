@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shyamashree Sitala Maa Charitable Trust</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #086972;
+      --secondary: #17b978;
+      --accent: #f4c724;
+      --light: #f9f9f9;
+      --dark: #042a2b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      background-color: white;
+    }
+
+    header {
+      background: var(--light);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #eee;
+    }
+
+    header nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: var(--dark);
+      font-size: small;
+      font-weight: 400;
+    }
+
+    .donate-btn {
+      background: var(--accent);
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .donate-btn:hover {
+      background: var(--secondary);
+    }
+
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 110vh;
+
+      background: url('66.jpg') center center/cover no-repeat;
+      display: flex;
+      justify-content: flex-start;
+      /* Align content to the left */
+      align-items: center;
+      /* Vertically center */
+      color: white;
+      padding: 0 40px;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      text-align: left;
+      margin-left: 60px;
+      /* You can adjust this if needed */
+    }
+
+
+    .hero h1 {
+      font-size: 40px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .project-details {
+      font-size: 16px;
+      line-height: 1.6;
+      margin: 15px 0;
+      list-style: none;
+      padding: 0;
+    }
+
+    .hero-buttons {
+      margin-top: 20px;
+    }
+
+    .hero-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 40px;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      color: white;
+      z-index: 2;
+      user-select: none;
+    }
+
+    .left-arrow {
+      left: 30px;
+    }
+
+    .right-arrow {
+      right: 30px;
+    }
+
+    .hero-arrow:hover {
+      background-color: rgba(0, 0, 0, 0.65);
+    }
+
+    .hero-buttons {
+      margin-top: 20px;
+    }
+
+    .btn-primary {
+      padding: 12px 24px;
+      background: #d0d706;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .btn-secondary {
+      padding: 12px 24px;
+      background: rgb(62, 202, 34);
+      color: #f8f8f8;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      border: 2px solid #f1edec;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    .btn-primary:hover {
+      background: #d63b1d;
+      transform: scale(1.05);
+    }
+
+    .btn-secondary:hover {
+      background: #f2542d;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    /* IMPACT STATS */
+    .impact-stats {
+      background-color: #f1f5f9;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .impact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .impact-box {
+      background: #ffffff;
+      padding: 30px 20px;
+      border-radius: 12px;
+      flex: 1 1 250px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .impact-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    }
+
+    .impact-box img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 15px;
+      filter: grayscale(100%) brightness(0.6);
+    }
+
+    .impact-box h3 {
+      font-size: 32px;
+      color: #1d3557;
+      margin-bottom: 10px;
+    }
+
+    .impact-box p {
+      font-size: 16px;
+      color: #444;
+    }
+
+
+    /* ABOUT / RESOURCES */
+    .about-section {
+      background-color: #f8f9fa;
+      padding: 80px 40px;
+    }
+
+    .about-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .about-text {
+      flex: 1 1 500px;
+    }
+
+    .about-text h2 {
+      font-size: 32px;
+      color: #1d3557;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      font-size: 18px;
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .about-image {
+      flex: 1 1 400px;
+    }
+
+    .about-image img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .resources-section {
+      padding: 80px 40px;
+      background-color: #fefefe;
+    }
+
+    .resources-container {
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .resources-section h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: #1d3557;
+    }
+
+    .resources-intro {
+      font-size: 18px;
+      margin-bottom: 40px;
+      color: #444;
+    }
+
+    .resources-grid {
+      display: grid;
+      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .resource-card {
+      background: #ffffff;
+      padding: 25px 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .resource-card h3 a {
+      font-size: 20px;
+      color: #0077b6;
+      text-decoration: none;
+    }
+
+    .resource-card h3 a:hover {
+      text-decoration: underline;
+    }
+
+    .resource-card p {
+      font-size: 16px;
+      margin-top: 10px;
+      color: #333;
+    }
+
+    /* DONOR MODAL STYLES */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      overflow-y: auto;
+      padding: 40px 20px;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      padding: 30px 25px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    .modal-content h2 {
+      margin-top: 0;
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #1d3557;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group input[type="number"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+      background-color: #f9f9f9;
+    }
+
+    .form-group input:focus {
+      border-color: #17b978;
+      outline: none;
+      box-shadow: 0 0 3px rgba(23, 185, 120, 0.4);
+    }
+
+    .form-footer {
+      margin-top: 16px;
+      font-size: 14.5px;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-footer label {
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      background-color: #17b978;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 20px;
+      width: 100%;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #0f8b64;
+    }
+
+    .close {
+      position: absolute;
+      top: 12px;
+      right: 18px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #888;
+      font-weight: bold;
+    }
+
+    .close:hover {
+      color: #000;
+    }
+
+    /* MOBILE SUPPORT */
+    @media (max-height: 600px) {
+      .modal-content {
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+    }
+
+    /* Header Button */
+    .global-donate-btn {
+      background-color: #fcd71e;
+      color: black;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    /* Modal styling (shared) */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 5% auto;
+      padding: 20px 30px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .close {
+      float: right;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    form label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    form input[type="text"],
+    form input[type="tel"],
+    form input[type="email"],
+    form input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .tax-options {
+      margin-top: 12px;
+    }
+
+    button[type="submit"] {
+      background-color: #04c35c;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      margin-top: 20px;
+      font-size: 16px;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      background: #1d3557;
+      color: #f1f1f1;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .footer-container {
+      max-width: 450px;
+      margin: 0 auto;
+    }
+
+    .site-footer h4 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+
+    .subscribe-form {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+      gap: 10px;
+    }
+
+    .subscribe-form input {
+      padding: 12px 15px;
+      width: 250px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .subscribe-form button {
+      padding: 12px 20px;
+      background-color: #e63946;
+      color: #fff;
+      border: none;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .subscribe-form button:hover {
+      background-color: #d62839;
+      transform: scale(1.05);
+    }
+
+    .footer-contact {
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+
+    .footer-contact p {
+      margin: 5px 0;
+    }
+
+    .footer-contact a {
+      color: #f1f1f1;
+      text-decoration: underline;
+    }
+
+    .footer-copy {
+      font-size: 14px;
+      opacity: 0.85;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo {
+      height: 80px;
+      width: auto;
+    }
+
+    .why-donate {
+      background-color: #f9f9f6;
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    .why-donate h2 {
+      font-size: 32px;
+      margin-bottom: 40px;
+      color: #222;
+    }
+
+    .donate-reasons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .reason {
+      display: flex;
+      align-items: flex-start;
+      text-align: left;
+      gap: 15px;
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    .reason .icon {
+      font-size: 24px;
+      color: #17b978;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    .reason h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: #086972;
+    }
+
+    .reason p {
+      font-size: 15px;
+      color: #333;
+    }
+
+    .programmes-section {
+      padding: 60px 40px;
+      background-color: #fffef9;
+      text-align: center;
+    }
+
+    .programmes-section h2 {
+      font-size: 32px;
+      margin-bottom: 40px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .programme-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .programme-card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .programme-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .programme-card img {
+      width: 50px;
+      margin-bottom: 15px;
+    }
+
+    .programme-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .programme-card p {
+      font-size: 14.5px;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    /* Themed colors */
+    .yellow {
+      color: #f4a261;
+    }
+
+    .purple {
+      color: #9b5de5;
+    }
+
+    .teal {
+      color: #00b4d8;
+    }
+
+    .peach {
+      color: #f4a261;
+    }
+
+    .green {
+      color: #2a9d8f;
+    }
+
+    .red {
+      color: #ef476f;
+    }
+
+    .programme-card a {
+      text-decoration: none;
+    }
+
+    .programme-card a h3:hover {
+      text-decoration: underline;
+      color: #0c4f91;
+      /* or any hover color you prefer */
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo-container">
+      <img src="195-removebg-preview.png" alt="Trust Logo" class="logo" />
+      <strong>SHYAMASHREE SHITALA MAA CHARITABLE TRUST</strong>
+      <!--<h5>SHYAMASHREE SHITALA MAA CHARITABLE TRUST</h5>-->
+    </div>
+    <nav>
+      <a href="#about">About Us</a>
+      <a href="#donate">Vision & Mission</a>
+      <a href="#projects">Projects</a>
+      <a href="#resources">Resources</a>
+
+    </nav>
+    <button class="global-donate-btn" onclick="openGeneralDonateForm()">DONATE NOW</button>
+  </header>
+  <!-- General Donation Form Modal -->
+  <div id="generalDonationModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeGeneralModal()">&times;</span>
+      <h2>Make a General Donation</h2>
+
+      <form id="generalDonationForm">
+        <label>Name *</label>
+        <input type="text" required>
+
+        <label>Mobile No *</label>
+        <input type="tel" required>
+
+        <label>Email *</label>
+        <input type="email" required>
+
+        <label>Address *</label>
+        <input type="text" required>
+
+        <label>PAN (Optional unless 80G selected)</label>
+        <input type="text" id="generalPanField">
+
+        <label>Donation Amount (₹)*</label>
+        <input type="number" id="userAmount" required min="1">
+
+        <div class="tax-options">
+          <label><input type="radio" name="generalTaxBenefit" value="80G"> I want a Tax Benefit of 80G</label><br>
+          <label><input type="radio" name="generalTaxBenefit" value="No"> No Thanks</label>
+        </div>
+
+        <button type="submit">Donate Now ✅</button>
+      </form>
+    </div>
+  </div>
+
+  <section class="hero" id="hero">
+    <div class="hero-arrow left-arrow" onclick="prevProject()">&#10094;</div>
+    <div class="hero-arrow right-arrow" onclick="nextProject()">&#10095;</div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content" id="heroContent">
+      <!-- JS will load content here -->
+    </div>
+  </section>
+  <div id="donorModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeForm()">&times;</span>
+      <h2>Project Based Donation</h2>
+
+      <div class="form-group">
+        <label>Project Name</label>
+        <input type="text" id="projectName" readonly>
+      </div>
+
+      <div class="form-group">
+        <label>Name *</label>
+        <input type="text" required>
+      </div>
+
+      <div class="form-group">
+        <label>Mobile No *</label>
+        <input type="tel" required>
+      </div>
+
+      <div class="form-group">
+        <label>Email *</label>
+        <input type="email" required>
+      </div>
+
+      <div class="form-group">
+        <label>Address *</label>
+        <input type="text" required>
+      </div>
+
+      <div class="form-group" id="panField">
+        <label>PAN</label>
+        <input type="text" id="pan">
+      </div>
+
+      <div class="form-group">
+        <label>Donation Amount (per Head)</label>
+        <input type="number" id="amountPerHead" readonly>
+      </div>
+
+      <div class="form-group">
+        <label>Number of Heads</label>
+        <input type="number" id="headCount" value="1" min="1" oninput="updateTotalAmount()">
+      </div>
+
+      <div class="form-group">
+        <label>Total Donation</label>
+        <input type="text" id="totalAmount" readonly>
+      </div>
+
+      <div class="form-footer">
+        <label><input type="radio" name="benefit" id="benefit80G" onclick="togglePanField()"> I want a Tax Benefit of
+          80G</label>
+        <label><input type="radio" name="benefit" id="noBenefit" onclick="togglePanField()" checked> No Thanks</label>
+      </div>
+
+      <button class="submit-btn">Donate Now ✅</button>
+    </div>
+  </div>
+
+
+  <section class="why-donate">
+    <h2>Why Donate With Us</h2>
+    <div class="donate-reasons">
+      <div class="reason">
+        <div class="icon">✔️</div>
+        <div>
+          <h3>100% Transparency</h3>
+          <p>We maintain clear records of every donation received and how it's used. Regular reports, project photos &
+            updates are shared.</p>
+        </div>
+      </div>
+      <div class="reason">
+        <div class="icon">✔️</div>
+        <div>
+          <h3>Grassroots Impact</h3>
+          <p>We work directly in underprivileged communities, ensuring maximum reach with minimum overheads.</p>
+        </div>
+      </div>
+      <div class="reason">
+        <div class="icon">✔️</div>
+        <div>
+          <h3>Registered & Compliant</h3>
+          <p>Registered under Indian Registration Act, 1909. Certified for 12AB & 80G. Listed on NITI Aayog Darpan.</p>
+        </div>
+      </div>
+      <div class="reason">
+        <div class="icon">✔️</div>
+        <div>
+          <h3>Community Trust</h3>
+          <p>We’re deeply rooted in the communities we serve — trusted, visible, and locally involved.</p>
+        </div>
+      </div>
+      <div class="reason">
+        <div class="icon">✔️</div>
+        <div>
+          <h3>Volunteer-Led</h3>
+          <p>Driven by passionate volunteers, ensuring funds go directly to where they're needed most.</p>
+        </div>
+      </div>
+      <div class="reason">
+        <div class="icon">✔️</div>
+        <div>
+          <h3>Impact-Driven</h3>
+          <p>We prioritize measurable results—real change in real communities, with accountability at every step.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="programmes-section" id="projects">
+    <h2>Our Programmes</h2>
+    <div class="programme-grid">
+
+      <div class="programme-card">
+        <img src="https://img.icons8.com/ios/100/book.png" alt="Education" />
+        <a href="education.html">
+          <h3 class="yellow">EDUCATION</h3>
+        </a>
+        <p>Education, nutrition and holistic development of children.</p>
+      </div>
+
+      <div class="programme-card">
+        <img src="https://img.icons8.com/ios/100/heart-with-pulse--v1.png" alt="Healthcare" />
+        <a href="healthcare.html">
+          <h3 class="purple">HEALTHCARE</h3>
+        </a>
+        <p>Taking healthcare services to doorsteps of hard-to-reach communities.</p>
+      </div>
+
+      <div class="programme-card">
+        <img
+          src="https://images.rawpixel.com/image_png_social_square/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L3YxMTY5LWljb25zLTA2Ny1wLnBuZw.png"
+          alt="Women Empowerment" />
+        <a href="women-empowerment.html">
+          <h3 class="teal">WOMEN EMPOWERMENT</h3>
+        </a>
+        <p>Empowering adolescent girls & women through community engagement.</p>
+      </div>
+      <div class="programme-card">
+        <img src="https://img.icons8.com/ios/100/resume.png" alt="Livelihood" />
+        <a href="livelihood.html">
+          <h3 class="peach">LIVELIHOOD</h3>
+        </a>
+        <p>Skill training and placement support for underprivileged youth.</p>
+      </div>
+
+      <div class="programme-card">
+        <img src="https://img.icons8.com/ios/100/parachute.png" alt="Empowering Grassroots" />
+        <a href="grassroots.html">
+          <h3 class="green">EMPOWERING GRASSROOTS</h3>
+        </a>
+        <p>Helping community-based organizations become locally sustainable.</p>
+      </div>
+
+      <div class="programme-card">
+        <img
+          src="https://static.vecteezy.com/system/resources/previews/041/411/834/non_2x/disaster-response-icon-illustration-vector.jpg"
+          alt="Disaster Response" />
+        <a href="disaster-response.html">
+          <h3 class="red">DISASTER RESPONSE</h3>
+        </a>
+        <p>Responding to the needs of disaster-affected communities.</p>
+      </div>
+
+      <div class="programme-card">
+        <img src="https://img.icons8.com/ios/100/training.png" alt="Youth Mentorship" />
+        <a href="youth-mentorship.html">
+          <h3 class="blue">YOUTH MENTORSHIP</h3>
+        </a>
+        <p>Guiding youth through career counselling, life skills and leadership programs.</p>
+      </div>
+
+      <div class="programme-card">
+        <img src="https://img.icons8.com/ios/100/earth-planet.png" alt="Environment" />
+        <a href="environment.html">
+          <h3 class="darkgreen">ENVIRONMENT</h3>
+        </a>
+        <p>Promoting sustainability through tree plantations, clean-up drives, and awareness campaigns.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <section class="impact-stats">
+    <div class="impact-container">
+      <div class="impact-box">
+        <img src="village-icon-png-13.jpg" alt="Villages">
+        <h3>100+</h3>
+        <p>Villages Reached</p>
+      </div>
+      <div class="impact-box">
+        <img src="OIP (1).jpeg" alt="Women & Girls">
+        <h3>6,000+</h3>
+        <p>Women & Girls Supported</p>
+      </div>
+      <div class="impact-box">
+        <img src="https://img.icons8.com/ios-filled/100/000000/approval.png" alt="Transparency">
+        <h3>100%</h3>
+        <p>Transparency & Compliance</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section" id="about">
+    <div class="about-container">
+      <div class="about-text">
+        <h2>About Us</h2>
+        <p>
+          At <strong>Shyamashree Sitala Maa Charitable Trust</strong>, we are committed to uplifting underprivileged
+          communities through focused efforts in health, education, and sustainable development. We believe in driving
+          measurable change by organizing grassroots programs that empower individuals and families—especially women and
+          children.
+        </p>
+        <p>
+          Transparency and accountability guide every initiative we run, ensuring every donation and action makes a
+          visible, lasting impact. Our approach is rooted in trust, collaboration, and results.
+        </p>
+      </div>
+      <div class="about-image">
+        <img
+          src="https://img.freepik.com/free-photo/happy-indian-family-sitting-together-outdoor_53876-148064.jpg?w=900"
+          alt="Community Impact">
+      </div>
+    </div>
+  </section>
+
+
+  <section class="resources-section" id="resources">
+    <div class="resources-container">
+      <h2>Resources</h2>
+      <p class="resources-intro">Explore our latest updates, reports, and inspiring stories from the field.</p>
+
+      <div class="resources-grid">
+        <div class="resource-card">
+          <h3><a href="#">📄 Annual Report 2024</a></h3>
+          <p>Download our comprehensive impact report outlining our initiatives, financials, and outcomes.</p>
+        </div>
+        <div class="resource-card">
+          <h3><a href="#">🌟 Success Stories</a></h3>
+          <p>Read real-life stories of individuals and communities transformed by your support.</p>
+        </div>
+        <div class="resource-card">
+          <h3><a href="#">📸 Gallery & Videos</a></h3>
+          <p>Browse photos and videos from our events, outreach programs, and community visits.</p>
+        </div>
+        <div class="resource-card">
+          <h3><a href="#">📰 News & Events</a></h3>
+          <p>Stay updated with our recent happenings, press releases, and upcoming activities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <h4>Subscribe for Updates</h4>
+      <form onsubmit="subscribe(event)" class="subscribe-form">
+        <input type="email" placeholder="Enter your email" required />
+        <button type="submit">Subscribe</button>
+      </form>
+
+      <div class="footer-contact">
+        <p><strong>📍 Location:</strong> Howrah District, West Bengal</p>
+        <p><strong>📧 Email:</strong> <a href="mailto:info@ssmct.org">info@ssmct.org</a></p>
+      </div>
+
+      <p class="footer-copy">&copy; 2025 Shyamashree Sitala Maa Charitable Trust. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    const projects = [
+      {
+        title: "PROJECT - SHE - Sanitary Health Empowerment",
+        subtitle: "Dignity Through Hygiene",
+        image: "66.jpg",
+        launch: "14th September 2025",
+        location: "Rural areas in Purba Burdwan District, West Bengal",
+        goal: "Promoting menstrual hygiene and equity by ensuring access, awareness and dignity for underserved girls and woman"
+      },
+      {
+        title: "PROJECT - Shitala Canteen",
+        subtitle: "One Rupee. One Meal. One Blessing",
+        image: "67.jpg",
+        launch: "Announced Soon",
+        location: "Dinner distribution at Variable Location",
+        goal: "Serve daily dinner at a symbolic cost of ₹1"
+      },
+      {
+        title: "PROJECT - Antardrishti",
+        subtitle: "Empowering the Visionless through Knowledge and Mobility",
+        image: "68.jpg",
+        launch: "Announced Soon",
+        location: "Rural Howrah",
+        goal: "Focused on empowering the visually impaired by providing essential tools for learning and independent living.",
+      },
+      {
+        title: "PROJECT - SPARSH",
+        subtitle: "A Touch of Warmth",
+        image: "70.jpg",
+        launch: "Launching soon",
+        location: "Unsheltered people",
+        goal: "To bring warmth and comfort to the homeless and underprivileged during winter through the distribution of woolen blankets."
+      },
+{
+        title: "PROJECT - CHHAYA",
+        subtitle: "A Shade of Care, A Symbol of Dignity",
+        image: "69.jpg",
+        launch: "Launching soon",
+        location: "Unsheltered people",
+        goal: "To donate umbrellas to unsheltered and vulnerable individuals — including those living on the streets, footpaths, temporary huts, or open spaces — to protect them from the harsh sun, heavy rains, and extreme weather."
+      },
+    ];
+
+    let currentIndex = 0;
+
+    function renderHero(index) {
+      const hero = document.getElementById("hero");
+      const content = document.getElementById("heroContent");
+      const project = projects[ index ];
+
+      hero.style.backgroundImage = `url('${project.image}')`;
+
+      content.innerHTML = `
+      <h1>${project.title}</h1>
+      <p><strong>${project.subtitle}</strong></p>
+      <ul class="project-details">
+        <li>📅 <strong>Estimated Launch Date:</strong> ${project.launch}</li>
+        <li>📍 <strong>Location:</strong> ${project.location}</li>
+        <li>🎯 <strong>Goal:</strong> ${project.goal}</li>
+      </ul>
+      <div class="hero-buttons">
+        <a class="donate-btn" href="javascript:void(0);" onclick="openForm('DigniDays', 200)">Book A Smile!</a>
+        <a href="#" class="btn-secondary">Learn More</a>
+      </div>
+    `;
+    }
+
+    function nextProject() {
+      currentIndex = (currentIndex + 1) % projects.length;
+      renderHero(currentIndex);
+    }
+
+    function prevProject() {
+      currentIndex = (currentIndex - 1 + projects.length) % projects.length;
+      renderHero(currentIndex);
+    }
+
+    // Auto change every 6 seconds
+    setInterval(nextProject, 6000);
+
+    // Initialize first hero
+    window.onload = () => {
+      renderHero(currentIndex);
+    };
+
+    function openForm(projectName, amountPerHead) {
+      document.getElementById("donorModal").style.display = "flex";
+      document.getElementById("projectName").value = projectName;
+      document.getElementById("amountPerHead").value = amountPerHead;
+      document.getElementById("headCount").value = 1;
+      document.getElementById("totalAmount").value = amountPerHead;
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeForm() {
+      document.getElementById("donorModal").style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+
+    function updateTotalAmount() {
+      const amount = parseFloat(document.getElementById("amountPerHead").value);
+      const headCount = parseInt(document.getElementById("headCount").value || 1);
+      const total = amount * headCount;
+      document.getElementById("totalAmount").value = total.toFixed(2);
+    }
+
+    function togglePanField() {
+      const panField = document.getElementById("panField");
+      const wantsBenefit = document.getElementById("benefit80G").checked;
+      if (wantsBenefit) {
+        panField.style.display = "block";
+        document.getElementById("pan").required = true;
+      } else {
+        panField.style.display = "none";
+        document.getElementById("pan").required = false;
+      }
+    }
+    function openGeneralDonateForm() {
+      document.getElementById('generalDonationModal').style.display = 'block';
+    }
+
+    function closeGeneralModal() {
+      document.getElementById('generalDonationModal').style.display = 'none';
+      document.getElementById('generalDonationForm').reset();
+    }
+
+    // Handle PAN requirement based on 80G
+    document.querySelectorAll('input[name="generalTaxBenefit"]').forEach(radio => {
+      radio.addEventListener('change', function () {
+        const panField = document.getElementById('generalPanField');
+        panField.required = (this.value === "80G");
+      });
+    });
+
+    // Optional: close modal on outside click
+    window.onclick = function (event) {
+      const modal = document.getElementById('generalDonationModal');
+      if (event.target == modal) {
+        closeGeneralModal();
+      }
+    }
+  </script>
+</body>
+
+</html>
