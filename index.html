@@ -890,17 +890,114 @@ html {
     font-size: 13px;
   }
 }
+/* Default: desktop view */
+.desktop-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.mobile-nav,
+.hamburger {
+  display: none;
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+    font-size: 28px;
+    cursor: pointer;
+  }
+
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: white;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 999;
+  }
+
+  .mobile-nav.show {
+    display: flex;
+  }
+}
+/* -------- Desktop Navigation -------- */
+.desktop-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.mobile-nav,
+.hamburger {
+  display: none;
+}
+
+/* -------- Mobile Navigation -------- */
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+    font-size: 28px;
+    cursor: pointer;
+    user-select: none;
+    margin-left: auto;
+  }
+
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: white;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 999;
+  }
+
+  .mobile-nav a {
+    margin: 10px 0;
+    font-size: 16px;
+    color: var(--dark);
+    text-decoration: none;
+  }
+
+  .mobile-nav a:hover {
+    color: var(--primary);
+  }
+
+  .mobile-nav.show {
+    display: flex;
+  }
+
+  .global-donate-btn {
+    margin-top: 10px;
+    width: 100%;
+  }
+}
 
   </style>
 </head>
 
 <body>
 
-  <header>
+ <!-- <header>
     <div class="logo-container">
       <img src="195-removebg-preview.png" alt="Trust Logo" class="logo" />
       <strong>SHYAMASHREE SHITALA MAA CHARITABLE TRUST</strong>
-      <!--<h5>SHYAMASHREE SHITALA MAA CHARITABLE TRUST</h5>-->
     </div>
     <nav>
       <a href="#about">About Us</a>
@@ -910,7 +1007,37 @@ html {
 
     </nav>
     <button class="global-donate-btn" onclick="openGeneralDonateForm()">DONATE NOW</button>
-  </header>
+  </header> -->
+<header>
+  <div class="logo-container">
+    <img src="195-removebg-preview.png" alt="Trust Logo" class="logo" />
+    <strong>SHYAMASHREE SHITALA MAA CHARITABLE TRUST</strong>
+  </div>
+
+  <!-- Desktop Navigation -->
+  <nav class="desktop-nav">
+    <a href="#about">About Us</a>
+    <a href="#donate">Vision & Mission</a>
+    <a href="#projects">Projects</a>
+    <a href="#resources">Resources</a>
+  </nav>
+
+  <!-- Hamburger (Mobile only) -->
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav" id="mobileMenu">
+    <a href="#about" onclick="closeMenu()">About Us</a>
+    <a href="#donate" onclick="closeMenu()">Vision & Mission</a>
+    <a href="#projects" onclick="closeMenu()">Projects</a>
+    <a href="#resources" onclick="closeMenu()">Resources</a>
+  </nav>
+
+  <!-- Donate Button -->
+  <button class="global-donate-btn" onclick="openGeneralDonateForm()">DONATE NOW</button>
+</header>
+
+
   <!-- General Donation Form Modal -->
   <div id="generalDonationModal" class="modal">
     <div class="modal-content">
@@ -1367,6 +1494,14 @@ html {
         closeGeneralModal();
       }
     }
+function toggleMenu() {
+  document.getElementById("mobileMenu").classList.toggle("show");
+}
+
+function closeMenu() {
+  document.getElementById("mobileMenu").classList.remove("show");
+}
+
   </script>
 </body>
 
