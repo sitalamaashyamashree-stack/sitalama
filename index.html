@@ -1502,6 +1502,21 @@ function closeMenu() {
   document.getElementById("mobileMenu").classList.remove("show");
 }
 
+// Close menu when clicking outside
+document.addEventListener("click", function(event) {
+  const menu = document.getElementById("mobileMenu");
+  const hamburger = document.querySelector(".hamburger");
+
+  if (
+    menu.classList.contains("show") &&
+    !menu.contains(event.target) &&
+    !hamburger.contains(event.target)
+  ) {
+    closeMenu();
+  }
+});
+
+
   </script>
 </body>
 
