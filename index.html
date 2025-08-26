@@ -29,13 +29,21 @@
       background-color: white;
     }
 
-    header {
+    /*header {
       background: var(--light);
       padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-bottom: 2px solid #eee;
+    }*/
+  header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: white; /* so it doesn’t overlap with transparent background */
+      z-index: 1000; /* keeps it above other sections */
+     box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* optional, for a clean floating effect */
     }
 
     header nav a {
