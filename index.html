@@ -23,6 +23,8 @@
 
     body {
       font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
       color: var(--dark);
       background-color: white;
     }
@@ -738,6 +740,157 @@
       color: #0c4f91;
       /* or any hover color you prefer */
     }
+/* --------- GLOBAL RESPONSIVENESS --------- */
+html {
+  scroll-behavior: smooth;
+}
+
+/*body {
+  font-size: 16px;
+  line-height: 1.6;
+}*/
+
+/* ---------- TABLET (max-width: 1024px) ---------- */
+@media (max-width: 1024px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+  }
+
+  header nav {
+    margin-top: 10px;
+  }
+
+  header nav a {
+    margin: 8px 10px;
+    display: inline-block;
+  }
+
+  .hero {
+    height: 80vh;
+    padding: 20px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .hero-content {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-text,
+  .about-image {
+    flex: 1 1 100%;
+  }
+}
+
+/* ---------- MOBILE (max-width: 768px) ---------- */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .logo {
+    height: 60px;
+  }
+
+  .global-donate-btn {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .hero {
+    height: 70vh;
+    padding: 10px;
+    justify-content: center;
+  }
+
+  .hero h1 {
+    font-size: 26px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .impact-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .programme-grid,
+  .donate-reasons,
+  .resources-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .subscribe-form {
+    flex-direction: column;
+  }
+
+  .subscribe-form input {
+    width: 100%;
+  }
+
+  .subscribe-form button {
+    width: 100%;
+  }
+}
+
+/* ---------- SMALL MOBILE (max-width: 480px) ---------- */
+@media (max-width: 480px) {
+  header strong {
+    font-size: 14px;
+  }
+
+  .hero h1 {
+    font-size: 22px;
+  }
+
+  .hero p,
+  .about-text p,
+  .resources-intro {
+    font-size: 14px;
+  }
+
+  .impact-box h3 {
+    font-size: 24px;
+  }
+
+  .programme-card h3 {
+    font-size: 18px;
+  }
+
+  .programme-card p {
+    font-size: 13px;
+  }
+
+  footer {
+    font-size: 13px;
+  }
+}
+
   </style>
 </head>
 
