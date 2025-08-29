@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="About Shyamashree Sitala Maa Charitable Trust – A non-profit organization working for education, healthcare, women empowerment, and community development.">
+  <title>About Us - Shyamashree Sitala Maa Charitable Trust</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --primary: #086972;  /* Teal */
+      --secondary: #17b978; /* Green */
+      --light-bg: #fdfdfd;
+      --dark-text: #222;
+    }
+
+    * {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: var(--light-bg);
+      color: var(--dark-text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 15px;
+      background: #fff;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header img {
+      width: 70px;
+      margin-right: 15px;
+    }
+
+    header h1 {
+      font-size: 28px;
+      color: var(--primary);
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 75vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      padding: 0 20px;
+      overflow: hidden;
+      background: url('https://images.unsplash.com/photo-1509099836639-18ba1795216d?ixlib=rb-4.0.3&q=80&auto=format&fit=crop&w=1350') center/cover no-repeat;
+    }
+
+    /* Subtle Floating Shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.3;
+      background: var(--secondary);
+      animation: float 12s infinite ease-in-out;
+      z-index: 1;
+    }
+    .shape:nth-child(1) { width: 120px; height: 120px; top: 15%; left: 10%; animation-delay: 0s; }
+    .shape:nth-child(2) { width: 80px; height: 80px; bottom: 15%; right: 20%; background: var(--primary); animation-delay: 4s; }
+    .shape:nth-child(3) { width: 100px; height: 100px; top: 30%; right: 10%; animation-delay: 8s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-30px); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeInUp 1.3s ease-in-out;
+    }
+
+    .hero h2 {
+      font-size: 60px;
+      font-weight: 700;
+      text-shadow: 0 6px 25px rgba(0,0,0,0.6);
+      letter-spacing: 1px;
+    }
+
+    /* Section Styling */
+    section {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    section h3 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 25px;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .content {
+      background: #fff;
+      padding: 35px;
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      margin-bottom: 35px;
+      transition: all 0.3s ease;
+    }
+
+    .content:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #333;
+    }
+
+    ul {
+      list-style: none;
+      margin-top: 15px;
+    }
+    ul li {
+      font-size: 18px;
+      margin-bottom: 12px;
+      padding-left: 28px;
+      position: relative;
+    }
+    ul li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--secondary);
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    /* Buttons */
+    .btn-group {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 34px;
+      border-radius: 40px;
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      font-size: 18px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .btn:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero {
+        height: 65vh;
+      }
+      .hero h2 {
+        font-size: 48px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header img { width: 55px; }
+      header h1 { font-size: 24px; }
+      .hero h2 { font-size: 38px; }
+      section h3 { font-size: 30px; }
+      p, ul li { font-size: 16px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero { height: 55vh; }
+      .hero h2 { font-size: 28px; }
+      .btn { font-size: 16px; padding: 12px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <img src="SSMCT logo1.png" alt="Trust Logo">
+    <h1>Shyamashree Sitala Maa Charitable Trust</h1>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="hero-content">
+      <h2>About Us</h2>
+    </div>
+  </section>
+
+  <!-- About Content -->
+  <section>
+    <div class="content">
+      <h3>Who We Are</h3>
+      <p>Shyamashree Sitala Maa Charitable Trust is a non-profit organization dedicated to uplifting underprivileged communities through education, healthcare, women empowerment, and cultural development. We work tirelessly to bring positive change in the lives of those who need it the most.</p>
+    </div>
+
+    <div class="content">
+      <h3>Our Vision</h3>
+      <p>To build a compassionate society where every individual has access to essential resources, dignity, and opportunities to grow.</p>
+    </div>
+
+    <div class="content">
+      <h3>Our Mission</h3>
+      <ul>
+        <li>Supporting education for underprivileged children.</li>
+        <li>Providing healthcare assistance to needy families.</li>
+        <li>Empowering women through skills and training.</li>
+        <li>Organizing community welfare and awareness programs.</li>
+        <li>Promoting sustainable rural development.</li>
+      </ul>
+    </div>
+
+    <div class="content">
+      <h3>Our Values</h3>
+      <ul>
+        <li>Transparency in all activities.</li>
+        <li>Compassion for all without discrimination.</li>
+        <li>Integrity in every action and decision.</li>
+        <li>Long-term impact through sustainability.</li>
+      </ul>
+    </div>
+
+    <div class="btn-group">
+      <a href="YOUR-DONATION-LINK" class="btn">Donate Now</a>
+      <a href="YOUR-CONTACT-LINK" class="btn">Contact Us</a>
+    </div>
+  </section>
+</body>
+</html>
