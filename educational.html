@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Educational Projects Showcase</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark { background: #1e1e1e; color: #f5f5f5; }
+
+    /* Hero */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f') center/cover no-repeat;
+      color: white; text-align: center; padding: 120px 20px; background-attachment: fixed;
+    }
+    .hero h1 { font-size: 3rem; margin-bottom: 10px; font-weight: bold; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+    .hero p { font-size: 1.4rem; max-width: 700px; margin: auto; text-shadow: 1px 1px 6px rgba(0,0,0,0.5); }
+
+    /* Controls */
+    .controls { text-align: center; margin: 20px; }
+    .controls input {
+      padding: 10px; border-radius: 25px; border: 1px solid #ccc; width: 250px; margin-right: 10px;
+    }
+    .controls button {
+      background: linear-gradient(90deg, #007BFF, #00C6FF);
+      border: none; color: white; padding: 10px 20px; border-radius: 25px; cursor: pointer; font-weight: bold; margin: 5px;
+      transition: transform 0.2s;
+    }
+    .controls button:hover { transform: scale(1.05); }
+
+    /* Grid */
+    .grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px;
+      padding: 20px; max-width: 1300px; margin: auto;
+    }
+
+    /* Cards */
+    .card {
+      background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease-in-out, background 0.3s;
+    }
+    body.dark .card { background: #2c2c2c; }
+    .card:hover { transform: translateY(-10px); }
+
+    /* Media Container */
+    .media-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; padding: 10px; }
+    .media-container img, .media-container video {
+      flex: 0 0 auto; width: 300px; height: 200px; object-fit: cover; border-radius: 12px; scroll-snap-align: start;
+    }
+    .media-container::-webkit-scrollbar { height: 8px; }
+    .media-container::-webkit-scrollbar-thumb { background: #007BFF; border-radius: 10px; }
+
+    .card-content { padding: 15px; }
+    .card-content h3 { margin: 10px 0; font-size: 1.5rem; color: #007BFF; }
+    .buttons { margin-top: 15px; display: flex; justify-content: space-between; }
+    .buttons a {
+      text-decoration: none; background: linear-gradient(90deg, #007BFF, #00C6FF);
+      color: white; padding: 8px 15px; border-radius: 25px; font-weight: bold; transition: opacity 0.3s;
+    }
+    .buttons a:hover { opacity: 0.85; }
+
+    /* Modal (Lightbox) */
+    .modal {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000;
+      flex-direction: column; color: white; text-align: center;
+    }
+    .modal-content { max-width: 90%; max-height: 80%; }
+    .modal img, .modal video { max-width: 100%; max-height: 80vh; border-radius: 12px; }
+    .modal-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      font-size: 2rem; color: white; cursor: pointer; padding: 10px; background: rgba(0,0,0,0.5); border-radius: 50%;
+    }
+    .prev { left: 20px; }
+    .next { right: 20px; }
+    .close-btn {
+      position: absolute; top: 20px; right: 20px; font-size: 2rem; cursor: pointer; background: rgba(0,0,0,0.5); border-radius: 50%;
+    }
+
+    /* Dots for Swipe Indicators */
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 15px;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #aaa;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .dot.active { background: #007BFF; }
+
+    footer { background: black; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+
+    @media(max-width: 768px){
+      .hero h1 { font-size: 2.2rem; }
+      .hero p { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Empowering Education Projects</h1>
+    <p>Explore transformative initiatives bringing technology, books, and inspiration to students everywhere.</p>
+  </section>
+
+  <!-- Search & Dark Mode -->
+  <div class="controls">
+    <input type="text" id="searchBox" placeholder="Search projects..." onkeyup="searchProjects()">
+    <button onclick="toggleTheme()">Toggle Dark Mode</button>
+  </div>
+
+  <!-- Filters -->
+  <div class="controls">
+    <button onclick="filterCards('all')">All</button>
+    <button onclick="filterCards('video')">Videos</button>
+    <button onclick="filterCards('image')">Images</button>
+  </div>
+
+  <!-- Cards -->
+  <div class="grid" id="cardGrid">
+    <div class="card video" data-full="The Smart Classroom Project equips schools with interactive whiteboards, projectors, and tablets." data-media='["https://samplelib.com/lib/preview/mp4/sample-5s.mp4","https://images.unsplash.com/photo-1503676260728-1c00da094a0b"]'>
+      <div class="media-container">
+        <video controls src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4"></video>
+        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b">
+      </div>
+      <div class="card-content">
+        <h3>Smart Classroom Project</h3>
+        <p>Transforming classrooms with interactive screens and digital tools.</p>
+        <div class="buttons">
+          <a href="#" onclick="toggleDescription(this)">Learn More</a>
+          <a href="#" onclick="openModal(this)">View Details</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card image" data-full="The Community Library initiative sets up libraries in rural areas." data-media='["https://images.unsplash.com/photo-1584697964194-27504f7f7fa3","https://images.unsplash.com/photo-1497633762265-9d179a990aa6"]'>
+      <div class="media-container">
+        <img src="https://images.unsplash.com/photo-1584697964194-27504f7f7fa3">
+        <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6">
+      </div>
+      <div class="card-content">
+        <h3>Community Library</h3>
+        <p>Creating access to books for rural children and nurturing reading habits.</p>
+        <div class="buttons">
+          <a href="#" onclick="toggleDescription(this)">Learn More</a>
+          <a href="#" onclick="openModal(this)">View Details</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card video" data-full="STEM Training workshops introduce robotics, coding, and AI to rural students." data-media='["https://samplelib.com/lib/preview/mp4/sample-10s.mp4","https://images.unsplash.com/photo-1509062522246-3755977927d7"]'>
+      <div class="media-container">
+        <video controls src="https://samplelib.com/lib/preview/mp4/sample-10s.mp4"></video>
+        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7">
+      </div>
+      <div class="card-content">
+        <h3>STEM Training</h3>
+        <p>Workshops on robotics, coding, and AI for rural school students.</p>
+        <div class="buttons">
+          <a href="#" onclick="toggleDescription(this)">Learn More</a>
+          <a href="#" onclick="openModal(this)">View Details</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card image" data-full="Scholarship Drive provides financial aid and mentorship to students." data-media='["https://images.unsplash.com/photo-1596495577886-d920f1fb7238","https://images.unsplash.com/photo-1610484826967-f5b65071b4c6"]'>
+      <div class="media-container">
+        <img src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238">
+        <img src="https://images.unsplash.com/photo-1610484826967-f5b65071b4c6">
+      </div>
+      <div class="card-content">
+        <h3>Scholarship Drive</h3>
+        <p>Providing financial aid and mentorship to promising students.</p>
+        <div class="buttons">
+          <a href="#" onclick="toggleDescription(this)">Learn More</a>
+          <a href="#" onclick="openModal(this)">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Lightbox -->
+  <div class="modal" id="modal">
+    <span class="close-btn" onclick="closeModal()">✕</span>
+    <span class="modal-btn prev" onclick="prevMedia()">❮</span>
+    <div class="modal-content" id="modalContent"></div>
+    <div class="dots" id="dotsContainer"></div>
+    <span class="modal-btn next" onclick="nextMedia()">❯</span>
+  </div>
+
+  <footer>
+    © 2025 Shyamashree Shitala Maa Charitable Trust. All rights reserved.
+  </footer>
+
+  <script>
+    let currentIndex = 0, mediaArray = [];
+
+    function filterCards(type) {
+      document.querySelectorAll('.card').forEach(card => {
+        card.style.display = (type === 'all' || card.classList.contains(type)) ? 'block' : 'none';
+      });
+    }
+    function searchProjects() {
+      const search = document.getElementById("searchBox").value.toLowerCase();
+      document.querySelectorAll('.card').forEach(card => {
+        const title = card.querySelector("h3").innerText.toLowerCase();
+        card.style.display = title.includes(search) ? 'block' : 'none';
+      });
+    }
+    function toggleTheme() { document.body.classList.toggle("dark"); }
+
+    function toggleDescription(btn) {
+      const p = btn.closest('.card-content').querySelector('p');
+      const card = btn.closest('.card');
+      if (btn.innerText === "Learn More") {
+        p.innerText = card.dataset.full;
+        btn.innerText = "Show Less";
+      } else {
+        p.innerText = card.querySelector('h3').innerText === "Smart Classroom Project"
+          ? "Transforming classrooms with interactive screens and digital tools."
+          : p.innerText.split(".")[0] + ".";
+        btn.innerText = "Learn More";
+      }
+    }
+
+    function openModal(btn) {
+      const card = btn.closest('.card');
+      mediaArray = JSON.parse(card.dataset.media);
+      currentIndex = 0;
+      showMedia();
+      document.getElementById("modal").style.display = "flex";
+    }
+
+    function showMedia() {
+      const modalContent = document.getElementById("modalContent");
+      const dotsContainer = document.getElementById("dotsContainer");
+      const media = mediaArray[currentIndex];
+
+      modalContent.innerHTML = media.endsWith(".mp4")
+        ? `<video src="${media}" controls autoplay></video>`
+        : `<img src="${media}" alt="Project Media">`;
+
+      dotsContainer.innerHTML = mediaArray.map((_, i) =>
+        `<div class="dot ${i === currentIndex ? 'active' : ''}" onclick="goToMedia(${i})"></div>`
+      ).join('');
+    }
+
+    function goToMedia(index) {
+      currentIndex = index;
+      showMedia();
+    }
+
+    function closeModal() { document.getElementById("modal").style.display = "none"; }
+    function nextMedia() { currentIndex = (currentIndex + 1) % mediaArray.length; showMedia(); }
+    function prevMedia() { currentIndex = (currentIndex - 1 + mediaArray.length) % mediaArray.length; showMedia(); }
+
+    document.addEventListener('keydown', e => {
+      if (document.getElementById("modal").style.display === "flex") {
+        if (e.key === "ArrowRight") nextMedia();
+        if (e.key === "ArrowLeft") prevMedia();
+        if (e.key === "Escape") closeModal();
+      }
+    });
+
+    document.querySelectorAll('.media-container').forEach(container => {
+      setInterval(() => {
+        container.scrollBy({ left: 310, behavior: 'smooth' });
+        if (container.scrollLeft + container.clientWidth >= container.scrollWidth)
+          container.scrollTo({ left: 0, behavior: 'smooth' });
+      }, 3000);
+    });
+
+    /* Swipe Support */
+    function addSwipeSupport(element, onSwipeLeft, onSwipeRight) {
+      let startX = 0, startY = 0;
+      element.addEventListener('touchstart', e => {
+        const touch = e.touches[0];
+        startX = touch.clientX;
+        startY = touch.clientY;
+      });
+      element.addEventListener('touchend', e => {
+        const touch = e.changedTouches[0];
+        const dx = touch.clientX - startX;
+        const dy = touch.clientY - startY;
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+          if (dx < 0) onSwipeLeft();
+          else onSwipeRight();
+        }
+      });
+    }
+
+    addSwipeSupport(document.getElementById("modal"), nextMedia, prevMedia);
+    document.querySelectorAll('.media-container').forEach(container => {
+      addSwipeSupport(container,
+        () => container.scrollBy({ left: 300, behavior: 'smooth' }),
+        () => container.scrollBy({ left: -300, behavior: 'smooth' })
+      );
+    });
+  </script>
+</body>
+</html>
