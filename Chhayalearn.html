@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Project Chhaya | Learn More</title>
+  <style>
+    :root {
+      --brand:#6b21a8;   /* deep purple */
+      --brand-dark:#4a148c;
+      --accent:#f97316; /* orange */
+      --bg:#fffaf5;
+      --card:#ffffff;
+      --ink:#1a1a1a;
+      --muted:#555;
+    }
+    *{box-sizing:border-box}
+    body {
+      margin:0;
+      font-family:"Inter","Segoe UI",Roboto,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.55;
+    }
+
+    header {
+      height:55vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:#fff;
+      background:
+        linear-gradient(180deg,rgba(107,33,168,0.5),rgba(74,20,140,0.6)),
+        url("69.jpg") center/cover no-repeat;
+    }
+    .hero {padding:1rem;max-width:1000px}
+    .pill {background:#fff3e0;color:var(--brand);padding:6px 12px;border-radius:999px;font-weight:600;display:inline-block;margin-bottom:10px}
+    .hero h1 {margin:0;font-size:clamp(1.8rem,3.8vw,2.8rem);}
+    .hero p {margin:.6rem 0 0;color:#fef9f6}
+
+    main {max-width:1100px;margin:1.5rem auto;padding:0 1rem}
+
+    h2 {color:var(--brand);text-align:center;margin:0 0 .7rem;font-size:clamp(1.2rem,2.2vw,1.6rem)}
+    .card {background:var(--card);padding:18px;border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,0.07);margin-bottom:14px}
+    .lead {color:var(--muted);font-size:1.05rem}
+    ul {padding-left:1.1rem;margin:.5rem 0}
+    li {margin:6px 0}
+
+    .cta {display:flex;gap:12px;justify-content:center;margin-top:12px}
+    .btn {padding:11px 18px;border:none;border-radius:28px;font-weight:700;cursor:pointer}
+    .btn-primary {background:var(--brand);color:#fff}
+    .btn-outline {background:#fff;border:2px solid var(--brand);color:var(--brand)}
+
+    /* Gallery */
+    .gallery {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px}
+    .g-item {position:relative;border-radius:12px;overflow:hidden;background:#fff7ed;box-shadow:0 6px 22px rgba(0,0,0,0.08)}
+    .g-item img {width:100%;height:100%;object-fit:cover;transition:transform .5s}
+    .g-item:hover img {transform:scale(1.07)}
+    .g-cap {position:absolute;left:0;right:0;bottom:0;padding:10px;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.6));color:#fff;font-weight:600;opacity:0;transition:opacity .3s}
+    .g-item:hover .g-cap {opacity:1}
+
+    /* Lightbox */
+    .lightbox {position:fixed;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;background:rgba(0,0,0,0.82);z-index:9999;padding:16px}
+    .lightbox.active {display:flex}
+    .lightbox img {max-width:92%;max-height:78%;border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,0.7)}
+    .controls {display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;justify-content:center}
+    .ctrl {background:var(--accent);border:none;color:#fff;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+    .ctrl.alt {background:var(--brand);}
+
+    footer {background:linear-gradient(90deg,var(--brand),var(--brand-dark));color:#fff;text-align:center;padding:18px;margin-top:24px;border-top-left-radius:8px;border-top-right-radius:8px}
+    footer p {margin:6px 0 0}
+
+    @media(max-width:560px){.controls{gap:8px}}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="hero">
+    <div class="pill">🌂 Project Chhaya</div>
+    <h1>A Shade of Care — A Symbol of Dignity</h1>
+    <p>Organized by Shyamashree Sitala Maa Charitable Trust</p>
+  </div>
+</header>
+
+<main>
+  <section>
+    <h2>🧭 What is Project Chhaya?</h2>
+    <div class="card">
+      <p class="lead">A heartfelt initiative to provide free umbrellas to those who live without shelter — individuals who endure the scorching sun, heavy rains, and unpredictable weather every day.</p>
+      <p>A simple umbrella can offer relief, dignity, and humanity.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>🎯 Our Goal</h2>
+    <div class="card">
+      <p>To donate 500+ umbrellas to unsheltered individuals across rural and semi-urban communities.</p>
+      <blockquote>“No one should have to face the rain or sun without even a shade of protection.”</blockquote>
+    </div>
+  </section>
+
+  <section>
+    <h2>👥 Who Will Benefit?</h2>
+    <div class="card">
+      <ul>
+        <li>Homeless individuals living on footpaths</li>
+        <li>Daily wage earners without shelter</li>
+        <li>Elderly in extreme poverty</li>
+        <li>Street vendors & hawkers exposed all day</li>
+        <li>Children walking long distances to school</li>
+        <li>Widows & abandoned women in shelters</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>📍 Areas of Focus</h2>
+    <div class="card">
+      <p>Phase 1 will cover:</p>
+      <ul>
+        <li>Rural villages & roadside settlements</li>
+        <li>Slums and temporary hutments</li>
+        <li>Public places where homeless reside</li>
+      </ul>
+      <p><b>Starting in:</b> Purba Bardhaman, West Bengal</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>💰 Project Cost</h2>
+    <div class="card">
+      <table style="width:100%;border-collapse:collapse">
+        <tr><th align="left">Item</th><th align="left">Unit Cost</th><th align="left">Total</th></tr>
+        <tr><td>Umbrella (good quality)</td><td>₹120 – ₹150</td><td>₹60,000 – ₹75,000</td></tr>
+        <tr><td>Logistics & delivery</td><td>–</td><td>₹5,000</td></tr>
+        <tr><td>Materials (leaflets, tags)</td><td>–</td><td>₹2,000</td></tr>
+        <tr><td><b>Total</b></td><td>–</td><td><b>₹67,000 – ₹82,000</b></td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>💖 How You Can Help</h2>
+    <div class="card">
+      <ul>
+        <li>Sponsor 1 umbrella – ₹150</li>
+        <li>Sponsor 10 umbrellas – ₹1,500</li>
+        <li>Sponsor 50 umbrellas – ₹7,500</li>
+        <li>Sponsor 100 umbrellas – ₹15,000</li>
+        <li>Full project sponsor – ₹75,000+</li>
+      </ul>
+      <p>✅ Tax-deductible under Section 80G<br>✅ Corporate donors can opt for branding on umbrellas</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>🫱🏽‍🫲🏼 Why Umbrellas?</h2>
+    <div class="card">
+      <ul>
+        <li>Low-cost, high-impact aid</li>
+        <li>Instant relief from sun & rain</li>
+        <li>Light to carry, easy to distribute</li>
+        <li>Symbol of protection & dignity</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>📷 Our Approach</h2>
+    <div class="card">
+      <p>We personally visit target locations, identify vulnerable individuals, and hand over umbrellas with respect. Every distribution is documented transparently.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>🖼 Gallery</h2>
+    <div class="gallery">
+      <figure class="g-item"><img src="https://images.unsplash.com/photo-1528892952291-009c663ce843?auto=format&fit=crop&w=1200&q=80" alt="Umbrellas in rain"><figcaption class="g-cap">Relief from rain</figcaption></figure>
+      <figure class="g-item"><img src="https://images.unsplash.com/photo-1534081333815-ae5019106622?auto=format&fit=crop&w=1200&q=80" alt="Street vendors with umbrellas"><figcaption class="g-cap">Street vendors</figcaption></figure>
+      <figure class="g-item"><img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1200&q=80" alt="Children walking in rain"><figcaption class="g-cap">Children walking</figcaption></figure>
+      <figure class="g-item"><img src="69.jpg" alt="Umbrella distribution"><figcaption class="g-cap">Distribution drive</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="Expanded gallery" id="lbImage"/>
+    <div class="controls">
+      <button class="ctrl" id="lbPrev">⟨ Prev</button>
+      <button class="ctrl" id="lbNext">Next ⟩</button>
+      <button class="ctrl" id="lbPause">⏸ Pause</button>
+      <button class="ctrl" id="lbPlay" style="display:none">▶ Play</button>
+      <button class="ctrl alt" id="lbClose">✖ Close</button>
+    </div>
+  </div>
+
+  <section>
+    <h2>📞 Contact Us</h2>
+    <div class="card">
+      <p><b>Shyamashree Sitala Maa Charitable Trust</b><br>
+      📍 [Insert Address]<br>
+      📱 +91-XXXXXXXXXX<br>
+      📧 yourtrustemail@example.com<br>
+      🌐 www.shyamashreetrust.org</p>
+      <div class="cta">
+        <button class="btn btn-primary">Donate Now</button>
+        <button class="btn btn-outline">Volunteer</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <h3>Project Chhaya</h3>
+  <p>A shade of care for the unsheltered.</p>
+</footer>
+
+<script>
+(function(){
+  const imgs=document.querySelectorAll('.g-item img');
+  const lb=document.getElementById('lightbox');
+  const lbImg=document.getElementById('lbImage');
+  const prev=document.getElementById('lbPrev');
+  const next=document.getElementById('lbNext');
+  const close=document.getElementById('lbClose');
+  const pause=document.getElementById('lbPause');
+  const play=document.getElementById('lbPlay');
+  let idx=0,timer=null,INTERVAL=4000;
+
+  function open(i){idx=i;lbImg.src=imgs[idx].src;lb.classList.add('active');start();}
+  function show(i){idx=(i+imgs.length)%imgs.length;lbImg.src=imgs[idx].src;}
+  function start(){stop();timer=setInterval(()=>show(idx+1),INTERVAL);pause.style.display='inline-block';play.style.display='none';}
+  function stop(){if(timer){clearInterval(timer);timer=null;}pause.style.display='none';play.style.display='inline-block';}
+  imgs.forEach((img,i)=>img.addEventListener('click',()=>open(i)));
+  prev.onclick=()=>{show(idx-1);start();};
+  next.onclick=()=>{show(idx+1);start();};
+  close.onclick=()=>{lb.classList.remove('active');stop();};
+  pause.onclick=stop;
+  play.onclick=start;
+  lb.addEventListener('click',e=>{if(e.target===lb){lb.classList.remove('active');stop();}});
+  document.addEventListener('keydown',e=>{
+    if(!lb.classList.contains('active')) return;
+    if(e.key==='ArrowRight'){show(idx+1);start();}
+    if(e.key==='ArrowLeft'){show(idx-1);start();}
+    if(e.key==='Escape'){lb.classList.remove('active');stop();}
+  });
+})();
+</script>
+</body>
+</html>
