@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Sparsh – Learn More</title>
+  <style>
+    :root{
+      --brand:#004d40; /* athletic teal/green */
+      --brand-dark:#00332c;
+      --bg:#f9fdfc;
+      --ink:#222;
+      --ink-muted:#444;
+      --card:#ffffff;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;line-height:1.6;background:var(--bg);color:var(--ink)}
+
+    /* Hero */
+    header{
+      position:relative;height:60vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;
+      background:url('70.jpg') center/cover no-repeat;
+    }
+    header::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(163, 153, 153, 0.639))}
+    .hero{position:relative;z-index:1;padding:0 1rem}
+    .hero h1{margin:0;font-size:clamp(2rem,4vw,3rem)}
+    .hero p{margin:.6rem 0 0;font-size:clamp(1rem,2.2vw,1.2rem);opacity:.95}
+
+    /* Sections */
+    section{max-width:1000px;margin:2rem auto;padding:0 1rem}
+    h2{color:var(--brand);font-size:clamp(1.25rem,2.4vw,1.7rem);margin:0 0 .75rem;text-align:center}
+    p{color:var(--ink)}
+    .lead{font-size:1.05rem;color:var(--ink-muted)}
+
+    .card{background:var(--card);border-radius:18px;box-shadow:0 6px 20px rgba(0,0,0,.08);padding:1.25rem}
+
+    .list{padding-left:1rem}
+    .list li{margin:.4rem 0}
+
+    .grid{display:grid;gap:18px}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    @media (max-width:900px){
+      .grid.cols-3{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:640px){
+      .grid.cols-2,.grid.cols-3{grid-template-columns:1fr}
+    }
+
+    blockquote{margin:0;padding:1rem 1.2rem;border-left:6px solid var(--brand);border-radius:6px;background:#e0f2f1}
+
+    /* CTA */
+    .cta{display:flex;gap:10px;justify-content:center;align-items:center;margin:1.5rem 0 0}
+    .btn{appearance:none;border:none;border-radius:28px;padding:12px 22px;font-weight:600;cursor:pointer;transition:.25s}
+    .btn-primary{background:var(--brand);color:#fff}
+    .btn-primary:hover{background:var(--brand-dark)}
+    .pill{display:inline-block;background:#c8e6c9;color:var(--brand);padding:.35rem .75rem;border-radius:999px;font-size:.9rem;font-weight:600}
+
+    /* Timeline */
+    .timeline{width:100%;border-collapse:collapse;border-radius:14px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.06)}
+    .timeline th,.timeline td{padding:.9rem 1rem;border-bottom:1px solid #eee}
+    .timeline th{background:#c8e6c9;color:#004d40;text-align:left}
+    .timeline tr:last-child td{border-bottom:none}
+
+    /* Gallery */
+    .gallery-wrap{margin-top:1.25rem}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+    .g-item{position:relative;overflow:hidden;border-radius:16px;background:#eee;box-shadow:0 6px 18px rgba(0,0,0,.12);transform:translateZ(0)}
+    .g-item img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+    .g-item:hover img{transform:scale(1.08)}
+    .g-cap{position:absolute;inset:auto 0 0 0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.55));color:#fff;padding:10px 12px;font-size:.95rem;opacity:0;transition:.35s;letter-spacing:.2px}
+    .g-item:hover .g-cap{opacity:1}
+
+    /* Lightbox */
+    .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;background:rgba(0,0,0,.8);z-index:9999;padding:1rem}
+    .lightbox.active{display:flex}
+    .lightbox img{max-width:92%;max-height:78%;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.55)}
+    .controls{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+    .ctrl{background:var(--brand);color:#fff;border:none;border-radius:10px;padding:10px 14px;font-weight:600;cursor:pointer;transition:.2s}
+    .ctrl:hover{background:var(--brand-dark)}
+
+    footer{background:var(--brand);color:#fff;text-align:center;padding:1.6rem;margin-top:2rem}
+    footer h3{margin:.2rem 0 .8rem;font-weight:600}
+  </style>
+</head>
+<body>
+  <!-- Hero -->
+  <header>
+    <div class="hero">
+      <span class="pill">🧣 Learn More About Project Sparsh</span>
+      <h1>A Touch of Warmth for the Unsheltered</h1>
+      <p>By Shyamashree Sitala Maa Charitable Trust</p>
+    </div>
+  </header>
+
+  <!-- What is Sparsh -->
+  <section>
+    <h2>🌟 What is Project Sparsh?</h2>
+    <div class="card">
+      <p class="lead">
+        Project Sparsh is a winter humanitarian campaign launched by <b>Shyamashree Sitala Maa Charitable Trust</b> to distribute woolen blankets to unsheltered and homeless individuals.
+      </p>
+      <p>
+        The word <b>Sparsh (स्पर्श)</b> means “a gentle touch” — and that’s what this project aims to be: a compassionate gesture that brings relief, dignity, and hope to those battling the cold without protection.
+      </p>
+    </div>
+  </section>
+
+  <!-- Goal -->
+  <section>
+    <h2>🎯 Goal of the Project</h2>
+    <blockquote>
+      To protect vulnerable and unsheltered individuals from the harsh effects of winter by providing warm woolen blankets, ensuring dignity, safety, and survival for those living without shelter.
+    </blockquote>
+  </section>
+
+  <!-- Where & Beneficiaries -->
+  <section>
+    <h2>📍 Where Will It Happen?</h2>
+    <div class="grid cols-2">
+      <div class="card">
+        <p>Project Sparsh focuses on unsheltered populations in and around <b>Burdwan District, West Bengal</b>.</p>
+        <p><b>Target areas include:</b></p>
+        <ul class="list">
+          <li>Roadside settlements</li>
+          <li>Railway stations and bus terminals</li>
+          <li>Slum pockets</li>
+          <li>Footpaths and open public spaces</li>
+          <li>Remote villages lacking winter support</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0;color:var(--brand)">👥 Who Will Benefit?</h3>
+        <ul class="list">
+          <li>Homeless individuals sleeping in the open</li>
+          <li>Elderly people without family support</li>
+          <li>Daily wage workers living in plastic tents</li>
+          <li>Women and children in unprotected shelters</li>
+          <li>Anyone at risk due to lack of warm clothing or bedding</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Distribution -->
+  <section>
+    <h2>📦 What Will Be Distributed?</h2>
+    <div class="grid cols-3">
+      <div class="card">
+        <h3 style="margin:0 0 .5rem;color:var(--brand)">New woolen blankets</h3>
+        <p>Each blanket is a lifesaving gift, especially during freezing nights when shelters are out of reach.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin:0 0 .5rem;color:var(--brand)">Warm clothing / shawls</h3>
+        <p>Occasional distribution based on in-kind donations.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin:0 0 .5rem;color:var(--brand)">Emergency warmth kits</h3>
+        <p>Optional in future phases to support the most vulnerable.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section>
+    <h2>📅 Project Timeline</h2>
+    <table class="timeline">
+      <thead>
+        <tr><th>Phase</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Planning</td><td>Ongoing</td></tr>
+        <tr><td>Launch Date</td><td>Winter 2025 (Exact Date TBA)</td></tr>
+        <tr><td>Distribution</td><td>To begin as cold intensifies</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- How to Help -->
+  <section>
+    <h2>🤝 How Can You Help?</h2>
+    <div class="card">
+      <p>Whether you're an individual, a company, or an NGO partner — your support can make a direct difference.</p>
+      <ul class="list">
+        <li>✅ <b>Donate:</b> ₹250 = 1 blanket = 1 life made warmer</li>
+        <li>✅ <b>In-kind Contribution:</b> New woolen blankets or shawls</li>
+        <li>✅ <b>Sponsor a Batch:</b> Fund 50/100/200 blankets</li>
+        <li>✅ <b>Volunteer:</b> Join us in ground distribution</li>
+        <li>✅ <b>Corporate CSR:</b> Partner with us for visibility and impact</li>
+        <li>✅ <b>Spread the Word:</b> Share our campaign on social media</li>
+      </ul>
+      <div class="cta">
+        <button class="btn btn-primary">Donate a Blanket</button>
+        <button class="btn" style="background:#fff;border:2px solid var(--brand);color:var(--brand)">Volunteer</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why it matters -->
+  <section>
+    <h2>💬 Why It Matters</h2>
+    <blockquote>
+      “We can’t solve winter, but we can save lives from it.” A simple blanket can prevent hypothermia, reduce illness, and offer emotional reassurance to someone surviving on the streets.
+    </blockquote>
+  </section>
+
+  <!-- Transparency -->
+  <section>
+    <h2>📸 Transparency & Reporting</h2>
+    <div class="grid cols-3">
+      <div class="card"><p>All donations are acknowledged</p></div>
+      <div class="card"><p>Distribution will be documented with photos & reports</p></div>
+      <div class="card"><p>80G tax benefits available for financial donations</p></div>
+    </div>
+    <div class="card" style="margin-top:1rem">
+      <p>Full impact report shared with major donors and CSR partners.</p>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section>
+    <h2>🖼 Photo Gallery</h2>
+    <p class="lead" style="text-align:center">Snapshots of warmth, dignity, and community care.</p>
+    <div class="gallery-wrap">
+      <div class="gallery">
+        <figure class="g-item"><img src="https://images.unsplash.com/photo-1544551763-7ef42064b529?auto=format&fit=crop&w=1200&q=80" alt="Volunteer giving blanket"><figcaption class="g-cap">Volunteer handing a blanket</figcaption></figure>
+        <figure class="g-item"><img src="https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?auto=format&fit=crop&w=1200&q=80" alt="Cold night city"><figcaption class="g-cap">Cold night on city streets</figcaption></figure>
+        <figure class="g-item"><img src="https://images.unsplash.com/photo-1483721310020-03333e577078?auto=format&fit=crop&w=1200&q=80" alt="Hands with wool shawl"><figcaption class="g-cap">A touch of warmth</figcaption></figure>
+        <figure class="g-item"><img src="https://images.unsplash.com/photo-1509824227185-9c5a00bbf9f5?auto=format&fit=crop&w=1200&q=80" alt="Community support"><figcaption class="g-cap">Community support in action</figcaption></figure>
+        <figure class="g-item"><img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=1200&q=80" alt="Team of volunteers"><figcaption class="g-cap">Volunteer team</figcaption></figure>
+        <figure class="g-item"><img src="https://images.unsplash.com/photo-1542060748-10c28b62716f?auto=format&fit=crop&w=1200&q=80" alt="Blanket stack"><figcaption class="g-cap">Blankets ready for distribution</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="Expanded view" />
+    <div class="controls">
+      <button class="ctrl" id="prev">⟨ Prev</button>
+      <button class="ctrl" id="next">Next ⟩</button>
+      <button class="ctrl" id="pause">⏸ Pause</button>
+      <button class="ctrl" id="play" style="display:none">▶ Play</button>
+      <button class="ctrl" id="close">✖ Close</button>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <section>
+    <h2>📞 Contact Us</h2>
+    <div class="card">
+      <p><b>Shyamashree Sitala Maa Charitable Trust</b><br/>
+      Email: <i>[Your Email]</i> &nbsp;|&nbsp; Phone: <i>[Your Phone]</i><br/>
+      Location: Burdwan, West Bengal</p>
+      <p>Registered under Indian Registration Act, 1908 | 80G | 12A | NITI Aayog Registered</p>
+      <div class="cta">
+        <button class="btn btn-primary">Support Project Sparsh</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <h3>Spread warmth. Share Sparsh.</h3>
+    <p>Together, we can help our neighbors survive the winter with dignity.</p>
+  </footer>
+
+  <script>
+    // Lightbox + slideshow
+    const galleryImgs = document.querySelectorAll('.g-item img');
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = lightbox.querySelector('img');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    const closeBtn = document.getElementById('close');
+    const pauseBtn = document.getElementById('pause');
+    const playBtn = document.getElementById('play');
+
+    let idx = 0; let timer = null; const INTERVAL = 4000;
+
+    function openAt(i){ idx = i; lbImg.src = galleryImgs[idx].src; lightbox.classList.add('active'); start(); }
+    function show(i){ idx = (i + galleryImgs.length) % galleryImgs.length; lbImg.src = galleryImgs[idx].src; }
+
+    function start(){ stop(); timer = setInterval(()=> show(idx+1), INTERVAL); pauseBtn.style.display='inline-block'; playBtn.style.display='none'; }
+    function stop(){ if(timer){ clearInterval(timer); timer=null; } pauseBtn.style.display='none'; playBtn.style.display='inline-block'; }
+
+    galleryImgs.forEach((img,i)=> img.addEventListener('click',()=> openAt(i)) );
+    prev.addEventListener('click',()=>{ show(idx-1); start(); });
+    next.addEventListener('click',()=>{ show(idx+1); start(); });
+    closeBtn.addEventListener('click',()=>{ lightbox.classList.remove('active'); stop(); });
+    pauseBtn.addEventListener('click', stop);
+    playBtn.addEventListener('click', start);
+
+    // click outside to close
+    lightbox.addEventListener('click', (e)=>{ if(e.target===lightbox){ lightbox.classList.remove('active'); stop(); } });
+
+    // keyboard controls
+    document.addEventListener('keydown', e=>{
+      if(!lightbox.classList.contains('active')) return;
+      if(e.key==='ArrowRight'){ show(idx+1); start(); }
+      if(e.key==='ArrowLeft'){ show(idx-1); start(); }
+      if(e.key==='Escape'){ lightbox.classList.remove('active'); stop(); }
+    });
+  </script>
+</body>
+</html>
