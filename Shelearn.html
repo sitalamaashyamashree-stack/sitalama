@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project SHE – Learn More</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      background-color: #fffafc;
+      color: #333;
+    }
+    header {
+      background: url('66.jpg') center/cover no-repeat;
+      height: 60vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+    }
+    header .hero-text {
+      position: relative;
+      z-index: 2;
+      padding: 0 1rem;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+    header p {
+      font-size: 1.1rem;
+      margin-top: 10px;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    h2 {
+      color: #b30059;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .highlights li {
+      margin: 8px 0;
+      list-style: "✅ ";
+    }
+    .cta {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .cta button {
+      background: #b30059;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .cta button:hover {
+      background: #800040;
+    }
+
+    /* Enhanced Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 2rem;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      border-radius: 15px;
+      transition: transform 0.5s ease;
+      cursor: pointer;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 1rem;
+      flex-direction: column;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    .lightbox.active {
+      display: flex;
+    }
+    .lightbox .controls {
+      margin-top: 15px;
+    }
+    .lightbox button {
+      background: #b30059;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin: 0 5px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .lightbox button:hover {
+      background: #800040;
+    }
+
+    footer {
+      background: #b30059;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+    footer h3 {
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+    footer button {
+      background: white;
+      color: #b30059;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+    footer button:hover {
+      background: #800040;
+      color: white;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
+      h2 {
+        font-size: 1.4rem;
+      }
+    }
+    @media (max-width: 480px) {
+      header {
+        height: 50vh;
+      }
+      header h1 {
+        font-size: 1.6rem;
+      }
+      header p {
+        font-size: 0.9rem;
+      }
+      .cta button, footer button {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <header>
+    <div class="hero-text">
+      <h1>Project SHE</h1>
+      <p>Because dignity should never be a privilege</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <section>
+    <h2>📝 📘 Broad Project Description</h2>
+    <p><b>Project SHE</b> is a menstrual hygiene and health empowerment initiative by <b>Shyamashree Shitala Maa Charitable Trust</b>.</p>
+    <p>On <b>14-Sep-2025</b>, we conducted a special one-day camp in an underprivileged area of Burdwan district, reaching <b>50+ adolescent girls and women</b>.</p>
+
+    <h2>✨ The camp provided:</h2>
+    <ul class="highlights">
+      <li>Free sanitary pad kits</li>
+      <li>Iron tablets to combat anemia</li>
+      <li>A culturally sensitive menstrual hygiene awareness session in Bengali</li>
+      <li>Printed hygiene guides with correct usage and disposal instructions</li>
+    </ul>
+
+    <h2>🌸 Our Mission</h2>
+    <p>Using the power of education, access, and empathy, our mission is to ensure no girl is held back by her period.</p>
+    <p>With your support, we aim to continue such camps regularly across rural Bengal — because <b>dignity should not be a privilege</b>.</p>
+    <p><i>Your small help can create lasting change.</i><br>
+    Together, let’s make every girl say: <b>“I am SHE.”</b></p>
+
+    <div class="cta">
+      <button>💖 Support the Project</button>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section>
+    <h2>📸 Moments from SHE Project</h2>
+    <div class="gallery">
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" alt="Camp Photo 1"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80" alt="Camp Photo 2"></div>
+      <div class="gallery-item"><img src="66.jpg" alt="Camp Photo 3"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=800&q=80" alt="Camp Photo 4"></div>
+    </div>
+  </section>
+
+  <!-- Lightbox with JS -->
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="Expanded Image">
+    <div class="controls">
+      <button id="prev">⟨ Prev</button>
+      <button id="next">Next ⟩</button>
+      <button id="close">✖ Close</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <h3>Join Us in Empowering Women with Dignity, Health & Hope</h3>
+    <button>🌼 Be a Part of SHE</button>
+  </footer>
+
+  <script>
+    const galleryImages = document.querySelectorAll('.gallery-item img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    const closeBtn = document.getElementById('close');
+
+    let currentIndex = 0;
+    let slideshowInterval;
+
+    function showImage(index) {
+      currentIndex = index;
+      lightboxImg.src = galleryImages[index].src;
+      lightbox.classList.add('active');
+      startSlideshow();
+    }
+
+    function startSlideshow() {
+      clearInterval(slideshowInterval);
+      slideshowInterval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % galleryImages.length;
+        lightboxImg.src = galleryImages[currentIndex].src;
+      }, 4000);
+    }
+
+    function stopSlideshow() {
+      clearInterval(slideshowInterval);
+    }
+
+    galleryImages.forEach((img, index) => {
+      img.addEventListener('click', () => showImage(index));
+    });
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      showImage(currentIndex);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % galleryImages.length;
+      showImage(currentIndex);
+    });
+
+    closeBtn.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+      stopSlideshow();
+    });
+
+    // Close lightbox on outside click
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+        stopSlideshow();
+      }
+    });
+
+    // Keyboard controls
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+
+      if (e.key === 'ArrowRight') {
+        currentIndex = (currentIndex + 1) % galleryImages.length;
+        showImage(currentIndex);
+      } else if (e.key === 'ArrowLeft') {
+        currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+        showImage(currentIndex);
+      } else if (e.key === 'Escape') {
+        lightbox.classList.remove('active');
+        stopSlideshow();
+      }
+    });
+  </script>
+</body>
+</html>
