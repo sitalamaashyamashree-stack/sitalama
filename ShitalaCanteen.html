@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Feed India — Shitala Canteen | Learn More</title>
+  <style>
+    :root{
+      --brand:#7b1f2b;      /* deep maroon */
+      --brand-dark:#5a1320;
+      --accent:#d4a017;     /* golden */
+      --bg:#fff7f5;         /* warm cream */
+      --card:#ffffff;
+      --ink:#2b2b2b;
+      --muted:#666;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Inter","Segoe UI",Roboto,Arial,Helvetica,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+
+    /* Hero */
+    header{
+      height:58vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:#fff;
+      background:
+        linear-gradient(180deg, rgba(123,31,43,0.45), rgba(90,19,32,0.25)),
+        url("67.jpg") center/cover no-repeat;
+      position:relative;
+    }
+    .hero{padding:1rem;max-width:1100px}
+    .pill{display:inline-block;background:#fff3e6;color:var(--brand);padding:6px 12px;border-radius:999px;font-weight:700;margin-bottom:12px}
+    .hero h1{margin:0;font-size:clamp(1.6rem,3.6vw,2.6rem);letter-spacing:0.2px}
+    .hero p{margin:.6rem 0 0;color:rgba(255,255,255,0.95)}
+
+    main{max-width:1100px;margin:1.75rem auto;padding:0 1rem;}
+
+/* Sections */
+    h2{color:var(--brand);font-size:clamp(1.1rem,2.2vw,1.6rem);margin:0 0 .7rem;text-align:center}
+    .card{background:var(--card);border-radius:14px;padding:18px;box-shadow:0 8px 26px rgba(0,0,0,0.06)}
+    .lead{color:var(--muted);font-size:1.02rem}
+    .two{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width:880px){ .two{grid-template-columns:1fr} .three{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:560px){ .three{grid-template-columns:1fr} }
+
+/* Buttons */
+    .cta{display:flex;gap:12px;justify-content:center;margin-top:12px}
+    .btn{border:none;padding:11px 18px;border-radius:28px;font-weight:700;cursor:pointer}
+    .btn-primary{background:var(--brand);color:#fff}
+    .btn-outline{background:#fff;border:2px solid var(--brand);color:var(--brand)}
+
+/* small components */
+    ul{padding-left:1.05rem;margin:8px 0}
+    li{margin:6px 0}
+    blockquote{background:#fff6eb;border-left:6px solid var(--accent);padding:12px 14px;border-radius:8px;color:var(--muted)}
+
+/* Timeline table */
+    .timeline{width:100%;border-collapse:collapse;margin-top:6px}
+    .timeline th{background:#fff3e6;color:var(--brand);padding:10px;border-bottom:1px solid #f0e6df;text-align:left}
+    .timeline td{padding:10px;border-bottom:1px solid #f3ece8}
+
+/* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px}
+    .g-item{position:relative;border-radius:12px;overflow:hidden;background:#f3ebe8;box-shadow:0 8px 24px rgba(0,0,0,0.08)}
+    .g-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+    .g-item:hover img{transform:scale(1.06)}
+    .g-cap{position:absolute;left:0;right:0;bottom:0;padding:10px 12px;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.48));color:#fff;font-weight:600;opacity:0;transition:opacity .25s}
+    .g-item:hover .g-cap{opacity:1}
+
+/* Lightbox */
+    .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;background:rgba(0,0,0,0.78);z-index:9999;padding:16px}
+    .lightbox.active{display:flex}
+    .lightbox img{max-width:92%;max-height:78%;border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,0.7)}
+    .controls{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;justify-content:center}
+    .ctrl{background:var(--accent);border:none;color:var(--brand-dark);padding:10px 14px;border-radius:10px;font-weight:800;cursor:pointer}
+    .ctrl.alt{background:var(--brand);color:#fff}
+
+/* Footer */
+    footer{background:linear-gradient(90deg,var(--brand),var(--brand-dark));color:#fff;padding:18px;margin-top:24px;text-align:center;border-top-left-radius:8px;border-top-right-radius:8px}
+    footer p{margin:6px 0 0}
+
+/* small responsive tweaks */
+    @media (max-width:500px){
+      .hero p{font-size:0.95rem}
+      .pill{font-size:0.85rem;padding:5px 10px}
+      .controls{gap:8px}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="hero">
+      <div class="pill">🌙 Shitala Canteen — Feed with Dignity, Every Night</div>
+      <h1>🍽 A ₹1 Dinner for the Forgotten</h1>
+      <p>Every evening we bring a hot meal to those sleeping and living on the streets — because hunger doesn’t follow a clock.</p>
+    </div>
+  </header>
+
+  <main>
+    <!-- Mission -->
+    <section>
+      <h2>🤝 Our Mission</h2>
+      <div class="card">
+        <p class="lead">To serve one hot, dignified meal every evening to the most neglected people of our society—daily wage workers, beggars, elderly, the homeless, and street-dwelling poor.</p>
+      </div>
+    </section>
+
+    <!-- Locations -->
+    <section>
+      <h2>📍 No Fixed Place — Because Hunger Moves</h2>
+      <div class="two" style="margin-top:10px">
+        <div class="card">
+          <p>Shitala Canteen is mobile: we go where hunger is found — footpaths, railway platforms, bus stops, local markets, temple premises, slums, and under flyovers. Each evening volunteers serve in a new area where help is needed most.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0;color:var(--brand)">Typical spots</h3>
+          <ul>
+            <li>Footpaths & roadside dwellings</li>
+            <li>Railway platforms & bus stops</li>
+            <li>Local markets & temple premises</li>
+            <li>Slums & road-side shelters</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section>
+      <h2>💰 How It Works</h2>
+      <div class="card">
+        <p><b>₹49</b> is raised via public donation (80G eligible). The beneficiary contributes a symbolic <b>₹1</b>. Each ₹50 serves one dinner with dignity and care.</p>
+        <p class="lead">Beneficiary contributions are recorded under “Beneficiary Contribution – Symbolic – Non-80G” in our accounts.</p>
+      </div>
+    </section>
+
+    <!-- Sponsor a day -->
+    <section>
+      <h2>🙏 Sponsor a Day — Feed with Name</h2>
+      <div class="card">
+        <p>Sponsor a full evening to serve meals in the name of a donor — birthdays, anniversaries, memorials, or CSR campaigns. Donors can also join distribution.</p>
+        <p><b>Rs 2,500 ≈ 50 dinners</b></p>
+        <div class="cta" style="margin-top:12px">
+          <button class="btn btn-primary">Sponsor a Day</button>
+          <button class="btn btn-outline">Donate ₹49</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who we serve -->
+    <section>
+      <h2>👥 Who We Serve</h2>
+      <div class="card">
+        <ul>
+          <li>Old, abandoned individuals</li>
+          <li>Daily labourers who sleep hungry</li>
+          <li>Beggars without family support</li>
+          <li>People living in temporary shelters</li>
+          <li>Anyone who cannot afford a meal</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Transparency -->
+    <section>
+      <h2>📸 Visibility & Transparency</h2>
+      <div class="three" style="margin-top:10px">
+        <div class="card"><p>Daily photos & activity updates</p></div>
+        <div class="card"><p>Donors tagged (with consent) & receipts issued</p></div>
+        <div class="card"><p>Accounts maintained in Manager.io — 80G receipts available</p></div>
+      </div>
+    </section>
+
+    <!-- Join -->
+    <section>
+      <h2>🔗 Join Us</h2>
+      <div class="card">
+        <p class="lead">“You can’t feed everyone. But you can feed someone, today.”</p>
+        <ul>
+          <li>Donate ₹49 or more</li>
+          <li>Sponsor a full evening</li>
+          <li>Volunteer for distribution</li>
+          <li>Help identify hungry pockets</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section>
+      <h2>🖼 Photo Gallery — Shitala Canteen</h2>
+      <p class="lead" style="text-align:center">Open-source photos showing food distribution, volunteers, and community meals.</p>
+
+      <div class="gallery" aria-label="Feed India gallery">
+        <figure class="g-item"><img src="https://images.unsplash.com/photo-1478145787956-f6f12c59624d?auto=format&fit=crop&w=1200&q=80" alt="Volunteers serving food"><figcaption class="g-cap">Volunteers serving an evening meal</figcaption></figure>
+
+        <figure class="g-item"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80" alt="Hot meal distribution"><figcaption class="g-cap">Hot meals ready for distribution</figcaption></figure>
+
+        <figure class="g-item"><img src="67.jpg" alt="Community eating"><figcaption class="g-cap">Community sharing a meal</figcaption></figure>
+
+        <figure class="g-item"><img src="67.jpg" alt="Volunteer prepping food"><figcaption class="g-cap">Food prep by volunteers</figcaption></figure>
+
+        <figure class="g-item"><img src="67.jpg" alt="Serving with dignity"><figcaption class="g-cap">Serving with dignity</figcaption></figure>
+
+        <figure class="g-item"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80" alt="Organized meal packs"><figcaption class="g-cap">Organized meal packs</figcaption></figure>
+
+         <figure class="g-item"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80" alt="Organized meal packs"><figcaption class="g-cap">Organized meal packs</figcaption></figure>
+
+          <figure class="g-item"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80" alt="Organized meal packs"><figcaption class="g-cap">Organized meal packs</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Image viewer">
+      <img src="" alt="Expanded gallery image" id="lbImage" />
+      <div class="controls" role="group" aria-label="Lightbox controls">
+        <button class="ctrl" id="lbPrev" title="Previous (←)">⟨ Prev</button>
+        <button class="ctrl" id="lbNext" title="Next (→)">Next ⟩</button>
+        <button class="ctrl" id="lbPause" title="Pause slideshow">⏸ Pause</button>
+        <button class="ctrl" id="lbPlay" title="Play slideshow" style="display:none">▶ Play</button>
+        <button class="ctrl alt" id="lbClose" title="Close (Esc)">✖ Close</button>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <section style="margin-top:16px;">
+      <h2>📞 Contact Us</h2>
+      <div class="card">
+        <p><b>Shyamashree Shitala Maa Charitable Trust</b><br>
+        📍 [Your location] &nbsp;|&nbsp; 📧 [Email ID] &nbsp;|&nbsp; 📱 [Phone number] &nbsp;|&nbsp; 🌐 [Website]</p>
+        <p>PAN, 80G, 12A, and CSR Compliant</p>
+        <div class="cta">
+          <button class="btn btn-primary">Support Shitala Canteen</button>
+          <button class="btn btn-outline">Volunteer</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <h3>Feed India — Shitala Canteen</h3>
+    <p>Serve a meal. Share dignity. Change a life.</p>
+  </footer>
+
+  <script>
+    // Gallery lightbox + slideshow + keyboard controls
+    (function(){
+      const imgs = document.querySelectorAll('.g-item img');
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lbImage');
+      const prev = document.getElementById('lbPrev');
+      const next = document.getElementById('lbNext');
+      const closeBtn = document.getElementById('lbClose');
+      const pauseBtn = document.getElementById('lbPause');
+      const playBtn = document.getElementById('lbPlay');
+
+      let current = 0;
+      let timer = null;
+      const INTERVAL = 4000;
+
+      function open(i){
+        current = i;
+        lbImg.src = imgs[current].src;
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden','false');
+        start();
+      }
+      function show(i){
+        current = (i + imgs.length) % imgs.length;
+        lbImg.src = imgs[current].src;
+      }
+      function start(){
+        stop();
+        timer = setInterval(()=> { show(current+1); }, INTERVAL);
+        pauseBtn.style.display = 'inline-block';
+        playBtn.style.display = 'none';
+      }
+      function stop(){
+        if(timer){ clearInterval(timer); timer = null; }
+        pauseBtn.style.display = 'none';
+        playBtn.style.display = 'inline-block';
+      }
+      imgs.forEach((img, idx) => {
+        img.addEventListener('click', ()=> open(idx));
+        img.addEventListener('keydown', (e)=> { if(e.key==='Enter') open(idx); });
+      });
+
+      prev.addEventListener('click', ()=> { show(current-1); start(); });
+      next.addEventListener('click', ()=> { show(current+1); start(); });
+      closeBtn.addEventListener('click', ()=> { lightbox.classList.remove('active'); lightbox.setAttribute('aria-hidden','true'); stop(); });
+
+      pauseBtn.addEventListener('click', stop);
+      playBtn.addEventListener('click', start);
+
+      lightbox.addEventListener('click', (e)=> { if(e.target === lightbox){ lightbox.classList.remove('active'); lightbox.setAttribute('aria-hidden','true'); stop(); } });
+
+      // keyboard controls
+      document.addEventListener('keydown', (e)=> {
+        if(!lightbox.classList.contains('active')) return;
+        if(e.key === 'ArrowRight'){ show(current+1); start(); }
+        else if(e.key === 'ArrowLeft'){ show(current-1); start(); }
+        else if(e.key === 'Escape'){ lightbox.classList.remove('active'); lightbox.setAttribute('aria-hidden','true'); stop(); }
+        else if(e.key.toLowerCase() === 'p'){ stop(); }
+        else if(e.key.toLowerCase() === 'o'){ start(); }
+      });
+    })();
+  </script>
+
+</body>
+</html>
