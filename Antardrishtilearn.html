@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Project Antardrishti | Learn More</title>
+  <style>
+    :root {
+      --brand:#1e3a8a;    /* royal blue */
+      --brand-dark:#16235a;
+      --accent:#06b6d4;   /* cyan */
+      --bg:#f8fbff;
+      --card:#ffffff;
+      --ink:#1a1a1a;
+      --muted:#555;
+    }
+    *{box-sizing:border-box}
+    body {
+      margin:0;
+      font-family:"Inter","Segoe UI",Roboto,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.55;
+    }
+
+    header {
+      height:55vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:#fff;
+      background:
+        linear-gradient(180deg,rgba(30,58,138,0.5),rgba(22,35,90,0.6)),
+        url("68.jpg") center/cover no-repeat;
+    }
+    .hero {padding:1rem;max-width:1000px}
+    .pill {background:#e0f7fa;color:var(--brand);padding:6px 12px;border-radius:999px;font-weight:600;display:inline-block;margin-bottom:10px}
+    .hero h1 {margin:0;font-size:clamp(1.8rem,3.8vw,2.8rem);}
+    .hero p {margin:.6rem 0 0;color:#f0f9ff}
+
+    main {max-width:1100px;margin:1.5rem auto;padding:0 1rem}
+
+    h2 {color:var(--brand);text-align:center;margin:0 0 .7rem;font-size:clamp(1.2rem,2.2vw,1.6rem)}
+    .card {background:var(--card);padding:18px;border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,0.07);margin-bottom:14px}
+    .lead {color:var(--muted);font-size:1.05rem}
+    ul {padding-left:1.1rem;margin:.5rem 0}
+    li {margin:6px 0}
+
+    .cta {display:flex;gap:12px;justify-content:center;margin-top:12px}
+    .btn {padding:11px 18px;border:none;border-radius:28px;font-weight:700;cursor:pointer}
+    .btn-primary {background:var(--brand);color:#fff}
+    .btn-outline {background:#fff;border:2px solid var(--brand);color:var(--brand)}
+
+    /* Gallery */
+    .gallery {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px}
+    .g-item {position:relative;border-radius:12px;overflow:hidden;background:#eef2ff;box-shadow:0 6px 22px rgba(0,0,0,0.08)}
+    .g-item img {width:100%;height:100%;object-fit:cover;transition:transform .5s}
+    .g-item:hover img {transform:scale(1.07)}
+    .g-cap {position:absolute;left:0;right:0;bottom:0;padding:10px;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.6));color:#fff;font-weight:600;opacity:0;transition:opacity .3s}
+    .g-item:hover .g-cap {opacity:1}
+
+    /* Lightbox */
+    .lightbox {position:fixed;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;background:rgba(0,0,0,0.82);z-index:9999;padding:16px}
+    .lightbox.active {display:flex}
+    .lightbox img {max-width:92%;max-height:78%;border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,0.7)}
+    .controls {display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;justify-content:center}
+    .ctrl {background:var(--accent);border:none;color:#fff;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+    .ctrl.alt {background:var(--brand);}
+
+    footer {background:linear-gradient(90deg,var(--brand),var(--brand-dark));color:#fff;text-align:center;padding:18px;margin-top:24px;border-top-left-radius:8px;border-top-right-radius:8px}
+    footer p {margin:6px 0 0}
+
+    @media(max-width:560px){.controls{gap:8px}}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="hero">
+    <div class="pill">👁 Project Antardrishti</div>
+    <h1>Inclusive Support for the Visually Impaired</h1>
+    <p>Accessible Education & Independent Mobility for dignity and freedom.</p>
+  </div>
+</header>
+
+<main>
+  <section>
+    <h2>📖 About the Project</h2>
+    <div class="card">
+      <p class="lead">Project Antardrishti is an inclusive humanitarian initiative by Shyamashree Shitala Maa Charitable Trust, dedicated to transforming the lives of visually impaired individuals through two core pillars:</p>
+      <ul>
+        <li>📚 Accessible Education via Braille Books</li>
+        <li>🚶 Independent Mobility with White Canes</li>
+      </ul>
+      <p>We aim to empower vision-impaired individuals with tools to live confident, productive lives.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>🌟 Why This Project Matters</h2>
+    <div class="card">
+      <p>India is home to over 12 million visually impaired people—the largest in the world. Most still lack access to aids like Braille textbooks and white canes. Project Antardrishti bridges this gap by:</p>
+      <ul>
+        <li>Distributing Braille books tailored to school curricula</li>
+        <li>Providing white canes for safe, independent movement</li>
+        <li>Organizing awareness drives and training camps</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>🎯 Our Objectives</h2>
+    <div class="card">
+      <ul>
+        <li>✅ Promote inclusive education for visually impaired students</li>
+        <li>✅ Support mobility independence and confidence</li>
+        <li>✅ Engage schools, parents, and communities</li>
+        <li>✅ Build partnerships with CSR, NGOs, government schemes</li>
+        <li>✅ Maintain transparency with audits and reporting</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>🤝 Who Can Partner With Us</h2>
+    <div class="card">
+      <p>We invite collaboration from:</p>
+      <ul>
+        <li>Corporate CSR wings (education, health)</li>
+        <li>Government schemes & welfare departments</li>
+        <li>Educational institutions</li>
+        <li>NGOs, foundations, and philanthropists</li>
+      </ul>
+      <p><b>Registrations:</b> 1908 Act, FCRA, 80G & 12AB, NITI Aayog, CRS portal</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>🙌 How You Can Help</h2>
+    <div class="card">
+      <ul>
+        <li>🔹 Donate: Sponsor Braille books or white canes</li>
+        <li>🔹 Partner: Co-organize awareness & training events</li>
+        <li>🔹 Volunteer: Join in events and distribution drives</li>
+        <li>🔹 Promote: Spread the message of inclusion</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>📊 Transparency & Impact</h2>
+    <div class="card">
+      <p>We maintain audited records, impact reports, donor receipts, and welcome third-party CSR verification. Every contribution is used responsibly.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>🖼 Gallery</h2>
+    <p class="lead" style="text-align:center">Open-source images representing inclusion, braille education, and mobility support.</p>
+    <div class="gallery">
+      <figure class="g-item"><img src="https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=1200&q=80" alt="Braille learning"><figcaption class="g-cap">Braille learning</figcaption></figure>
+      <figure class="g-item"><img src="https://images.unsplash.com/photo-1521747116042-5a810fda9664?auto=format&fit=crop&w=1200&q=80" alt="Inclusive classroom"><figcaption class="g-cap">Inclusive classroom</figcaption></figure>
+      <figure class="g-item"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80" alt="Mobility cane training"><figcaption class="g-cap">Mobility cane training</figcaption></figure>
+      <figure class="g-item"><img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1200&q=80" alt="Support and guidance"><figcaption class="g-cap">Support and guidance</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="Expanded gallery" id="lbImage"/>
+    <div class="controls">
+      <button class="ctrl" id="lbPrev">⟨ Prev</button>
+      <button class="ctrl" id="lbNext">Next ⟩</button>
+      <button class="ctrl" id="lbPause">⏸ Pause</button>
+      <button class="ctrl" id="lbPlay" style="display:none">▶ Play</button>
+      <button class="ctrl alt" id="lbClose">✖ Close</button>
+    </div>
+  </div>
+
+  <section>
+    <h2>📞 Get Involved</h2>
+    <div class="card">
+      <p><b>Email:</b> yourtrust@email.com<br>
+      <b>Phone:</b> +91-XXXXXXXXXX<br>
+      <b>Website:</b> www.yourtrust.org/project-antardrishti</p>
+      <blockquote>“Antardrishti means ‘Inner Vision’. When society opens its inner eye, disability turns into ability.”</blockquote>
+      <div class="cta">
+        <button class="btn btn-primary">Donate Now</button>
+        <button class="btn btn-outline">Volunteer</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <h3>Project Antardrishti</h3>
+  <p>Empowering the visually impaired with education & mobility.</p>
+</footer>
+
+<script>
+(function(){
+  const imgs=document.querySelectorAll('.g-item img');
+  const lb=document.getElementById('lightbox');
+  const lbImg=document.getElementById('lbImage');
+  const prev=document.getElementById('lbPrev');
+  const next=document.getElementById('lbNext');
+  const close=document.getElementById('lbClose');
+  const pause=document.getElementById('lbPause');
+  const play=document.getElementById('lbPlay');
+  let idx=0,timer=null,INTERVAL=4000;
+
+  function open(i){idx=i;lbImg.src=imgs[idx].src;lb.classList.add('active');start();}
+  function show(i){idx=(i+imgs.length)%imgs.length;lbImg.src=imgs[idx].src;}
+  function start(){stop();timer=setInterval(()=>show(idx+1),INTERVAL);pause.style.display='inline-block';play.style.display='none';}
+  function stop(){if(timer){clearInterval(timer);timer=null;}pause.style.display='none';play.style.display='inline-block';}
+  imgs.forEach((img,i)=>img.addEventListener('click',()=>open(i)));
+  prev.onclick=()=>{show(idx-1);start();};
+  next.onclick=()=>{show(idx+1);start();};
+  close.onclick=()=>{lb.classList.remove('active');stop();};
+  pause.onclick=stop;
+  play.onclick=start;
+  lb.addEventListener('click',e=>{if(e.target===lb){lb.classList.remove('active');stop();}});
+  document.addEventListener('keydown',e=>{
+    if(!lb.classList.contains('active')) return;
+    if(e.key==='ArrowRight'){show(idx+1);start();}
+    if(e.key==='ArrowLeft'){show(idx-1);start();}
+    if(e.key==='Escape'){lb.classList.remove('active');stop();}
+  });
+})();
+</script>
+</body>
+</html>
