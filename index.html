@@ -91,6 +91,7 @@
       height: 110vh;
 
       background: url('66.jpg') center center/cover no-repeat;
+      background-attachment: scroll;
       display: flex;
       justify-content: flex-start;
      
@@ -792,6 +793,9 @@ html {
   .hero {
     min-height: 80vh; /* Adjust hero height on tablets */
     background-position: top center; /* Show top part of image */
+   background-size: cover;   /* Ensure full coverage */
+    background-position: center;
+    background-attachment: scroll;
     padding: 10px;
   }
   .hero h1 {
@@ -881,6 +885,9 @@ html {
   .hero {
     height: 70vh;
     padding: 10px;
+    background-size: cover;   /* Ensure full coverage */
+    background-position: center;
+    background-attachment: scroll;
     justify-content: center;
   }
 
