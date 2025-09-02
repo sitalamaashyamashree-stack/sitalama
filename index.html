@@ -436,7 +436,7 @@
     text-align: center;
   }
 }*/
-/* Hero section container */
+/* Hero Section */
 .hero {
   position: relative;
   width: 100%;
@@ -444,12 +444,12 @@
   background: url('66.jpg') no-repeat center center / cover;
   color: white;
   display: flex;
-  align-items: flex-end;   /* push content to bottom */
-  justify-content: flex-start; /* push content to left */
-  padding: 40px; /* some breathing space */
+  align-items: flex-end;   /* content to bottom */
+  justify-content: flex-start; /* content to left */
+  padding: 40px;
 }
 
-/* Hero overlay */
+/* Dark Overlay */
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -457,17 +457,17 @@
   z-index: 0;
 }
 
-/* Hero content */
+/* Content Block */
 .hero-content {
   position: relative;
   z-index: 1;
 }
 
-/* Hero Buttons Row */
+/* Arrow + Buttons Layout */
 .hero-buttons {
   display: flex;
   align-items: center;
-  gap: 15px;   /* spacing between arrow & buttons */
+  gap: 15px;   /* space between items */
 }
 
 /* Arrow Style */
@@ -486,10 +486,10 @@
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-/* Primary Button */
+/* Buttons */
 .btn-primary {
   padding: 12px 24px;
-  background: #facc15; /* Yellow */
+  background: #facc15;
   border: none;
   border-radius: 10px;
   color: #111;
@@ -498,10 +498,9 @@
   transition: all 0.3s ease;
 }
 
-/* Secondary Button */
 .btn-secondary {
   padding: 12px 24px;
-  background: #22c55e; /* Green */
+  background: #22c55e;
   border-radius: 10px;
   color: #fff;
   font-weight: bold;
@@ -509,7 +508,7 @@
   transition: all 0.3s ease;
 }
 
-/* Hover Effects */
+/* Hover */
 .btn-primary:hover {
   background: #eab308;
   transform: scale(1.05);
@@ -519,7 +518,6 @@
   background: #16a34a;
   transform: scale(1.05);
 }
-
 
 
     /* IMPACT STATS */
@@ -1787,7 +1785,7 @@ html {
       {
         title: "PROJECT - SHE - Sanitary Health Empowerment",
         subtitle: "Dignity Through Hygiene",
-        image: "shebg1.jpg",
+        image: "66.jpg",
         launch: "14th September 2025",
         location: "Rural areas in Howrah District, West Bengal",
         /*goal: "Promoting menstrual hygiene and equity by ensuring access, awareness and dignity for underserved girls and woman",*/
@@ -1841,8 +1839,8 @@ html {
       hero.style.backgroundImage = `url('${project.image}')`;
 
       content.innerHTML = `
-     <!-- <h1>${project.title}</h1>-->
-     <!-- <p><strong>${project.subtitle}</strong></p>-->
+     <h1>${project.title}</h1>
+      <p><strong>${project.subtitle}</strong></p>
       <ul class="project-details">
         <li>📅 <strong>Estimated Launch Date:</strong> ${project.launch}</li>
         <li>📍 <strong>Location:</strong> ${project.location}</li>
