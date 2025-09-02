@@ -3,234 +3,276 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Health & Disability Support | SSMC Trust</title>
+  <title>Health & Disability Support</title>
   <style>
-    /* Reset & Base */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
+      margin: 0;
       font-family: 'Inter', sans-serif;
-      background: #F9FAFB;
-      color: #1E293B;
-      line-height: 1.6;
+      background: #f5f7fa;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
     }
-    a { text-decoration: none; color: inherit; }
+    body.dark { background: #1e1e1e; color: #f5f5f5; }
 
-    /* Hero Section */
-    header {
-      background: linear-gradient(to right, #1E88E5, #43A047);
-      color: white;
-      text-align: center;
-      padding: 4rem 1rem;
+    /* Hero */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1600959907703-125ba1ff0a5d') center/cover no-repeat;
+      color: white; text-align: center; padding: 120px 20px; background-attachment: fixed;
     }
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-      animation: fadeDown 1.2s ease;
-    }
-    header p {
-      font-size: 1.2rem;
-      animation: fadeDown 1.5s ease;
-    }
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .hero h1 { font-size: 3rem; margin-bottom: 10px; font-weight: bold; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+    .hero p { font-size: 1.4rem; max-width: 700px; margin: auto; text-shadow: 1px 1px 6px rgba(0,0,0,0.5); }
 
-    /* Section Titles */
-    h2 {
-      font-size: 2rem;
-      text-align: center;
-      margin-bottom: 2rem;
-      color: #1E88E5;
+    /* Controls */
+    .controls { text-align: center; margin: 20px; }
+    .controls input {
+      padding: 10px; border-radius: 25px; border: 1px solid #ccc; width: 250px; margin-right: 10px;
     }
+    .controls button {
+      background: linear-gradient(90deg, #007BFF, #00C6FF);
+      border: none; color: white; padding: 10px 20px; border-radius: 25px; cursor: pointer; font-weight: bold; margin: 5px;
+      transition: transform 0.2s;
+    }
+    .controls button:hover { transform: scale(1.05); }
 
-    /* Gallery Grid */
-    section {
-      padding: 3rem 1rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-    .gallery, .future-projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+    /* Grid */
+    .grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px;
+      padding: 20px; max-width: 1300px; margin: auto;
     }
 
     /* Cards */
-    .gallery-item, .future-item {
-      background: white;
-      border-radius: 1rem;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
+    .card {
+      background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease-in-out, background 0.3s;
     }
-    .gallery-item:hover, .future-item:hover {
-      transform: translateY(-5px) scale(1.03);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    body.dark .card { background: #2c2c2c; }
+    .card:hover { transform: translateY(-10px); }
+
+    /* Media Container */
+    .media-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; padding: 10px; }
+    .media-container img, .media-container video {
+      flex: 0 0 auto; width: 300px; height: 200px; object-fit: cover; border-radius: 12px; scroll-snap-align: start;
     }
-    .gallery-item img, .gallery-item video, .future-item img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      transition: transform 0.3s ease;
+    .media-container::-webkit-scrollbar { height: 8px; }
+    .media-container::-webkit-scrollbar-thumb { background: #007BFF; border-radius: 10px; }
+
+    .card-content { padding: 15px; }
+    .card-content h3 { margin: 10px 0; font-size: 1.5rem; color: #007BFF; }
+    .buttons { margin-top: 15px; display: flex; justify-content: space-between; }
+    .buttons a {
+      text-decoration: none; background: linear-gradient(90deg, #007BFF, #00C6FF);
+      color: white; padding: 8px 15px; border-radius: 25px; font-weight: bold; transition: opacity 0.3s;
     }
-    .gallery-item:hover img, .future-item:hover img {
-      transform: scale(1.1);
+    .buttons a:hover { opacity: 0.85; }
+
+    /* Modal */
+    .modal {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000;
+      flex-direction: column; color: white; text-align: center;
     }
-    .content {
-      padding: 1rem;
+    .modal-content { max-width: 90%; max-height: 80%; }
+    .modal img, .modal video { max-width: 100%; max-height: 80vh; border-radius: 12px; }
+    .modal-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      font-size: 2rem; color: white; cursor: pointer; padding: 10px; background: rgba(0,0,0,0.5); border-radius: 50%;
+    }
+    .prev { left: 20px; }
+    .next { right: 20px; }
+    .close-btn {
+      position: absolute; top: 20px; right: 20px; font-size: 2rem; cursor: pointer; background: rgba(0,0,0,0.5); border-radius: 50%;
     }
 
-    /* Future Projects */
-    .future {
-      background: #E3F2FD;
-      padding: 3rem 1rem;
-      margin-top: 3rem;
-      border-radius: 1rem;
+    .dots {
+      display: flex; justify-content: center; gap: 8px; margin-top: 15px;
     }
+    .dot { width: 12px; height: 12px; border-radius: 50%; background: #aaa; cursor: pointer; transition: background 0.3s; }
+    .dot.active { background: #007BFF; }
 
-    /* Scroll Animation */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: none;
-    }
+    footer { background: black; color: white; text-align: center; padding: 20px; margin-top: 40px; }
 
-    /* Lightbox */
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9);
-      justify-content: center; align-items: center;
-    }
-    .lightbox-content {
-      max-width: 90%;
-      max-height: 80%;
-    }
-    .lightbox img, .lightbox video {
-      max-width: 100%;
-      max-height: 100%;
-      border-radius: 10px;
-    }
-    .lightbox-close {
-      position: absolute;
-      top: 20px; right: 30px;
-      color: white; font-size: 2rem; cursor: pointer;
-    }
-
-    footer {
-      background: #1E293B;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
-    }
-
-    /* Mobile Adjustments */
-    @media(max-width:768px){
-      header h1 { font-size: 2rem; }
-      header p { font-size: 1rem; }
+    @media(max-width: 768px){
+      .hero h1 { font-size: 2.2rem; }
+      .hero p { font-size: 1rem; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Health & Disability Support</h1>
-  <p>Empowering lives through health and disability care</p>
-</header>
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Health & Disability Support</h1>
+    <p>Empowering lives through compassionate health care and disability support programs.</p>
+  </section>
 
-<section>
-  <h2>Gallery</h2>
-  <div class="gallery">
-    <div class="gallery-item fade-in">
-      <img src="https://wallpapers.com/images/featured/pixel-background-u2jnye2lgq0gv7h2.jpg" alt="Healthcare support">
-      <div class="content"><p>Community health support in action.</p></div>
+  <!-- Search & Dark Mode -->
+  <div class="controls">
+    <input type="text" id="searchBox" placeholder="Search programs..." onkeyup="searchProjects()">
+    <button onclick="toggleTheme()">Toggle Dark Mode</button>
+  </div>
+
+  <!-- Filters -->
+  <div class="controls">
+    <button onclick="filterCards('all')">All</button>
+    <button onclick="filterCards('video')">Videos</button>
+    <button onclick="filterCards('image')">Images</button>
+  </div>
+
+  <!-- Cards -->
+  <div class="grid" id="cardGrid">
+    <div class="card video" data-full="Mobile health clinics offering primary care in remote communities." data-media='["https://samplelib.com/lib/preview/mp4/sample-5s.mp4","https://images.unsplash.com/photo-1584515933487-779824d29309"]'>
+      <div class="media-container">
+        <video controls src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4"></video>
+        <img src="https://images.unsplash.com/photo-1584515933487-779824d29309">
+      </div>
+      <div class="card-content">
+        <h3>Mobile Health Clinics</h3>
+        <p>Bringing healthcare to underserved areas.</p>
+        <div class="buttons">
+          <a href="#" onclick="toggleDescription(this)">Learn More</a>
+          <a href="#" onclick="openModal(this)">View Details</a>
+        </div>
+      </div>
     </div>
-    <div class="gallery-item fade-in">
-      <video src="https://youtu.be/jMfvlh0tjyo?si=gwmTtZhOITIGwpep"></video>
-      <div class="content"><p>Inclusive therapy sessions with expert care.</p></div>
+
+    <div class="card image" data-full="Wheelchair and assistive devices program to improve mobility." data-media='["https://images.unsplash.com/photo-1505751172876-fa1923c5c528","https://images.unsplash.com/photo-1576765607924-b6f4d24f70b0"]'>
+      <div class="media-container">
+        <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528">
+        <img src="https://images.unsplash.com/photo-1576765607924-b6f4d24f70b0">
+      </div>
+      <div class="card-content">
+        <h3>Assistive Devices</h3>
+        <p>Providing mobility solutions to those in need.</p>
+        <div class="buttons">
+          <a href="#" onclick="toggleDescription(this)">Learn More</a>
+          <a href="#" onclick="openModal(this)">View Details</a>
+        </div>
+      </div>
     </div>
-    <div class="gallery-item fade-in">
-      <img src="https://tse2.mm.bing.net/th/id/OIP.j5neivGZIe16fRcqom-GtwHaEo?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Disability care">
-      <div class="content"><p>Empowering individuals with disabilities.</p></div>
-    </div>
-    <div class="gallery-item fade-in">
-      <video src="https://youtu.be/g62J-8nV5FI?si=69nULUAish6VqIQx"></video>
-      <div class="content"><p>Innovative approaches to health awareness.</p></div>
+
+    <div class="card video" data-full="Mental health awareness and counseling sessions for communities." data-media='["https://samplelib.com/lib/preview/mp4/sample-10s.mp4","https://images.unsplash.com/photo-1526256262350-7da7584cf5eb"]'>
+      <div class="media-container">
+        <video controls src="https://samplelib.com/lib/preview/mp4/sample-10s.mp4"></video>
+        <img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb">
+      </div>
+      <div class="card-content">
+        <h3>Mental Health Support</h3>
+        <p>Spreading awareness and offering counseling services.</p>
+        <div class="buttons">
+          <a href="#" onclick="toggleDescription(this)">Learn More</a>
+          <a href="#" onclick="openModal(this)">View Details</a>
+        </div>
+      </div>
     </div>
   </div>
-</section>
 
-<section class="future">
-  <h2>Future Education Projects</h2>
-  <div class="future-projects">
-    <div class="future-item fade-in">
-      <img src="https://cdn.pixabay.com/photo/2015/09/05/20/02/reading-925589_1280.jpg" alt="Education project">
-      <div class="content"><h3>Mobile Education Camps</h3><p>Expanding access to rural education with mobile classrooms.</p></div>
-    </div>
-    <div class="future-item fade-in">
-      <img src="https://cdn.pixabay.com/photo/2017/08/07/08/56/children-2604681_1280.jpg" alt="Kids learning">
-      <div class="content"><h3>Inclusive Learning</h3><p>Specialized programs for children with disabilities.</p></div>
-    </div>
-    <div class="future-item fade-in">
-      <img src="https://cdn.pixabay.com/photo/2016/02/19/11/19/children-1207510_1280.jpg" alt="Teacher">
-      <div class="content"><h3>Teacher Training</h3><p>Empowering educators with advanced training methods.</p></div>
-    </div>
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <span class="close-btn" onclick="closeModal()">✕</span>
+    <span class="modal-btn prev" onclick="prevMedia()">❮</span>
+    <div class="modal-content" id="modalContent"></div>
+    <div class="dots" id="dotsContainer"></div>
+    <span class="modal-btn next" onclick="nextMedia()">❯</span>
   </div>
-</section>
 
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox">
-  <span class="lightbox-close">&times;</span>
-  <div class="lightbox-content"></div>
-</div>
+  <footer>
+    © 2025 Shyamashree Shitala Maa Charitable Trust. All rights reserved.
+  </footer>
 
-<footer>
-  <p>© 2025 Shyamashree Shitala Maa Charitable Trust. All Rights Reserved.</p>
-</footer>
+  <script>
+    let currentIndex = 0, mediaArray = [];
 
-<script>
-  // Scroll animation
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.2 });
-  document.querySelectorAll('.fade-in').forEach(item => observer.observe(item));
+    function filterCards(type) {
+      document.querySelectorAll('.card').forEach(card => {
+        card.style.display = (type === 'all' || card.classList.contains(type)) ? 'block' : 'none';
+      });
+    }
+    function searchProjects() {
+      const search = document.getElementById("searchBox").value.toLowerCase();
+      document.querySelectorAll('.card').forEach(card => {
+        const title = card.querySelector("h3").innerText.toLowerCase();
+        card.style.display = title.includes(search) ? 'block' : 'none';
+      });
+    }
+    function toggleTheme() { document.body.classList.toggle("dark"); }
 
-  // Lightbox functionality
-  const lightbox = document.getElementById('lightbox');
-  const lightboxContent = document.querySelector('.lightbox-content');
-  const lightboxClose = document.querySelector('.lightbox-close');
-
-  document.querySelectorAll('.gallery-item img, .gallery-item video, .future-item img').forEach(el => {
-    el.addEventListener('click', () => {
-      lightbox.style.display = 'flex';
-      if (el.tagName === 'VIDEO') {
-        const clone = el.cloneNode(true);
-        clone.controls = true;
-        clone.autoplay = true;
-        lightboxContent.innerHTML = '';
-        lightboxContent.appendChild(clone);
+    function toggleDescription(btn) {
+      const p = btn.closest('.card-content').querySelector('p');
+      const card = btn.closest('.card');
+      if (btn.innerText === "Learn More") {
+        p.innerText = card.dataset.full;
+        btn.innerText = "Show Less";
       } else {
-        lightboxContent.innerHTML = `<img src="${el.src}" alt="">`;
+        p.innerText = p.innerText.split(".")[0] + ".";
+        btn.innerText = "Learn More";
+      }
+    }
+
+    function openModal(btn) {
+      const card = btn.closest('.card');
+      mediaArray = JSON.parse(card.dataset.media);
+      currentIndex = 0;
+      showMedia();
+      document.getElementById("modal").style.display = "flex";
+    }
+
+    function showMedia() {
+      const modalContent = document.getElementById("modalContent");
+      const dotsContainer = document.getElementById("dotsContainer");
+      const media = mediaArray[currentIndex];
+
+      modalContent.innerHTML = media.endsWith(".mp4")
+        ? `<video src="${media}" controls autoplay></video>`
+        : `<img src="${media}" alt="Media">`;
+
+      dotsContainer.innerHTML = mediaArray.map((_, i) =>
+        `<div class="dot ${i === currentIndex ? 'active' : ''}" onclick="goToMedia(${i})"></div>`
+      ).join('');
+    }
+
+    function goToMedia(index) { currentIndex = index; showMedia(); }
+    function closeModal() { document.getElementById("modal").style.display = "none"; }
+    function nextMedia() { currentIndex = (currentIndex + 1) % mediaArray.length; showMedia(); }
+    function prevMedia() { currentIndex = (currentIndex - 1 + mediaArray.length) % mediaArray.length; showMedia(); }
+
+    document.addEventListener('keydown', e => {
+      if (document.getElementById("modal").style.display === "flex") {
+        if (e.key === "ArrowRight") nextMedia();
+        if (e.key === "ArrowLeft") prevMedia();
+        if (e.key === "Escape") closeModal();
       }
     });
-  });
 
-  lightboxClose.addEventListener('click', () => {
-    lightbox.style.display = 'none';
-    lightboxContent.innerHTML = '';
-  });
-</script>
+    document.querySelectorAll('.media-container').forEach(container => {
+      setInterval(() => {
+        container.scrollBy({ left: 310, behavior: 'smooth' });
+        if (container.scrollLeft + container.clientWidth >= container.scrollWidth)
+          container.scrollTo({ left: 0, behavior: 'smooth' });
+      }, 3000);
+    });
 
+    function addSwipeSupport(element, onSwipeLeft, onSwipeRight) {
+      let startX = 0, startY = 0;
+      element.addEventListener('touchstart', e => {
+        const touch = e.touches[0];
+        startX = touch.clientX; startY = touch.clientY;
+      });
+      element.addEventListener('touchend', e => {
+        const touch = e.changedTouches[0];
+        const dx = touch.clientX - startX; const dy = touch.clientY - startY;
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+          if (dx < 0) onSwipeLeft(); else onSwipeRight();
+        }
+      });
+    }
+
+    addSwipeSupport(document.getElementById("modal"), nextMedia, prevMedia);
+    document.querySelectorAll('.media-container').forEach(container => {
+      addSwipeSupport(container,
+        () => container.scrollBy({ left: 300, behavior: 'smooth' }),
+        () => container.scrollBy({ left: -300, behavior: 'smooth' })
+      );
+    });
+  </script>
 </body>
 </html>
