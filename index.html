@@ -114,7 +114,7 @@
 }*/
 
 
-    .hero-overlay {
+   /* .hero-overlay {
       position: absolute;
       inset: 0;
       background: rgba(0, 0, 0, 0.55);
@@ -220,7 +220,7 @@
       color: white;
       transform: scale(1.05);
     }*/
-  .hero {
+  /*.hero {
   position: relative;
   width: 100%;
   height: 100vh;
@@ -295,7 +295,7 @@
 }
 
 /* Arrows */
-.nav {
+/*.nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -310,6 +310,132 @@
 
 .prev { left: 20px; }
 .next { right: 20px; }
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: url('66.jpg') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  justify-content: flex-start; /* content left aligned */
+  align-items: center;
+  color: white;
+  padding: 20px;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 0;
+}
+
+/* ✅ bring back hero-content */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  text-align: left;
+}
+
+.hero h1 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.project-details {
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 15px 0 25px 0; /* extra space below before buttons */
+  list-style: none;
+  padding: 0;
+}
+
+/* ✅ buttons aligned left, with gap */
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-primary {
+  padding: 10px 20px;
+  background: #FFD700;
+  border: none;
+  border-radius: 25px;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn-secondary {
+  padding: 10px 20px;
+  background: #32CD32;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 25px;
+}
+
+/* Hover effects */
+.btn-primary:hover {
+  background: #FFC300;
+}
+
+.btn-secondary:hover {
+  background: #28A745;
+}
+
+/* ✅ Arrows */
+.hero-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 32px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 8px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: white;
+  z-index: 2;
+  user-select: none;
+}
+
+.left-arrow {
+  left: 15px;
+}
+
+.right-arrow {
+  right: 15px;
+}
+
+.hero-arrow:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* ✅ Mobile optimization */
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 22px;
+  }
+  .hero p,
+  .project-details {
+    font-size: 14px;
+  }
+  .hero-buttons {
+    flex-direction: column; /* stack vertically on mobile */
+    align-items: flex-start;
+  }
+  .btn-primary, .btn-secondary {
+    width: 100%; /* full width buttons */
+    text-align: center;
+  }
+}
 
 
     /* IMPACT STATS */
