@@ -1055,78 +1055,70 @@ html {
 }
 
 /* -------- Mobile Navigation -------- */
-/* ✅ Mobile Navigation Layout */
+/* === MOBILE ONLY (put at the very end of your CSS) === */
 @media (max-width: 768px) {
+  /* one-row top bar */
   header {
     display: flex;
-    justify-content: space-between; /* Logo left, donate center, hamburger right */
     align-items: center;
-    padding: 10px 15px;
-    background: white;
+    justify-content: space-between;
+    flex-wrap: nowrap;          /* prevent wrapping */
+    gap: 8px;
     position: relative;
+    padding: 10px 12px;
+    background: #fff;
   }
 
-  /* Hide long trust name on mobile */
-  .logo-container strong {
-    display: none;
-  }
+  /* hide long name, keep only logo */
+  .logo-container strong { display: none; }
+  .logo-container { order: 1; flex: 0 0 auto; display: flex; align-items: center; }
+  .logo-container .logo { height: 36px; width: auto; }
 
-  /* Logo size */
-  .logo-container img {
-    height: 40px;
-    width: auto;
-  }
-
-  /* 🔹 Make Donate Button Smaller */
+  /* donate button in the middle, NOT full width */
   .global-donate-btn {
+    order: 2;
+    flex: 0 0 auto;
+    display: inline-flex;        /* inline sizing */
+    align-items: center;
+    justify-content: center;
     padding: 6px 12px;
     font-size: 14px;
-    background: #ffd700;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin: 0 10px;
-    white-space: nowrap; /* Prevent wrapping */
+    width: auto !important;      /* override any width:100% */
+    max-width: 60%;              /* keep it compact */
+    white-space: nowrap;         /* no wrapping */
+    margin: 0 8px;               /* small side spacing */
   }
 
-  /* Show hamburger right */
+  /* hamburger on the right */
   .hamburger {
-    display: block;
+    order: 3;
+    flex: 0 0 auto;
     font-size: 26px;
-    cursor: pointer;
     background: none;
-    border: none;
+    border: 0;
+    cursor: pointer;
+    margin: 0;
   }
 
-  /* Hide desktop nav */
-  .desktop-nav {
-    display: none;
-  }
+  /* hide desktop menu */
+  .desktop-nav { display: none; }
 
-  /* Mobile nav dropdown */
+  /* mobile dropdown (positioned under header, right side) */
   .mobile-nav {
     display: none;
     flex-direction: column;
-    background: white;
     position: absolute;
-    top: 60px;
-    right: 15px;
-    padding: 15px;
+    top: calc(100% + 8px);
+    right: 12px;
+    background: #fff;
+    padding: 14px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     z-index: 999;
   }
-
-  .mobile-nav.show {
-    display: flex;
-  }
-
-  .mobile-nav a {
-    margin: 10px 0;
-    text-decoration: none;
-    font-size: 16px;
-    color: #000;
-  }
+  .mobile-nav.show { display: flex; }
+  .mobile-nav a { margin: 10px 0; font-size: 16px; color: var(--dark); text-decoration: none; }
+  .mobile-nav a:hover { color: var(--primary); }
 }
 
 
