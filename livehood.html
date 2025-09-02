@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Livelihood & Social Welfare</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body {
+      background: #f8f9fa;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    body.dark {
+      background: #121212;
+      color: #e5e5e5;
+    }
+
+    header {
+     /* background: linear-gradient(135deg, #0f2027, #2c5364);*/
+      background: url('https://images.pexels.com/photos/691668/pexels-photo-691668.jpeg') center/cover no-repeat;
+      color: #fff;
+      text-align: center;
+      padding: 60px 20px;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #2c5364;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    body.dark .theme-toggle {
+      background: #333;
+      color: #fff;
+    }
+
+    section.gallery {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    section.gallery h2 {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .filters {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .filter-btn {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 20px;
+      background: #2c5364;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: #0f2027;
+    }
+
+    body.dark .filter-btn {
+      background: #555;
+      color: #fff;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s, color 0.3s;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    body.dark .card {
+      background: #1e1e1e;
+      color: #ddd;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card img, .card video {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card-content h3 {
+      font-size: 1.5rem;
+      color: #2c5364;
+      margin-bottom: 10px;
+    }
+
+    body.dark .card-content h3 {
+      color: #ffcc70;
+    }
+
+    .card-content p {
+      font-size: 1rem;
+      line-height: 1.6;
+      max-height: 70px;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+
+    .read-more {
+      display: inline-block;
+      margin-top: 10px;
+      color: #2c5364;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    body.dark .read-more {
+      color: #ffcc70;
+    }
+
+    footer {
+      background: #0f2027;
+      color: #fff;
+      text-align: center;
+      padding: 20px 10px;
+      margin-top: 40px;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Livelihood & Social Welfare</h1>
+    <p>Empowering people, uplifting communities, spreading hope.</p>
+    <button class="theme-toggle">🌙 Dark Mode</button>
+  </header>
+
+  <section class="gallery">
+    <h2>Our Programs</h2>
+
+    <!-- Filter Buttons -->
+    <div class="filters">
+      <button class="filter-btn active" data-category="all">All</button>
+      <button class="filter-btn" data-category="skills">Skills</button>
+      <button class="filter-btn" data-category="farming">Farming</button>
+      <button class="filter-btn" data-category="welfare">Welfare</button>
+    </div>
+
+    <!-- Cards -->
+    <div class="cards">
+      <div class="card" data-category="skills">
+        <img src="https://images.unsplash.com/photo-1581093588401-16e068ba84dc?auto=format&fit=crop&w=800&q=80" alt="Skill Training">
+        <div class="card-content">
+          <h3>Skill Development</h3>
+          <p>Providing vocational and technical training to help people secure better job opportunities and create sustainable livelihoods for themselves and their families.</p>
+          <span class="read-more">Read More</span>
+        </div>
+      </div>
+
+      <div class="card" data-category="farming">
+        <video autoplay muted loop>
+          <source src="https://cdn.pixabay.com/video/2020/04/06/35160-408307955_large.mp4" type="video/mp4">
+        </video>
+        <div class="card-content">
+          <h3>Community Farming</h3>
+          <p>Supporting sustainable farming and micro-business initiatives to uplift rural communities by teaching self-reliance and eco-friendly agricultural practices.</p>
+          <span class="read-more">Read More</span>
+        </div>
+      </div>
+
+      <div class="card" data-category="welfare">
+        <img src="https://images.unsplash.com/photo-1544776193-352d25ca82cd?auto=format&fit=crop&w=800&q=80" alt="Social Welfare">
+        <div class="card-content">
+          <h3>Social Welfare Programs</h3>
+          <p>Assisting vulnerable groups through education, food security, and medical support, creating a stronger and more connected society for all.</p>
+          <span class="read-more">Read More</span>
+        </div>
+      </div>
+
+      <div class="card" data-category="welfare">
+        <img src="https://images.unsplash.com/photo-1556767576-cfba5cbd36c1?auto=format&fit=crop&w=800&q=80" alt="Community Engagement">
+        <div class="card-content">
+          <h3>Community Engagement</h3>
+          <p>Empowering communities through awareness drives, capacity-building, and collective action to create lasting change for generations to come.</p>
+          <span class="read-more">Read More</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Shyamashree Shitala Maa Charitable Trust. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Dark/Light Mode
+    const themeToggle = document.querySelector('.theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      themeToggle.textContent = document.body.classList.contains('dark') ? '☀️ Light Mode' : '🌙 Dark Mode';
+    });
+
+    // Read More toggle
+    document.querySelectorAll('.read-more').forEach(button => {
+      button.addEventListener('click', () => {
+        const paragraph = button.previousElementSibling;
+        if (paragraph.style.maxHeight === 'none') {
+          paragraph.style.maxHeight = '70px';
+          button.textContent = 'Read More';
+        } else {
+          paragraph.style.maxHeight = 'none';
+          button.textContent = 'Show Less';
+        }
+      });
+    });
+
+    // Scroll Animation
+    const cards = document.querySelectorAll('.card');
+    window.addEventListener('scroll', () => {
+      cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }
+      });
+    });
+
+    // Filter Functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const allCards = document.querySelectorAll('.card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelector('.filter-btn.active').classList.remove('active');
+        btn.classList.add('active');
+        const category = btn.getAttribute('data-category');
+
+        allCards.forEach(card => {
+          if (category === 'all' || card.getAttribute('data-category') === category) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
