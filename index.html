@@ -1058,24 +1058,28 @@ html {
 @media (max-width: 768px) {
   header {
     display: flex;
-    justify-content: space-between; /* spread items */
+    justify-content: space-between; /* left & right alignment */
     align-items: center;
     padding: 10px 15px;
+    position: relative; /* needed for absolute centering */
   }
 
   .logo-container strong {
-    display: none; /* hide long text in mobile */
+    display: none; /* hide long trust name */
   }
 
   .desktop-nav {
-    display: none; /* hide desktop menu */
+    display: none;
   }
 
+  /* Hamburger centered absolutely */
   .hamburger {
     display: block;
     font-size: 28px;
     cursor: pointer;
-    margin: 0 auto; /* center horizontally */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .mobile-nav {
@@ -1099,6 +1103,7 @@ html {
     margin-left: auto;
   }
 }
+
 
 
 
