@@ -1503,11 +1503,11 @@ html {
 
   <section class="hero" id="hero">
      <div class="hero-overlay"></div>
-    <div class="hero-arrow left-arrow" onclick="prevProject()">&#10094;</div>
+    <!--<div class="hero-arrow left-arrow" onclick="prevProject()">&#10094;</div>-->
     <div class="hero-content" id="heroContent">
       <!-- JS will load content here -->
     </div>
-    <div class="hero-arrow right-arrow" onclick="nextProject()">&#10095;</div>
+   <!-- <div class="hero-arrow right-arrow" onclick="nextProject()">&#10095;</div>--?
    <!-- <div class="hero-overlay"></div>-->
     
   </section>
@@ -1841,7 +1841,6 @@ html {
       hero.style.backgroundImage = `url('${project.image}')`;
 
       content.innerHTML = `
-      <div class="hero-arrow left-arrow" onclick="prevProject()">&#10094;</div>
      <h1>${project.title}</h1>
       <p><strong>${project.subtitle}</strong></p>
       <ul class="project-details">
@@ -1850,6 +1849,7 @@ html {
         <!--<li>🎯 <strong>Goal:</strong> ${project.goal}</li>-->
       </ul>
       <div class="hero-buttons">
+      <div class="hero-arrow left-arrow" onclick="prevProject()">&#10094;</div>
         <a class="donate-btn" href="javascript:void(0);" onclick="openForm('DigniDays', 100)">Book A Smile!</a>
         <a href="${project.link}" class="btn-secondary">Learn More</a>
      <div class="hero-arrow right-arrow" onclick="nextProject()">&#10095;</div>
