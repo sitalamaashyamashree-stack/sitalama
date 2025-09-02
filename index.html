@@ -1056,15 +1056,16 @@ html {
 
 /* -------- Mobile Navigation -------- */
 @media (max-width: 768px) {
+  /* Hide desktop nav */
   .desktop-nav {
     display: none;
   }
 
-  /* ✅ Make header (logo, donate, hamburger) a flex row */
-  header {
+  /* ✅ Make the top bar flex */
+  header, .top-bar {
     display: flex;
     justify-content: space-between; /* Spread logo, donate, hamburger */
-    align-items: center;
+    align-items: center;           /* Center vertically */
     padding: 10px 15px;
     background: white;
   }
@@ -1074,12 +1075,19 @@ html {
     display: none;
   }
 
-  /* ✅ Logo size tweak */
+  /* ✅ Logo tweak */
   .logo-container img {
     height: 40px;
   }
 
-  /* ✅ Hamburger stays visible on the right */
+  /* ✅ Donate button inline */
+  .global-donate-btn {
+    margin: 0 10px;
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+
+  /* ✅ Hamburger aligned right */
   .hamburger {
     display: block;
     font-size: 28px;
@@ -1090,14 +1098,7 @@ html {
     margin: 0;
   }
 
-  /* ✅ Donate button inline */
-  .global-donate-btn {
-    margin: 0 10px;
-    font-size: 14px;
-    padding: 6px 12px;
-  }
-
-  /* ✅ Mobile dropdown menu */
+  /* ✅ Mobile dropdown */
   .mobile-nav {
     display: none;
     flex-direction: column;
@@ -1111,6 +1112,10 @@ html {
     z-index: 999;
   }
 
+  .mobile-nav.show {
+    display: flex;
+  }
+
   .mobile-nav a {
     margin: 10px 0;
     font-size: 16px;
@@ -1121,11 +1126,8 @@ html {
   .mobile-nav a:hover {
     color: var(--primary);
   }
-
-  .mobile-nav.show {
-    display: flex;
-  }
 }
+
 
   </style>
 </head>
