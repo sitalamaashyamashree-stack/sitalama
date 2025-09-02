@@ -1841,6 +1841,7 @@ html {
       hero.style.backgroundImage = `url('${project.image}')`;
 
       content.innerHTML = `
+      <div class="hero-arrow left-arrow" onclick="prevProject()">&#10094;</div>
      <h1>${project.title}</h1>
       <p><strong>${project.subtitle}</strong></p>
       <ul class="project-details">
@@ -1851,6 +1852,7 @@ html {
       <div class="hero-buttons">
         <a class="donate-btn" href="javascript:void(0);" onclick="openForm('DigniDays', 100)">Book A Smile!</a>
         <a href="${project.link}" class="btn-secondary">Learn More</a>
+     <div class="hero-arrow right-arrow" onclick="nextProject()">&#10095;</div>
       </div>
     `;
     }
