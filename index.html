@@ -1410,7 +1410,35 @@ html {
     margin-left: auto;
     display: block;
   }
+ .hero-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;   /* spacing between items */
+    flex-wrap: nowrap; /* force single row */
+  }
+
+  .hero-buttons .btn-primary,
+  .hero-buttons .btn-secondary {
+    flex: none;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .hero-arrow {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+    line-height: 35px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+  }
 }
+}
+
 
 
 
