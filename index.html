@@ -1055,70 +1055,49 @@ html {
 }
 
 /* -------- Mobile Navigation -------- */
-/* === MOBILE ONLY (put at the very end of your CSS) === */
 @media (max-width: 768px) {
-  /* one-row top bar */
   header {
     display: flex;
+    justify-content: space-between; /* spread items */
     align-items: center;
-    justify-content: space-between;
-    flex-wrap: nowrap;          /* prevent wrapping */
-    gap: 8px;
-    position: relative;
-    padding: 10px 12px;
-    background: #fff;
+    padding: 10px 15px;
   }
 
-  /* hide long name, keep only logo */
-  .logo-container strong { display: none; }
-  .logo-container { order: 1; flex: 0 0 auto; display: flex; align-items: center; }
-  .logo-container .logo { height: 36px; width: auto; }
-
-  /* donate button in the middle, NOT full width */
-  .global-donate-btn {
-    order: 2;
-    flex: 0 0 auto;
-    display: inline-flex;        /* inline sizing */
-    align-items: center;
-    justify-content: center;
-    padding: 6px 12px;
-    font-size: 14px;
-    width: auto !important;      /* override any width:100% */
-    max-width: 60%;              /* keep it compact */
-    white-space: nowrap;         /* no wrapping */
-    margin: 0 8px;               /* small side spacing */
+  .logo-container strong {
+    display: none; /* hide long text in mobile */
   }
 
-  /* hamburger on the right */
+  .desktop-nav {
+    display: none; /* hide desktop menu */
+  }
+
   .hamburger {
-    order: 3;
-    flex: 0 0 auto;
-    font-size: 26px;
-    background: none;
-    border: 0;
+    display: block;
+    font-size: 28px;
     cursor: pointer;
-    margin: 0;
+    margin: 0 auto; /* center horizontally */
   }
 
-  /* hide desktop menu */
-  .desktop-nav { display: none; }
-
-  /* mobile dropdown (positioned under header, right side) */
   .mobile-nav {
     display: none;
     flex-direction: column;
+    background: white;
     position: absolute;
-    top: calc(100% + 8px);
-    right: 12px;
-    background: #fff;
-    padding: 14px;
+    top: 70px;
+    right: 20px;
+    padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     z-index: 999;
   }
-  .mobile-nav.show { display: flex; }
-  .mobile-nav a { margin: 10px 0; font-size: 16px; color: var(--dark); text-decoration: none; }
-  .mobile-nav a:hover { color: var(--primary); }
+
+  .mobile-nav.show {
+    display: flex;
+  }
+
+  .global-donate-btn {
+    margin-left: auto;
+  }
 }
 
 
