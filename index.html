@@ -981,16 +981,23 @@ html {
 }
 
 /* Mobile view */
-@media (max-width: 768px) {
+/*@media (max-width: 768px) {
   .desktop-nav {
     display: none;
   }
 
-  .hamburger {
+  /*.hamburger {
     display: block;
     font-size: 28px;
     cursor: pointer;
-  }
+  }*/
+/*.hamburger{
+  margin: 0 auto;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+}
 
   /*.mobile-nav {
     display: none;
@@ -1004,7 +1011,7 @@ html {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     z-index: 999;
   }*/
-.mobile-nav {
+/*.mobile-nav {
   display: none;
   flex-direction: column;
   background: white;
@@ -1014,8 +1021,19 @@ html {
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
+}*/
 
+/*.mobile-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
 .mobile-nav.show {
   display: flex;
 }
@@ -1024,7 +1042,7 @@ html {
   .mobile-nav.show {
     display: flex;
   }
-}
+}*/
 /* -------- Desktop Navigation -------- */
 .desktop-nav {
   display: flex;
@@ -1042,7 +1060,7 @@ html {
     display: none;
   }
 
-  .hamburger {
+ /* .hamburger {
     display: block;
     font-size: 28px;
     cursor: pointer;
@@ -1050,6 +1068,49 @@ html {
     margin-left: auto;
   }
 
+ /* .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: white;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 999;
+  }
+
+  .mobile-nav a {
+    margin: 10px 0;
+    font-size: 16px;
+    color: var(--dark);
+    text-decoration: none;
+  }
+
+  /*.mobile-nav a:hover {
+    color: var(--primary);
+  }
+
+  .mobile-nav.show {
+    display: flex;
+  }
+
+ /* .global-donate-btn {
+    margin-top: 10px;
+    width: 100%;
+  }*/
+
+/* ✅ Put hamburger in the middle */
+  .hamburger {
+    display: block;
+    font-size: 28px;
+    cursor: pointer;
+    user-select: none;
+    margin: 0 auto; /* centers it */
+  }
+
+  /* ✅ Keep mobile dropdown as is */
   .mobile-nav {
     display: none;
     flex-direction: column;
@@ -1078,12 +1139,12 @@ html {
     display: flex;
   }
 
+  /* ✅ Donate button stays on the right */
   .global-donate-btn {
-    margin-top: 10px;
-    width: 100%;
+    margin-left: auto;
+    margin-top: 0;
   }
 }
-
   </style>
 </head>
 
@@ -1119,7 +1180,7 @@ html {
   </nav>
 
   <!-- Hamburger (Mobile only) -->
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
+ <!-- <div class="hamburger" onclick="toggleMenu()">☰</div>-->
 
   <!-- Mobile Navigation -->
   <nav class="mobile-nav" id="mobileMenu">
@@ -1132,6 +1193,7 @@ html {
 
   <!-- Donate Button -->
   <button class="global-donate-btn" onclick="openGeneralDonateForm()">DONATE NOW</button>
+<div class="hamburger" onclick="toggleMenu()">☰</div>
 </header>
 
 
