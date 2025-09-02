@@ -1060,57 +1060,44 @@ html {
     display: none;
   }
 
- /* .hamburger {
-    display: block;
-    font-size: 28px;
-    cursor: pointer;
-    user-select: none;
-    margin-left: auto;
-  }
-
- /* .mobile-nav {
-    display: none;
-    flex-direction: column;
-    background: white;
-    position: absolute;
-    top: 70px;
-    right: 20px;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    z-index: 999;
-  }
-
-  .mobile-nav a {
-    margin: 10px 0;
-    font-size: 16px;
-    color: var(--dark);
-    text-decoration: none;
-  }
-
-  /*.mobile-nav a:hover {
-    color: var(--primary);
-  }
-
-  .mobile-nav.show {
+  /* ✅ Make header (logo, donate, hamburger) a flex row */
+  header {
     display: flex;
+    justify-content: space-between; /* Spread logo, donate, hamburger */
+    align-items: center;
+    padding: 10px 15px;
+    background: white;
   }
 
- /* .global-donate-btn {
-    margin-top: 10px;
-    width: 100%;
-  }*/
+  /* ✅ Hide trust name text */
+  .logo-container strong {
+    display: none;
+  }
 
-/* ✅ Put hamburger in the middle */
+  /* ✅ Logo size tweak */
+  .logo-container img {
+    height: 40px;
+  }
+
+  /* ✅ Hamburger stays visible on the right */
   .hamburger {
     display: block;
     font-size: 28px;
     cursor: pointer;
     user-select: none;
-    margin: 0 auto; /* centers it */
+    background: none;
+    border: none;
+    margin: 0;
   }
 
-  /* ✅ Keep mobile dropdown as is */
+  /* ✅ Donate button inline */
+  .global-donate-btn {
+    margin: 0 10px;
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+
+  /* ✅ Mobile dropdown menu */
   .mobile-nav {
     display: none;
     flex-direction: column;
@@ -1138,15 +1125,8 @@ html {
   .mobile-nav.show {
     display: flex;
   }
-  .logo-container strong {
-    display: none;
-  }
-  /* ✅ Donate button stays on the right */
-  .global-donate-btn {
-    margin-left: auto;
-    margin-top: 0;
-  }
 }
+
   </style>
 </head>
 
