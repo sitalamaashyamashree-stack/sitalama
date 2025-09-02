@@ -1487,7 +1487,7 @@ html {
       {
         title: "PROJECT - SHE - Sanitary Health Empowerment",
         subtitle: "Dignity Through Hygiene",
-        image: "66.jpg",
+        image: "shebg1.jpg",
         launch: "14th September 2025",
         location: "Rural areas in Howrah District, West Bengal",
         /*goal: "Promoting menstrual hygiene and equity by ensuring access, awareness and dignity for underserved girls and woman",*/
@@ -1541,15 +1541,15 @@ html {
       hero.style.backgroundImage = `url('${project.image}')`;
 
       content.innerHTML = `
-      <h1>${project.title}</h1>
-      <p><strong>${project.subtitle}</strong></p>
+     <!-- <h1>${project.title}</h1>-->
+     <!-- <p><strong>${project.subtitle}</strong></p>-->
       <ul class="project-details">
         <li>📅 <strong>Estimated Launch Date:</strong> ${project.launch}</li>
         <li>📍 <strong>Location:</strong> ${project.location}</li>
         <!--<li>🎯 <strong>Goal:</strong> ${project.goal}</li>-->
       </ul>
       <div class="hero-buttons">
-        <a class="donate-btn" href="javascript:void(0);" onclick="openForm('DigniDays', 200)">Book A Smile!</a>
+        <a class="donate-btn" href="javascript:void(0);" onclick="openForm('DigniDays', 100)">Book A Smile!</a>
         <a href="${project.link}" class="btn-secondary">Learn More</a>
       </div>
     `;
