@@ -1280,27 +1280,26 @@ html {
   }
 
   header {
-    position: relative;   /* ✅ allows absolute centering */
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 15px;
     background: #ffffff;
+    z-index: 1000; /* ✅ keep header above everything */
   }
 
-  /* ✅ Logo on left */
+  /* ✅ Logo (Left) */
   .logo-container {
     flex: 0 0 auto;
+    z-index: 1001;
   }
   .logo-container img {
     max-height: 40px;
     width: auto;
   }
-  .logo-container strong {
-    display: none; /* hide long text on mobile */
-  }
 
-  /* ✅ Donate button perfectly centered */
+  /* ✅ Donate Button (Center) */
   .global-donate-btn {
     position: absolute;
     left: 50%;
@@ -1315,14 +1314,16 @@ html {
     font-weight: bold;
     cursor: pointer;
     white-space: nowrap;
+    z-index: 1002;  /* ✅ always on top */
   }
 
-  /* ✅ Hamburger on right */
+  /* ✅ Hamburger (Right) */
   .hamburger {
     flex: 0 0 auto;
     font-size: 26px;
     cursor: pointer;
     color: #333;
+    z-index: 1001;
   }
 
   /* ✅ Mobile Nav */
@@ -1336,14 +1337,13 @@ html {
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    z-index: 999;
+    z-index: 2000; /* ✅ above header */
   }
 
   .mobile-nav.show {
     display: flex;
   }
-
- .hero-content h1 {
+.hero-content h1 {
         font-size: 2rem;
       }
       .donate-btn {
