@@ -1279,8 +1279,8 @@ html {
     display: none;
   }
 
- header {
-    display: flex;               /* use flex instead of block */
+header {
+    display: flex;  
     justify-content: space-between;
     align-items: center;
     padding: 10px 15px;
@@ -1288,11 +1288,36 @@ html {
     position: relative;
   }
 
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-container strong {
+    display: none; /* hide long text on mobile */
+  }
+
+  .mobile-header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* space between donate and hamburger */
+  }
+
+  .global-donate-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    background: #fdd835; /* yellow */
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap; /* prevent breaking into new line */
+  }
+
   .hamburger {
     display: block;
-    font-size: 28px;
+    font-size: 26px;
     cursor: pointer;
-    user-select: none;
   }
 
   .mobile-nav {
@@ -1315,33 +1340,8 @@ html {
     text-decoration: none;
   }
 
-  .mobile-nav a:hover {
-    color: var(--primary);
-  }
-
   .mobile-nav.show {
     display: flex;
-  }
-
-  .logo-container strong {
-    display: none; /* hide long text on mobile */
-  }
-
-  .mobile-header-right {
-    display: flex;
-    align-items: center;
-    gap: 10px;  /* space between donate & hamburger */
-  }
-
-  .global-donate-btn {
-    display: block;
-    padding: 6px 12px;
-    font-size: 14px;
-    background: #fdd835; /* yellow like your current style */
-    border: none;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
   }
 
  .hero-content h1 {
@@ -1379,6 +1379,7 @@ html {
     <button class="global-donate-btn" onclick="openGeneralDonateForm()">DONATE NOW</button>
   </header> -->
 <header>
+  <!-- Logo -->
   <div class="logo-container">
     <img src="SSMCT Logo1.png" alt="Trust Logo" class="logo" />
     <strong>SHYAMASHREE SHITALA MAA CHARITABLE TRUST</strong>
@@ -1393,7 +1394,7 @@ html {
     <a href="ContactUs.html">Contact Us</a>
   </nav>
 
-  <!-- Right side (Mobile only: Donate + Hamburger) -->
+  <!-- Mobile Right: Donate + Hamburger -->
   <div class="mobile-header-right">
     <button class="global-donate-btn" onclick="openGeneralDonateForm()">DONATE NOW</button>
     <div class="hamburger" onclick="toggleMenu()">☰</div>
