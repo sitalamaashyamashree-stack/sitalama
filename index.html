@@ -1275,10 +1275,6 @@ html {
 
 /* -------- Mobile Navigation -------- */
 @media (max-width: 768px) {
-  .desktop-nav {
-    display: none;
-  }
-
   header {
     position: relative;
     display: flex;
@@ -1286,10 +1282,10 @@ html {
     align-items: center;
     padding: 10px 15px;
     background: #ffffff;
-    z-index: 1000; /* ✅ keep header above everything */
+    z-index: 1000;
   }
 
-  /* ✅ Logo (Left) */
+  /* Logo on Left */
   .logo-container {
     flex: 0 0 auto;
     z-index: 1001;
@@ -1299,25 +1295,23 @@ html {
     width: auto;
   }
 
-  /* ✅ Donate Button (Center) */
+  /* Donate Button in Center */
   .global-donate-btn {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 6px 14px;
-    font-size: 14px;
+    background: #fdd835; /* your yellow */
+    color: #000;
     border: none;
+    padding: 6px 14px;
     border-radius: 4px;
     font-weight: bold;
     cursor: pointer;
     white-space: nowrap;
-    z-index: 1002;  /* ✅ always on top */
+    z-index: 1002;
   }
 
-  /* ✅ Hamburger (Right) */
+  /* Hamburger on Right */
   .hamburger {
     flex: 0 0 auto;
     font-size: 26px;
@@ -1326,7 +1320,7 @@ html {
     z-index: 1001;
   }
 
-  /* ✅ Mobile Nav */
+  /* Mobile Nav */
   .mobile-nav {
     display: none;
     flex-direction: column;
@@ -1337,12 +1331,12 @@ html {
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    z-index: 2000; /* ✅ above header */
+    z-index: 2000;
   }
-
   .mobile-nav.show {
     display: flex;
   }
+
 .hero-content h1 {
         font-size: 2rem;
       }
