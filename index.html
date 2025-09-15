@@ -1280,7 +1280,7 @@ html {
   }
 
   header {
-    display: flex;
+    display: flex;  
     justify-content: space-between;
     align-items: center;
     padding: 10px 15px;
@@ -1288,37 +1288,41 @@ html {
     position: relative;
   }
 
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+
   .logo-container strong {
     display: none; /* hide long text on mobile */
   }
 
+  .mobile-header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;  /* prevent shrinking */
+  }
+
   .global-donate-btn {
-    background: #28a745; /* green button like Smile Foundation */
-    color: #fff;
-    padding: 6px 14px;
-    border: none;
-    border-radius: 5px;
+    display: inline-flex;   /* ✅ force inline */
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
     font-size: 14px;
+    background: #fdd835; /* yellow */
+    border: none;
+    border-radius: 4px;
     font-weight: bold;
     cursor: pointer;
-    margin-right: 8px;
+    white-space: nowrap;    /* ✅ keep in one line */
+    flex-shrink: 0;         /* ✅ never shrink */
   }
 
   .hamburger {
-    display: block;
-    font-size: 28px;
+    display: inline-block;  /* ✅ inline instead of block */
+    font-size: 26px;
     cursor: pointer;
-    user-select: none;
-  }
-
-  /* Right section alignment */
-  header {
-    display: flex;
-  }
-
-  header > .global-donate-btn,
-  header > .hamburger {
-    margin-left: auto;
   }
 
   .mobile-nav {
@@ -1334,21 +1338,9 @@ html {
     z-index: 999;
   }
 
-  .mobile-nav a {
-    margin: 10px 0;
-    font-size: 16px;
-    color: black;
-    text-decoration: none;
-  }
-
-  .mobile-nav a:hover {
-    color: #28a745;
-  }
-
   .mobile-nav.show {
     display: flex;
   }
-
 
  .hero-content h1 {
         font-size: 2rem;
