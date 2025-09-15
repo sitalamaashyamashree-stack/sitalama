@@ -1274,80 +1274,86 @@ html {
 }
 
 /* -------- Mobile Navigation -------- */
-  @media (max-width: 768px) {
-      .desktop-nav {
-        display: none;
-      }
+ @media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
 
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 15px;
-        background: white;
-        position: relative;
-      }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: white;
+    position: relative; /* This is crucial for absolute positioning */
+  }
 
-      .logo-container {
-        display: flex;
-        align-items: center;
-      }
+  /* Your existing logo styles */
+  .logo-container {
+    display: flex;
+    align-items: center;
+    z-index: 10; /* Ensures logo is above the button if they overlap */
+  }
 
-      .logo-container strong {
-        display: none;
-        /* hide long text on mobile */
-      }
+  .logo-container strong {
+    display: none;
+  }
+  
+  /* The donate button is positioned absolutely to be centered */
+  .global-donate-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    font-size: 14px;
+    background: #fdd835; /* Your existing color */
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
 
-      .mobile-header-right {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        flex-shrink: 0;
-        /* prevent shrinking */
-      }
+    /* These are the new lines for positioning */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5; /* Puts it between the logo and the hamburger */
+  }
 
-      .global-donate-btn {
-        display: inline-flex;
-        /* ✅ force inline */
-        align-items: center;
-        justify-content: center;
-        padding: 6px 12px;
-        font-size: 14px;
-        background: #fdd835;
-        /* yellow */
-        border: none;
-        border-radius: 4px;
-        font-weight: bold;
-        cursor: pointer;
-        white-space: nowrap;
-        /* ✅ keep in one line */
-        flex-shrink: 0;
-        /* ✅ never shrink */
-      }
+  /* The container on the right remains positioned as a flex item */
+  .mobile-header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    z-index: 10; /* Ensures the hamburger is clickable */
+  }
 
-      .hamburger {
-        display: inline-block;
-        /* ✅ inline instead of block */
-        font-size: 26px;
-        cursor: pointer;
-      }
+  /* Your existing hamburger styles */
+  .hamburger {
+    display: inline-block;
+    font-size: 26px;
+    cursor: pointer;
+  }
 
-      .mobile-nav {
-        display: none;
-        flex-direction: column;
-        background: white;
-        position: absolute;
-        top: 60px;
-        right: 15px;
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        z-index: 999;
-      }
+  /* Your existing mobile nav styles */
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: white;
+    position: absolute;
+    top: 60px;
+    right: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+  }
 
-      .mobile-nav.show {
-        display: flex;
-      }
+  .mobile-nav.show {
+    display: flex;
+  }
     .hero-content h1 {
         font-size: 2rem;
       }
