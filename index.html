@@ -1279,8 +1279,8 @@ html {
     display: none;
   }
 
-  header {
-    display: block;
+ header {
+    display: flex;               /* use flex instead of block */
     justify-content: space-between;
     align-items: center;
     padding: 10px 15px;
@@ -1324,13 +1324,26 @@ html {
   }
 
   .logo-container strong {
-    display: none;
+    display: none; /* hide long text on mobile */
+  }
+
+  .mobile-header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;  /* space between donate & hamburger */
   }
 
   .global-donate-btn {
-    margin-left: auto;
     display: block;
+    padding: 6px 12px;
+    font-size: 14px;
+    background: #fdd835; /* yellow like your current style */
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
   }
+
  .hero-content h1 {
         font-size: 2rem;
       }
@@ -1380,8 +1393,11 @@ html {
     <a href="ContactUs.html">Contact Us</a>
   </nav>
 
-  <!-- Hamburger (Mobile only) -->
- <!-- <div class="hamburger" onclick="toggleMenu()">☰</div>-->
+  <!-- Right side (Mobile only: Donate + Hamburger) -->
+  <div class="mobile-header-right">
+    <button class="global-donate-btn" onclick="openGeneralDonateForm()">DONATE NOW</button>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+  </div>
 
   <!-- Mobile Navigation -->
   <nav class="mobile-nav" id="mobileMenu">
@@ -1391,11 +1407,8 @@ html {
     <a href="ShitalaCanteen.html" onclick="closeMenu()">Shitala Canteen</a>
     <a href="ContactUs.html" onclick="closeMenu()">Contact Us</a>
   </nav>
-
-  <!-- Donate Button -->
-  <button class="global-donate-btn" onclick="openGeneralDonateForm()">DONATE NOW</button>
-<div class="hamburger" onclick="toggleMenu()">☰</div>
 </header>
+
 
 
   <!-- General Donation Form Modal -->
