@@ -1274,71 +1274,81 @@ html {
 }
 
 /* -------- Mobile Navigation -------- */
-@media (max-width: 768px) {
-  /* Hide desktop nav on mobile */
-  .desktop-nav {
-    display: none;
-  }
+  @media (max-width: 768px) {
+      .desktop-nav {
+        display: none;
+      }
 
-  /* Show hamburger on mobile */
-  .hamburger {
-    display: block;
-    font-size: 26px;
-    cursor: pointer;
-    color: #333;
-    z-index: 1001;
-  }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+        background: white;
+        position: relative;
+      }
 
-  header {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 15px;
-    background: #ffffff;
-    z-index: 1000;
-  }
+      .logo-container {
+        display: flex;
+        align-items: center;
+      }
 
-  /* Logo left */
-  .logo-container img {
-    max-height: 40px;
-    width: auto;
-  }
+      .logo-container strong {
+        display: none;
+        /* hide long text on mobile */
+      }
 
-  /* Donate center */
-  .global-donate-btn {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #fdd835; /* keep your yellow */
-    color: #000;
-    border: none;
-    padding: 6px 14px;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-    white-space: nowrap;
-    z-index: 1002;
-  }
+      .mobile-header-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+        /* prevent shrinking */
+      }
 
-  /* Mobile nav (hidden by default) */
-  .mobile-nav {
-    display: none;
-    flex-direction: column;
-    background: white;
-    position: absolute;
-    top: 60px;
-    right: 15px;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    z-index: 2000;
-  }
+      .global-donate-btn {
+        display: inline-flex;
+        /* ✅ force inline */
+        align-items: center;
+        justify-content: center;
+        padding: 6px 12px;
+        font-size: 14px;
+        background: #fdd835;
+        /* yellow */
+        border: none;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+        white-space: nowrap;
+        /* ✅ keep in one line */
+        flex-shrink: 0;
+        /* ✅ never shrink */
+      }
 
-  .mobile-nav.show {
-    display: flex;
-  }
-.hero-content h1 {
+      .hamburger {
+        display: inline-block;
+        /* ✅ inline instead of block */
+        font-size: 26px;
+        cursor: pointer;
+      }
+
+      .mobile-nav {
+        display: none;
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 60px;
+        right: 15px;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+      }
+
+      .mobile-nav.show {
+        display: flex;
+      }
+    .hero-content h1 {
         font-size: 2rem;
       }
       .donate-btn {
