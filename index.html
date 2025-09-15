@@ -1275,6 +1275,20 @@ html {
 
 /* -------- Mobile Navigation -------- */
 @media (max-width: 768px) {
+  /* Hide desktop nav on mobile */
+  .desktop-nav {
+    display: none;
+  }
+
+  /* Show hamburger on mobile */
+  .hamburger {
+    display: block;
+    font-size: 26px;
+    cursor: pointer;
+    color: #333;
+    z-index: 1001;
+  }
+
   header {
     position: relative;
     display: flex;
@@ -1285,22 +1299,18 @@ html {
     z-index: 1000;
   }
 
-  /* Logo on Left */
-  .logo-container {
-    flex: 0 0 auto;
-    z-index: 1001;
-  }
+  /* Logo left */
   .logo-container img {
     max-height: 40px;
     width: auto;
   }
 
-  /* Donate Button in Center */
+  /* Donate center */
   .global-donate-btn {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    background: #fdd835; /* your yellow */
+    background: #fdd835; /* keep your yellow */
     color: #000;
     border: none;
     padding: 6px 14px;
@@ -1311,16 +1321,7 @@ html {
     z-index: 1002;
   }
 
-  /* Hamburger on Right */
-  .hamburger {
-    flex: 0 0 auto;
-    font-size: 26px;
-    cursor: pointer;
-    color: #333;
-    z-index: 1001;
-  }
-
-  /* Mobile Nav */
+  /* Mobile nav (hidden by default) */
   .mobile-nav {
     display: none;
     flex-direction: column;
@@ -1333,10 +1334,10 @@ html {
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     z-index: 2000;
   }
+
   .mobile-nav.show {
     display: flex;
   }
-
 .hero-content h1 {
         font-size: 2rem;
       }
