@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coming Soon | Charitable Trust</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-149NCZ03L5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-149NCZ03L5');
+</script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: url("https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80") center/cover no-repeat;
+      color: #fff;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      backdrop-filter: brightness(0.6);
+    }
+    .overlay {
+      background: rgba(0,0,0,0.6);
+      padding: 40px;
+      border-radius: 12px;
+      max-width: 700px;
+      width: 100%;
+    }
+    h1 {
+      font-size: 36px;
+      margin-bottom: 15px;
+      color: #ffd700;
+    }
+    p {
+      font-size: 18px;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    .time-box {
+      background: rgba(255,255,255,0.1);
+      padding: 15px;
+      border-radius: 10px;
+      min-width: 70px;
+    }
+    .time-box .num {
+      font-size: 22px;
+      font-weight: bold;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      background: #ffd700;
+      color: #111;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #e6c200;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>🙏 Our Charitable Trust</h1>
+    <p>We are working on something meaningful. Our new website page will be live soon.  
+       Thank you for your love, patience, and support in our mission to serve the community.</p>
+    
+    <div class="countdown">
+      <div class="time-box"><div class="num" id="days">00</div><div>Days</div></div>
+      <div class="time-box"><div class="num" id="hours">00</div><div>Hours</div></div>
+      <div class="time-box"><div class="num" id="minutes">00</div><div>Minutes</div></div>
+      <div class="time-box"><div class="num" id="seconds">00</div><div>Sec</div></div>
+    </div>
+    
+    <a href="ContactUs.html" class="btn">Contact Us</a>
+  </div>
+
+  <script>
+    // Countdown Timer
+    const endDate = new Date("2025-12-31T23:59:59").getTime();
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = endDate - now;
+
+      if (diff <= 0) {
+        daysEl.textContent = "00";
+        hoursEl.textContent = "00";
+        minutesEl.textContent = "00";
+        secondsEl.textContent = "00";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      daysEl.textContent = days.toString().padStart(2, "0");
+      hoursEl.textContent = hours.toString().padStart(2, "0");
+      minutesEl.textContent = minutes.toString().padStart(2, "0");
+      secondsEl.textContent = seconds.toString().padStart(2, "0");
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
