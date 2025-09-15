@@ -1274,86 +1274,148 @@ html {
 }
 
 /* -------- Mobile Navigation -------- */
- @media (max-width: 768px) {
-  .desktop-nav {
-    display: none;
-  }
+  @media (max-width: 768px) {
 
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 15px;
-    background: white;
-    position: relative; /* This is crucial for absolute positioning */
-  }
+      .desktop-nav {
 
-  /* Your existing logo styles */
-  .logo-container {
-    display: flex;
-    align-items: center;
-    z-index: 10; /* Ensures logo is above the button if they overlap */
-  }
+        display: none;
 
-  .logo-container strong {
-    display: none;
-  }
-  
-  /* The donate button is positioned absolutely to be centered */
-  .global-donate-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 6px 12px;
-    font-size: 14px;
-    background: #fdd835; /* Your existing color */
-    border: none;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-    white-space: nowrap;
-    flex-shrink: 0;
+      }
 
-    /* These are the new lines for positioning */
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 5; /* Puts it between the logo and the hamburger */
-  }
 
-  /* The container on the right remains positioned as a flex item */
-  .mobile-header-right {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
-    z-index: 10; /* Ensures the hamburger is clickable */
-  }
 
-  /* Your existing hamburger styles */
-  .hamburger {
-    display: inline-block;
-    font-size: 26px;
-    cursor: pointer;
-  }
+      header {
 
-  /* Your existing mobile nav styles */
-  .mobile-nav {
-    display: none;
-    flex-direction: column;
-    background: white;
-    position: absolute;
-    top: 60px;
-    right: 15px;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    z-index: 999;
-  }
+        display: flex;
 
-  .mobile-nav.show {
-    display: flex;
-  }
+        justify-content: space-between;
+
+        align-items: center;
+
+        padding: 10px 15px;
+
+        background: white;
+
+        position: relative;
+
+      }
+
+
+
+      .logo-container {
+
+        display: flex;
+
+        align-items: center;
+
+      }
+
+
+
+      .logo-container strong {
+
+        display: none;
+        /* hide long text on mobile */
+
+      }
+
+
+
+      .mobile-header-right {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        flex-shrink: 0;
+        /* prevent shrinking */
+
+      }
+
+
+
+      .global-donate-btn {
+
+        display: inline-flex;
+        /* ✅ force inline */
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 6px 12px;
+
+        font-size: 14px;
+
+        background: #fdd835;
+        /* yellow */
+
+        border: none;
+
+        border-radius: 4px;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+        white-space: nowrap;
+        /* ✅ keep in one line */
+
+        flex-shrink: 0;
+        /* ✅ never shrink */
+
+      }
+
+
+
+      .hamburger {
+
+        display: inline-block;
+        /* ✅ inline instead of block */
+
+        font-size: 26px;
+
+        cursor: pointer;
+
+      }
+
+
+
+      .mobile-nav {
+
+        display: none;
+
+        flex-direction: column;
+
+        background: white;
+
+        position: absolute;
+
+        top: 60px;
+
+        right: 15px;
+
+        padding: 15px;
+
+        border-radius: 8px;
+
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+        z-index: 999;
+
+      }
+
+
+
+      .mobile-nav.show {
+
+        display: flex;
+
+      }
+
+    }
     .hero-content h1 {
         font-size: 2rem;
       }
