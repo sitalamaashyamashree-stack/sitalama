@@ -159,6 +159,32 @@
   -o-user-drag: none;
   user-drag: none;
 }
+
+.watermark {
+  position: relative;
+  display: inline-block;
+}
+
+.watermark img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Watermark logo overlay */
+.watermark::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;   /* adjust size */
+  height: 120px;
+  background: url('SSMCT Logo1.png') center/contain no-repeat; /* replace logo.png with your logo */
+  opacity: 0.35;  /* transparency */
+  transform: translate(-50%, -50%) rotate(-20deg);
+  pointer-events: none;
+}
+
     footer {
       background: #b30059;
       color: white;
@@ -328,15 +354,24 @@
   </section>
 
   <!-- Gallery Section -->
-  <section>
-    <h2>📸 Moments from SHE Project</h2>
-    <div class="gallery">
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" alt="Camp Photo 1"></div>
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80" alt="Camp Photo 2"></div>
-      <div class="gallery-item"><img src="66.jpg" alt="Camp Photo 3"></div>
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=800&q=80" alt="Camp Photo 4"></div>
+<section>
+  <h2>📸 Moments from SHE Project</h2>
+  <div class="gallery">
+    <div class="gallery-item watermark">
+      <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" alt="Camp Photo 1">
     </div>
-  </section>
+    <div class="gallery-item watermark">
+      <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80" alt="Camp Photo 2">
+    </div>
+    <div class="gallery-item watermark">
+      <img src="66.jpg" alt="Camp Photo 3">
+    </div>
+    <div class="gallery-item watermark">
+      <img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=800&q=80" alt="Camp Photo 4">
+    </div>
+  </div>
+</section>
+
 
   <!-- Lightbox with JS -->
   <div class="lightbox" id="lightbox">
