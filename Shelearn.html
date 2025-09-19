@@ -152,7 +152,13 @@
     .lightbox button:hover {
       background: #800040;
     }
-
+   img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
     footer {
       background: #b30059;
       color: white;
@@ -420,6 +426,32 @@
         stopSlideshow();
       }
     });
+ // Disable right-click
+  document.addEventListener("contextmenu", (e) => e.preventDefault());
+
+  // Disable drag on images
+  document.querySelectorAll("img").forEach(img => {
+    img.setAttribute("draggable", "false");
+  });
+
+  // Attempt to block PrintScreen (bypassable)
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "PrintScreen") {
+      // Fill screen with black for a moment
+      let blocker = document.createElement("div");
+      blocker.style.position = "fixed";
+      blocker.style.top = 0;
+      blocker.style.left = 0;
+      blocker.style.width = "100%";
+      blocker.style.height = "100%";
+      blocker.style.backgroundColor = "black";
+      blocker.style.zIndex = "9999";
+      document.body.appendChild(blocker);
+
+      setTimeout(() => blocker.remove(), 1000);
+      alert("Screenshots are disabled on this site.");
+    }
+  });
   </script>
 </body>
 </html>
