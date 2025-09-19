@@ -184,28 +184,49 @@
   transform: translate(-50%, -50%) rotate(-20deg);
   pointer-events: none;
 }
+/* Lightbox container */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.9);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Wrapper with watermark */
 .lightbox-watermark {
   position: relative;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 90vw;
+  max-height: 90vh;
 }
 
+/* Image always fits neatly */
 .lightbox-watermark img {
-  max-width: 95%;  /* larger view */
-  max-height: 90%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;   /* keeps aspect ratio uniform */
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+  display: block;
 }
 
+/* Centered watermark */
 .lightbox-watermark::after {
   content: "";
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 250px;  /* adjust watermark size */
+  width: 250px;   /* watermark size */
   height: 250px;
   background: url('SSMCT Logo1.png') center/contain no-repeat;
   opacity: 0.25;
-  transform: translate(-50%, -50%); /* exact center */
+  transform: translate(-50%, -50%);
   pointer-events: none;
 }
 
