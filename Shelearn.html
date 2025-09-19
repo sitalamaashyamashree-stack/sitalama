@@ -184,7 +184,23 @@
   transform: translate(-50%, -50%) rotate(-20deg);
   pointer-events: none;
 }
+.lightbox-watermark {
+  position: relative;
+  display: inline-block;
+}
 
+.lightbox-watermark::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  background: url('SSMCT Logo1.png') center/contain no-repeat;
+  opacity: 0.3;
+  transform: translate(-50%, -50%) rotate(-20deg);
+  pointer-events: none;
+}
     footer {
       background: #b30059;
       color: white;
@@ -374,14 +390,17 @@
 
 
   <!-- Lightbox with JS -->
-  <div class="lightbox" id="lightbox">
-    <img src="" alt="Expanded Image">
-    <div class="controls">
-      <button id="prev">⟨ Prev</button>
-      <button id="next">Next ⟩</button>
-      <button id="close">✖ Close</button>
-    </div>
+ <div class="lightbox" id="lightbox">
+  <div class="lightbox-watermark">
+    <img src="" alt="Expanded Image" id="lightbox-img">
   </div>
+  <div class="controls">
+    <button id="prev">⟨ Prev</button>
+    <button id="next">Next ⟩</button>
+    <button id="close">✖ Close</button>
+  </div>
+</div>
+
 
   <!-- Footer -->
   <footer>
@@ -392,7 +411,8 @@
   <script>
     const galleryImages = document.querySelectorAll('.gallery-item img');
     const lightbox = document.getElementById('lightbox');
-    const lightboxImg = lightbox.querySelector('img');
+    //const lightboxImg = lightbox.querySelector('img');
+    const lightboxImg = document.getElementById('lightbox-img');
     const prevBtn = document.getElementById('prev');
     const nextBtn = document.getElementById('next');
     const closeBtn = document.getElementById('close');
