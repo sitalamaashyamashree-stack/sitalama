@@ -79,28 +79,7 @@
     .g-item:hover img{transform:scale(1.08)}
     .g-cap{position:absolute;inset:auto 0 0 0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.55));color:#fff;padding:10px 12px;font-size:.95rem;opacity:0;transition:.35s;letter-spacing:.2px}
     .g-item:hover .g-cap{opacity:1}
-     /* Overlay to block direct save */
-.g-item::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0); /* invisible layer */
-  z-index:2;
-}
-
-/* Watermark */
-.g-item::before{
-  content:"© Project Sparsh";
-  position:absolute;
-  bottom:10px;
-  right:10px;
-  color:rgba(255,255,255,0.7);
-  font-size:14px;
-  font-weight:bold;
-  z-index:3;
-}
-
-
+    
     /* Lightbox */
     .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;background:rgba(0,0,0,.8);z-index:9999;padding:1rem}
     .lightbox.active{display:flex}
@@ -330,30 +309,6 @@
       if(e.key==='ArrowLeft'){ show(idx-1); start(); }
       if(e.key==='Escape'){ lightbox.classList.remove('active'); stop(); }
     });
-
-/* ==========================
-   Extra Protections
-========================== */
-// Disable right-click globally
-document.addEventListener('contextmenu', e => e.preventDefault());
-
-// Disable drag on images
-document.querySelectorAll('img').forEach(img => {
-  img.setAttribute('draggable', false);
-  img.addEventListener('mousedown', e => e.preventDefault());
-});
-
-// Block common keys (Ctrl+S, Ctrl+U, Ctrl+P, PrintScreen)
-document.addEventListener('keydown', function (e) {
-  if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'u' || e.key === 'p')) {
-    e.preventDefault();
-    alert("Saving and printing is disabled on this page.");
-  }
-  if (e.key === "PrintScreen") {
-    alert("Screenshots are not allowed.");
-    navigator.clipboard.writeText(""); // clears clipboard
-  }
-});
 
   </script>
 </body>
