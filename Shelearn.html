@@ -189,18 +189,26 @@
   display: inline-block;
 }
 
+.lightbox-watermark img {
+  max-width: 95%;  /* larger view */
+  max-height: 90%;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
 .lightbox-watermark::after {
   content: "";
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 200px;
-  height: 200px;
-  background: url('SSMCT Logo1.png') center/contain no-repeat;
-  opacity: 0.3;
-  transform: translate(-50%, -50%) rotate(-20deg);
+  width: 250px;  /* adjust watermark size */
+  height: 250px;
+  background: url('logo.png') center/contain no-repeat;
+  opacity: 0.25;
+  transform: translate(-50%, -50%); /* exact center */
   pointer-events: none;
 }
+
     footer {
       background: #b30059;
       color: white;
