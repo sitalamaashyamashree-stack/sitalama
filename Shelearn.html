@@ -67,23 +67,34 @@
       margin: 8px 0;
       list-style: "✅ ";
     }
-    .cta {
-      text-align: center;
-      margin: 2rem 0;
-    }
-    .cta button {
-      background: #b30059;
-      color: white;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 25px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .cta button:hover {
-      background: #800040;
-    }
+   .cta-container {
+  display: flex;
+  justify-content: center;  /* center the row */
+  gap: 20px;               /* spacing between buttons */
+  flex-wrap: wrap;         /* wrap on smaller screens */
+}
+
+.cta {
+  margin: 0; 
+  flex: 1;                 /* make each button take equal space */
+  max-width: 250px;        /* optional: limit button max width */
+}
+
+.cta button {
+  width: 100%;             /* button fills the flex item */
+  background: #b30059;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.cta button:hover {
+  background: #800040;
+}
 
     /* Enhanced Gallery */
     .gallery {
@@ -430,22 +441,24 @@
       <li>Impact reporting → co-branded utilisation reports</li>
     </ul>
 <p style="font-family:Arial, sans-serif;font-size:18px;color:#111;"><span style='color:red;'>❤️</span> <b>Together, let’s make every girl say: “I am SHE.”</b></p>
+<div class="cta-container">
+  <div class="cta">
+    <a href="https://forms.gle/esGXMaAvQax1jUs2A" target="_blank">
+      <button>💖 Support the Project</button>
+    </a>
+  </div>
+  <div class="cta">
+    <a href="https://forms.gle/4wkfdySjA8hb38dE6" target="_blank">
+      <button>💖 Be a Part of SHE</button>
+    </a>
+  </div>
+  <div class="cta">
+    <a href="https://forms.gle/TWEn9kGS9Rg2arTy5A" target="_blank">
+      <button>💖 Partner with Us</button>
+    </a>
+  </div>
+</div>
 
-    <div class="cta">
-      <a href="https://forms.gle/esGXMaAvQax1jUs2A" target="_blank">
-  <button>💖 Support the Project</button>
-  </a>
-    </div>
-    <div class="cta">
-      <a href="https://forms.gle/4wkfdySjA8hb38dE6" target="_blank">
-  <button>💖 Be a Part of SHE</button>
-  </a>
-    </div>
-    <div class="cta">
-      <a href="https://forms.gle/TWEn9kGS9Rg2arTy5A" target="_blank">
-  <button>💖 Partner with Us</button>
-  </a>
-    </div>
 </section>
 
   <!-- Gallery Section -->
