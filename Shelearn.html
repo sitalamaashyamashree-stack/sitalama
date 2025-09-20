@@ -242,31 +242,34 @@
   pointer-events: none;
 }
 
-    footer {
-      background: #b30059;
-      color: white;
-      text-align: center;
-      padding: 1.5rem;
-      margin-top: 2rem;
-    }
-    footer h3 {
-      margin-bottom: 10px;
-      font-size: 1.3rem;
-    }
-    footer button {
-      background: white;
-      color: #b30059;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 25px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s, color 0.3s;
-    }
-    footer button:hover {
-      background: #800040;
-      color: white;
-    }
+   footer {
+  background: #b30059;
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 2rem;
+}
+
+footer h3 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.footer-contact {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.footer-contact a {
+  color: white;
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+.footer-contact a:hover {
+  color: #ffd700; /* gold highlight on hover */
+}
+
 
     /* Responsive Adjustments */
     @media (max-width: 768px) {
@@ -510,10 +513,19 @@
 
 
   <!-- Footer -->
-  <footer>
-    <h3>Join Us in Empowering Women with Dignity, Health & Hope</h3>
-    <button>🌼 Be a Part of SHE</button>
-  </footer>
+ <footer>
+  <h3>Join Us in Empowering Women with Dignity, Health & Hope</h3>
+
+  <div class="footer-contact">
+    <p>📞 <strong>Contact Us</strong></p>
+    <p>Shyamashree Shitala Maa Charitable Trust</p>
+    <p>📍 267/1, Netaji Subhas Road, Howrah - 711 101</p>
+    <p>📱 +91-91233 40886</p>
+    <p>📧 <a href="mailto:info@ssmctrust.org">info@ssmctrust.org</a></p>
+    <p>🌐 <a href="http://www.ssmctrust.org" target="_blank">www.ssmctrust.org</a></p>
+  </div>
+</footer>
+
 
   <script>
     const galleryImages = document.querySelectorAll('.gallery-item img');
