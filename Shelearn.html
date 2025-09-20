@@ -290,6 +290,53 @@ footer h3 {
 .footer-contact a:hover {
   color: #ffd700; /* gold highlight on hover */
 }
+ /* IMPACT STATS */
+    .impact-stats {
+      background-color: #f1f5f9;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .impact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .impact-box {
+      background: #ffffff;
+      padding: 30px 20px;
+      border-radius: 12px;
+      flex: 1 1 250px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .impact-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    }
+
+    .impact-box img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 15px;
+      filter: grayscale(100%) brightness(0.6);
+    }
+
+    .impact-box h3 {
+      font-size: 32px;
+      color: #1d3557;
+      margin-bottom: 10px;
+    }
+
+    .impact-box p {
+      font-size: 16px;
+      color: #444;
+    }
 
 
 
@@ -320,6 +367,7 @@ footer h3 {
         max-width: 300px;
       }
     }
+
   </style>
 </head>
 <body>
@@ -485,7 +533,25 @@ footer h3 {
 </div>
 
 </section>
-
+<section class="impact-stats">
+    <div class="impact-container">
+      <div class="impact-box">
+        <img src="village-icon-png-13.jpg" alt="Villages">
+        <h3>100+</h3>
+        <p>Villages Reached</p>
+      </div>
+      <div class="impact-box">
+        <img src="OIP (1).jpeg" alt="Women & Girls">
+        <h3>6,000+</h3>
+        <p>Women & Girls Supported</p>
+      </div>
+      <div class="impact-box">
+        <img src="https://img.icons8.com/ios-filled/100/000000/approval.png" alt="Transparency">
+        <h3>100%</h3>
+        <p>Transparency & Compliance</p>
+      </div>
+    </div>
+  </section>
   <!-- Gallery Section -->
 <section>
   <h2>📸 Moments from SHE Project</h2>
