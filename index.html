@@ -909,7 +909,8 @@ header {
 
   /* Hero */
   .hero {
-    height: 70vh;
+   /* height: 70vh;*/
+    height: 60vh; 
     padding: 10px;
     text-align: left;
     justify-content: center;
@@ -928,14 +929,18 @@ header {
     flex-direction: column;
     gap: 10px;
   }
-    .hero-slide {
-    height: 100%;                /* take full hero height */
-    min-height: 70vh;            /* fallback height */
-    background-size: cover;      /* scale properly */
-    background-position: center; /* center the image */
+  /*  .hero-slide {
+    height: 100%;                
+    min-height: 70vh;            
+    background-size: cover;     
+    background-position: center; 
     background-repeat: no-repeat;
-  }
-
+  }*/
+.hero-slide {
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
   .impact-container {
     flex-direction: column;
     gap: 20px;
@@ -971,7 +976,7 @@ header {
   }
 
   .hero {
-    min-height: 70vh;
+    min-height: 60vh;
   }
 
   .hero h1 {
@@ -983,13 +988,11 @@ header {
   .resources-intro {
     font-size: 14px;
   }
-    .hero-slide {
-    height: 100%;                /* take full hero height */
-    min-height: 70vh;            /* fallback height */
-    background-size: cover;      /* scale properly */
-    background-position: center; /* center the image */
-    background-repeat: no-repeat;
-  }
+   .hero-slide {
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
 
   .impact-box h3 {
     font-size: 24px;
