@@ -741,6 +741,99 @@ html {
   font-size: 16px;
   line-height: 1.6;
 }*/
+/* ========== DEFAULT (Desktop) ========== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background: white;
+  position: relative;
+}
+
+.logo {
+  height: 80px;
+}
+
+.desktop-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.mobile-nav,
+.hamburger {
+  display: none;
+}
+
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+}
+
+.donate-btn {
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  bottom: 20px;
+  left: 20px;
+}
+
+/* ========== TABLET (max-width: 1024px) ========== */
+@media (max-width: 1024px) {
+  header {
+    flex-direction: row;
+    align-items: center;
+    padding: 15px 20px;
+  }
+
+  header nav {
+    margin-top: 10px;
+  }
+
+  header nav a {
+    margin: 8px 10px;
+    display: inline-block;
+  }
+
+  .hero {
+    height: 80vh;
+    padding: 20px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .hero-content {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-text,
+  .about-image {
+    flex: 1 1 100%;
+  }
+}
+
 /* ========== MOBILE (max-width: 768px) ========== */
 @media (max-width: 768px) {
   /* Header in one row */
@@ -750,7 +843,6 @@ html {
     align-items: center;
     padding: 10px 15px;
     background: white;
-    position: relative;
   }
 
   .logo {
@@ -758,7 +850,7 @@ html {
   }
 
   .desktop-nav {
-    display: none; /* hide desktop nav */
+    display: none;
   }
 
   .logo-container {
@@ -767,7 +859,7 @@ html {
   }
 
   .logo-container strong {
-    display: none; /* hide long text on mobile */
+    display: none; /* hide long text */
   }
 
   .mobile-header-right {
@@ -812,22 +904,15 @@ html {
   }
 
   .mobile-nav.show {
-    display: flex; /* toggled menu */
+    display: flex;
   }
 
-  /* Hero Section */
+  /* Hero */
   .hero {
     height: 70vh;
     padding: 10px;
-    background-size: cover;
-    background-position: center;
-    background-attachment: scroll;
+    text-align: left;
     justify-content: center;
-    text-align: left;
-  }
-
-  .hero-content {
-    text-align: left;
   }
 
   .hero h1 {
@@ -844,7 +929,6 @@ html {
     gap: 10px;
   }
 
-  /* Impact & Grids */
   .impact-container {
     flex-direction: column;
     gap: 20px;
@@ -865,7 +949,7 @@ html {
     width: 100%;
   }
 
-  /* Mobile Hero Slides */
+  /* Mobile hero slides */
   .hero-slide:nth-child(1) { background-image: url('mo1.png'); }
   .hero-slide:nth-child(2) { background-image: url('mo2.png'); }
   .hero-slide:nth-child(3) { background-image: url('mo3.png'); }
