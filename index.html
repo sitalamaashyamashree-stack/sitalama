@@ -1517,25 +1517,20 @@ document.addEventListener("click", function(event) {
   }
 });
 
-
-
-  </script>
-
+</script>
+<!-- Razorpay Script (only ONE time) -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <script>
 // Razorpay key
 const razorpayKey = "rzp_live_Rj6ceV2avDzdlC";
 
-// ✅ USE THE CORRECT WORKER URL (your real one):
+// ✅ CORRECT Cloudflare Worker URL
 const workerAPI = "https://trust.sitalamaashyamashree.workers.dev/";
-// ⚠️ NOT: https://trust.sitalamaashyamaashree.workers.dev
-// (spelling must match EXACTLY)
 
 document.getElementById("generalDonationForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
-    // Collect donation data
     let donation = {
         name: document.getElementById("name").value,
         mobile: document.getElementById("mobile").value,
@@ -1546,7 +1541,6 @@ document.getElementById("generalDonationForm").addEventListener("submit", functi
         taxBenefit: document.querySelector('input[name="tax"]:checked').value
     };
 
-    // Razorpay Options
     let options = {
         key: razorpayKey,
         amount: donation.amount * 100,
@@ -1557,9 +1551,8 @@ document.getElementById("generalDonationForm").addEventListener("submit", functi
         handler: function (response) {
             donation.paymentId = response.razorpay_payment_id;
 
-            console.log("Sending to Cloudflare Worker →", donation);
+            console.log("Sending to Worker:", donation);
 
-            // Send to Worker which forwards to Google Sheet
             fetch(workerAPI, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
