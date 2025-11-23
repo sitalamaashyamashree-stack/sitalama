@@ -1523,13 +1523,19 @@ document.addEventListener("click", function(event) {
 
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 <script>
+// Razorpay key
 const razorpayKey = "rzp_live_Rj6ceV2avDzdlC";
-const googleSheetAPI = "https://script.google.com/macros/s/AKfycbz6YCOT1ReLkOc1KVStsl8Y-_QOxOmQfcntPtOdieUiU0rz5ktEYSoMncoyqsNtA5te/exec";
+
+// ✅ USE YOUR REAL WORKER URL — EXACT SPELLING FROM CLOUDFLARE
+const workerAPI = "https://trust.sitalamaashyamaashree.workers.dev/";
 
 document.getElementById("generalDonationForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
+    // Collect donation data
     let donation = {
         name: document.getElementById("name").value,
         mobile: document.getElementById("mobile").value,
@@ -1540,31 +1546,40 @@ document.getElementById("generalDonationForm").addEventListener("submit", functi
         taxBenefit: document.querySelector('input[name="tax"]:checked').value
     };
 
+    // Razorpay payment options
     let options = {
-        "key": razorpayKey,
-        "amount": donation.amount * 100,
-        "currency": "INR",
-        "name": "Shyamashree Shitala Maa Charitable Trust",
-        "description": "Donation",
-        "handler": function (response) {
+        key: razorpayKey,
+        amount: donation.amount * 100,
+        currency: "INR",
+        name: "Shyamashree Shitala Maa Charitable Trust",
+        description: "Donation",
+        
+        handler: function (response) {
             donation.paymentId = response.razorpay_payment_id;
-            console.log("Sending to Google Script:", donation);
-            
-           fetch("https://trust.sitalamaashyamashree.workers.dev/", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(donation)
-});
+
+            console.log("Sending to Cloudflare Worker:", donation);
+
+            // ✅ SEND DATA TO YOUR WORKER → Which forwards to Google Sheet
+            fetch(workerAPI, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(donation)
+            })
+            .then(res => res.text())
+            .then(data => console.log("Worker Response:", data))
+            .catch(err => console.error("Worker Error:", err));
 
             alert("Thank you! Payment Successful.");
             closeGeneralModal();
         }
     };
 
+    // Open Razorpay
     let rzp = new Razorpay(options);
     rzp.open();
 });
 </script>
+
 
 </body>
   
