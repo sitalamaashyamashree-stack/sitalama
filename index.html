@@ -1521,16 +1521,16 @@ document.addEventListener("click", function(event) {
 
   </script>
 
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <script>
 // Razorpay key
 const razorpayKey = "rzp_live_Rj6ceV2avDzdlC";
 
-// ✅ USE YOUR REAL WORKER URL — EXACT SPELLING FROM CLOUDFLARE
-const workerAPI = "https://trust.sitalamaashyamaashree.workers.dev/";
+// ✅ USE THE CORRECT WORKER URL (your real one):
+const workerAPI = "https://trust.sitalamaashyamashree.workers.dev/";
+// ⚠️ NOT: https://trust.sitalamaashyamaashree.workers.dev
+// (spelling must match EXACTLY)
 
 document.getElementById("generalDonationForm").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -1546,20 +1546,20 @@ document.getElementById("generalDonationForm").addEventListener("submit", functi
         taxBenefit: document.querySelector('input[name="tax"]:checked').value
     };
 
-    // Razorpay payment options
+    // Razorpay Options
     let options = {
         key: razorpayKey,
         amount: donation.amount * 100,
         currency: "INR",
         name: "Shyamashree Shitala Maa Charitable Trust",
         description: "Donation",
-        
+
         handler: function (response) {
             donation.paymentId = response.razorpay_payment_id;
 
-            console.log("Sending to Cloudflare Worker:", donation);
+            console.log("Sending to Cloudflare Worker →", donation);
 
-            // ✅ SEND DATA TO YOUR WORKER → Which forwards to Google Sheet
+            // Send to Worker which forwards to Google Sheet
             fetch(workerAPI, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -1574,11 +1574,10 @@ document.getElementById("generalDonationForm").addEventListener("submit", functi
         }
     };
 
-    // Open Razorpay
-    let rzp = new Razorpay(options);
-    rzp.open();
+    new Razorpay(options).open();
 });
 </script>
+
 
 
 </body>
