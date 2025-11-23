@@ -1549,11 +1549,12 @@ document.getElementById("generalDonationForm").addEventListener("submit", functi
         "handler": function (response) {
             donation.paymentId = response.razorpay_payment_id;
             console.log("Sending to Google Script:", donation);
-            fetch(googleSheetAPI, {
-                method: "POST",
-                body: JSON.stringify(donation),
-                headers: { "Content-Type": "application/json" }
-            });
+            
+            fetch("https://trust.sitalamaashyamaashree.workers.dev/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(donation)
+});
 
             alert("Thank you! Payment Successful.");
             closeGeneralModal();
