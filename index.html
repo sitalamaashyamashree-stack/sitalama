@@ -1518,14 +1518,12 @@ document.addEventListener("click", function(event) {
 });
 
 </script>
-<!-- Razorpay Script (only ONE time) -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <script>
-// Razorpay key
 const razorpayKey = "rzp_live_Rj6ceV2avDzdlC";
 
-// ✅ CORRECT Cloudflare Worker URL
+// IMPORTANT: PASTE YOUR EXACT WORKER URL HERE:
 const workerAPI = "https://trust.sitalamaashyamashree.workers.dev/";
 
 document.getElementById("generalDonationForm").addEventListener("submit", function (e) {
@@ -1551,16 +1549,11 @@ document.getElementById("generalDonationForm").addEventListener("submit", functi
         handler: function (response) {
             donation.paymentId = response.razorpay_payment_id;
 
-            console.log("Sending to Worker:", donation);
-
             fetch(workerAPI, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(donation)
-            })
-            .then(res => res.text())
-            .then(data => console.log("Worker Response:", data))
-            .catch(err => console.error("Worker Error:", err));
+            });
 
             alert("Thank you! Payment Successful.");
             closeGeneralModal();
