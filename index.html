@@ -1550,7 +1550,7 @@ document.getElementById("generalDonationForm").addEventListener("submit", functi
             donation.paymentId = response.razorpay_payment_id;
             console.log("Sending to Google Script:", donation);
             
-           fetch("https://trust.sitalamaashyamaashree.workers.dev/", {
+           fetch("https://trust.sitalamaashyamashree.workers.dev/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(donation)
