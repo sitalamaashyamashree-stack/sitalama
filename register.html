@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Competition Registration</title>
+
+<!-- Razorpay -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
+    .container {
+        width: 420px;
+        background: #fff;
+        margin: 40px auto;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 0 8px #ccc;
+    }
+    label {
+        display: block;
+        margin-top: 12px;
+        font-weight: bold;
+    }
+    input, button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 6px;
+    }
+    button {
+        background: #0b6efd;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 15px;
+    }
+    button:hover {
+        background: #0a5ad7;
+    }
+    .category label {
+        display: block;
+        margin-top: 5px;
+        font-weight: normal;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <h2>Competition Registration Form</h2>
+
+    <label>Name *</label>
+    <input type="text" id="name">
+
+    <label>Mobile No *</label>
+    <input type="text" id="mobile">
+
+    <label>Email</label>
+    <input type="email" id="email">
+
+    <label>Date of Birth *</label>
+    <input type="date" id="dob">
+
+    <label>Category *</label>
+    <div class="category">
+        <label><input type="radio" name="cat" value="Art & Craft"> Art & Craft</label>
+        <label><input type="radio" name="cat" value="Dance"> Dance</label>
+        <label><input type="radio" name="cat" value="Music"> Music</label>
+        <label><input type="radio" name="cat" value="Recitation"> Recitation</label>
+        <label><input type="radio" name="cat" value="Quiz"> Quiz</label>
+    </div>
+
+    <label><input type="checkbox" id="accept"> I accept Terms & Conditions *</label>
+
+    <button onclick="submitForm()">Submit & Pay</button>
+</div>
+
+<script>
+/* ---------------------------
+   CONFIGURATION
+----------------------------*/
+const APP_URL = "https://script.google.com/macros/s/AKfycbxBDRuGZvIRzQHactdDHRegfRLB-adzn3U8kAZFElLo4fg1suMRi3vxIjLFckDnODloMA/exec"; 
+const RAZORPAY_KEY = "rzp_live_Rj6ceV2avDzdlC";   // <-- Replace with your Razorpay Key ID
+
+/* ---------------------------
+   AGE CALCULATION
+----------------------------*/
+function calculateAge(dob) {
+    const birth = new Date(dob);
+    const base = new Date("2026-04-01");
+
+    let age = base.getFullYear() - birth.getFullYear();
+    const m = base.getMonth() - birth.getMonth();
+
+    if (m < 0 || (m === 0 && base.getDate() < birth.getDate())) {
+        age--;
+    }
+    return age;
+}
+
+/* ---------------------------
+   FEE CALCULATION
+----------------------------*/
+function getFee(cat) {
+    return (cat === "Dance" || cat === "Music") ? 250 : 150;
+}
+
+/* ---------------------------
+   AGE GROUP LOGIC
+----------------------------*/
+function getAgeGroup(cat, age) {
+    if (cat === "Dance" || cat === "Music") {
+        return age <= 15 ? "6-15" : "15-30";
+    }
+    return "Open Group";
+}
+
+/* ---------------------------
+   MAIN SUBMIT FUNCTION
+----------------------------*/
+function submitForm() {
+    const name = document.getElementById("name").value;
+    const mobile = document.getElementById("mobile").value;
+    const email = document.getElementById("email").value;
+    const dob = document.getElementById("dob").value;
+
+    const catOption = document.querySelector("input[name='cat']:checked");
+    if (!catOption) {
+        alert("Please select a category.");
+        return;
+    }
+    const category = catOption.value;
+
+    if (!name || !mobile || !dob) {
+        alert("Please fill all required fields.");
+        return;
+    }
+
+    if (!document.getElementById("accept").checked) {
+        alert("You must accept Terms & Conditions.");
+        return;
+    }
+
+    const age = calculateAge(dob);
+
+    if (age < 6 || age > 30) {
+        alert("Age must be between 6 and 30 years.");
+        return;
+    }
+
+    const fee = getFee(category);
+    const ageGroup = getAgeGroup(category, age);
+
+    startPayment({ name, mobile, email, dob, age, ageGroup, category, fee });
+}
+
+/* ---------------------------
+   RAZORPAY PAYMENT
+----------------------------*/
+function startPayment(user) {
+    var options = {
+        key: RAZORPAY_KEY,
+        amount: user.fee * 100,
+        currency: "INR",
+        name: "Competition Registration",
+        description: "Participation Fee",
+
+        handler: function (response) {
+            user.payment_id = response.razorpay_payment_id;
+
+            // Save to Google Apps Script
+            fetch(APP_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(user)
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert("Registration successful! Your contestant code is: " + data.code);
+            });
+        },
+
+        prefill: {
+            name: user.name,
+            email: user.email,
+            contact: user.mobile
+        }
+    };
+
+    var rzp = new Razorpay(options);
+    rzp.open();
+}
+</script>
+
+</body>
+</html>
