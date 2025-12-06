@@ -8,42 +8,88 @@
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <style>
-    body {
+   body {
         font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
+        background: #f0f2f5;
+        margin: 0;
+        padding: 0;
     }
+
     .container {
-        width: 420px;
-        background: #fff;
+        width: 100%;
+        max-width: 450px;
         margin: 40px auto;
-        padding: 25px;
-        border-radius: 8px;
-        box-shadow: 0 0 8px #ccc;
+        background: #fff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
-    label {
-        display: block;
-        margin-top: 12px;
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 22px;
         font-weight: bold;
     }
-    input, button {
+
+    label {
+        display: block;
+        margin: 12px 0 6px 0;
+        font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="date"] {
         width: 100%;
         padding: 10px;
-        margin-top: 6px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
     }
-    button {
-        background: #0b6efd;
-        color: white;
-        border: none;
-        cursor: pointer;
-        font-size: 15px;
-    }
-    button:hover {
-        background: #0a5ad7;
-    }
+
     .category label {
-        display: block;
-        margin-top: 5px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
         font-weight: normal;
+        margin-top: 10px;
+    }
+
+    input[type="radio"] {
+        width: 18px;
+        height: 18px;
+    }
+
+    button {
+        width: 100%;
+        padding: 14px;
+        background: #0D6EFD;
+        border: none;
+        color: white;
+        font-size: 16px;
+        border-radius: 6px;
+        margin-top: 25px;
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    button:hover {
+        background: #0b5cd7;
+    }
+
+    /* MOBILE FIXES */
+    @media(max-width: 480px) {
+        .container {
+            margin: 20px;
+            padding: 20px;
+        }
+        h2 {
+            font-size: 20px;
+        }
+        button {
+            font-size: 15px;
+        }
     }
 </style>
 
