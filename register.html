@@ -204,19 +204,28 @@ async function submitForm() {
     const fee = getFee(category);
 
     // Upload file
-    const uploadRes = await uploadPerformanceFile(file);
-    if (uploadRes.status !== "success") {
-        alert("File upload failed: " + uploadRes.message);
-        return;
-    }
+   async function uploadPerformanceFile(file) {
+    // Convert file to Base64
+    const base64 = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(",")[1]);
+        reader.readAsDataURL(file);
+    });
 
-    const user = {
-        name, mobile, email, dob,
-        age, ageGroup, category, fee,
-        fileUrl: uploadRes.fileUrl
+    const payload = {
+        action: "upload",
+        filename: file.name,
+        mimeType: file.type,
+        data: base64
     };
 
-    startPayment(user);
+    const res = await fetch(API_URL + "?action=upload", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    });
+
+    return res.json();
 }
 
 /* ---------------------------
