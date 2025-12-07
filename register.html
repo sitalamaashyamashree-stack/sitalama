@@ -48,6 +48,10 @@
         font-size: 14px;
     }
 
+    input[type="file"] {
+        margin-top: 6px;
+    }
+
     .category label {
         display: flex;
         align-items: center;
@@ -120,6 +124,9 @@
         <label><input type="radio" name="cat" value="Quiz"> Quiz</label>
     </div>
 
+    <label>Upload Performance File *</label>
+    <input type="file" id="performance" accept="video/*,audio/*">
+
     <label><input type="checkbox" id="accept"> I accept Terms & Conditions *</label>
 
     <button onclick="submitForm()">Submit & Pay</button>
@@ -130,7 +137,7 @@
    CONFIGURATION
 ----------------------------*/
 const APP_URL = "https://script.google.com/macros/s/AKfycbxBDRuGZvIRzQHactdDHRegfRLB-adzn3U8kAZFElLo4fg1suMRi3vxIjLFckDnODloMA/exec"; 
-const RAZORPAY_KEY = "rzp_live_Rj6ceV2avDzdlC";   // <-- Replace with your Razorpay Key ID
+const RAZORPAY_KEY = "rzp_live_Rj6ceV2avDzdlC";   // Your Razorpay Key
 
 /* ---------------------------
    AGE CALCULATION
@@ -166,20 +173,34 @@ function getAgeGroup(cat, age) {
 }
 
 /* ---------------------------
+   FILE UPLOAD TO GOOGLE DRIVE
+----------------------------*/
+async function uploadPerformanceFile(file) {
+    const form = new FormData();
+    form.append("action", "upload");
+    form.append("performance", file);
+
+    const response = await fetch(APP_URL, {
+        method: "POST",
+        body: form
+    });
+
+    return await response.json();
+}
+
+/* ---------------------------
    MAIN SUBMIT FUNCTION
 ----------------------------*/
-function submitForm() {
+async function submitForm() {
     const name = document.getElementById("name").value;
     const mobile = document.getElementById("mobile").value;
     const email = document.getElementById("email").value;
     const dob = document.getElementById("dob").value;
 
-    const catOption = document.querySelector("input[name='cat']:checked");
-    if (!catOption) {
-        alert("Please select a category.");
-        return;
-    }
-    const category = catOption.value;
+    const categoryOpt = document.querySelector("input[name='cat']:checked");
+    if (!categoryOpt) return alert("Please select a category.");
+
+    const category = categoryOpt.value;
 
     if (!name || !mobile || !dob) {
         alert("Please fill all required fields.");
@@ -192,16 +213,41 @@ function submitForm() {
     }
 
     const age = calculateAge(dob);
-
     if (age < 6 || age > 30) {
         alert("Age must be between 6 and 30 years.");
+        return;
+    }
+
+    const fileInput = document.getElementById("performance");
+    if (!fileInput.files.length) {
+        alert("Please upload performance file.");
+        return;
+    }
+
+    const file = fileInput.files[0];
+    if (file.size > 100 * 1024 * 1024) {
+        alert("File too large. Max 100MB.");
+        return;
+    }
+
+    // Upload file FIRST
+    const uploadRes = await uploadPerformanceFile(file);
+    if (uploadRes.status !== "success") {
+        alert("File upload failed. Try again.");
         return;
     }
 
     const fee = getFee(category);
     const ageGroup = getAgeGroup(category, age);
 
-    startPayment({ name, mobile, email, dob, age, ageGroup, category, fee });
+    const user = {
+        name, mobile, email, dob,
+        age, ageGroup, category, fee,
+        fileId: uploadRes.fileId,
+        fileUrl: uploadRes.fileUrl
+    };
+
+    startPayment(user);
 }
 
 /* ---------------------------
@@ -218,15 +264,18 @@ function startPayment(user) {
         handler: function (response) {
             user.payment_id = response.razorpay_payment_id;
 
-            // Save to Google Apps Script
-            fetch(APP_URL, {
+            // Save to Google Apps Script: PDF + Email + Sheet + Firestore
+            fetch(APP_URL + "?action=register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(user)
             })
             .then(res => res.json())
             .then(data => {
-                alert("Registration successful! Your contestant code is: " + data.code);
+                alert("Registration complete! Your code is: " + data.code);
+                if (data.pdfUrl) {
+                    window.open(data.pdfUrl, "_blank");
+                }
             });
         },
 
