@@ -189,27 +189,24 @@ function getAgeGroup(cat, age) {
 
 /* ----------- FILE UPLOAD (BASE64) ----------- */
 async function uploadPerformanceFile(file) {
-    const base64 = await new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result.split(",")[1]);
-        reader.readAsDataURL(file);
-    });
-
-    const payload = {
-        action: "upload",
-        filename: file.name,
-        mimeType: file.type,
-        data: base64
-    };
+    const formData = new FormData();
+    formData.append("file", file);
 
     const res = await fetch(API_URL + "?action=upload", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
+        body: formData
     });
 
-    return res.json();
+    const text = await res.text();
+
+    try {
+        return JSON.parse(text);
+    } catch (err) {
+        console.error("Upload returned non-JSON:", text);
+        throw "Upload failed — backend returned HTML instead of JSON";
+    }
 }
+
 
 /* ----------- MAIN FUNCTION ----------- */
 async function submitForm() {
