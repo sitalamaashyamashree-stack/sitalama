@@ -82,17 +82,10 @@
         background: #0b5cd7;
     }
 
-    /* MOBILE FIXES */
     @media(max-width: 480px) {
         .container {
             margin: 20px;
             padding: 20px;
-        }
-        h2 {
-            font-size: 20px;
-        }
-        button {
-            font-size: 15px;
         }
     }
 </style>
@@ -136,8 +129,8 @@
 /* ---------------------------
    CONFIGURATION
 ----------------------------*/
-const APP_URL = "https://script.google.com/macros/s/AKfycbxBDRuGZvIRzQHactdDHRegfRLB-adzn3U8kAZFElLo4fg1suMRi3vxIjLFckDnODloMA/exec"; 
-const RAZORPAY_KEY = "rzp_live_Rj6ceV2avDzdlC";   // Your Razorpay Key
+const API_URL = "https://api.ssmctrust.org";  // Cloudflare Worker endpoint
+const RAZORPAY_KEY = "rzp_live_Rj6ceV2avDzdlC";
 
 /* ---------------------------
    AGE CALCULATION
@@ -148,10 +141,7 @@ function calculateAge(dob) {
 
     let age = base.getFullYear() - birth.getFullYear();
     const m = base.getMonth() - birth.getMonth();
-
-    if (m < 0 || (m === 0 && base.getDate() < birth.getDate())) {
-        age--;
-    }
+    if (m < 0 || (m === 0 && base.getDate() < birth.getDate())) age--;
     return age;
 }
 
@@ -173,77 +163,56 @@ function getAgeGroup(cat, age) {
 }
 
 /* ---------------------------
-   FILE UPLOAD TO GOOGLE DRIVE
+   FILE UPLOAD (Worker → Apps Script → Drive)
 ----------------------------*/
 async function uploadPerformanceFile(file) {
-    const form = new FormData();
-    form.append("action", "upload");
-    form.append("performance", file);
+    const formData = new FormData();
+    formData.append("performance", file);
 
-    const response = await fetch(APP_URL, {
+    const res = await fetch(API_URL + "?action=upload", {
         method: "POST",
-        body: form
+        body: formData
     });
 
-    return await response.json();
+    return res.json();
 }
 
 /* ---------------------------
    MAIN SUBMIT FUNCTION
 ----------------------------*/
 async function submitForm() {
-    const name = document.getElementById("name").value;
-    const mobile = document.getElementById("mobile").value;
-    const email = document.getElementById("email").value;
+    const name = document.getElementById("name").value.trim();
+    const mobile = document.getElementById("mobile").value.trim();
+    const email = document.getElementById("email").value.trim();
     const dob = document.getElementById("dob").value;
 
-    const categoryOpt = document.querySelector("input[name='cat']:checked");
-    if (!categoryOpt) return alert("Please select a category.");
+    const catOpt = document.querySelector("input[name='cat']:checked");
+    if (!catOpt) return alert("Please select a category.");
+    const category = catOpt.value;
 
-    const category = categoryOpt.value;
+    if (!name || !mobile || !dob) return alert("Please fill all required fields.");
+    if (!document.getElementById("accept").checked) return alert("Please accept Terms & Conditions.");
 
-    if (!name || !mobile || !dob) {
-        alert("Please fill all required fields.");
-        return;
-    }
-
-    if (!document.getElementById("accept").checked) {
-        alert("You must accept Terms & Conditions.");
-        return;
-    }
+    const file = document.getElementById("performance").files[0];
+    if (!file) return alert("Please upload your performance file.");
+    if (file.size > 100 * 1024 * 1024) return alert("Max file size 100MB.");
 
     const age = calculateAge(dob);
-    if (age < 6 || age > 30) {
-        alert("Age must be between 6 and 30 years.");
-        return;
-    }
+    if (age < 6 || age > 30) return alert("Age must be between 6 and 30.");
 
-    const fileInput = document.getElementById("performance");
-    if (!fileInput.files.length) {
-        alert("Please upload performance file.");
-        return;
-    }
+    const ageGroup = getAgeGroup(category, age);
+    const fee = getFee(category);
 
-    const file = fileInput.files[0];
-    if (file.size > 100 * 1024 * 1024) {
-        alert("File too large. Max 100MB.");
-        return;
-    }
-
-    // Upload file FIRST
+    // Upload file
     const uploadRes = await uploadPerformanceFile(file);
     if (uploadRes.status !== "success") {
-        alert("File upload failed. Try again.");
+        alert("File upload failed: " + uploadRes.message);
         return;
     }
-
-    const fee = getFee(category);
-    const ageGroup = getAgeGroup(category, age);
 
     const user = {
         name, mobile, email, dob,
         age, ageGroup, category, fee,
-        fileId: uploadRes.fileId,
         fileUrl: uploadRes.fileUrl
     };
 
@@ -264,17 +233,18 @@ function startPayment(user) {
         handler: function (response) {
             user.payment_id = response.razorpay_payment_id;
 
-            // Save to Google Apps Script: PDF + Email + Sheet + Firestore
-            fetch(APP_URL + "?action=register", {
+            fetch(API_URL + "?action=register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(user)
             })
             .then(res => res.json())
             .then(data => {
-                alert("Registration complete! Your code is: " + data.code);
-                if (data.pdfUrl) {
+                if (data.status === "success") {
+                    alert("Registration Successful! Your Code: " + data.code);
                     window.open(data.pdfUrl, "_blank");
+                } else {
+                    alert("Error: " + data.message);
                 }
             });
         },
@@ -286,8 +256,8 @@ function startPayment(user) {
         }
     };
 
-    var rzp = new Razorpay(options);
-    rzp.open();
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
 }
 </script>
 
