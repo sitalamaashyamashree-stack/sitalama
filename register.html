@@ -7,10 +7,122 @@
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <style>
-body { font-family: Arial; background:#f0f2f5; margin:0; padding:0; }
-.container { max-width:450px; background:#fff; margin:40px auto; padding:30px; border-radius:12px; }
-button { width:100%; padding:14px; background:#0D6EFD; color:#fff; border:none; font-size:16px; margin-top:20px; cursor:pointer; }
-button:hover { background:#0b5cd7; }
+body {
+    font-family: Arial, sans-serif;
+    background: #eef1f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 95%;
+    max-width: 600px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 35px 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+    color: #222;
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    margin: 14px 0 6px 0;
+    font-weight: 600;
+    font-size: 15px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    background: #f8f9fb;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus {
+    border-color: #0D6EFD;
+}
+
+.category {
+    margin-top: 10px;
+}
+
+.category label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: normal;
+    margin-top: 8px;
+    font-size: 15px;
+}
+
+input[type="radio"] {
+    width: 18px;
+    height: 18px;
+}
+
+#performance {
+    margin-top: 6px;
+    font-size: 15px;
+}
+
+button {
+    width: 100%;
+    padding: 16px;
+    background: #0D6EFD;
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 10px;
+    margin-top: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #0a58ca;
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    font-size: 15px;
+}
+
+/* Responsive Fix */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    button {
+        font-size: 16px;
+    }
+}
+
 </style>
 </head>
 
