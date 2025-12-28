@@ -2,394 +2,237 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Competition Registration</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <style>
-body{font-family:Arial, sans-serif;background:#eef1f5;margin:0;padding:0;}
-.container{width:95%;max-width:600px;margin:40px auto;background:#fff;
-padding:30px;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
-h2{text-align:center;font-size:26px;margin-bottom:20px;}
-label{display:block;margin:10px 0 5px;font-weight:600;}
-input,select{width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;
-background:#f8f9fb;font-size:16px;}
-.category-list{border:1px solid #ddd;border-radius:10px;background:#fafafa;
-padding:10px 15px;margin-top:8px;}
-.cat-row{display:flex;justify-content:space-between;align-items:center;
-padding:10px 0;border-bottom:1px solid #eee;}
-.cat-row:last-child{border-bottom:none;}
-.cat-row input{width:22px;height:22px;cursor:pointer;}
-button{width:100%;padding:15px;background:#0D6EFD;color:white;border:none;
-border-radius:10px;font-size:18px;font-weight:bold;cursor:pointer;margin-top:20px;}
-button:hover{background:#094eb3;}
-.error-msg{color:red;font-size:14px;margin-top:4px;font-weight:600;}
-#ageDisplay{font-size:15px;margin-top:5px;color:#0d6efd;font-weight:600;}
-.invalid{border:2px solid red!important;}
+body{
+  font-family: Arial, sans-serif;
+  background:#eef2f7;
+  margin:0; padding:0;
+}
+.container{
+  max-width:520px;
+  margin:25px auto;
+  background:white;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 0 12px rgba(0,0,0,0.10);
+}
+h2{ text-align:center; margin-bottom:20px; }
 
-/* ⭐ FIXED TERMS SECTION */
-.terms-row{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-top:20px;
-  padding:10px 0;
+label{ font-weight:bold; display:block; margin-top:12px; }
+input,select{
+  width:100%;
+  padding:10px;
+  border:1px solid #ccc;
+  border-radius:6px;
+  margin-top:6px;
   font-size:16px;
-  font-weight:500;
 }
-.terms-row input{
-  transform:scale(1.4);
-  cursor:pointer;
-}
-.terms-row a{
-  color:#0d6efd;
-  font-weight:600;
-  text-decoration:underline;
-}
-.terms-row label{
-  cursor:pointer;
-  line-height:20px;
-  flex:1;
-  display:inline-block;
-}
+input.invalid{ border:2px solid red; }
 
-@media(max-width:480px){input,select,button{font-size:16px;}}
+.category-box{ margin:14px 0; }
+.cat-row{
+  display:flex; justify-content:space-between;
+  padding:10px; margin:6px 0;
+  border-radius:6px; background:#fafafa;
+  border:1px solid #ddd;
+}
+.cat-row:hover{ background:#e7f1ff; }
 
+#submitBtn{
+  width:100%;
+  padding:14px;
+  background:#0056d6;
+  color:white; border:none;
+  border-radius:8px;
+  margin-top:18px;
+  font-size:18px; cursor:pointer;
+}
+#submitBtn:hover{ background:#0049b4; }
+
+#dobError{color:red; font-size:14px; margin-top:6px;}
+#ageDisplay{color:#0047b3; font-size:15px; margin-top:6px; }
+
+.termsBox{
+  display:flex; align-items:center;
+  font-size:15px; margin-top:14px;
+}
+.termsBox a{ color:#0056d6; font-weight:bold; }
 </style>
 </head>
-
 <body>
-<div class="container">
 
+<div class="container">
 <h2>Competition Registration</h2>
 
+<!-- NAME -->
 <label>Name *</label>
-<input id="name"/>
+<input id="name" type="text">
 
 <label>Guardian Name *</label>
-<input id="guardian"/>
+<input id="guardian" type="text">
 
 <label>Relation *</label>
 <select id="relation">
-<option value="">-- Select --</option><option>Father</option><option>Mother</option><option>Other</option>
+<option value="">Select Relation</option>
+<option>Father</option>
+<option>Mother</option>
+<option>Brother</option>
+<option>Sister</option>
+<option>Other</option>
 </select>
 
-<label>Mobile No *</label>
-<input id="mobile" type="number"/>
+<label>Mobile *</label>
+<input id="mobile" maxlength="10" type="text">
 
 <label>Email *</label>
-<input id="email" type="email"/>
+<input id="email" type="email">
 
 <label>Date of Birth *</label>
-<input type="date" id="dob" oninput="liveDOBCheck()"/>
+<input type="date" id="dob" onchange="liveDOBCheck()">
 <div id="ageDisplay"></div>
-<div id="dobError" class="error-msg"></div>
+<div id="dobError"></div>
 
 <label>School / Institute (Optional)</label>
-<input id="institution"/>
+<input id="institution" placeholder="Optional">
 
-<label>Category *</label>
-<div class="category-list">
-<div class="cat-row"><span>Art & Craft (11-25) - ₹150</span><input type="radio" name="cat" value="Art & Craft"></div>
-<div class="cat-row"><span>Recitation (11-25) - ₹150</span><input type="radio" name="cat" value="Recitation"></div>
-<div class="cat-row"><span>Music (6-25) - ₹200</span><input type="radio" name="cat" value="Music"></div>
-<div class="cat-row"><span>Dance (6-25) - ₹200</span><input type="radio" name="cat" value="Dance"></div>
-<div class="cat-row"><span>Quiz (11-25) - ₹100 (No File)</span><input type="radio" name="cat" value="Quiz"></div>
+<!-- CATEGORY -->
+<label style="margin-top:20px;">Category *</label>
+<div class="category-box">
+<div class="cat-row"><span>Art & Craft (11-25) – ₹150</span><input type="radio" name="cat" value="Art & Craft"></div>
+<div class="cat-row"><span>Recitation (11-25) – ₹150</span><input type="radio" name="cat" value="Recitation"></div>
+<div class="cat-row"><span>Music (6-25) – ₹200</span><input type="radio" name="cat" value="Music"></div>
+<div class="cat-row"><span>Dance (6-25) – ₹200</span><input type="radio" name="cat" value="Dance"></div>
+<div class="cat-row"><span>Quiz (11-25) – ₹100 (No File)</span><input type="radio" name="cat" value="Quiz"></div>
 </div>
 
-<label>Performance File (not needed for Quiz)</label>
-<input type="file" id="performance" accept="video/*,image/*" />
+<label>Performance File (Not Needed for Quiz)</label>
+<input type="file" id="performance" accept="video/*,image/*">
 
-
-<!-- ⭐ FIXED TERMS LAYOUT -->
-<div class="terms-row">
-  <input type="checkbox" id="terms">
-  <label for="terms">
-    I agree to the <a href="terms.html" target="_blank">Terms & Conditions & Digital Consent</a>
-  </label>
+<!-- TERMS -->
+<div class="termsBox">
+<input type="checkbox" id="terms" style="width:18px; margin-right:10px;">
+I agree to the <a href="terms.html" target="_blank">Terms & Conditions</a>
 </div>
 
-<button onclick="submitForm()">Submit & Pay</button>
+<button id="submitBtn" onclick="submitForm()">Submit & Pay</button>
 
-<p style="text-align:center;margin-top:15px;">
-⚠ Age Limit: <b>6 to 25 years (STRICT)</b> on <b>01-Jan-2026</b><br>
-❌ Even <b>6y+1day / 25y+1day NOT allowed</b><br>
-📅 Allowed DOB: <b>01/01/2000 to 01/01/2020</b>
+<p style="font-size:13px; margin-top:15px; color:#444;">
+⚠ Age Limit: <b>6 to 25 years (STRICT) on 01-Jan-2026</b><br>
+⛔ Even <b>6y+1day / 25y+1day NOT allowed</b><br>
+📌 Allowed DOB: <b>01/01/2000 to 01/01/2020</b>
 </p>
 
 </div>
 
+<!-- 📌 RAZORPAY -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 <script>
-/* API & PAYMENT */
+/* ----------------------------------
+   CONFIG
+---------------------------------- */
 const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev";
 const RAZORPAY_KEY = "rzp_live_Rj6ceV2avDzdlC";
 
-/* DOB VALIDATION */
+/* ----------------------------------
+   AGE LOGIC
+---------------------------------- */
 function strictCheck(d){
 let i=new Date(d),min=new Date("2000-01-01"),max=new Date("2020-01-01");
 if(i<min)return"❌ Above 25 years not allowed";
 if(i>max)return"❌ Below 6 years not allowed";
 if(i.getFullYear()===2000&&i>min)return"❌ 25y+1day not allowed";
 if(i.getFullYear()===2020&&i>max)return"❌ 6y+1day not allowed";
-return"";
-}
+return"";}
+
 function getAge(d){
 let b=new Date(d),r=new Date("2026-01-01");
-let a=r.getFullYear()-b.getFullYear();
-let m=r.getMonth()-b.getMonth(),da=r.getDate()-b.getDate();
-if(m<0||(m===0&&da<0))a--;return a;
-}
+let a=r.getFullYear()-b.getFullYear(),m=r.getMonth()-b.getMonth(),da=r.getDate()-b.getDate();
+if(m<0||(m===0&&da<0))a--;return a;}
+
 function liveDOBCheck(){
-let d=dob.value, err=dobError, ageBox=ageDisplay;
-err.innerHTML=""; ageBox.innerHTML="";
-dob.classList.remove("invalid");
+let d=dob.value,err=dobError,age=ageDisplay;
+err.innerHTML="";age.innerHTML="";dob.classList.remove("invalid");
 if(!d)return;
-let c=strictCheck(d); if(c!==""){err.innerHTML=c;dob.classList.add("invalid");hide();return;}
-let age=getAge(d);ageBox.innerHTML="🎯 Age on 01/01/2026: <b>"+age+" Years</b>";
-if(age<11) child(); else show();
-}
+let c=strictCheck(d);if(c){err.innerHTML=c;dob.classList.add("invalid");hide();return;}
+let ag=getAge(d);age.innerHTML="🎯 Age on 01/01/2026: <b>"+ag+" Years</b>";
+if(ag<11)child();else show();}
+
 function hide(){document.querySelectorAll(".cat-row").forEach(r=>r.style.display="none");}
-function child(){hide();document.querySelector('[value="Music"]').parentNode.style.display="flex";
-document.querySelector('[value="Dance"]').parentNode.style.display="flex";}
+function child(){hide();document.querySelector('[value=\"Music\"]').parentNode.style.display="flex";
+document.querySelector('[value=\"Dance\"]').parentNode.style.display="flex";}
 function show(){document.querySelectorAll(".cat-row").forEach(r=>r.style.display="flex");}
 function fee(c){return c==="Quiz"?100:(c==="Dance"||c==="Music"?200:150);}
 
-/* UPLOAD */
-/*async function uploadFile(file,cat){
-let fd=new FormData();fd.append("file",file);
-return fetch(API_URL+"?action=upload",{method:"POST",body:fd})
-.then(r=>r.text()).then(t=>JSON.parse(t));
-}*/
-  // frontend: uploadFile (replace your existing function)
-/*async function uploadFile(file, category) {
-  // quick size check (optional)
-  const MAX_BYTES = 40 * 1024 * 1024; // 40 MB - adjust as needed (Apps Script ~50MB limit)
-  if (file.size > MAX_BYTES) {
-    return { status: "error", message: "File too large. Please use a smaller file." };
-  }
+/* ----------------------------------
+   📤 FILE UPLOAD
+---------------------------------- */
+async function uploadFile(file, category){
+const form=new FormData();
+form.append("action","upload");
+form.append("file",file);
+form.append("category",category);
 
-  const buffer = await file.arrayBuffer();
-  // encode filename in query because we can't set multipart fields
-  const fname = encodeURIComponent(file.name);
-  const url = `${API_URL}?action=upload&filename=${fname}&category=${encodeURIComponent(category || "")}`;
-
-  const res = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/octet-stream",
-      // You can also pass custom headers if Worker allows them (CORS)
-      //"X-File-Name": file.name
-    },
-    body: buffer
-  });
-
-  // always read text and try to parse JSON (Worker returns JSON)
-  const text = await res.text();
-  try { return JSON.parse(text); }
-  catch (err) { return { status: "error", message: "Invalid server response", raw: text }; }
-}
-*/
-/*async function uploadFile(file, category) {
-  if (!file) {
-    return { status: "error", message: "No file selected" };
-  }
-
-  // Read file as binary
-  const arrayBuffer = await file.arrayBuffer();
-  const binary = new Uint8Array(arrayBuffer);
-
-  const url = `${API_URL}?action=upload&filename=${encodeURIComponent(file.name)}&category=${encodeURIComponent(category)}`;
-
-  const res = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/octet-stream"
-    },
-    body: binary // IMPORTANT: send binary, not FormData
-  });
-
-  const text = await res.text();
-  try { return JSON.parse(text); }
-  catch { return { status: "error", raw: text }; }
-}*/
-
-
- /* async function uploadFile(file, category) {
-  if (!file) {
-    return { status: "error", message: "⚠ File not found in browser" };
-  }
-const buffer = await file.arrayBuffer();
-const res = await fetch(API_URL + `?action=upload&filename=${file.name}`, {
-  method: "POST",
-  headers: { "Content-Type": "application/octet-stream" },
-  body: buffer
-});*/
-
-  /*const buffer = await file.arrayBuffer();
-  const url = API_URL + `?action=upload&filename=${encodeURIComponent(file.name)}&category=${category}`;
-
-  const res = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/octet-stream"
-    },
-    body: buffer
-  });*/
-
-  /*const text = await res.text();
-  try {
-    return JSON.parse(text);
-  } catch {
-    return { status: "error", raw: text };
-  }
-}*/
-  async function uploadFile(file, category) {
-    const form = new FormData();
-    form.append("file", file, file.name);
-    form.append("action", "upload");
-    form.append("category", category);
-
-    const response = await fetch(API_URL + "?action=upload", {
-        method: "POST",
-        body: form
-    });
-
-    return await response.json();
+const r=await fetch(API_URL+"?action=upload",{method:"POST",body:form});
+return await r.json();
 }
 
+/* ----------------------------------
+   📩 SUBMIT + PAYMENT
+---------------------------------- */
+async function submitForm(){
 
-/*async function uploadFile(file, category) {
+let data={
+ name:name.value.trim(),
+ guardian:guardian.value.trim(),
+ relation:relation.value.trim(),
+ mobile:mobile.value.trim(),
+ email:email.value.trim(),
+ dob:dob.value.trim(),
+ institution:institution.value.trim()||"Not Provided",
+ category:document.querySelector("input[name='cat']:checked")?.value
+};
 
-  if(!file){
-    return { status: "error", message: "File not found in browser" };
-  }
+if(!data.name||!data.guardian||!data.relation||!data.mobile||!data.dob)
+ return alert("⚠ Fill all required fields first");
+if(!data.category) return alert("⚠ Select a category");
+if(!terms.checked) return alert("⚠ Accept Terms First");
 
-  const buffer = await file.arrayBuffer();
-  const url = `${API_URL}?action=upload&filename=${encodeURIComponent(file.name)}&category=${encodeURIComponent(category)}`;
+data.fee=fee(data.category);
+data.age=getAge(data.dob);
+data.fileUrl="No Upload";
 
-  const res = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/octet-stream"
-    },
-    body: buffer
-  });
-
-  const txt = await res.text();
-  try { return JSON.parse(txt); }
-  catch { return { status:"error", raw:txt }; }
-}*/
-
-/* SUBMIT */
-/*async function submitForm(){
-let nameF=document.getElementById("name").value.trim();
-let guardF=document.getElementById("guardian").value.trim();
-let relF=document.getElementById("relation").value.trim();
-let mobF=document.getElementById("mobile").value.trim();
-let emailF=document.getElementById("email").value.trim();
-let dobF=document.getElementById("dob").value.trim();
-let instF=document.getElementById("institution").value.trim()||"Not Provided";
-let cat=document.querySelector("input[name='cat']:checked")?.value;
-
-if(!nameF||!guardF||!relF||!mobF||!dobF)return alert("⚠ Fill all required fields");
-if(!cat)return alert("⚠ Select category");
-if(!terms.checked)return alert("⚠ Accept Terms first");
-
-let f=fee(cat), age=getAge(dobF), fileUrl="No Upload";
-  if (cat !== "Quiz") {
-    const file = document.getElementById("performance").files[0];
-    if (!file) return alert("⚠ Please upload a file before submitting.");
-
-    let uploadResponse = await uploadFile(file, cat);
-    console.log("Upload Response:", uploadResponse);
-
-    if (uploadResponse.status !== "success") {
-      return alert("❌ Upload Failed: " + uploadResponse.message);
-    }
-
-    fileUrl = uploadResponse.fileUrl;
-  }
-
-let data={name:nameF,guardian:guardF,relation:relF,mobile:mobF,email:emailF,
-dob:dobF,institution:instF,category:cat,fee:f,age,fileUrl};
+if(data.category!=="Quiz"){
+ const file=document.getElementById("performance").files[0];
+ if(!file)return alert("⚠ Please upload file");
+ let up=await uploadFile(file,data.category);
+ if(up.status!=="success")return alert("❌ Upload Failed: "+up.message);
+ data.fileUrl=up.fileUrl;
+}
 
 let rz=new Razorpay({
-key:RAZORPAY_KEY,amount:f*100,name:"Competition Registration",
-handler:(r)=>{
- data.payment_id=r.razorpay_payment_id;
- fetch(API_URL+"?action=register",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)})
- .then(r=>r.text()).then(t=>JSON.parse(t))
- .then(x=>{
-   if(x.status==="success"){
-     alert("🎉 Registered!\nCode: "+x.code);
-     window.location="success.html?code="+x.code+"&pdf="+x.pdfUrl;
-   } else alert("❌ "+x.message);
- });
-}});
+ key:RAZORPAY_KEY,
+ amount:data.fee*100,
+ name:"Competition Registration",
+ handler:(r)=>{
+   data.payment_id=r.razorpay_payment_id;
+   fetch(API_URL+"?action=register",{
+     method:"POST",headers:{"Content-Type":"application/json"},
+     body:JSON.stringify(data)
+   }).then(r=>r.json()).then(x=>{
+     if(x.status==="success"){
+       alert("🎉 Registered! Code: "+x.code);
+       window.location="success.html?code="+x.code+"&pdf="+x.pdfUrl;
+     }else alert("❌ "+x.message);
+   });
+ }
+});
 rz.open();
-}*/
-  async function submitForm(){
-  // 📌 Collect form fields
-  let nameF = document.getElementById("name").value.trim();
-  let guardF = document.getElementById("guardian").value.trim();
-  let relF = document.getElementById("relation").value.trim();
-  let mobF = document.getElementById("mobile").value.trim();
-  let emailF = document.getElementById("email").value.trim();
-  let dobF = document.getElementById("dob").value.trim();
-  let instF = document.getElementById("institution").value.trim()||"Not Provided";
-  let cat = document.querySelector("input[name='cat']:checked")?.value;
-
-  // 📌 Validate basics
-  if (!nameF || !guardF || !relF || !mobF || !dobF) return alert("⚠ Fill all mandatory fields");
-  if (!cat) return alert("⚠ Select category");
-  if (!terms.checked) return alert("⚠ Accept Terms before submitting");
-
-  let f = fee(cat), age = getAge(dobF), fileUrl = "No Upload";
-
-  // ⭐ PASTE THIS HERE ⭐
-  if (cat !== "Quiz") {
-    const file = document.getElementById("performance").files[0];
-    if (!file) return alert("⚠ Please upload a file before submitting.");
-
-    let uploadResponse = await uploadFile(file, cat);
-    console.log("Upload Response:", uploadResponse);
-
-    if (uploadResponse.status !== "success") {
-      return alert("❌ Upload Failed: " + uploadResponse.message);
-    }
-
-    fileUrl = uploadResponse.fileUrl;
-  }
-  // ⭐ END OF NEW BLOCK ⭐
-
-  // 📌 Run Razorpay payment AFTER file upload is successful
-  let rz = new Razorpay({
-    key: RAZORPAY_KEY,
-    amount: f * 100,
-    name: "Competition Registration",
-    handler: (r) => {
-      data.payment_id = r.razorpay_payment_id;
-
-      fetch(API_URL+"?action=register", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(data)
-      })
-      .then(r=>r.text())
-      .then(t=>JSON.parse(t))
-      .then(x=> {
-        if(x.status==="success"){
-          alert("🎉 Successfully Registered! Code: "+x.code);
-          window.location="success.html?code="+x.code+"&pdf="+x.pdfUrl;
-        } else {
-          alert("❌ "+x.message);
-        }
-      });
-    }
-  });
-  rz.open();
 }
-
 </script>
+
 </body>
 </html>
