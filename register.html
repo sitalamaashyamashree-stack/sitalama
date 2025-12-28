@@ -98,7 +98,8 @@ button:hover{background:#094eb3;}
 </div>
 
 <label>Performance File (not needed for Quiz)</label>
-<input type="file" id="performance" accept="video/*,image/*,audio/*">
+<input type="file" id="performance" accept="video/*,image/*" />
+
 
 <!-- ⭐ FIXED TERMS LAYOUT -->
 <div class="terms-row">
@@ -211,7 +212,33 @@ return fetch(API_URL+"?action=upload",{method:"POST",body:fd})
   try { return JSON.parse(text); }
   catch { return { status: "error", raw: text }; }
 }*/
-async function uploadFile(file, category) {
+
+
+  async function uploadFile(file, category) {
+  if (!file) {
+    return { status: "error", message: "⚠ File not found in browser" };
+  }
+
+  const buffer = await file.arrayBuffer();
+  const url = API_URL + `?action=upload&filename=${encodeURIComponent(file.name)}&category=${category}`;
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/octet-stream"
+    },
+    body: buffer
+  });
+
+  const text = await res.text();
+  try {
+    return JSON.parse(text);
+  } catch {
+    return { status: "error", raw: text };
+  }
+}
+
+/*async function uploadFile(file, category) {
 
   if(!file){
     return { status: "error", message: "File not found in browser" };
@@ -231,9 +258,7 @@ async function uploadFile(file, category) {
   const txt = await res.text();
   try { return JSON.parse(txt); }
   catch { return { status:"error", raw:txt }; }
-}
-
-
+}*/
 
 /* SUBMIT */
 /*async function submitForm(){
