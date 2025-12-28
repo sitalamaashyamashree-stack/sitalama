@@ -81,7 +81,7 @@ button:hover{background:#094eb3;}
 }
 
 /* RED BORDER ON INVALID */
-input.invalid{border:2px solid red;}
+input.invalid{border:2px solid red !important;}
 
 /* MOBILE RESPONSIVE */
 @media(max-width:480px){
@@ -131,8 +131,8 @@ input.invalid{border:2px solid red;}
 <div class="category-list">
     <div class="cat-row"><span>Art & Craft (11-25 yrs) - ₹150</span><input type="radio" name="cat" value="Art & Craft"></div>
     <div class="cat-row"><span>Recitation (11-25 yrs) - ₹150</span><input type="radio" name="cat" value="Recitation"></div>
-    <div class="cat-row"><span>Music (6-14 & 14-25) - ₹200</span><input type="radio" name="cat" value="Music"></div>
-    <div class="cat-row"><span>Dance (6-14 & 14-25) - ₹200</span><input type="radio" name="cat" value="Dance"></div>
+    <div class="cat-row"><span>Music (6-25 yrs) - ₹200</span><input type="radio" name="cat" value="Music"></div>
+    <div class="cat-row"><span>Dance (6-25 yrs) - ₹200</span><input type="radio" name="cat" value="Dance"></div>
     <div class="cat-row"><span>Quiz (11-25 yrs) - ₹100 (No File Upload)</span><input type="radio" name="cat" value="Quiz"></div>
 </div>
 
@@ -147,10 +147,12 @@ input.invalid{border:2px solid red;}
 <button onclick="submitForm()">Submit & Pay</button>
 
 <p class="notice">
-⚠ Age eligibility: <b>6 to 25 years</b> (calculated as of 01-Apr-2026). Fees are non-refundable. <br>
+⚠ Age eligibility: Strictly <b>6 to 25 years</b> as of <b>01-Jan-2026</b>. <br>
+❌ Even 6y+1day or 25y+1day is not allowed. <br>
 📌 <b>Registrations valid till January 1st.</b>
 </p>
 </div>
+
 
 
 <script>
@@ -158,13 +160,14 @@ input.invalid{border:2px solid red;}
 const API_URL="https://api.ssmctrust.org";
 const RAZORPAY_KEY="rzp_live_Rj6ceV2avDzdlC";
 
-/* AGE CALC */
-function calculateAge(dob){
-    const d=new Date(dob);
-    const check=new Date("2026-01-01");
-    let age=check.getFullYear()-d.getFullYear();
-    const m=check.getMonth()-d.getMonth();
-    if(m<0||(m===0&&check.getDate()<d.getDate())) age--;
+/* STRICT AGE CALCULATION AS OF 1 JAN 2026 */
+function calculateAgeStrict(dob){
+    const birth = new Date(dob);
+    const ref = new Date("2026-01-01"); 
+    let age = ref.getFullYear() - birth.getFullYear();
+    const m = ref.getMonth() - birth.getMonth();
+    const d = ref.getDate() - birth.getDate();
+    if(m < 0 || (m === 0 && d < 0)) age--;
     return age;
 }
 
@@ -172,30 +175,45 @@ function calculateAge(dob){
 function liveDOBCheck(){
     let dob=document.getElementById("dob").value;
     let category=document.querySelector("input[name='cat']:checked")?.value;
-    let age=calculateAge(dob);
+    let age=calculateAgeStrict(dob);
     let msg=document.getElementById("dobError");
     let dobInput=document.getElementById("dob");
 
     msg.innerHTML=""; dobInput.classList.remove("invalid");
     if(!dob) return;
 
-    if(age =< 6){ msg.innerHTML="❌ Minimum age allowed is 6 years."; dobInput.classList.add("invalid"); return; }
-    if(age => 25){ msg.innerHTML="❌ Maximum age allowed is 25 years."; dobInput.classList.add("invalid"); return; }
-
-    if(category==="Quiz"||category==="Art & Craft"||category==="Recitation"){
-        if(age<11||age>25) msg.innerHTML="❌ Age must be 11–25 years for this category.";
+    // STRICT RULES
+    if(age < 6){
+        msg.innerHTML="❌ Minimum age must be exactly 6 years by 01-Jan-2026.";
+        dobInput.classList.add("invalid");
+        return;
     }
-    if(category==="Dance"||category==="Music"){
-        if(age<6||age>25) msg.innerHTML="❌ Age must be 6–25 years for Dance/Music.";
+    if(age > 25){
+        msg.innerHTML="❌ Maximum age allowed is 25 years as of 01-Jan-2026.";
+        dobInput.classList.add("invalid");
+        return;
+    }
+
+    // CATEGORY LIMITS
+    if(["Art & Craft","Recitation","Quiz"].includes(category) && age < 11){
+        msg.innerHTML="❌ This category requires age between 11–25 years.";
+        dobInput.classList.add("invalid");
+        return;
+    }
+
+    if(["Music","Dance"].includes(category) && age < 6){
+        msg.innerHTML="❌ Dance/Music requires minimum age 6 years.";
+        dobInput.classList.add("invalid");
+        return;
     }
 }
 
-/* FEE */
+/* FEE LOGIC */
 function getFee(c){
     return c==="Quiz"?100:(c==="Dance"||c==="Music"?200:150);
 }
 
-/* FILE UPLOAD */
+/* UPLOAD */
 async function uploadFile(file,category){
     const fd=new FormData();
     fd.append("file",file);
@@ -203,20 +221,19 @@ async function uploadFile(file,category){
     return await fetch(API_URL+"?action=upload",{method:"POST",body:fd}).then(r=>r.json());
 }
 
-/* SUBMIT */
+/* SUBMIT FORM */
 async function submitForm(){
     let dob=document.getElementById("dob").value;
-    let age=calculateAge(dob);
-    let category=document.querySelector("input[name='cat']:checked")?.value;
+    let age=calculateAgeStrict(dob);
     let msg=document.getElementById("dobError");
-
-    if(msg.innerHTML!=="") return; // Stop if DOB invalid
+    if(msg.innerHTML!=="") return;
 
     const name=name.value.trim();
     const guardian=guardian.value.trim();
     const relation=relation.value.trim();
     const mobile=mobile.value.trim();
     const email=email.value.trim();
+    const category=document.querySelector("input[name='cat']:checked")?.value;
     const institution=document.getElementById("institution").value.trim() || "Not Provided";
 
     if(!name||!guardian||!relation||!mobile||!dob) return alert("⚠ Required fields missing");
