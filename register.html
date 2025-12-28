@@ -154,11 +154,40 @@ function show(){document.querySelectorAll(".cat-row").forEach(r=>r.style.display
 function fee(c){return c==="Quiz"?100:(c==="Dance"||c==="Music"?200:150);}
 
 /* UPLOAD */
-async function uploadFile(file,cat){
+/*async function uploadFile(file,cat){
 let fd=new FormData();fd.append("file",file);
 return fetch(API_URL+"?action=upload",{method:"POST",body:fd})
 .then(r=>r.text()).then(t=>JSON.parse(t));
+}*/
+  // frontend: uploadFile (replace your existing function)
+async function uploadFile(file, category) {
+  // quick size check (optional)
+  const MAX_BYTES = 40 * 1024 * 1024; // 40 MB - adjust as needed (Apps Script ~50MB limit)
+  if (file.size > MAX_BYTES) {
+    return { status: "error", message: "File too large. Please use a smaller file." };
+  }
+
+  const buffer = await file.arrayBuffer();
+  // encode filename in query because we can't set multipart fields
+  const fname = encodeURIComponent(file.name);
+  const url = `${API_URL}?action=upload&filename=${fname}&category=${encodeURIComponent(category || "")}`;
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/octet-stream",
+      // You can also pass custom headers if Worker allows them (CORS)
+      //"X-File-Name": file.name
+    },
+    body: buffer
+  });
+
+  // always read text and try to parse JSON (Worker returns JSON)
+  const text = await res.text();
+  try { return JSON.parse(text); }
+  catch (err) { return { status: "error", message: "Invalid server response", raw: text }; }
 }
+
 
 /* SUBMIT */
 async function submitForm(){
