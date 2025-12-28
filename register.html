@@ -8,81 +8,42 @@
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <style>
-body{
-    font-family: Arial, sans-serif;
-    background:#eef1f5;
-    margin:0; padding:0;
-}
+body{font-family: Arial, sans-serif;background:#eef1f5;margin:0;padding:0;}
 .container{
-    width:95%; max-width:600px;
-    margin:40px auto; background:white;
-    padding:30px; border-radius:16px;
-    box-shadow:0 4px 20px rgba(0,0,0,0.1);
+    width:95%;max-width:600px;margin:40px auto;background:white;
+    padding:30px;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.1);
 }
 h2{text-align:center;font-size:26px;margin-bottom:20px;}
 label{display:block;margin:10px 0 5px;font-weight:600;}
 input, select{
-    width:100%; padding:12px;
-    border:1px solid #ccc; border-radius:8px;
-    background:#f8f9fb; font-size:16px;
+    width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;
+    background:#f8f9fb;font-size:16px;
 }
-
-/* CATEGORY UI */
 .category-list{
-    border:1px solid #ddd;
-    border-radius:10px;
-    background:#fafafa;
-    padding:10px 15px;
-    margin-top:8px;
+    border:1px solid #ddd;border-radius:10px;background:#fafafa;
+    padding:10px 15px;margin-top:8px;
 }
 .cat-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:10px 0;
-    border-bottom:1px solid #eee;
-    font-size:15px;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:10px 0;border-bottom:1px solid #eee;font-size:15px;
 }
 .cat-row:last-child{border-bottom:none;}
-.cat-row input[type="radio"]{
-    width:22px; height:22px; cursor:pointer;
-}
-
+.cat-row input[type=radio]{width:22px;height:22px;cursor:pointer;}
 button{
-    width:100%; padding:15px;
-    background:#0D6EFD; color:white;
-    border:none; border-radius:10px;
-    font-size:18px; font-weight:bold;
-    cursor:pointer; margin-top:20px;
+    width:100%;padding:15px;background:#0D6EFD;color:white;border:none;
+    border-radius:10px;font-size:18px;font-weight:bold;cursor:pointer;margin-top:20px;
 }
 button:hover{background:#094eb3;}
-
-.terms-row{
-    display:flex; align-items:center;
-    gap:10px; margin-top:15px; font-size:15px;
-}
+.terms-row{display:flex;align-items:center;gap:10px;margin-top:15px;font-size:15px;}
 .terms-row input{width:20px;height:20px;}
 .terms-row a{color:#0d6efd;font-weight:600;text-decoration:none;}
-.terms-row a:hover{text-decoration:underline;}
-
-.notice{
-    font-size:14px; color:#444;
-    margin-top:15px; line-height:1.5; text-align:center;
-}
-
-.error-msg{
-    color:red;
-    font-size:14px;
-    margin-top:4px;
-    font-weight:600;
-}
+.error-msg{color:red;font-size:14px;margin-top:4px;font-weight:600;}
 input.invalid{border:2px solid red !important;}
+.notice{text-align:center;font-size:14px;margin-top:15px;line-height:1.5;color:#444;}
 
 @media(max-width:480px){
-    .container{padding:20px;}
-    h2{font-size:22px;}
-    input, select, button{font-size:16px;}
-    .cat-row{font-size:14px;}
+ .container{padding:20px;}h2{font-size:22px;}
+ input,select,button{font-size:16px;} .cat-row{font-size:14px;}
 }
 </style>
 </head>
@@ -100,10 +61,10 @@ input.invalid{border:2px solid red !important;}
 
 <label>Relation With Guardian *</label>
 <select id="relation">
-    <option value="">-- Select Relation --</option>
-    <option value="Father">Father</option>
-    <option value="Mother">Mother</option>
-    <option value="Other">Other</option>
+<option value="">-- Select Relation --</option>
+<option value="Father">Father</option>
+<option value="Mother">Mother</option>
+<option value="Other">Other</option>
 </select>
 
 <label>Mobile No. (OTP Verify) *</label>
@@ -119,182 +80,140 @@ input.invalid{border:2px solid red !important;}
 <div id="dobError" class="error-msg"></div>
 
 <label>School / College / Institution (Optional)</label>
-<input type="text" id="institution" placeholder="(Optional)">
+<input type="text" id="institution" placeholder="Optional">
 
 <label>Category *</label>
 <div class="category-list" id="categorySection">
-    <div class="cat-row"><span>Art & Craft (11-25 yrs) - ₹150</span><input type="radio" name="cat" value="Art & Craft"></div>
-    <div class="cat-row"><span>Recitation (11-25 yrs) - ₹150</span><input type="radio" name="cat" value="Recitation"></div>
-    <div class="cat-row"><span>Music (6-25 yrs) - ₹200</span><input type="radio" name="cat" value="Music"></div>
-    <div class="cat-row"><span>Dance (6-25 yrs) - ₹200</span><input type="radio" name="cat" value="Dance"></div>
-    <div class="cat-row"><span>Quiz (11-25 yrs) - ₹100 (No File Upload)</span><input type="radio" name="cat" value="Quiz"></div>
+<div class="cat-row"><span>Art & Craft (11-25 yrs) - ₹150</span><input type="radio" name="cat" value="Art & Craft"></div>
+<div class="cat-row"><span>Recitation (11-25 yrs) - ₹150</span><input type="radio" name="cat" value="Recitation"></div>
+<div class="cat-row"><span>Music (6-25 yrs) - ₹200</span><input type="radio" name="cat" value="Music"></div>
+<div class="cat-row"><span>Dance (6-25 yrs) - ₹200</span><input type="radio" name="cat" value="Dance"></div>
+<div class="cat-row"><span>Quiz (11-25 yrs) - ₹100 (No File Upload)</span><input type="radio" name="cat" value="Quiz"></div>
 </div>
 
 <label>Performance File (Not Needed For Quiz)</label>
 <input type="file" id="performance" accept="video/*,audio/*,image/*">
 
 <div class="terms-row">
-    <input type="checkbox" id="terms">
-    <label for="terms">I agree to the <a href="terms.html" target="_blank">Terms & Conditions & Digital Consent</a></label>
+<input type="checkbox" id="terms">
+<label for="terms">I agree to <a href="terms.html" target="_blank">Terms & Conditions & Digital Consent</a></label>
 </div>
 
 <button onclick="submitForm()">Submit & Pay</button>
 
 <p class="notice">
-⚠ Strict age eligibility: <b>6 to 25 years</b> on <b>01-Jan-2026</b> only.<br>
+⚠ Age eligibility: Strictly **6 to 25 years** on **01-Jan-2026**.<br>
 ❌ Even **6y + 1 day** or **25y + 1 day** is NOT allowed.<br>
-📌 Registration valid till January 1st.
+📅 **Allowed DOB Range → 01/01/2000 to 01/01/2020 ONLY**
 </p>
 </div>
 
 
-
 <script>
-/* CONFIG */
-const API_URL="https://api.ssmctrust.org"; 
+const API_URL="https://api.ssmctrust.org";
 const RAZORPAY_KEY="rzp_live_Rj6ceV2avDzdlC";
 
-/* STRICT CALENDAR AGE RANGE CHECK (01/01/2000 - 01/01/2020) */
+/* STRICT DOB BOUNDARIES */
 function strictDateCheck(dob){
-    const d = new Date(dob);
-    const min = new Date("2000-01-01"); // 25 years cutoff
-    const max = new Date("2020-01-01"); // 6 years cutoff
+    const input = new Date(dob);
+    const min = new Date("2000-01-01"); // EXACT 25
+    const max = new Date("2020-01-01"); // EXACT 6
 
-    if(d < min) return "❌ Age above 25 years is not allowed (before 01/01/2000)";
-    if(d > max) return "❌ Age below 6 years is not allowed (after 01/01/2020)";
+    if(input < min) return "❌ Age above 25 is not allowed. (DOB before 01/01/2000)";
+    if(input > max) return "❌ Age below 6 is not allowed. (DOB after 01/01/2020)";
+
+    // ❌ BLOCK 25Y + 1 DAY → 31-12-2000 or later
+    if(input.getFullYear() === 2000 && input > min){
+        return "❌ 25 years + 1 day is NOT allowed. DOB must be 01/01/2000 only.";
+    }
+    // ❌ BLOCK 6Y + 1 DAY → 02-01-2020 or later
+    if(input.getFullYear() === 2020 && input > max){
+        return "❌ 6 years + 1 day is NOT allowed. DOB must be 01/01/2020 only.";
+    }
     return "";
 }
 
-/* EXACT AGE CALCULATION FOR 01-JAN-2026 */
+/* AGE FOR OTHER LOGIC */
 function calculateAgeStrict(dob){
-    const birth = new Date(dob);
-    const ref = new Date("2026-01-01");
-    let age = ref.getFullYear() - birth.getFullYear();
-    const m = ref.getMonth() - birth.getMonth();
-    const da = ref.getDate() - birth.getDate();
-    if(m < 0 || (m === 0 && da < 0)) age--;
-    return age;
+    const b=new Date(dob), r=new Date("2026-01-01");
+    let a=r.getFullYear()-b.getFullYear(), m=r.getMonth()-b.getMonth(), d=r.getDate()-b.getDate();
+    if(m<0||(m===0&&d<0))a--;return a;
 }
 
-/* SHOW/HIDE CATEGORIES BASED ON AGE */
+/* SHOW/HIDE CATEGORY BY AGE */
 function toggleCategories(mode){
-    const rows = document.querySelectorAll(".cat-row");
-    rows.forEach(r => r.style.display="none");
+    const rows=document.querySelectorAll(".cat-row");
+    rows.forEach(r=>r.style.display="none");
 
-    if(mode === "musicdance"){
+    if(mode==="musicdance"){
         document.querySelector('[value="Music"]').parentNode.style.display="flex";
         document.querySelector('[value="Dance"]').parentNode.style.display="flex";
     }
-    if(mode === "all"){
-        rows.forEach(r => r.style.display="flex");
-    }
-    if(mode === "none"){
-        rows.forEach(r => r.style.display="none");
-    }
+    if(mode==="all"){rows.forEach(r=>r.style.display="flex");}
+    if(mode==="none"){rows.forEach(r=>r.style.display="none");}
 }
 
 /* LIVE DOB CHECK */
 function liveDOBCheck(){
-    let dob = document.getElementById("dob").value;
-    let msg = document.getElementById("dobError");
-    let input = document.getElementById("dob");
-    msg.innerHTML = "";
-    input.classList.remove("invalid");
-    if(!dob) return;
+    let dob=document.getElementById("dob").value;
+    let msg=document.getElementById("dobError");
+    let input=document.getElementById("dob");
+    msg.innerHTML="";input.classList.remove("invalid");
+    if(!dob)return;
 
-    let dateCheck = strictDateCheck(dob);
-    if(dateCheck){
-        msg.innerHTML = dateCheck;
-        input.classList.add("invalid");
-        toggleCategories("none");
-        return;
+    let chk=strictDateCheck(dob);
+    if(chk!==""){
+        msg.innerHTML=chk; input.classList.add("invalid"); toggleCategories("none"); return;
     }
 
-    let age = calculateAgeStrict(dob);
-
-    if(age >= 6 && age < 11){
-        msg.innerHTML = "ℹ Age 6–10 → Only Music & Dance allowed.";
-        toggleCategories("musicdance");
-        return;
-    }
-    if(age >= 11 && age <= 25){
-        msg.innerHTML = "";
-        toggleCategories("all");
-        return;
-    }
+    let age=calculateAgeStrict(dob);
+    if(age>=6 && age<11){msg.innerHTML="ℹ Age 6–10 ➜ Only Music & Dance";toggleCategories("musicdance");return;}
+    if(age>=11 && age<=25){msg.innerHTML="";toggleCategories("all");return;}
 }
 
-/* FEE LOGIC */
-function getFee(c){
-    return c==="Quiz"?100:(c==="Dance"||c==="Music"?200:150);
-}
+/* FEES */
+function getFee(c){return c==="Quiz"?100:(c==="Dance"||c==="Music"?200:150);}
 
-/* FILE UPLOAD */
-async function uploadFile(file,category){
-    const fd=new FormData();
-    fd.append("file",file);
-    fd.append("category",category);
+/* UPLOAD */
+async function uploadFile(file,cat){
+    const fd=new FormData();fd.append("file",file);fd.append("category",cat);
     return await fetch(API_URL+"?action=upload",{method:"POST",body:fd}).then(r=>r.json());
 }
 
-/* SUBMIT FORM */
+/* SUBMIT */
 async function submitForm(){
-    let dob=document.getElementById("dob").value;
-    let msg=document.getElementById("dobError");
-    if(msg.innerHTML!=="") return;
+    if(document.getElementById("dobError").innerHTML!=="")return;
+    const dob=dob.value.trim(), name=name.value.trim(), guardian=guardian.value.trim();
+    const relation=relation.value.trim(), mobile=mobile.value.trim(), email=email.value.trim();
+    const institution=document.getElementById("institution").value.trim()||"Not Provided";
+    const cat=document.querySelector("input[name='cat']:checked")?.value;
 
-    const name=name.value.trim();
-    const guardian=guardian.value.trim();
-    const relation=relation.value.trim();
-    const mobile=mobile.value.trim();
-    const email=email.value.trim();
-    const category=document.querySelector("input[name='cat']:checked")?.value;
-    const institution=document.getElementById("institution").value.trim() || "Not Provided";
+    if(!name||!guardian||!relation||!mobile||!dob)return alert("⚠ Fill required fields");
+    if(!cat)return alert("⚠ Select category");if(!terms.checked)return alert("⚠ Accept terms");
 
-    if(!name||!guardian||!relation||!mobile||!dob) return alert("⚠ Required fields missing");
-    if(!category) return alert("⚠ Select a category");
-    if(!terms.checked) return alert("⚠ Accept terms to continue");
-
-    const fee=getFee(category);
-    let fileUrl="No Upload Needed";
-
-    if(category!=="Quiz"){
-        const file=document.getElementById("performance").files[0];
-        if(!file) return alert("⚠ Upload performance file required");
-        const res=await uploadFile(file,category);
-        if(res.status!=="success") return alert("❌ Upload failed");
-        fileUrl=res.fileUrl;
+    const fee=getFee(cat);let fileUrl="No Upload Needed";
+    if(cat!=="Quiz"){
+        const file=performance.files[0];if(!file)return alert("⚠ Upload required");
+        const up=await uploadFile(file,cat);if(up.status!=="success")return alert("❌ Upload failed");
+        fileUrl=up.fileUrl;
     }
 
     const age=calculateAgeStrict(dob);
-    const user={name,guardian,relation,mobile,email,dob,institution,category,fee,age,fileUrl};
-    startPayment(user);
+    const user={name,guardian,relation,mobile,email,dob,institution,category:cat,fee,age,fileUrl};
+    pay(user);
 }
 
 /* PAYMENT */
-function startPayment(user){
-    var options={
-        key:RAZORPAY_KEY,
-        amount:user.fee*100,
-        currency:"INR",
-        name:"Competition Registration",
-        handler:function(res){
-            user.payment_id=res.razorpay_payment_id;
-            fetch(API_URL+"?action=register",{
-                method:"POST",
-                headers:{"Content-Type":"application/json"},
-                body:JSON.stringify(user)
-            }).then(r=>r.json()).then(data=>{
-                alert("🎉 Registration Successful! Code: "+data.code);
-                window.location.href=data.pdfUrl;
-            });
-        }
-    };
-    new Razorpay(options).open();
+function pay(user){
+const opt={
+key:RAZORPAY_KEY,amount:user.fee*100,currency:"INR",name:"Competition Registration",
+handler:r=>{user.payment_id=r.razorpay_payment_id;
+fetch(API_URL+"?action=register",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(user)})
+.then(r=>r.json()).then(d=>{alert("🎉 Registered! Code: "+d.code);window.location.href=d.pdfUrl;});}};
+new Razorpay(opt).open();
 }
 
-/* OTP PLACEHOLDER */
-function sendOTP(){ alert("📩 Connect SMS API / Firebase for OTP system."); }
+function sendOTP(){alert("📩 Connect SMS API / Firebase OTP here");}
 </script>
 
 </body>
