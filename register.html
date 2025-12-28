@@ -218,8 +218,14 @@ return fetch(API_URL+"?action=upload",{method:"POST",body:fd})
   if (!file) {
     return { status: "error", message: "⚠ File not found in browser" };
   }
+const buffer = await file.arrayBuffer();
+const res = await fetch(API_URL + `?action=upload&filename=${file.name}`, {
+  method: "POST",
+  headers: { "Content-Type": "application/octet-stream" },
+  body: buffer
+});
 
-  const buffer = await file.arrayBuffer();
+  /*const buffer = await file.arrayBuffer();
   const url = API_URL + `?action=upload&filename=${encodeURIComponent(file.name)}&category=${category}`;
 
   const res = await fetch(url, {
@@ -228,7 +234,7 @@ return fetch(API_URL+"?action=upload",{method:"POST",body:fd})
       "Content-Type": "application/octet-stream"
     },
     body: buffer
-  });
+  });*/
 
   const text = await res.text();
   try {
