@@ -1,114 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Competition Registration</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
-<style>
-body{font-family: Arial, sans-serif;background:#eef1f5;margin:0;padding:0;}
-.container{
-    width:95%;max-width:600px;margin:40px auto;background:white;
-    padding:30px;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.1);
-}
-h2{text-align:center;font-size:26px;margin-bottom:20px;}
-label{display:block;margin:10px 0 5px;font-weight:600;}
-input, select{
-    width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;
-    background:#f8f9fb;font-size:16px;
-}
-.category-list{
-    border:1px solid #ddd;border-radius:10px;background:#fafafa;
-    padding:10px 15px;margin-top:8px;
-}
-.cat-row{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:10px 0;border-bottom:1px solid #eee;font-size:15px;
-}
-.cat-row:last-child{border-bottom:none;}
-.cat-row input[type=radio]{width:22px;height:22px;cursor:pointer;}
-button{
-    width:100%;padding:15px;background:#0D6EFD;color:white;border:none;
-    border-radius:10px;font-size:18px;font-weight:bold;cursor:pointer;margin-top:20px;
-}
-button:hover{background:#094eb3;}
-.terms-row{display:flex;align-items:center;gap:10px;margin-top:15px;font-size:15px;}
-.terms-row input{width:20px;height:20px;}
-.terms-row a{color:#0d6efd;font-weight:600;text-decoration:none;}
-.error-msg{color:red;font-size:14px;margin-top:4px;font-weight:600;}
-input.invalid{border:2px solid red !important;}
-.notice{text-align:center;font-size:14px;margin-top:15px;line-height:1.5;color:#444;}
-
-@media(max-width:480px){
- .container{padding:20px;}h2{font-size:22px;}
- input,select,button{font-size:16px;} .cat-row{font-size:14px;}
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-<h2>Competition Registration</h2>
-
-<label>Name *</label>
-<input type="text" id="name">
-
-<label>Guardian Name *</label>
-<input type="text" id="guardian">
-
-<label>Relation With Guardian *</label>
-<select id="relation">
-<option value="">-- Select Relation --</option>
-<option value="Father">Father</option>
-<option value="Mother">Mother</option>
-<option value="Other">Other</option>
-</select>
-
-<label>Mobile No. (OTP Verify) *</label>
-<input type="text" id="mobile">
-<button onclick="sendOTP()">Send OTP</button>
-<input type="text" id="otp" placeholder="Enter OTP">
-
-<label>Email *</label>
-<input type="email" id="email">
-
-<label>Date of Birth *</label>
-<input type="date" id="dob" oninput="liveDOBCheck()">
-<div id="dobError" class="error-msg"></div>
-
-<label>School / College / Institution (Optional)</label>
-<input type="text" id="institution" placeholder="Optional">
-
-<label>Category *</label>
-<div class="category-list" id="categorySection">
-<div class="cat-row"><span>Art & Craft (11-25 yrs) - ₹150</span><input type="radio" name="cat" value="Art & Craft"></div>
-<div class="cat-row"><span>Recitation (11-25 yrs) - ₹150</span><input type="radio" name="cat" value="Recitation"></div>
-<div class="cat-row"><span>Music (6-25 yrs) - ₹200</span><input type="radio" name="cat" value="Music"></div>
-<div class="cat-row"><span>Dance (6-25 yrs) - ₹200</span><input type="radio" name="cat" value="Dance"></div>
-<div class="cat-row"><span>Quiz (11-25 yrs) - ₹100 (No File Upload)</span><input type="radio" name="cat" value="Quiz"></div>
-</div>
-
-<label>Performance File (Not Needed For Quiz)</label>
-<input type="file" id="performance" accept="video/*,audio/*,image/*">
-
-<div class="terms-row">
-<input type="checkbox" id="terms">
-<label for="terms">I agree to <a href="terms.html" target="_blank">Terms & Conditions & Digital Consent</a></label>
-</div>
-
-<button onclick="submitForm()">Submit & Pay</button>
-
-<p class="notice">
-⚠ Age eligibility: Strictly **6 to 25 years** on **01-Jan-2026**.<br>
-❌ Even **6y + 1 day** or **25y + 1 day** is NOT allowed.<br>
-📅 **Allowed DOB → 01/01/2000 to 01/01/2020**
-</p>
-</div>
-
-
 <script>
 /* 🔥 UPDATED API */
 const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev";
@@ -147,14 +36,14 @@ function hideAll(){document.querySelectorAll(".cat-row").forEach(r=>r.style.disp
 /* FEE SYSTEM */
 function getFee(c){return c==="Quiz"?100:(c==="Dance"||c==="Music"?200:150);}
 
-/* FILE UPLOAD */
+/* FILE UPLOAD (FIXED JSON ISSUE) */
 async function uploadFile(file,cat){
     const fd=new FormData();fd.append("file",file);fd.append("category",cat);
-    const res=await fetch(API_URL+"?action=upload",{method:"POST",body:fd});
-    return res.json();
+    return fetch(API_URL+"?action=upload",{method:"POST",body:fd})
+    .then(r=>r.text()).then(t=>JSON.parse(t));
 }
 
-/* SUBMIT FORM */
+/* SUBMIT FORM (FIXED JSON ISSUE) */
 async function submitForm(){
     if(document.getElementById("dobError").innerHTML!=="")return alert("❌ Fix DOB first");
     const dobV=document.getElementById("dob").value.trim(),
@@ -186,7 +75,7 @@ async function submitForm(){
     payNow(user);
 }
 
-/* RAZORPAY PAYMENT */
+/* RAZORPAY PAYMENT (FIXED JSON ISSUE) */
 function payNow(user){
 const opt={
     key:RAZORPAY_KEY,amount:user.fee*100,currency:"INR",name:"Competition Registration",
@@ -196,11 +85,14 @@ const opt={
             method:"POST",headers:{"Content-Type":"application/json"},
             body:JSON.stringify(user)
         })
-        .then(r=>r.json())
-        .then(d=>{if(d.status==="success"){
-            alert("🎉 Registered Successfully!\nCode: "+d.code);
-            window.location.href="success.html?code="+d.code+"&pdf="+d.pdfUrl;
-        } else alert("❌ "+d.message);});
+        .then(r=>r.text())          // <- FIXED
+        .then(t=>JSON.parse(t))     // <- FIXED JSON PARSE
+        .then(d=>{
+            if(d.status==="success"){
+                alert("🎉 Registered Successfully!\nCode: "+d.code);
+                window.location.href="success.html?code="+d.code+"&pdf="+d.pdfUrl;
+            } else alert("❌ "+d.message);
+        });
     }
 };
 new Razorpay(opt).open();
@@ -209,7 +101,3 @@ new Razorpay(opt).open();
 /* TEMPORARY OTP */
 function sendOTP(){alert("📩 OTP will be added after SMS gateway setup.");}
 </script>
-
-
-</body>
-</html>
