@@ -188,20 +188,30 @@ return fetch(API_URL+"?action=upload",{method:"POST",body:fd})
   catch (err) { return { status: "error", message: "Invalid server response", raw: text }; }
 }
 */
-  async function uploadFile(file, category) {
-  const buffer = await file.arrayBuffer();
-  const url = API_URL + "?action=upload&filename=" + encodeURIComponent(file.name) + "&category=" + encodeURIComponent(category);
+async function uploadFile(file, category) {
+  if (!file) {
+    return { status: "error", message: "No file selected" };
+  }
+
+  // Read file as binary
+  const arrayBuffer = await file.arrayBuffer();
+  const binary = new Uint8Array(arrayBuffer);
+
+  const url = `${API_URL}?action=upload&filename=${encodeURIComponent(file.name)}&category=${encodeURIComponent(category)}`;
 
   const res = await fetch(url, {
     method: "POST",
-    headers: { "Content-Type": "application/octet-stream" },
-    body: buffer
+    headers: {
+      "Content-Type": "application/octet-stream"
+    },
+    body: binary // IMPORTANT: send binary, not FormData
   });
 
   const text = await res.text();
   try { return JSON.parse(text); }
-  catch (err) { return { status:"error", raw:text }; }
+  catch { return { status: "error", raw: text }; }
 }
+
 
 
 /* SUBMIT */
@@ -220,11 +230,19 @@ if(!cat)return alert("⚠ Select category");
 if(!terms.checked)return alert("⚠ Accept Terms first");
 
 let f=fee(cat), age=getAge(dobF), fileUrl="No Upload";
-if(cat!=="Quiz"){
-let file=document.getElementById("performance").files[0];
-if(!file)return alert("⚠ Upload required"); let up=await uploadFile(file,cat);
-if(up.status!=="success")return alert("❌ Upload failed"); fileUrl=up.fileUrl;
-}
+  if (cat !== "Quiz") {
+    const file = document.getElementById("performance").files[0];
+    if (!file) return alert("⚠ Please upload a file before submitting.");
+
+    let uploadResponse = await uploadFile(file, cat);
+    console.log("Upload Response:", uploadResponse);
+
+    if (uploadResponse.status !== "success") {
+      return alert("❌ Upload Failed: " + uploadResponse.message);
+    }
+
+    fileUrl = uploadResponse.fileUrl;
+  }
 
 let data={name:nameF,guardian:guardF,relation:relF,mobile:mobF,email:emailF,
 dob:dobF,institution:instF,category:cat,fee:f,age,fileUrl};
