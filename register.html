@@ -161,7 +161,7 @@ const RAZORPAY_KEY="rzp_live_Rj6ceV2avDzdlC";
 /* AGE CALC */
 function calculateAge(dob){
     const d=new Date(dob);
-    const check=new Date("2026-04-01");
+    const check=new Date("2026-01-01");
     let age=check.getFullYear()-d.getFullYear();
     const m=check.getMonth()-d.getMonth();
     if(m<0||(m===0&&check.getDate()<d.getDate())) age--;
