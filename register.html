@@ -48,7 +48,6 @@ input, select{
     width:22px; height:22px; cursor:pointer;
 }
 
-/* BUTTON */
 button{
     width:100%; padding:15px;
     background:#0D6EFD; color:white;
@@ -58,7 +57,6 @@ button{
 }
 button:hover{background:#094eb3;}
 
-/* TERMS */
 .terms-row{
     display:flex; align-items:center;
     gap:10px; margin-top:15px; font-size:15px;
@@ -72,18 +70,14 @@ button:hover{background:#094eb3;}
     margin-top:15px; line-height:1.5; text-align:center;
 }
 
-/* ERROR MESSAGE */
 .error-msg{
     color:red;
     font-size:14px;
     margin-top:4px;
     font-weight:600;
 }
-
-/* RED BORDER ON INVALID */
 input.invalid{border:2px solid red !important;}
 
-/* MOBILE RESPONSIVE */
 @media(max-width:480px){
     .container{padding:20px;}
     h2{font-size:22px;}
@@ -128,7 +122,7 @@ input.invalid{border:2px solid red !important;}
 <input type="text" id="institution" placeholder="(Optional)">
 
 <label>Category *</label>
-<div class="category-list">
+<div class="category-list" id="categorySection">
     <div class="cat-row"><span>Art & Craft (11-25 yrs) - ₹150</span><input type="radio" name="cat" value="Art & Craft"></div>
     <div class="cat-row"><span>Recitation (11-25 yrs) - ₹150</span><input type="radio" name="cat" value="Recitation"></div>
     <div class="cat-row"><span>Music (6-25 yrs) - ₹200</span><input type="radio" name="cat" value="Music"></div>
@@ -147,9 +141,9 @@ input.invalid{border:2px solid red !important;}
 <button onclick="submitForm()">Submit & Pay</button>
 
 <p class="notice">
-⚠ Age eligibility: Strictly <b>6 to 25 years</b> as of <b>01-Jan-2026</b>. <br>
-❌ Even 6y+1day or 25y+1day is not allowed. <br>
-📌 <b>Registrations valid till January 1st.</b>
+⚠ Strict age eligibility: <b>6 to 25 years</b> on <b>01-Jan-2026</b> only.<br>
+❌ Even **6y + 1 day** or **25y + 1 day** is NOT allowed.<br>
+📌 Registration valid till January 1st.
 </p>
 </div>
 
@@ -157,53 +151,75 @@ input.invalid{border:2px solid red !important;}
 
 <script>
 /* CONFIG */
-const API_URL="https://api.ssmctrust.org";
+const API_URL="https://api.ssmctrust.org"; 
 const RAZORPAY_KEY="rzp_live_Rj6ceV2avDzdlC";
 
-/* STRICT AGE CALCULATION AS OF 1 JAN 2026 */
+/* STRICT CALENDAR AGE RANGE CHECK (01/01/2000 - 01/01/2020) */
+function strictDateCheck(dob){
+    const d = new Date(dob);
+    const min = new Date("2000-01-01"); // 25 years cutoff
+    const max = new Date("2020-01-01"); // 6 years cutoff
+
+    if(d < min) return "❌ Age above 25 years is not allowed (before 01/01/2000)";
+    if(d > max) return "❌ Age below 6 years is not allowed (after 01/01/2020)";
+    return "";
+}
+
+/* EXACT AGE CALCULATION FOR 01-JAN-2026 */
 function calculateAgeStrict(dob){
     const birth = new Date(dob);
-    const ref = new Date("2026-01-01"); 
+    const ref = new Date("2026-01-01");
     let age = ref.getFullYear() - birth.getFullYear();
     const m = ref.getMonth() - birth.getMonth();
-    const d = ref.getDate() - birth.getDate();
-    if(m < 0 || (m === 0 && d < 0)) age--;
+    const da = ref.getDate() - birth.getDate();
+    if(m < 0 || (m === 0 && da < 0)) age--;
     return age;
+}
+
+/* SHOW/HIDE CATEGORIES BASED ON AGE */
+function toggleCategories(mode){
+    const rows = document.querySelectorAll(".cat-row");
+    rows.forEach(r => r.style.display="none");
+
+    if(mode === "musicdance"){
+        document.querySelector('[value="Music"]').parentNode.style.display="flex";
+        document.querySelector('[value="Dance"]').parentNode.style.display="flex";
+    }
+    if(mode === "all"){
+        rows.forEach(r => r.style.display="flex");
+    }
+    if(mode === "none"){
+        rows.forEach(r => r.style.display="none");
+    }
 }
 
 /* LIVE DOB CHECK */
 function liveDOBCheck(){
-    let dob=document.getElementById("dob").value;
-    let category=document.querySelector("input[name='cat']:checked")?.value;
-    let age=calculateAgeStrict(dob);
-    let msg=document.getElementById("dobError");
-    let dobInput=document.getElementById("dob");
-
-    msg.innerHTML=""; dobInput.classList.remove("invalid");
+    let dob = document.getElementById("dob").value;
+    let msg = document.getElementById("dobError");
+    let input = document.getElementById("dob");
+    msg.innerHTML = "";
+    input.classList.remove("invalid");
     if(!dob) return;
 
-    // STRICT RULES
-    if(age < 6){
-        msg.innerHTML="❌ Minimum age must be exactly 6 years by 01-Jan-2026.";
-        dobInput.classList.add("invalid");
-        return;
-    }
-    if(age > 25){
-        msg.innerHTML="❌ Maximum age allowed is 25 years as of 01-Jan-2026.";
-        dobInput.classList.add("invalid");
+    let dateCheck = strictDateCheck(dob);
+    if(dateCheck){
+        msg.innerHTML = dateCheck;
+        input.classList.add("invalid");
+        toggleCategories("none");
         return;
     }
 
-    // CATEGORY LIMITS
-    if(["Art & Craft","Recitation","Quiz"].includes(category) && age < 11){
-        msg.innerHTML="❌ This category requires age between 11–25 years.";
-        dobInput.classList.add("invalid");
+    let age = calculateAgeStrict(dob);
+
+    if(age >= 6 && age < 11){
+        msg.innerHTML = "ℹ Age 6–10 → Only Music & Dance allowed.";
+        toggleCategories("musicdance");
         return;
     }
-
-    if(["Music","Dance"].includes(category) && age < 6){
-        msg.innerHTML="❌ Dance/Music requires minimum age 6 years.";
-        dobInput.classList.add("invalid");
+    if(age >= 11 && age <= 25){
+        msg.innerHTML = "";
+        toggleCategories("all");
         return;
     }
 }
@@ -213,7 +229,7 @@ function getFee(c){
     return c==="Quiz"?100:(c==="Dance"||c==="Music"?200:150);
 }
 
-/* UPLOAD */
+/* FILE UPLOAD */
 async function uploadFile(file,category){
     const fd=new FormData();
     fd.append("file",file);
@@ -224,7 +240,6 @@ async function uploadFile(file,category){
 /* SUBMIT FORM */
 async function submitForm(){
     let dob=document.getElementById("dob").value;
-    let age=calculateAgeStrict(dob);
     let msg=document.getElementById("dobError");
     if(msg.innerHTML!=="") return;
 
@@ -251,6 +266,7 @@ async function submitForm(){
         fileUrl=res.fileUrl;
     }
 
+    const age=calculateAgeStrict(dob);
     const user={name,guardian,relation,mobile,email,dob,institution,category,fee,age,fileUrl};
     startPayment(user);
 }
@@ -278,7 +294,7 @@ function startPayment(user){
 }
 
 /* OTP PLACEHOLDER */
-function sendOTP(){ alert("🔔 Connect SMS API / Firebase for OTP"); }
+function sendOTP(){ alert("📩 Connect SMS API / Firebase for OTP system."); }
 </script>
 
 </body>
