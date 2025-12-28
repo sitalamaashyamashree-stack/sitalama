@@ -110,146 +110,104 @@ input.invalid{border:2px solid red !important;}
 
 
 <script>
-/* 🔥 UPDATE API & PAYMENT */
-const API_URL = "https://register-worker.sitalamaashyamasree.workers.dev";
+/* 🔥 UPDATED API */
+const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev";
 const RAZORPAY_KEY = "rzp_live_Rj6ceV2avDzdlC";
 
-/* STRICT DOB RULES */
+/* STRICT DOB RULES & AGE CHECK CALC */
 function strictDateCheck(dob){
-    const input = new Date(dob);
-    const min = new Date("2000-01-01");
-    const max = new Date("2020-01-01");
-
-    if(input < min) return "❌ Age above 25 is not allowed (DOB before 01/01/2000)";
-    if(input > max) return "❌ Age below 6 is not allowed (DOB after 01/01/2020)";
-    if(input.getFullYear()===2000 && input>min) return "❌ 25y +1 day not allowed";
-    if(input.getFullYear()===2020 && input>max) return "❌ 6y +1 day not allowed";
-    return "";
+    const input=new Date(dob),min=new Date("2000-01-01"),max=new Date("2020-01-01");
+    if(input<min)return"❌ Age above 25 not allowed (DOB before 01/01/2000)";
+    if(input>max)return"❌ Age below 6 not allowed (DOB after 01/01/2020)";
+    if(input.getFullYear()===2000&&input>min)return"❌ 25y +1 day not allowed";
+    if(input.getFullYear()===2020&&input>max)return"❌ 6y +1 day not allowed";
+    return"";
 }
-
 function calculateAgeStrict(dob){
-    const b=new Date(dob), r=new Date("2026-01-01");
-    let a=r.getFullYear()-b.getFullYear(), m=r.getMonth()-b.getMonth(), d=r.getDate()-b.getDate();
-    if(m<0||(m===0&&d<0)) a--;
-    return a;
+    const b=new Date(dob),r=new Date("2026-01-01");
+    let a=r.getFullYear()-b.getFullYear(),m=r.getMonth()-b.getMonth(),d=r.getDate()-b.getDate();
+    if(m<0||(m===0&&d<0))a--;return a;
 }
 
-function toggleCategories(mode){
-    const rows=document.querySelectorAll(".cat-row");
-    rows.forEach(r=>r.style.display="none");
-    if(mode==="musicdance"){
-        document.querySelector('[value="Music"]').parentNode.style.display="flex";
-        document.querySelector('[value="Dance"]').parentNode.style.display="flex";
-    }
-    if(mode==="all"){rows.forEach(r=>r.style.display="flex");}
-}
-
+/* CATEGORY VISIBILITY BY AGE */
 function liveDOBCheck(){
-    const dobValue=document.getElementById("dob").value;
-    const msg=document.getElementById("dobError");
-    const dobField=document.getElementById("dob");
-    msg.innerHTML=""; dobField.classList.remove("invalid");
-    if(!dobValue) return;
-
-    let check=strictDateCheck(dobValue);
-    if(check!==""){
-        msg.innerHTML=check;
-        dobField.classList.add("invalid");
-        toggleCategories("none");
-        return;
-    }
-
-    let age=calculateAgeStrict(dobValue);
-    if(age>=6 && age<11){ toggleCategories("musicdance"); return; }
-    if(age>=11 && age<=25){ toggleCategories("all"); return; }
+    let d=document.getElementById("dob").value,e=document.getElementById("dobError"),i=document.getElementById("dob");
+    e.innerHTML="";i.classList.remove("invalid");if(!d)return;
+    let chk=strictDateCheck(d);if(chk!==""){e.innerHTML=chk;i.classList.add("invalid");hideAll();return;}
+    let age=calculateAgeStrict(d);age<11?showLimited():showAll();
 }
-
-function getFee(c){
-    return c==="Quiz"?100:(c==="Dance"||c==="Music"?200:150);
+function showLimited(){
+    document.querySelectorAll(".cat-row").forEach(r=>r.style.display="none");
+    document.querySelector('[value="Music"]').parentNode.style.display="flex";
+    document.querySelector('[value="Dance"]').parentNode.style.display="flex";
 }
+function showAll(){document.querySelectorAll(".cat-row").forEach(r=>r.style.display="flex");}
+function hideAll(){document.querySelectorAll(".cat-row").forEach(r=>r.style.display="none");}
 
+/* FEE SYSTEM */
+function getFee(c){return c==="Quiz"?100:(c==="Dance"||c==="Music"?200:150);}
+
+/* FILE UPLOAD */
 async function uploadFile(file,cat){
-    const fd=new FormData();
-    fd.append("file",file);
-    fd.append("category",cat);
-    let res = await fetch(API_URL+"?action=upload",{method:"POST",body:fd});
+    const fd=new FormData();fd.append("file",file);fd.append("category",cat);
+    const res=await fetch(API_URL+"?action=upload",{method:"POST",body:fd});
     return res.json();
 }
 
+/* SUBMIT FORM */
 async function submitForm(){
-    if(document.getElementById("dobError").innerHTML!=="") return alert("❌ Fix DOB first");
+    if(document.getElementById("dobError").innerHTML!=="")return alert("❌ Fix DOB first");
+    const dobV=document.getElementById("dob").value.trim(),
+    nameV=document.getElementById("name").value.trim(),
+    guardV=document.getElementById("guardian").value.trim(),
+    relV=document.getElementById("relation").value.trim(),
+    mobV=document.getElementById("mobile").value.trim(),
+    emailV=document.getElementById("email").value.trim(),
+    instV=document.getElementById("institution").value.trim()||"Not Provided",
+    cat=document.querySelector("input[name='cat']:checked")?.value;
 
-    const dobValue=document.getElementById("dob").value.trim();
-    const nameValue=document.getElementById("name").value.trim();
-    const guardianValue=document.getElementById("guardian").value.trim();
-    const relationValue=document.getElementById("relation").value.trim();
-    const mobileValue=document.getElementById("mobile").value.trim();
-    const emailValue=document.getElementById("email").value.trim();
-    const institutionValue=document.getElementById("institution").value.trim() || "Not Provided";
-    const cat=document.querySelector("input[name='cat']:checked")?.value;
+    if(!nameV||!guardV||!relV||!mobV||!dobV)return alert("⚠ Fill required fields");
+    if(!cat)return alert("⚠ Select a category");
+    if(!terms.checked)return alert("⚠ Accept Terms & Conditions");
 
-    if(!nameValue||!guardianValue||!relationValue||!mobileValue||!dobValue)
-        return alert("⚠ All mandatory fields must be filled");
-    if(!cat) return alert("⚠ Select a category");
-    if(!terms.checked) return alert("⚠ Accept Terms & Conditions first");
-
-    const fee=getFee(cat); let fileUrl="No Upload Needed";
-
+    const fee=getFee(cat);let fileUrl="No Upload Needed";
     if(cat!=="Quiz"){
-        const file=document.getElementById("performance").files[0];
-        if(!file) return alert("⚠ Upload performance file");
-        const upload=await uploadFile(file,cat);
-        if(upload.status!=="success") return alert("❌ Upload failed, try again");
-        fileUrl=upload.fileUrl;
+        const f=document.getElementById("performance").files[0];
+        if(!f)return alert("⚠ Upload performance file");
+        const up=await uploadFile(f,cat);
+        if(up.status!=="success")return alert("❌ Upload error");fileUrl=up.fileUrl;
     }
 
-    const age=calculateAgeStrict(dobValue);
-    const userData={
-        name:nameValue,
-        guardian:guardianValue,
-        relation:relationValue,
-        mobile:mobileValue,
-        email:emailValue,
-        dob:dobValue,
-        institution:institutionValue,
-        category:cat,
-        fee,
-        age,
-        fileUrl
+    const user={
+        name:nameV, guardian:guardV, relation:relV,
+        mobile:mobV, email:emailV, dob:dobV, institution:instV,
+        category:cat, fee, age:calculateAgeStrict(dobV), fileUrl
     };
-
-    pay(userData);
+    payNow(user);
 }
 
-function pay(user){
-const options={
-    key:RAZORPAY_KEY,
-    amount:user.fee*100,
-    currency:"INR",
-    name:"Competition Registration",
-    handler:function(response){
-        user.payment_id=response.razorpay_payment_id;
-
+/* RAZORPAY PAYMENT */
+function payNow(user){
+const opt={
+    key:RAZORPAY_KEY,amount:user.fee*100,currency:"INR",name:"Competition Registration",
+    handler:function(r){
+        user.payment_id=r.razorpay_payment_id;
         fetch(API_URL+"?action=register",{
-            method:"POST",
-            headers:{"Content-Type":"application/json"},
+            method:"POST",headers:{"Content-Type":"application/json"},
             body:JSON.stringify(user)
         })
-        .then(res=>res.json())
-        .then(data=>{
-            if(data.status==="success"){
-                alert("🎉 Registration Completed!\nCode: "+data.code);
-                window.location.href="success.html?code="+data.code+"&pdf="+data.pdfUrl;
-            } else {
-                alert("❌ "+data.message);
-            }
-        });
+        .then(r=>r.json())
+        .then(d=>{if(d.status==="success"){
+            alert("🎉 Registered Successfully!\nCode: "+d.code);
+            window.location.href="success.html?code="+d.code+"&pdf="+d.pdfUrl;
+        } else alert("❌ "+d.message);});
     }
 };
-new Razorpay(options).open();
+new Razorpay(opt).open();
 }
 
-function sendOTP(){ alert("🔐 OTP system will be added soon"); }
+/* TEMPORARY OTP */
+function sendOTP(){alert("📩 OTP will be added after SMS gateway setup.");}
 </script>
 
 
