@@ -183,7 +183,80 @@ return await r.json();
 /* ----------------------------------
    📩 SUBMIT + PAYMENT
 ---------------------------------- */
-async function submitForm(){
+  async function submitForm(){
+
+  // 🔧 FIX: CONNECT INPUT FIELDS FIRST
+  const nameField        = document.getElementById("name");
+  const guardianField    = document.getElementById("guardian");
+  const relationField    = document.getElementById("relation");
+  const mobileField      = document.getElementById("mobile");
+  const emailField       = document.getElementById("email");
+  const dobField         = document.getElementById("dob");
+  const institutionField = document.getElementById("institution");
+
+  let data = {
+    name:        nameField?.value.trim(),
+    guardian:    guardianField?.value.trim(),
+    relation:    relationField?.value.trim(),
+    mobile:      mobileField?.value.trim(),
+    email:       emailField?.value.trim(),
+    dob:         dobField?.value.trim(),
+    institution: institutionField?.value.trim() || "Not Provided",
+    category:    document.querySelector("input[name='cat']:checked")?.value
+  };
+
+  // 🛑 Required field checks
+  if(!data.name || !data.guardian || !data.relation || !data.mobile || !data.dob)
+    return alert("⚠ Fill all required fields first");
+  if(!data.category)
+    return alert("⚠ Select a category");
+  if(!terms.checked)
+    return alert("⚠ Accept Terms First");
+
+  data.fee = fee(data.category);
+  data.age = getAge(data.dob);
+  data.fileUrl = "No Upload";
+
+  // 📩 FILE UPLOAD (if not Quiz)
+  if(data.category !== "Quiz"){
+    const file = document.getElementById("performance").files[0];
+    if(!file) return alert("⚠ Please upload file");
+    let up = await uploadFile(file, data.category);
+    if(up.status !== "success") return alert("❌ Upload Failed: "+up.message);
+    data.fileUrl = up.fileUrl;
+  }
+
+  // 💳 PAYMENT BLOCK
+  let rz = new Razorpay({
+    key: RAZORPAY_KEY,
+    amount: data.fee * 100,
+    name: "Competition Registration",
+    handler: (r)=>{
+
+      data.payment_id = r.razorpay_payment_id;
+
+      fetch(API_URL+"?action=register",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify(data)
+      })
+      .then(r=>r.json())
+      .then(x=>{
+        if(x.status === "success"){
+          alert("🎉 Registered! Code: "+x.code);
+          window.location = "success.html?code="+x.code+"&pdf="+x.pdfUrl;
+        } else {
+          alert("❌ "+x.message);
+        }
+      });
+
+    }
+  });
+
+  rz.open();
+}
+
+/*async function submitForm(){
 
 let data={
  name:name.value.trim(),
@@ -231,7 +304,7 @@ let rz=new Razorpay({
  }
 });
 rz.open();
-}
+}*/
 </script>
 
 </body>
