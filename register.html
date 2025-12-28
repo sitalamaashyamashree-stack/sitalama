@@ -110,9 +110,9 @@ input.invalid{border:2px solid red !important;}
 
 
 <script>
-/* 🔥 UPDATE APIS HERE */
+/* 🔥 UPDATE API & PAYMENT */
 const API_URL = "https://register-worker.sitalamaashyamasree.workers.dev";
-const RAZORPAY_KEY="rzp_live_Rj6ceV2avDzdlC";
+const RAZORPAY_KEY = "rzp_live_Rj6ceV2avDzdlC";
 
 /* STRICT DOB RULES */
 function strictDateCheck(dob){
@@ -120,17 +120,18 @@ function strictDateCheck(dob){
     const min = new Date("2000-01-01");
     const max = new Date("2020-01-01");
 
-    if(input < min) return "❌ Age above 25 not allowed (DOB before 01/01/2000)";
-    if(input > max) return "❌ Age below 6 not allowed (DOB after 01/01/2020)";
-    if(input.getFullYear()===2000 && input>min) return "❌ 25y + 1 day not allowed";
-    if(input.getFullYear()===2020 && input>max) return "❌ 6y + 1 day not allowed";
+    if(input < min) return "❌ Age above 25 is not allowed (DOB before 01/01/2000)";
+    if(input > max) return "❌ Age below 6 is not allowed (DOB after 01/01/2020)";
+    if(input.getFullYear()===2000 && input>min) return "❌ 25y +1 day not allowed";
+    if(input.getFullYear()===2020 && input>max) return "❌ 6y +1 day not allowed";
     return "";
 }
 
 function calculateAgeStrict(dob){
     const b=new Date(dob), r=new Date("2026-01-01");
     let a=r.getFullYear()-b.getFullYear(), m=r.getMonth()-b.getMonth(), d=r.getDate()-b.getDate();
-    if(m<0||(m===0&&d<0))a--;return a;
+    if(m<0||(m===0&&d<0)) a--;
+    return a;
 }
 
 function toggleCategories(mode){
@@ -144,65 +145,113 @@ function toggleCategories(mode){
 }
 
 function liveDOBCheck(){
-    let dob=document.getElementById("dob").value;
-    let msg=document.getElementById("dobError");
-    let input=document.getElementById("dob");
-    msg.innerHTML="";input.classList.remove("invalid");
-    if(!dob)return;
+    const dobValue=document.getElementById("dob").value;
+    const msg=document.getElementById("dobError");
+    const dobField=document.getElementById("dob");
+    msg.innerHTML=""; dobField.classList.remove("invalid");
+    if(!dobValue) return;
 
-    let chk=strictDateCheck(dob);
-    if(chk!==""){msg.innerHTML=chk;input.classList.add("invalid");toggleCategories("none");return;}
+    let check=strictDateCheck(dobValue);
+    if(check!==""){
+        msg.innerHTML=check;
+        dobField.classList.add("invalid");
+        toggleCategories("none");
+        return;
+    }
 
-    let age=calculateAgeStrict(dob);
-    if(age>=6 && age<11){toggleCategories("musicdance");return;}
-    if(age>=11 && age<=25){toggleCategories("all");return;}
+    let age=calculateAgeStrict(dobValue);
+    if(age>=6 && age<11){ toggleCategories("musicdance"); return; }
+    if(age>=11 && age<=25){ toggleCategories("all"); return; }
 }
 
-function getFee(c){return c==="Quiz"?100:(c==="Dance"||c==="Music"?200:150);}
+function getFee(c){
+    return c==="Quiz"?100:(c==="Dance"||c==="Music"?200:150);
+}
 
 async function uploadFile(file,cat){
-    const fd=new FormData();fd.append("file",file);fd.append("category",cat);
-    return await fetch(API_URL+"?action=upload",{method:"POST",body:fd}).then(r=>r.json());
+    const fd=new FormData();
+    fd.append("file",file);
+    fd.append("category",cat);
+    let res = await fetch(API_URL+"?action=upload",{method:"POST",body:fd});
+    return res.json();
 }
 
 async function submitForm(){
-    if(document.getElementById("dobError").innerHTML!=="")return;
-    const dob=dob.value.trim(), name=name.value.trim(), guardian=guardian.value.trim();
-    const relation=relation.value.trim(), mobile=mobile.value.trim(), email=email.value.trim();
-    const institution=document.getElementById("institution").value.trim()||"Not Provided";
+    if(document.getElementById("dobError").innerHTML!=="") return alert("❌ Fix DOB first");
+
+    const dobValue=document.getElementById("dob").value.trim();
+    const nameValue=document.getElementById("name").value.trim();
+    const guardianValue=document.getElementById("guardian").value.trim();
+    const relationValue=document.getElementById("relation").value.trim();
+    const mobileValue=document.getElementById("mobile").value.trim();
+    const emailValue=document.getElementById("email").value.trim();
+    const institutionValue=document.getElementById("institution").value.trim() || "Not Provided";
     const cat=document.querySelector("input[name='cat']:checked")?.value;
 
-    if(!name||!guardian||!relation||!mobile||!dob)return alert("⚠ Fill required fields");
-    if(!cat)return alert("⚠ Select category");
-    if(!terms.checked)return alert("⚠ Accept terms");
+    if(!nameValue||!guardianValue||!relationValue||!mobileValue||!dobValue)
+        return alert("⚠ All mandatory fields must be filled");
+    if(!cat) return alert("⚠ Select a category");
+    if(!terms.checked) return alert("⚠ Accept Terms & Conditions first");
 
-    const fee=getFee(cat);let fileUrl="No Upload Needed";
+    const fee=getFee(cat); let fileUrl="No Upload Needed";
+
     if(cat!=="Quiz"){
-        const file=performance.files[0];if(!file)return alert("⚠ Upload required");
-        const up=await uploadFile(file,cat);
-        if(up.status!=="success")return alert("❌ Upload failed");
-        fileUrl=up.fileUrl;
+        const file=document.getElementById("performance").files[0];
+        if(!file) return alert("⚠ Upload performance file");
+        const upload=await uploadFile(file,cat);
+        if(upload.status!=="success") return alert("❌ Upload failed, try again");
+        fileUrl=upload.fileUrl;
     }
 
-    const age=calculateAgeStrict(dob);
-    const user={name,guardian,relation,mobile,email,dob,institution,category:cat,fee,age,fileUrl};
-    pay(user);
+    const age=calculateAgeStrict(dobValue);
+    const userData={
+        name:nameValue,
+        guardian:guardianValue,
+        relation:relationValue,
+        mobile:mobileValue,
+        email:emailValue,
+        dob:dobValue,
+        institution:institutionValue,
+        category:cat,
+        fee,
+        age,
+        fileUrl
+    };
+
+    pay(userData);
 }
 
 function pay(user){
-const opt={
-key:RAZORPAY_KEY,amount:user.fee*100,currency:"INR",name:"Competition Registration",
-handler:r=>{user.payment_id=r.razorpay_payment_id;
-fetch(API_URL+"?action=register",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(user)})
-.then(r=>r.json()).then(d=>{
-alert("🎉 Registered! Code: "+d.code);
-window.location.href="success.html?code="+d.code+"&pdf="+d.pdfUrl;
-});}};
-new Razorpay(opt).open();
+const options={
+    key:RAZORPAY_KEY,
+    amount:user.fee*100,
+    currency:"INR",
+    name:"Competition Registration",
+    handler:function(response){
+        user.payment_id=response.razorpay_payment_id;
+
+        fetch(API_URL+"?action=register",{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(user)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            if(data.status==="success"){
+                alert("🎉 Registration Completed!\nCode: "+data.code);
+                window.location.href="success.html?code="+data.code+"&pdf="+data.pdfUrl;
+            } else {
+                alert("❌ "+data.message);
+            }
+        });
+    }
+};
+new Razorpay(options).open();
 }
 
-function sendOTP(){alert("📩 Add SMS OTP API here");}
+function sendOTP(){ alert("🔐 OTP system will be added soon"); }
 </script>
+
 
 </body>
 </html>
