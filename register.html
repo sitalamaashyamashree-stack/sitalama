@@ -3,278 +3,260 @@
 <head>
 <meta charset="UTF-8">
 <title>Competition Registration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <style>
-body {
+body{
     font-family: Arial, sans-serif;
-    background: #eef1f5;
-    margin: 0;
-    padding: 0;
+    background:#eef1f5;
+    margin:0; padding:0;
+}
+.container{
+    width:95%; max-width:600px;
+    margin:40px auto; background:white;
+    padding:30px; border-radius:16px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.1);
+}
+h2{text-align:center;font-size:26px;margin-bottom:20px;}
+label{display:block;margin:10px 0 5px;font-weight:600;}
+input, select{
+    width:100%; padding:12px;
+    border:1px solid #ccc; border-radius:8px;
+    background:#f8f9fb; font-size:16px;
 }
 
-.container {
-    width: 95%;
-    max-width: 600px;
-    margin: 40px auto;
-    background: #fff;
-    padding: 35px 40px;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+/* CATEGORY UI */
+.category-list{
+    border:1px solid #ddd;
+    border-radius:10px;
+    background:#fafafa;
+    padding:10px 15px;
+    margin-top:8px;
+}
+.cat-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 0;
+    border-bottom:1px solid #eee;
+    font-size:15px;
+}
+.cat-row:last-child{border-bottom:none;}
+.cat-row input[type="radio"]{
+    width:22px; height:22px; cursor:pointer;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    font-size: 28px;
-    color: #222;
-    font-weight: bold;
+/* BUTTON */
+button{
+    width:100%; padding:15px;
+    background:#0D6EFD; color:white;
+    border:none; border-radius:10px;
+    font-size:18px; font-weight:bold;
+    cursor:pointer; margin-top:20px;
+}
+button:hover{background:#094eb3;}
+
+/* TERMS */
+.terms-row{
+    display:flex; align-items:center;
+    gap:10px; margin-top:15px; font-size:15px;
+}
+.terms-row input{width:20px;height:20px;}
+.terms-row a{color:#0d6efd;font-weight:600;text-decoration:none;}
+.terms-row a:hover{text-decoration:underline;}
+
+.notice{
+    font-size:14px; color:#444;
+    margin-top:15px; line-height:1.5; text-align:center;
 }
 
-label {
-    display: block;
-    margin: 14px 0 6px 0;
-    font-weight: 600;
-    font-size: 15px;
-    color: #333;
+/* ERROR MESSAGE */
+.error-msg{
+    color:red;
+    font-size:14px;
+    margin-top:4px;
+    font-weight:600;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="date"] {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 15px;
-    outline: none;
-    background: #f8f9fb;
+/* MOBILE RESPONSIVE */
+@media(max-width:480px){
+    .container{padding:20px;}
+    h2{font-size:22px;}
+    input, select, button{font-size:16px;}
+    .cat-row{font-size:14px;}
 }
-
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="date"]:focus {
-    border-color: #0D6EFD;
-}
-
-.category {
-    margin-top: 10px;
-}
-
-.category label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: normal;
-    margin-top: 8px;
-    font-size: 15px;
-}
-
-input[type="radio"] {
-    width: 18px;
-    height: 18px;
-}
-
-#performance {
-    margin-top: 6px;
-    font-size: 15px;
-}
-
-button {
-    width: 100%;
-    padding: 16px;
-    background: #0D6EFD;
-    border: none;
-    color: white;
-    font-size: 18px;
-    border-radius: 10px;
-    margin-top: 30px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.2s;
-}
-
-button:hover {
-    background: #0a58ca;
-}
-
-.checkbox-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 15px;
-    font-size: 15px;
-}
-
-/* Responsive Fix */
-@media (max-width: 480px) {
-    .container {
-        padding: 20px;
-        margin: 20px;
-    }
-
-    h2 {
-        font-size: 22px;
-    }
-
-    button {
-        font-size: 16px;
-    }
-}
-
 </style>
 </head>
 
 <body>
 
 <div class="container">
-    <h2>Competition Registration Form</h2>
+<h2>Competition Registration</h2>
 
-    <label>Name *</label>
-    <input type="text" id="name">
+<label>Name *</label>
+<input type="text" id="name">
 
-    <label>Mobile *</label>
-    <input type="text" id="mobile">
+<label>Guardian Name *</label>
+<input type="text" id="guardian">
 
-    <label>Email</label>
-    <input type="email" id="email">
+<label>Relation With Guardian *</label>
+<select id="relation">
+    <option value="">-- Select Relation --</option>
+    <option value="Father">Father</option>
+    <option value="Mother">Mother</option>
+    <option value="Other">Other</option>
+</select>
 
-    <label>Date of Birth *</label>
-    <input type="date" id="dob">
+<label>Mobile No. (OTP Verify) *</label>
+<input type="text" id="mobile">
+<button onclick="sendOTP()">Send OTP</button>
+<input type="text" id="otp" placeholder="Enter OTP">
 
-    <label>Category *</label>
-    <div>
-        <label><input type="radio" name="cat" value="Art & Craft"> Art & Craft</label>
-        <label><input type="radio" name="cat" value="Dance"> Dance</label>
-        <label><input type="radio" name="cat" value="Music"> Music</label>
-        <label><input type="radio" name="cat" value="Recitation"> Recitation</label>
-        <label><input type="radio" name="cat" value="Quiz"> Quiz</label>
-    </div>
+<label>Email *</label>
+<input type="email" id="email">
 
-    <label>Upload File *</label>
-    <input type="file" id="performance" accept="video/*,audio/*">
+<label>Date of Birth *</label>
+<input type="date" id="dob" oninput="liveDOBCheck()">
+<div id="dobError" class="error-msg"></div>
 
-    <label><input type="checkbox" id="accept"> I accept Terms & Conditions *</label>
+<label>School / College / Institution (Optional)</label>
+<input type="text" id="institution" placeholder="Optional">
 
-    <button onclick="submitForm()">Submit & Pay</button>
+<label>Category *</label>
+<div class="category-list">
+    <div class="cat-row"><span>Art & Craft (11-25 yrs) - ₹150</span><input type="radio" name="cat" value="Art & Craft"></div>
+    <div class="cat-row"><span>Recitation (11-25 yrs) - ₹150</span><input type="radio" name="cat" value="Recitation"></div>
+    <div class="cat-row"><span>Music (6-14 & 14-25) - ₹200</span><input type="radio" name="cat" value="Music"></div>
+    <div class="cat-row"><span>Dance (6-14 & 14-25) - ₹200</span><input type="radio" name="cat" value="Dance"></div>
+    <div class="cat-row"><span>Quiz (11-25 yrs) - ₹100 (No File Upload)</span><input type="radio" name="cat" value="Quiz"></div>
 </div>
+
+<label>Performance File (Not Needed For Quiz)</label>
+<input type="file" id="performance" accept="video/*,audio/*,image/*">
+
+<div class="terms-row">
+    <input type="checkbox" id="terms">
+    <label for="terms">I agree to the <a href="terms.html" target="_blank">Terms & Conditions & Digital Consent</a></label>
+</div>
+
+<button onclick="submitForm()">Submit & Pay</button>
+
+<p class="notice">
+⚠ Age valid as of <b>01-Apr-2026</b>. Fees are non-refundable. <br>
+📌 <b>Registration valid till January 1st.</b>
+</p>
+</div>
+
 
 <script>
 /* CONFIG */
-const API_URL = "https://api.ssmctrust.org";
-const RAZORPAY_KEY = "rzp_live_Rj6ceV2avDzdlC";
+const API_URL="https://api.ssmctrust.org";
+const RAZORPAY_KEY="rzp_live_Rj6ceV2avDzdlC";
 
-/* ----------- AGE ----------- */
-function calculateAge(dob) {
-    const d = new Date(dob);
-    const base = new Date("2026-04-01");
-    let age = base.getFullYear() - d.getFullYear();
-    const m = base.getMonth() - d.getMonth();
-    if (m < 0 || (m === 0 && base.getDate() < d.getDate())) age--;
+/* AGE CALC FUNCTION */
+function calculateAge(dob){
+    const d=new Date(dob);
+    const check=new Date("2026-04-01");
+    let age=check.getFullYear()-d.getFullYear();
+    const m=check.getMonth()-d.getMonth();
+    if(m<0||(m===0&&check.getDate()<d.getDate())) age--;
     return age;
 }
 
-/* ----------- FEE ----------- */
-function getFee(cat) {
-    return (cat === "Dance" || cat === "Music") ? 250 : 150;
-}
+/* LIVE DOB CHECK (SHOW ERROR INSTANTLY) */
+function liveDOBCheck(){
+    let dob=document.getElementById("dob").value;
+    let category=document.querySelector("input[name='cat']:checked")?.value;
+    let age=calculateAge(dob);
+    let msg=document.getElementById("dobError");
 
-/* ----------- AGE GROUP ----------- */
-function getAgeGroup(cat, age) {
-    if (cat === "Dance" || cat === "Music")
-        return age <= 15 ? "6-15" : "15-30";
-    return "Open Group";
-}
+    msg.innerHTML=""; if(!dob) return;
 
-/* ----------- FILE UPLOAD (BASE64) ----------- */
-async function uploadPerformanceFile(file) {
-    const formData = new FormData();
-    formData.append("file", file);
+    if(age<6){ msg.innerHTML="❌ Minimum age required is 6 years."; return; }
+    if(age>30){ msg.innerHTML="❌ Maximum age allowed is 30 years."; return; }
 
-    const res = await fetch(API_URL + "?action=upload", {
-        method: "POST",
-        body: formData
-    });
-
-    const text = await res.text();
-
-    try {
-        return JSON.parse(text);
-    } catch (err) {
-        console.error("Upload returned non-JSON:", text);
-        throw "Upload failed — backend returned HTML instead of JSON";
+    if(category==="Quiz"||category==="Art & Craft"||category==="Recitation"){
+        if(age<11||age>25) msg.innerHTML="❌ Age must be 11–25 years for this category.";
+    }
+    if(category==="Dance"||category==="Music"){
+        if(age<6||age>25) msg.innerHTML="❌ Age must be 6–25 years for Dance/Music.";
     }
 }
 
+/* FEE RULES */
+function getFee(c){
+    return c==="Quiz"?100:(c==="Dance"||c==="Music"?200:150);
+}
 
-/* ----------- MAIN FUNCTION ----------- */
-async function submitForm() {
+/* UPLOAD */
+async function uploadFile(file,category){
+    const fd=new FormData();
+    fd.append("file",file);
+    fd.append("category",category);
+    return await fetch(API_URL+"?action=upload",{method:"POST",body:fd}).then(r=>r.json());
+}
 
-    const name = document.getElementById("name").value.trim();
-    const mobile = document.getElementById("mobile").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const dob = document.getElementById("dob").value;
+/* SUBMIT */
+async function submitForm(){
+    let dob=document.getElementById("dob").value;
+    let age=calculateAge(dob);
+    let category=document.querySelector("input[name='cat']:checked")?.value;
+    let msg=document.getElementById("dobError");
 
-    const catOpt = document.querySelector("input[name='cat']:checked");
-    if (!catOpt) return alert("Select category");
-    const category = catOpt.value;
+    if(msg.innerHTML!=="") return; // Prevent submission if red message exists
 
-    if (!name || !mobile || !dob) return alert("Fill all fields");
-    if (!document.getElementById("accept").checked) return alert("Accept Terms");
+    const name=name.value.trim();
+    const guardian=guardian.value.trim();
+    const relation=relation.value.trim();
+    const mobile=mobile.value.trim();
+    const email=email.value.trim();
+    const institution= document.getElementById("institution").value.trim() || "Not Provided";
 
-    const file = document.getElementById("performance").files[0];
-    if (!file) return alert("Upload a performance file");
+    if(!name||!guardian||!relation||!mobile||!dob) return alert("⚠ Required fields missing");
+    if(!category) return alert("⚠ Select a category");
+    if(!terms.checked) return alert("⚠ Accept terms to continue");
 
-    const age = calculateAge(dob);
-    if (age < 6 || age > 30) return alert("Age must be 6–30");
+    const fee=getFee(category);
+    let fileUrl="No Upload Needed";
 
-    const fee = getFee(category);
-    const ageGroup = getAgeGroup(category, age);
-
-    /* Upload file */
-    const uploadRes = await uploadPerformanceFile(file);
-    if (uploadRes.status !== "success") {
-        alert("Upload failed: " + uploadRes.message);
-        return;
+    if(category!=="Quiz"){
+        const file=document.getElementById("performance").files[0];
+        if(!file) return alert("⚠ Upload performance file required");
+        const res=await uploadFile(file,category);
+        if(res.status!=="success") return alert("❌ Upload failed");
+        fileUrl=res.fileUrl;
     }
 
-    const user = {
-        name, mobile, email, dob,
-        age, category, ageGroup, fee,
-        fileUrl: uploadRes.fileUrl
-    };
-
+    const user={name,guardian,relation,mobile,email,dob,institution,category,fee,age,fileUrl};
     startPayment(user);
 }
 
-/* ----------- PAYMENT ----------- */
-function startPayment(user) {
-
-    var options = {
-        key: RAZORPAY_KEY,
-        amount: user.fee * 100,
-        currency: "INR",
-        name: "Competition Registration",
-        handler: function (response) {
-            user.payment_id = response.razorpay_payment_id;
-
-            fetch(API_URL + "?action=register", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(user)
-            })
-            .then(res => res.json())
-            .then(data => {
-                alert("Registration Code: " + data.code);
-                window.open(data.pdfUrl, "_blank");
+/* PAYMENT */
+function startPayment(user){
+    var options={
+        key:RAZORPAY_KEY,
+        amount:user.fee*100,
+        currency:"INR",
+        name:"Competition Registration",
+        handler:function(res){
+            user.payment_id=res.razorpay_payment_id;
+            fetch(API_URL+"?action=register",{
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify(user)
+            }).then(r=>r.json()).then(data=>{
+                alert("🎉 Registration Successful! Code: "+data.code);
+                window.location.href=data.pdfUrl;
             });
         }
     };
-
-    var rzp = new Razorpay(options);
-    rzp.open();
+    new Razorpay(options).open();
 }
+
+/* OTP PLACEHOLDER */
+function sendOTP(){ alert("🔔 Connect SMS API / Firebase for OTP"); }
 </script>
 
 </body>
