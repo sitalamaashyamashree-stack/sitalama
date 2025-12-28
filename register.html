@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Competition Registration</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <style>
@@ -25,12 +24,9 @@ button{width:100%;padding:15px;background:#0D6EFD;color:white;border:none;
 border-radius:10px;font-size:18px;font-weight:bold;cursor:pointer;margin-top:20px;}
 button:hover{background:#094eb3;}
 .terms-row{display:flex;align-items:center;gap:10px;margin-top:15px;font-size:15px;}
-.terms-row input{width:18px;height:18px;}
-.terms-row a{color:#0d6efd;font-weight:600;text-decoration:none;}
 .error-msg{color:red;font-size:14px;margin-top:4px;font-weight:600;}
-input.invalid{border:2px solid red!important;}
-.notice{text-align:center;font-size:14px;margin-top:15px;color:#444;}
-@media(max-width:480px){input,select,button{font-size:16px;}}
+#ageDisplay{font-size:15px;margin-top:5px;color:#0d6efd;font-weight:600;}
+.invalid{border:2px solid red !important;}
 </style>
 </head>
 
@@ -47,11 +43,10 @@ input.invalid{border:2px solid red!important;}
 
 <label>Relation *</label>
 <select id="relation">
-<option value="">-- Select --</option>
-<option>Father</option><option>Mother</option><option>Other</option>
+<option value="">-- Select --</option><option>Father</option><option>Mother</option><option>Other</option>
 </select>
 
-<label>Mobile Number *</label>
+<label>Mobile No *</label>
 <input id="mobile" type="number"/>
 
 <label>Email *</label>
@@ -59,6 +54,7 @@ input.invalid{border:2px solid red!important;}
 
 <label>Date of Birth *</label>
 <input type="date" id="dob" oninput="liveDOBCheck()"/>
+<div id="ageDisplay"></div>
 <div id="dobError" class="error-msg"></div>
 
 <label>School / Institute (Optional)</label>
@@ -66,108 +62,143 @@ input.invalid{border:2px solid red!important;}
 
 <label>Category *</label>
 <div class="category-list">
-<div class="cat-row"><span>Art & Craft (11-25 yrs) - ₹150</span><input type="radio" name="cat" value="Art & Craft"></div>
-<div class="cat-row"><span>Recitation (11-25 yrs) - ₹150</span><input type="radio" name="cat" value="Recitation"></div>
-<div class="cat-row"><span>Music (6-25 yrs) - ₹200</span><input type="radio" name="cat" value="Music"></div>
-<div class="cat-row"><span>Dance (6-25 yrs) - ₹200</span><input type="radio" name="cat" value="Dance"></div>
-<div class="cat-row"><span>Quiz (11-25 yrs) - ₹100 (No File Upload)</span><input type="radio" name="cat" value="Quiz"></div>
+<div class="cat-row"><span>Art & Craft (11-25) - ₹150</span><input type="radio" name="cat" value="Art & Craft"></div>
+<div class="cat-row"><span>Recitation (11-25) - ₹150</span><input type="radio" name="cat" value="Recitation"></div>
+<div class="cat-row"><span>Music (6-25) - ₹200</span><input type="radio" name="cat" value="Music"></div>
+<div class="cat-row"><span>Dance (6-25) - ₹200</span><input type="radio" name="cat" value="Dance"></div>
+<div class="cat-row"><span>Quiz (11-25) - ₹100 (No File)</span><input type="radio" name="cat" value="Quiz"></div>
 </div>
 
-<label>Performance File (Not needed for Quiz)</label>
+<label>Performance File (not needed for Quiz)</label>
 <input type="file" id="performance" accept="video/*,image/*,audio/*"/>
 
 <div class="terms-row">
-<input type="checkbox" id="terms"/>
-<label>I agree to <a href="terms.html" target="_blank">Terms & Conditions & Digital Consent</a></label>
+<input type="checkbox" id="terms"/> 
+<label>I agree to <a href="terms.html" target="_blank">Terms & Conditions</a></label>
 </div>
 
 <button onclick="submitForm()">Submit & Pay</button>
 
-<p class="notice">
-⚠ Age eligibility: **6 to 25 years (strict)** as on **01-Jan-2026**<br>
-❌ Even **6y+1day or 25y+1day NOT allowed**<br>
+<p class="notice" style="text-align:center;margin-top:15px;">
+⚠ Strict Age: **6 to 25 years only** as on **01 Jan 2026**<br>
+❌ Even **6y+1day / 25y+1day NOT allowed**<br>
 📅 Allowed DOB: **01/01/2000 to 01/01/2020**
 </p>
 
 </div>
 
-
 <script>
-/* 🔥UPDATED API URL*/
+/* 🔥 API URL & PAYMENT KEY */
 const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev";
 const RAZORPAY_KEY = "rzp_live_Rj6ceV2avDzdlC";
 
-/* DOB STRICT RULE */
-function strictDateCheck(d){
+/* DOB STRICT CHECK + LIVE AGE DISPLAY */
+function strictCheck(d){
 let i=new Date(d),min=new Date("2000-01-01"),max=new Date("2020-01-01");
-if(i<min)return"❌ Age above 25 not allowed";
-if(i>max)return"❌ Age below 6 not allowed";
+if(i<min)return"❌ Above 25 years not allowed";
+if(i>max)return"❌ Below 6 years not allowed";
 if(i.getFullYear()===2000&&i>min)return"❌ 25y +1 day not allowed";
 if(i.getFullYear()===2020&&i>max)return"❌ 6y +1 day not allowed";
 return"";
 }
-function calculateAge(d){
+function getAge(d){
 const b=new Date(d),r=new Date("2026-01-01");
-let a=r.getFullYear()-b.getFullYear(),m=r.getMonth()-b.getMonth(),da=r.getDate()-b.getDate();
+let a=r.getFullYear()-b.getFullYear(),
+m=r.getMonth()-b.getMonth(),da=r.getDate()-b.getDate();
 if(m<0||(m===0&&da<0))a--;return a;
 }
 
-/* AGE-BASED CATEGORY VISIBILITY */
+/* CATEGORY CONTROL */
 function liveDOBCheck(){
-let d=dob.value,e=dobError,i=document.getElementById("dob");
-e.innerHTML="";i.classList.remove("invalid");if(!d)return;
-let c=strictDateCheck(d);if(c!==""){e.innerHTML=c;i.classList.add("invalid");hide();return;}
-let age=calculateAge(d);age<11?child():showAll();
+let d=document.getElementById("dob").value;
+let err=document.getElementById("dobError");
+let ageBox=document.getElementById("ageDisplay");
+err.innerHTML=""; ageBox.innerHTML=""; 
+document.getElementById("dob").classList.remove("invalid");
+if(!d)return;
+
+let check=strictCheck(d);
+if(check!==""){
+ err.innerHTML=check;
+ document.getElementById("dob").classList.add("invalid");
+ hideCategory();
+ return;
 }
-function hide(){document.querySelectorAll(".cat-row").forEach(r=>r.style.display="none");}
-function child(){hide();document.querySelector('[value="Music"]').parentNode.style.display="flex";document.querySelector('[value="Dance"]').parentNode.style.display="flex";}
+
+let age=getAge(d);
+ageBox.innerHTML="🎯 Age on 01/01/2026: <b>"+age+" Years</b>";
+
+if(age<11) showChild(); else showAll();
+}
+function hideCategory(){document.querySelectorAll(".cat-row").forEach(r=>r.style.display="none");}
+function showChild(){
+hideCategory();
+document.querySelector('[value="Music"]').parentNode.style.display="flex";
+document.querySelector('[value="Dance"]').parentNode.style.display="flex";
+}
 function showAll(){document.querySelectorAll(".cat-row").forEach(r=>r.style.display="flex");}
 
-/* FEES */
+/* FEE */
 function fee(c){return c==="Quiz"?100:(c==="Dance"||c==="Music"?200:150);}
 
 /* UPLOAD */
 async function uploadFile(file,cat){
-let fd=new FormData();fd.append("file",file);
+let fd=new FormData(); fd.append("file",file);
 return fetch(API_URL+"?action=upload",{method:"POST",body:fd})
 .then(r=>r.text()).then(t=>JSON.parse(t));
 }
 
 /* SUBMIT */
 async function submitForm(){
-if(dobError.innerHTML!=="")return alert("❌ Fix DOB first");
-let data={
-name:name.value.trim(),guardian:guardian.value.trim(),
-relation:relation.value.trim(),mobile:mobile.value.trim(),
-email:email.value.trim(),dob:dob.value,institution:institution.value||"Not Provided",
-category:document.querySelector("input[name='cat']:checked")?.value
-};
-if(!data.name||!data.guardian||!data.relation||!data.mobile||!data.dob)return alert("⚠ Fill required fields");
-if(!data.category)return alert("⚠ Select category");
-if(!terms.checked)return alert("⚠ Accept Terms First");
+let nameF=document.getElementById("name").value.trim();
+let guardF=document.getElementById("guardian").value.trim();
+let relF=document.getElementById("relation").value.trim();
+let mobF=document.getElementById("mobile").value.trim();
+let emailF=document.getElementById("email").value.trim();
+let dobF=document.getElementById("dob").value.trim();
+let instF=document.getElementById("institution").value.trim()||"Not Provided";
+let cat=document.querySelector("input[name='cat']:checked")?.value;
 
-data.fee=fee(data.category);data.age=calculateAge(data.dob);
-if(data.category!=="Quiz"){
-const f=document.getElementById("performance").files[0];
-if(!f)return alert("⚠ File required");
-let up=await uploadFile(f,data.category);if(up.status!=="success")return alert("❌ Upload Failed");
-data.fileUrl=up.fileUrl;
-}else data.fileUrl="No Upload";
+if(!nameF||!guardF||!relF||!mobF||!dobF) return alert("⚠ Fill all required fields");
+if(!cat) return alert("⚠ Select category");
+if(!terms.checked) return alert("⚠ Accept Terms first");
+
+let f = fee(cat);
+let age = getAge(dobF);
+
+let fileUrl="No Upload Needed";
+if(cat!=="Quiz"){
+ let file=document.getElementById("performance").files[0];
+ if(!file) return alert("⚠ Upload file required");
+ let up=await uploadFile(file,cat);
+ if(up.status!=="success") return alert("❌ Upload failed");
+ fileUrl=up.fileUrl;
+}
+
+let user={
+ name:nameF,guardian:guardF,relation:relF,mobile:mobF,email:emailF,dob:dobF,
+ institution:instF,category:cat,fee:f,age,fileUrl
+};
 
 /* PAYMENT */
 let rz=new Razorpay({
-key:RAZORPAY_KEY,amount:data.fee*100,name:"Competition Registration",
-handler:function(r){
-data.payment_id=r.razorpay_payment_id;
-fetch(API_URL+"?action=register",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)})
-.then(r=>r.text()).then(t=>JSON.parse(t)).then(x=>{
-if(x.status==="success"){alert("🎉 Registered!\nCode: "+x.code);window.location="success.html?code="+x.code+"&pdf="+x.pdfUrl;}
-else alert("❌ "+x.message);
-});
+key:RAZORPAY_KEY,amount:f*100,name:"Competition Registration",
+handler:(r)=>{
+ user.payment_id=r.razorpay_payment_id;
+ fetch(API_URL+"?action=register",{
+   method:"POST",headers:{"Content-Type":"application/json"},
+   body:JSON.stringify(user)
+ })
+ .then(r=>r.text()).then(t=>JSON.parse(t))
+ .then(x=>{
+   if(x.status==="success"){
+     alert("🎉 Registered!\nCode: "+x.code);
+     window.location="success.html?code="+x.code+"&pdf="+x.pdfUrl;
+   } else alert("❌ "+x.message);
+ });
 }});
 rz.open();
 }
 </script>
-
 </body>
 </html>
