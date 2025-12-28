@@ -215,7 +215,7 @@ async function uploadFile(file, category) {
 
 
 /* SUBMIT */
-async function submitForm(){
+/*async function submitForm(){
 let nameF=document.getElementById("name").value.trim();
 let guardF=document.getElementById("guardian").value.trim();
 let relF=document.getElementById("relation").value.trim();
@@ -261,7 +261,69 @@ handler:(r)=>{
  });
 }});
 rz.open();
+}*/
+  async function submitForm(){
+  // 📌 Collect form fields
+  let nameF = document.getElementById("name").value.trim();
+  let guardF = document.getElementById("guardian").value.trim();
+  let relF = document.getElementById("relation").value.trim();
+  let mobF = document.getElementById("mobile").value.trim();
+  let emailF = document.getElementById("email").value.trim();
+  let dobF = document.getElementById("dob").value.trim();
+  let instF = document.getElementById("institution").value.trim()||"Not Provided";
+  let cat = document.querySelector("input[name='cat']:checked")?.value;
+
+  // 📌 Validate basics
+  if (!nameF || !guardF || !relF || !mobF || !dobF) return alert("⚠ Fill all mandatory fields");
+  if (!cat) return alert("⚠ Select category");
+  if (!terms.checked) return alert("⚠ Accept Terms before submitting");
+
+  let f = fee(cat), age = getAge(dobF), fileUrl = "No Upload";
+
+  // ⭐ PASTE THIS HERE ⭐
+  if (cat !== "Quiz") {
+    const file = document.getElementById("performance").files[0];
+    if (!file) return alert("⚠ Please upload a file before submitting.");
+
+    let uploadResponse = await uploadFile(file, cat);
+    console.log("Upload Response:", uploadResponse);
+
+    if (uploadResponse.status !== "success") {
+      return alert("❌ Upload Failed: " + uploadResponse.message);
+    }
+
+    fileUrl = uploadResponse.fileUrl;
+  }
+  // ⭐ END OF NEW BLOCK ⭐
+
+  // 📌 Run Razorpay payment AFTER file upload is successful
+  let rz = new Razorpay({
+    key: RAZORPAY_KEY,
+    amount: f * 100,
+    name: "Competition Registration",
+    handler: (r) => {
+      data.payment_id = r.razorpay_payment_id;
+
+      fetch(API_URL+"?action=register", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+      })
+      .then(r=>r.text())
+      .then(t=>JSON.parse(t))
+      .then(x=> {
+        if(x.status==="success"){
+          alert("🎉 Successfully Registered! Code: "+x.code);
+          window.location="success.html?code="+x.code+"&pdf="+x.pdfUrl;
+        } else {
+          alert("❌ "+x.message);
+        }
+      });
+    }
+  });
+  rz.open();
 }
+
 </script>
 </body>
 </html>
