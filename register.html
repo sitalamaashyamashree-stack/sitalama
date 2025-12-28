@@ -104,56 +104,45 @@ input.invalid{border:2px solid red !important;}
 <p class="notice">
 ⚠ Age eligibility: Strictly **6 to 25 years** on **01-Jan-2026**.<br>
 ❌ Even **6y + 1 day** or **25y + 1 day** is NOT allowed.<br>
-📅 **Allowed DOB Range → 01/01/2000 to 01/01/2020 ONLY**
+📅 **Allowed DOB → 01/01/2000 to 01/01/2020**
 </p>
 </div>
 
 
 <script>
-const API_URL="https://api.ssmctrust.org";
+/* 🔥 UPDATE APIS HERE */
+const API_URL = "https://register-worker.sitalamaashyamasree.workers.dev";
 const RAZORPAY_KEY="rzp_live_Rj6ceV2avDzdlC";
 
-/* STRICT DOB BOUNDARIES */
+/* STRICT DOB RULES */
 function strictDateCheck(dob){
     const input = new Date(dob);
-    const min = new Date("2000-01-01"); // EXACT 25
-    const max = new Date("2020-01-01"); // EXACT 6
+    const min = new Date("2000-01-01");
+    const max = new Date("2020-01-01");
 
-    if(input < min) return "❌ Age above 25 is not allowed. (DOB before 01/01/2000)";
-    if(input > max) return "❌ Age below 6 is not allowed. (DOB after 01/01/2020)";
-
-    // ❌ BLOCK 25Y + 1 DAY → 31-12-2000 or later
-    if(input.getFullYear() === 2000 && input > min){
-        return "❌ 25 years + 1 day is NOT allowed. DOB must be 01/01/2000 only.";
-    }
-    // ❌ BLOCK 6Y + 1 DAY → 02-01-2020 or later
-    if(input.getFullYear() === 2020 && input > max){
-        return "❌ 6 years + 1 day is NOT allowed. DOB must be 01/01/2020 only.";
-    }
+    if(input < min) return "❌ Age above 25 not allowed (DOB before 01/01/2000)";
+    if(input > max) return "❌ Age below 6 not allowed (DOB after 01/01/2020)";
+    if(input.getFullYear()===2000 && input>min) return "❌ 25y + 1 day not allowed";
+    if(input.getFullYear()===2020 && input>max) return "❌ 6y + 1 day not allowed";
     return "";
 }
 
-/* AGE FOR OTHER LOGIC */
 function calculateAgeStrict(dob){
     const b=new Date(dob), r=new Date("2026-01-01");
     let a=r.getFullYear()-b.getFullYear(), m=r.getMonth()-b.getMonth(), d=r.getDate()-b.getDate();
     if(m<0||(m===0&&d<0))a--;return a;
 }
 
-/* SHOW/HIDE CATEGORY BY AGE */
 function toggleCategories(mode){
     const rows=document.querySelectorAll(".cat-row");
     rows.forEach(r=>r.style.display="none");
-
     if(mode==="musicdance"){
         document.querySelector('[value="Music"]').parentNode.style.display="flex";
         document.querySelector('[value="Dance"]').parentNode.style.display="flex";
     }
     if(mode==="all"){rows.forEach(r=>r.style.display="flex");}
-    if(mode==="none"){rows.forEach(r=>r.style.display="none");}
 }
 
-/* LIVE DOB CHECK */
 function liveDOBCheck(){
     let dob=document.getElementById("dob").value;
     let msg=document.getElementById("dobError");
@@ -162,25 +151,20 @@ function liveDOBCheck(){
     if(!dob)return;
 
     let chk=strictDateCheck(dob);
-    if(chk!==""){
-        msg.innerHTML=chk; input.classList.add("invalid"); toggleCategories("none"); return;
-    }
+    if(chk!==""){msg.innerHTML=chk;input.classList.add("invalid");toggleCategories("none");return;}
 
     let age=calculateAgeStrict(dob);
-    if(age>=6 && age<11){msg.innerHTML="ℹ Age 6–10 ➜ Only Music & Dance";toggleCategories("musicdance");return;}
-    if(age>=11 && age<=25){msg.innerHTML="";toggleCategories("all");return;}
+    if(age>=6 && age<11){toggleCategories("musicdance");return;}
+    if(age>=11 && age<=25){toggleCategories("all");return;}
 }
 
-/* FEES */
 function getFee(c){return c==="Quiz"?100:(c==="Dance"||c==="Music"?200:150);}
 
-/* UPLOAD */
 async function uploadFile(file,cat){
     const fd=new FormData();fd.append("file",file);fd.append("category",cat);
     return await fetch(API_URL+"?action=upload",{method:"POST",body:fd}).then(r=>r.json());
 }
 
-/* SUBMIT */
 async function submitForm(){
     if(document.getElementById("dobError").innerHTML!=="")return;
     const dob=dob.value.trim(), name=name.value.trim(), guardian=guardian.value.trim();
@@ -189,12 +173,14 @@ async function submitForm(){
     const cat=document.querySelector("input[name='cat']:checked")?.value;
 
     if(!name||!guardian||!relation||!mobile||!dob)return alert("⚠ Fill required fields");
-    if(!cat)return alert("⚠ Select category");if(!terms.checked)return alert("⚠ Accept terms");
+    if(!cat)return alert("⚠ Select category");
+    if(!terms.checked)return alert("⚠ Accept terms");
 
     const fee=getFee(cat);let fileUrl="No Upload Needed";
     if(cat!=="Quiz"){
         const file=performance.files[0];if(!file)return alert("⚠ Upload required");
-        const up=await uploadFile(file,cat);if(up.status!=="success")return alert("❌ Upload failed");
+        const up=await uploadFile(file,cat);
+        if(up.status!=="success")return alert("❌ Upload failed");
         fileUrl=up.fileUrl;
     }
 
@@ -203,17 +189,19 @@ async function submitForm(){
     pay(user);
 }
 
-/* PAYMENT */
 function pay(user){
 const opt={
 key:RAZORPAY_KEY,amount:user.fee*100,currency:"INR",name:"Competition Registration",
 handler:r=>{user.payment_id=r.razorpay_payment_id;
 fetch(API_URL+"?action=register",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(user)})
-.then(r=>r.json()).then(d=>{alert("🎉 Registered! Code: "+d.code);window.location.href=d.pdfUrl;});}};
+.then(r=>r.json()).then(d=>{
+alert("🎉 Registered! Code: "+d.code);
+window.location.href="success.html?code="+d.code+"&pdf="+d.pdfUrl;
+});}};
 new Razorpay(opt).open();
 }
 
-function sendOTP(){alert("📩 Connect SMS API / Firebase OTP here");}
+function sendOTP(){alert("📩 Add SMS OTP API here");}
 </script>
 
 </body>
