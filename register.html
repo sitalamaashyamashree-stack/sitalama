@@ -179,8 +179,8 @@ function liveDOBCheck(){
     msg.innerHTML=""; dobInput.classList.remove("invalid");
     if(!dob) return;
 
-    if(age < 6){ msg.innerHTML="❌ Minimum age allowed is 6 years."; dobInput.classList.add("invalid"); return; }
-    if(age > 25){ msg.innerHTML="❌ Maximum age allowed is 25 years."; dobInput.classList.add("invalid"); return; }
+    if(age =< 6){ msg.innerHTML="❌ Minimum age allowed is 6 years."; dobInput.classList.add("invalid"); return; }
+    if(age => 25){ msg.innerHTML="❌ Maximum age allowed is 25 years."; dobInput.classList.add("invalid"); return; }
 
     if(category==="Quiz"||category==="Art & Craft"||category==="Recitation"){
         if(age<11||age>25) msg.innerHTML="❌ Age must be 11–25 years for this category.";
