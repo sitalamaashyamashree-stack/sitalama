@@ -23,10 +23,38 @@ padding:10px 0;border-bottom:1px solid #eee;}
 button{width:100%;padding:15px;background:#0D6EFD;color:white;border:none;
 border-radius:10px;font-size:18px;font-weight:bold;cursor:pointer;margin-top:20px;}
 button:hover{background:#094eb3;}
-.terms-row{display:flex;align-items:center;gap:10px;margin-top:15px;font-size:15px;}
 .error-msg{color:red;font-size:14px;margin-top:4px;font-weight:600;}
 #ageDisplay{font-size:15px;margin-top:5px;color:#0d6efd;font-weight:600;}
-.invalid{border:2px solid red !important;}
+.invalid{border:2px solid red!important;}
+
+/* ⭐ FIXED TERMS SECTION */
+.terms-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:20px;
+  padding:10px 0;
+  font-size:16px;
+  font-weight:500;
+}
+.terms-row input{
+  transform:scale(1.4);
+  cursor:pointer;
+}
+.terms-row a{
+  color:#0d6efd;
+  font-weight:600;
+  text-decoration:underline;
+}
+.terms-row label{
+  cursor:pointer;
+  line-height:20px;
+  flex:1;
+  display:inline-block;
+}
+
+@media(max-width:480px){input,select,button{font-size:16px;}}
+
 </style>
 </head>
 
@@ -72,78 +100,62 @@ button:hover{background:#094eb3;}
 <label>Performance File (not needed for Quiz)</label>
 <input type="file" id="performance" accept="video/*,image/*,audio/*"/>
 
+<!-- ⭐ FIXED TERMS LAYOUT -->
 <div class="terms-row">
-<input type="checkbox" id="terms"/> 
-<label>I agree to <a href="terms.html" target="_blank">Terms & Conditions</a></label>
+  <input type="checkbox" id="terms">
+  <label for="terms">
+    I agree to the <a href="terms.html" target="_blank">Terms & Conditions & Digital Consent</a>
+  </label>
 </div>
 
 <button onclick="submitForm()">Submit & Pay</button>
 
-<p class="notice" style="text-align:center;margin-top:15px;">
-⚠ Strict Age: **6 to 25 years only** as on **01 Jan 2026**<br>
-❌ Even **6y+1day / 25y+1day NOT allowed**<br>
-📅 Allowed DOB: **01/01/2000 to 01/01/2020**
+<p style="text-align:center;margin-top:15px;">
+⚠ Age Limit: <b>6 to 25 years (STRICT)</b> on <b>01-Jan-2026</b><br>
+❌ Even <b>6y+1day / 25y+1day NOT allowed</b><br>
+📅 Allowed DOB: <b>01/01/2000 to 01/01/2020</b>
 </p>
 
 </div>
 
 <script>
-/* 🔥 API URL & PAYMENT KEY */
+/* API & PAYMENT */
 const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev";
 const RAZORPAY_KEY = "rzp_live_Rj6ceV2avDzdlC";
 
-/* DOB STRICT CHECK + LIVE AGE DISPLAY */
+/* DOB VALIDATION */
 function strictCheck(d){
 let i=new Date(d),min=new Date("2000-01-01"),max=new Date("2020-01-01");
 if(i<min)return"❌ Above 25 years not allowed";
 if(i>max)return"❌ Below 6 years not allowed";
-if(i.getFullYear()===2000&&i>min)return"❌ 25y +1 day not allowed";
-if(i.getFullYear()===2020&&i>max)return"❌ 6y +1 day not allowed";
+if(i.getFullYear()===2000&&i>min)return"❌ 25y+1day not allowed";
+if(i.getFullYear()===2020&&i>max)return"❌ 6y+1day not allowed";
 return"";
 }
 function getAge(d){
-const b=new Date(d),r=new Date("2026-01-01");
-let a=r.getFullYear()-b.getFullYear(),
-m=r.getMonth()-b.getMonth(),da=r.getDate()-b.getDate();
+let b=new Date(d),r=new Date("2026-01-01");
+let a=r.getFullYear()-b.getFullYear();
+let m=r.getMonth()-b.getMonth(),da=r.getDate()-b.getDate();
 if(m<0||(m===0&&da<0))a--;return a;
 }
-
-/* CATEGORY CONTROL */
 function liveDOBCheck(){
-let d=document.getElementById("dob").value;
-let err=document.getElementById("dobError");
-let ageBox=document.getElementById("ageDisplay");
-err.innerHTML=""; ageBox.innerHTML=""; 
-document.getElementById("dob").classList.remove("invalid");
+let d=dob.value, err=dobError, ageBox=ageDisplay;
+err.innerHTML=""; ageBox.innerHTML="";
+dob.classList.remove("invalid");
 if(!d)return;
-
-let check=strictCheck(d);
-if(check!==""){
- err.innerHTML=check;
- document.getElementById("dob").classList.add("invalid");
- hideCategory();
- return;
+let c=strictCheck(d); if(c!==""){err.innerHTML=c;dob.classList.add("invalid");hide();return;}
+let age=getAge(d);ageBox.innerHTML="🎯 Age on 01/01/2026: <b>"+age+" Years</b>";
+if(age<11) child(); else show();
 }
-
-let age=getAge(d);
-ageBox.innerHTML="🎯 Age on 01/01/2026: <b>"+age+" Years</b>";
-
-if(age<11) showChild(); else showAll();
-}
-function hideCategory(){document.querySelectorAll(".cat-row").forEach(r=>r.style.display="none");}
-function showChild(){
-hideCategory();
-document.querySelector('[value="Music"]').parentNode.style.display="flex";
-document.querySelector('[value="Dance"]').parentNode.style.display="flex";
-}
-function showAll(){document.querySelectorAll(".cat-row").forEach(r=>r.style.display="flex");}
-
-/* FEE */
+function hide(){document.querySelectorAll(".cat-row").forEach(r=>r.style.display="none");}
+function child(){hide();document.querySelector('[value="Music"]').parentNode.style.display="flex";
+document.querySelector('[value="Dance"]').parentNode.style.display="flex";}
+function show(){document.querySelectorAll(".cat-row").forEach(r=>r.style.display="flex");}
 function fee(c){return c==="Quiz"?100:(c==="Dance"||c==="Music"?200:150);}
 
 /* UPLOAD */
 async function uploadFile(file,cat){
-let fd=new FormData(); fd.append("file",file);
+let fd=new FormData();fd.append("file",file);
 return fetch(API_URL+"?action=upload",{method:"POST",body:fd})
 .then(r=>r.text()).then(t=>JSON.parse(t));
 }
@@ -159,36 +171,25 @@ let dobF=document.getElementById("dob").value.trim();
 let instF=document.getElementById("institution").value.trim()||"Not Provided";
 let cat=document.querySelector("input[name='cat']:checked")?.value;
 
-if(!nameF||!guardF||!relF||!mobF||!dobF) return alert("⚠ Fill all required fields");
-if(!cat) return alert("⚠ Select category");
-if(!terms.checked) return alert("⚠ Accept Terms first");
+if(!nameF||!guardF||!relF||!mobF||!dobF)return alert("⚠ Fill all required fields");
+if(!cat)return alert("⚠ Select category");
+if(!terms.checked)return alert("⚠ Accept Terms first");
 
-let f = fee(cat);
-let age = getAge(dobF);
-
-let fileUrl="No Upload Needed";
+let f=fee(cat), age=getAge(dobF), fileUrl="No Upload";
 if(cat!=="Quiz"){
- let file=document.getElementById("performance").files[0];
- if(!file) return alert("⚠ Upload file required");
- let up=await uploadFile(file,cat);
- if(up.status!=="success") return alert("❌ Upload failed");
- fileUrl=up.fileUrl;
+let file=document.getElementById("performance").files[0];
+if(!file)return alert("⚠ Upload required"); let up=await uploadFile(file,cat);
+if(up.status!=="success")return alert("❌ Upload failed"); fileUrl=up.fileUrl;
 }
 
-let user={
- name:nameF,guardian:guardF,relation:relF,mobile:mobF,email:emailF,dob:dobF,
- institution:instF,category:cat,fee:f,age,fileUrl
-};
+let data={name:nameF,guardian:guardF,relation:relF,mobile:mobF,email:emailF,
+dob:dobF,institution:instF,category:cat,fee:f,age,fileUrl};
 
-/* PAYMENT */
 let rz=new Razorpay({
 key:RAZORPAY_KEY,amount:f*100,name:"Competition Registration",
 handler:(r)=>{
- user.payment_id=r.razorpay_payment_id;
- fetch(API_URL+"?action=register",{
-   method:"POST",headers:{"Content-Type":"application/json"},
-   body:JSON.stringify(user)
- })
+ data.payment_id=r.razorpay_payment_id;
+ fetch(API_URL+"?action=register",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)})
  .then(r=>r.text()).then(t=>JSON.parse(t))
  .then(x=>{
    if(x.status==="success"){
