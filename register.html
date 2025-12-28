@@ -214,7 +214,7 @@ return fetch(API_URL+"?action=upload",{method:"POST",body:fd})
 }*/
 
 
-  async function uploadFile(file, category) {
+ /* async function uploadFile(file, category) {
   if (!file) {
     return { status: "error", message: "⚠ File not found in browser" };
   }
@@ -223,7 +223,7 @@ const res = await fetch(API_URL + `?action=upload&filename=${file.name}`, {
   method: "POST",
   headers: { "Content-Type": "application/octet-stream" },
   body: buffer
-});
+});*/
 
   /*const buffer = await file.arrayBuffer();
   const url = API_URL + `?action=upload&filename=${encodeURIComponent(file.name)}&category=${category}`;
@@ -236,13 +236,27 @@ const res = await fetch(API_URL + `?action=upload&filename=${file.name}`, {
     body: buffer
   });*/
 
-  const text = await res.text();
+  /*const text = await res.text();
   try {
     return JSON.parse(text);
   } catch {
     return { status: "error", raw: text };
   }
+}*/
+  async function uploadFile(file, category) {
+    const form = new FormData();
+    form.append("file", file, file.name);
+    form.append("action", "upload");
+    form.append("category", category);
+
+    const response = await fetch(API_URL + "?action=upload", {
+        method: "POST",
+        body: form
+    });
+
+    return await response.json();
 }
+
 
 /*async function uploadFile(file, category) {
 
