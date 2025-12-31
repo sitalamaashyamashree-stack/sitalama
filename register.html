@@ -298,7 +298,7 @@ async function submitForm(){
  }
 
  errorBox.style.display = "none";
- data.fee = fee(data.category);
+data.fee = Number(fee(data.category));
  data.fileUrl = "No Upload";
 
  // 📌 QUIZ DOES NOT NEED VIDEO UPLOAD
@@ -313,7 +313,7 @@ async function submitForm(){
  // 💳 CREATE ORDER WITH CORS FIX
  let order = await fetch(API_URL+"?action=create-order",{
    method:"POST",headers:{"Content-Type":"application/json"},
-   body:JSON.stringify({amount:data.fee})
+body:JSON.stringify({ amount: Number(data.fee) }) 
  }).then(r=>r.json());
 
  // ⭐ RAZORPAY CHECKOUT
