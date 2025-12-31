@@ -198,43 +198,34 @@ if (data.category === "Quiz") {
    method:"POST",headers:{"Content-Type":"application/json"},
    body:JSON.stringify({amount:data.fee})
  }).then(r=>r.json());
-
-// ⭐ RAZORPAY CHECKOUT (FINAL FIX)
+// ⭐ RAZORPAY CHECKOUT
 let pay = new Razorpay({
-  key: order.key,
+  key: "rzp_live_Rj6ceV2avDzdlC", // YOUR PUBLIC KEY
   order_id: order.id,
   amount: order.amount,
   currency: "INR",
   name: "Competition Registration",
   description: "Entry Fee Payment",
-  handler: async function(res) {
+  handler: async function (res) {
 
-    // Save Payment ID
     data.payment_id = res.razorpay_payment_id;
 
-    // Send to Google Sheets + Create PDF
     let submit = await fetch(API_URL + "?action=register", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(data)
     }).then(r => r.json());
 
-    // Redirect if successful
     if (submit.status === "success") {
       window.location.href = "success.html?code=" + submit.code + "&pdf=" + submit.pdfUrl;
     } else {
-      alert("❌ Registration failed: " + submit.message);
-    }
-  },
-  modal: {
-    ondismiss: function() {
-      alert("⚠ Payment was cancelled, please try again.");
+      alert("❌ Something went wrong: " + submit.message);
     }
   }
 });
 
-// 🚀 OPEN CHECKOUT WINDOW
 pay.open();
+
 
 
 // 🎯 AGE ERROR DISPLAY
