@@ -46,6 +46,15 @@ button:hover{background:#003bbd;transform:scale(1.02);}
 .terms{margin-top:18px;font-size:14px;line-height:20px;}
 .cat-wrap{background:#f2f5ff;padding:10px 14px;border-left:4px solid #2b56ff;margin-top:8px;border-radius:6px;}
 #performance{background:white;border:1px dashed #aaa;}
+#errorBox{
+  margin-top:10px;
+  padding:10px;
+  color:#fff;
+  background:#d40000;
+  border-radius:6px;
+  font-weight:600;
+  display:none;
+}
 @media(max-width:480px){
   .container{padding:20px;margin:15px;}
   h2{font-size:22px;}
@@ -57,7 +66,6 @@ button:hover{background:#003bbd;transform:scale(1.02);}
 
 <body>
 <div class="container">
-
 <h2>Competition Registration</h2>
 
 <label>Name *</label>
@@ -81,6 +89,8 @@ button:hover{background:#003bbd;transform:scale(1.02);}
 <label>Date of Birth *</label>
 <input type="date" id="dob">
 
+<div id="errorBox"></div> <!-- 🔥 AGE ERROR SHOWS HERE -->
+
 <label>School / Institute (Optional)</label>
 <input id="institution">
 
@@ -102,88 +112,113 @@ button:hover{background:#003bbd;transform:scale(1.02);}
 <p class="terms"><input type="checkbox" id="terms"> I agree to Terms & Conditions</p>
 
 <button onclick="submitForm()">Submit & Pay</button>
-
 </div>
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script>
-/* ------------------------------
-      CONFIG - DO NOT CHANGE AGE LOGIC
------------------------------- */
-const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev"; // ✔ Correct URL (Fixed)
-function fee(c){return c==="Quiz"?100:(c==="Dance"||c==="Music"?200:150);}
-function getAge(d){return new Date("2026-01-01").getFullYear()-new Date(d).getFullYear();} // ✔ LEFT SAME
 
-/* ------------------------------
-      UPLOAD FUNCTION
------------------------------- */
+<script>
+// 🎯 FIELD BINDING TO AVOID "TRIM" ERRORS
+const nameField = document.getElementById("name");
+const guardianField = document.getElementById("guardian");
+const relationField = document.getElementById("relation");
+const mobileField = document.getElementById("mobile");
+const emailField = document.getElementById("email");
+const dobField = document.getElementById("dob");
+const institutionField = document.getElementById("institution");
+const categoryField = document.getElementById("category");
+const performanceField = document.getElementById("performance");
+const termsField = document.getElementById("terms");
+const errorBox = document.getElementById("errorBox");
+
+// 🎯 API URL (Correct)
+const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev";
+
+// 🎯 DO NOT CHANGE AGE LOGIC
+function getAge(d){return new Date("2026-01-01").getFullYear()-new Date(d).getFullYear();}
+function fee(c){return c==="Quiz"?100:(c==="Dance"||c==="Music"?200:150);}
+
+// 🎯 UPLOAD FILE
 async function uploadFile(file){
- let form=new FormData();
+ let form = new FormData();
  form.append("file",file);
  return await fetch(API_URL+"?action=upload",{method:"POST",body:form}).then(r=>r.json());
 }
 
-/* ------------------------------
-      MAIN SUBMIT
------------------------------- */
+// 🎯 SUBMIT FORM
 async function submitForm(){
+
  let data={
-   name:name.value.trim(),
-   guardian:guardian.value.trim(),
-   relation:relation.value.trim(),
-   mobile:mobile.value.trim(),
-   email:email.value.trim(),
-   dob:dob.value.trim(),
-   institution:institution.value.trim()||"Not Provided",
-   category:category.value
+   name:nameField.value.trim(),
+   guardian:guardianField.value.trim(),
+   relation:relationField.value.trim(),
+   mobile:mobileField.value.trim(),
+   email:emailField.value.trim(),
+   dob:dobField.value.trim(),
+   institution:institutionField.value.trim()||"Not Provided",
+   category:categoryField.value
  };
 
- if(!data.name||!data.guardian||!data.relation||!data.mobile||!data.dob) return alert("⚠ Fill all required details");
- if(!data.category) return alert("⚠ Select a category");
- if(!/^[0-9]{10}$/.test(data.mobile)) return alert("⚠ Enter valid mobile number");
- if(!/\S+@\S+\.\S+/.test(data.email)) return alert("⚠ Enter valid email");
- if(!terms.checked) return alert("⚠ Accept terms first");
+ // BASIC VALIDATION
+ if(!data.name||!data.guardian||!data.relation||!data.mobile||!data.email||!data.dob)
+   return showError("⚠ Please fill all required fields");
 
- let age=getAge(data.dob); // ✔ ORIGINAL LOGIC - NOT TOUCHED
- if(age<6||age>25) return alert("❌ Age must be between 6-25 years as of 01 Jan 2026");
+ if(!data.category) return showError("⚠ Please select a category");
+ if(!/^[0-9]{10}$/.test(data.mobile)) return showError("⚠ Enter a valid 10-digit mobile number");
+ if(!/\S+@\S+\.\S+/.test(data.email)) return showError("⚠ Enter a valid email address");
+ if(!termsField.checked) return showError("⚠ Accept the terms to continue");
+
+ // AGE CHECK (UNCHANGED, YOU REQUESTED)
+ let age = getAge(data.dob);
+ if(age < 6 || age > 25){
+   dobField.style.border="2px solid red";
+   return showError("❌ Age must be 6 to 25 years (as on 01 January 2026)");
+ }
+
+ errorBox.style.display="none"; // clear message
+ dobField.style.border="1px solid #ccc"; // reset highlight
 
  data.fee=fee(data.category);
  data.fileUrl="No Upload";
 
+ // UPLOAD IF NOT QUIZ
  if(data.category!=="Quiz"){
-   let file=performance.files[0];
-   if(!file) return alert("⚠ Upload file required");
+   let file=performanceField.files[0];
+   if(!file) return showError("⚠ Please upload your performance video");
    let up=await uploadFile(file);
-   if(up.status!=="success") return alert("❌ Upload failed, try again");
+   if(up.status!=="success") return showError("❌ Upload failed, try again");
    data.fileUrl=up.fileUrl;
  }
 
+ // CREATE ORDER
  let order = await fetch(API_URL+"?action=create-order",{
    method:"POST",headers:{"Content-Type":"application/json"},
    body:JSON.stringify({amount:data.fee})
  }).then(r=>r.json());
 
+ // RAZORPAY
  let pay=new Razorpay({
    key:order.key,
-   amount:data.fee*100,
-   name:"Registration",
    order_id:order.id,
-   handler:async(r)=>{
-     data.payment_id=r.razorpay_payment_id;
+   amount:order.amount,
+   name:"Competition Registration",
+   handler:async(res)=>{
+     data.payment_id=res.razorpay_payment_id;
      let s=await fetch(API_URL+"?action=register",{
-       method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)
+       method:"POST",headers:{"Content-Type":"application/json"},
+       body:JSON.stringify(data)
      }).then(r=>r.json());
-
      if(s.status==="success"){
-       // 🎯 success redirect - working
-       location.href="success.html?code="+s.code+"&pdf="+s.pdfUrl;
-     } else {
-       alert(s.message);
+       window.location.href="success.html?code="+s.code+"&pdf="+s.pdfUrl;
      }
    }
  });
-
  pay.open();
+}
+
+// 🎯 AGE ERROR DISPLAY
+function showError(msg){
+ errorBox.style.display="block";
+ errorBox.innerText=msg;
 }
 </script>
 
