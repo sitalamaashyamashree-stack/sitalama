@@ -193,26 +193,29 @@ if (data.category === "Quiz") {
 }
 
 
- // CREATE ORDER
- let order = await fetch(API_URL+"?action=create-order",{
-   method:"POST",headers:{"Content-Type":"application/json"},
-   body:JSON.stringify({amount:data.fee})
- }).then(r=>r.json());
+
+  // 💳 CREATE ORDER (FIXED - sends number not string)
+let order = await fetch(API_URL + "?action=create-order", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ amount: Number(data.fee) }) // ⭐ FIX: Convert fee to number
+}).then(r => r.json());
+
 // ⭐ RAZORPAY CHECKOUT
 let pay = new Razorpay({
   key: "rzp_live_Rj6ceV2avDzdlC", // YOUR PUBLIC KEY
   order_id: order.id,
-  amount: order.amount,
+  amount: order.amount, // Received in paise from Worker
   currency: "INR",
   name: "Competition Registration",
   description: "Entry Fee Payment",
   handler: async function (res) {
 
-    data.payment_id = res.razorpay_payment_id;
+    data.payment_id = res.razorpay_payment_id; // Store payment ID
 
     let submit = await fetch(API_URL + "?action=register", {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
     }).then(r => r.json());
 
