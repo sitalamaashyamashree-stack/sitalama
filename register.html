@@ -199,25 +199,43 @@ if (data.category === "Quiz") {
    body:JSON.stringify({amount:data.fee})
  }).then(r=>r.json());
 
- // RAZORPAY
- let pay=new Razorpay({
-   key:order.key,
-   order_id:order.id,
-   amount:order.amount,
-   name:"Competition Registration",
-   handler:async(res)=>{
-     data.payment_id=res.razorpay_payment_id;
-     let s=await fetch(API_URL+"?action=register",{
-       method:"POST",headers:{"Content-Type":"application/json"},
-       body:JSON.stringify(data)
-     }).then(r=>r.json());
-     if(s.status==="success"){
-       window.location.href="success.html?code="+s.code+"&pdf="+s.pdfUrl;
-     }
-   }
- });
- pay.open();
-}
+// ⭐ RAZORPAY CHECKOUT (FINAL FIX)
+let pay = new Razorpay({
+  key: order.key,
+  order_id: order.id,
+  amount: order.amount,
+  currency: "INR",
+  name: "Competition Registration",
+  description: "Entry Fee Payment",
+  handler: async function(res) {
+
+    // Save Payment ID
+    data.payment_id = res.razorpay_payment_id;
+
+    // Send to Google Sheets + Create PDF
+    let submit = await fetch(API_URL + "?action=register", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(data)
+    }).then(r => r.json());
+
+    // Redirect if successful
+    if (submit.status === "success") {
+      window.location.href = "success.html?code=" + submit.code + "&pdf=" + submit.pdfUrl;
+    } else {
+      alert("❌ Registration failed: " + submit.message);
+    }
+  },
+  modal: {
+    ondismiss: function() {
+      alert("⚠ Payment was cancelled, please try again.");
+    }
+  }
+});
+
+// 🚀 OPEN CHECKOUT WINDOW
+pay.open();
+
 
 // 🎯 AGE ERROR DISPLAY
 function showError(msg){
