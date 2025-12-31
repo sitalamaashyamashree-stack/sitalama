@@ -114,130 +114,16 @@ button:hover{background:#003bbd;transform:scale(1.02);}
 <button onclick="submitForm()">Submit & Pay</button>
 </div>
 
-<!--<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
-<script>
-// 🎯 FIELD BINDING TO AVOID "TRIM" ERRORS
-const nameField = document.getElementById("name");
-const guardianField = document.getElementById("guardian");
-const relationField = document.getElementById("relation");
-const mobileField = document.getElementById("mobile");
-const emailField = document.getElementById("email");
-const dobField = document.getElementById("dob");
-const institutionField = document.getElementById("institution");
-const categoryField = document.getElementById("category");
-const performanceField = document.getElementById("performance");
-const termsField = document.getElementById("terms");
-const errorBox = document.getElementById("errorBox");
-
-// 🎯 API URL (Correct)
-const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev";
-
-// 🎯 DO NOT CHANGE AGE LOGIC
-function getAge(d){return new Date("2026-01-01").getFullYear()-new Date(d).getFullYear();}
-function fee(c){return c==="Quiz"?100:(c==="Dance"||c==="Music"?200:150);}
-
-// 🎯 UPLOAD FILE
-async function uploadFile(file){
- let form = new FormData();
- form.append("file",file);
- return await fetch(API_URL+"?action=upload",{method:"POST",body:form}).then(r=>r.json());
-}
-
-// 🎯 SUBMIT FORM
-async function submitForm(){
-
- let data={
-   name:nameField.value.trim(),
-   guardian:guardianField.value.trim(),
-   relation:relationField.value.trim(),
-   mobile:mobileField.value.trim(),
-   email:emailField.value.trim(),
-   dob:dobField.value.trim(),
-   institution:institutionField.value.trim()||"Not Provided",
-   category:categoryField.value
- };
-
- // BASIC VALIDATION
- if(!data.name||!data.guardian||!data.relation||!data.mobile||!data.email||!data.dob)
-   return showError("⚠ Please fill all required fields");
-
- if(!data.category) return showError("⚠ Please select a category");
- if(!/^[0-9]{10}$/.test(data.mobile)) return showError("⚠ Enter a valid 10-digit mobile number");
- if(!/\S+@\S+\.\S+/.test(data.email)) return showError("⚠ Enter a valid email address");
- if(!termsField.checked) return showError("⚠ Accept the terms to continue");
-
- // AGE CHECK (UNCHANGED, YOU REQUESTED)
- let age = getAge(data.dob);
- if(age < 6 || age > 25){
-   dobField.style.border="2px solid red";
-   return showError("❌ Age must be 6 to 25 years (as on 01 January 2026)");
- }
-
- errorBox.style.display="none"; // clear message
- dobField.style.border="1px solid #ccc"; // reset highlight
-
- data.fee=fee(data.category);
- data.fileUrl="No Upload";
-
- // UPLOAD IF NOT QUIZ
-// 📌 QUIZ DOES NOT NEED VIDEO UPLOAD
-if (data.category === "Quiz") {
-  data.fileUrl = "No Upload"; // SKIP UPLOAD
-} else {
-  let file = performanceField.files[0];
-  if (!file) return showError("⚠ Please upload your performance video");
-  let up = await uploadFile(file);
-  if (up.status !== "success") return showError("❌ Upload failed");
-  data.fileUrl = up.fileUrl;
-}
 
 
 
-  // 💳 CREATE ORDER (FIXED - sends number not string)
-let order = await fetch(API_URL + "?action=create-order", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ amount: Number(data.fee) }) // ⭐ FIX: Convert fee to number
-}).then(r => r.json());
-
-// ⭐ RAZORPAY CHECKOUT
-let pay = new Razorpay({
-  key: "rzp_live_Rj6ceV2avDzdlC", // YOUR PUBLIC KEY
-  order_id: order.id,
-  amount: order.amount, // Received in paise from Worker
-  currency: "INR",
-  name: "Competition Registration",
-  description: "Entry Fee Payment",
-  handler: async function (res) {
-
-    data.payment_id = res.razorpay_payment_id; // Store payment ID
-
-    let submit = await fetch(API_URL + "?action=register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    }).then(r => r.json());
-
-    if (submit.status === "success") {
-      window.location.href = "success.html?code=" + submit.code + "&pdf=" + submit.pdfUrl;
-    } else {
-      alert("❌ Something went wrong: " + submit.message);
-    }
-  }
-});
-
-pay.open();
 
 
 
-// 🎯 AGE ERROR DISPLAY
-function showError(msg){
- errorBox.style.display="block";
- errorBox.innerText=msg;
-}
-</script>-->
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+  <!-- Razorpay Script -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <script>
 // 🎯 FIELD BINDING
@@ -253,42 +139,52 @@ const performanceField = document.getElementById("performance");
 const termsField = document.getElementById("terms");
 const errorBox = document.getElementById("errorBox");
 
-// 🎯 API URL (Correct)
+// 🎯 API URL (Do Not Change)
 const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev";
 
 // 🎯 DO NOT CHANGE AGE LOGIC
-function getAge(d){return new Date("2026-01-01").getFullYear()-new Date(d).getFullYear();}
-function fee(c){return c==="Quiz"?100:(c==="Dance"||c==="Music"?200:150);}
+function getAge(d){ return new Date("2026-01-01").getFullYear() - new Date(d).getFullYear(); }
+
+// 🎯 FEE LOGIC FOR YOUR CATEGORY VALUES
+function fee(c){
+  c = c.trim(); // ⭐ Prevent space mismatch
+  return c==="Quiz" ? 100 :
+         (c==="Dance" || c==="Music") ? 200 :
+         150;
+}
 
 // 🎯 UPLOAD FILE
 async function uploadFile(file){
   let form = new FormData();
-  form.append("file",file);
-  return await fetch(API_URL+"?action=upload",{method:"POST",body:form}).then(r=>r.json());
+  form.append("file", file);
+  return await fetch(API_URL+"?action=upload", {
+    method:"POST",
+    body:form
+  }).then(r=>r.json());
 }
 
-// 🎯 SUBMIT FORM (FIXED & COMPLETE)
+// 🎯 SUBMIT FORM
 async function submitForm(){
 
- let data={
-   name:nameField.value.trim(),
-   guardian:guardianField.value.trim(),
-   relation:relationField.value.trim(),
-   mobile:mobileField.value.trim(),
-   email:emailField.value.trim(),
-   dob:dobField.value.trim(),
-   institution:institutionField.value.trim()||"Not Provided",
-   category:categoryField.value
+ let data = {
+   name: nameField.value.trim(),
+   guardian: guardianField.value.trim(),
+   relation: relationField.value.trim(),
+   mobile: mobileField.value.trim(),
+   email: emailField.value.trim(),
+   dob: dobField.value.trim(),
+   institution: institutionField.value.trim() || "Not Provided",
+   category: categoryField.value.trim()
  };
 
  // BASIC VALIDATION
  if(!data.name||!data.guardian||!data.relation||!data.mobile||!data.email||!data.dob)
    return showError("⚠ Please fill all required fields");
 
- if(!data.category) return showError("⚠ Please select a category");
- if(!/^[0-9]{10}$/.test(data.mobile)) return showError("⚠ Enter a valid 10-digit mobile number");
- if(!/\S+@\S+\.\S+/.test(data.email)) return showError("⚠ Enter a valid email address");
- if(!termsField.checked) return showError("⚠ Accept the terms to continue");
+ if(!/^[0-9]{10}$/.test(data.mobile)) return showError("⚠ Enter valid 10-digit mobile number");
+ if(!/\S+@\S+\.\S+/.test(data.email)) return showError("⚠ Enter valid email");
+ if(!termsField.checked) return showError("⚠ Accept terms to continue");
+ if(!data.category) return showError("⚠ Select a category");
 
  // AGE CHECK (NO CHANGE)
  let age = getAge(data.dob);
@@ -296,12 +192,13 @@ async function submitForm(){
    dobField.style.border="2px solid red";
    return showError("❌ Age must be 6 to 25 years (as on 01 January 2026)");
  }
+ dobField.style.border="1px solid #ccc";
 
- errorBox.style.display = "none";
-data.fee = Number(fee(data.category));
+ // ⭐ FIXED FEE PROBLEM (converted to NUMBER)
+ data.fee = Number(fee(data.category));
  data.fileUrl = "No Upload";
 
- // 📌 QUIZ DOES NOT NEED VIDEO UPLOAD
+ // 📌 QUIZ SKIPS UPLOAD
  if(data.category !== "Quiz"){
    let file = performanceField.files[0];
    if(!file) return showError("⚠ Please upload your performance video");
@@ -310,18 +207,19 @@ data.fee = Number(fee(data.category));
    data.fileUrl = up.fileUrl;
  }
 
- // 💳 CREATE ORDER WITH CORS FIX
- let order = await fetch(API_URL+"?action=create-order",{
-   method:"POST",headers:{"Content-Type":"application/json"},
-body:JSON.stringify({ amount: Number(data.fee) }) 
+ // 💳 CREATE ORDER (₹ → Not ₹1 anymore)
+ let order = await fetch(API_URL+"?action=create-order", {
+   method:"POST",
+   headers:{ "Content-Type":"application/json" },
+   body: JSON.stringify({ amount: Number(data.fee) }) // ⭐ FIXED
  }).then(r=>r.json());
 
  // ⭐ RAZORPAY CHECKOUT
  let pay = new Razorpay({
-   key:"rzp_live_Rj6ceV2avDzdlC", // YOUR LIVE KEY
-   order_id:order.id,
-   amount:order.amount,
-   currency:"INR",
+   key: "rzp_live_Rj6ceV2avDzdlC", // YOUR KEY
+   order_id: order.id,
+   amount: order.amount,
+   currency: "INR",
    name:"Competition Registration",
    description:"Entry Fee Payment",
    handler: async function(res){
@@ -329,28 +227,27 @@ body:JSON.stringify({ amount: Number(data.fee) })
 
      let submit = await fetch(API_URL+"?action=register",{
        method:"POST",
-       headers:{"Content-Type":"application/json"},
-       body:JSON.stringify(data)
+       headers:{ "Content-Type":"application/json" },
+       body: JSON.stringify(data)
      }).then(r=>r.json());
 
      if(submit.status === "success"){
-       window.location.href="success.html?code="+submit.code+"&pdf="+submit.pdfUrl;
+       window.location.href = "success.html?code="+submit.code+"&pdf="+submit.pdfUrl;
      } else {
-       alert("❌ Something went wrong: " + submit.message);
+       alert("❌ Something went wrong: "+submit.message);
      }
    }
  });
 
  pay.open();
-} // 👈 CLOSING TAG FOR submitForm() — FIXED
+}
 
-// 🎯 GLOBAL ERROR FUNCTION (NOT INSIDE submitForm!)
+// 🎯 ERROR MESSAGE UI
 function showError(msg){
  errorBox.style.display="block";
- errorBox.innerText=msg;
+ errorBox.innerText = msg;
 }
 </script>
-
 
 </body>
 </html>
