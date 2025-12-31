@@ -195,7 +195,10 @@ async function submitForm(){
  dobField.style.border="1px solid #ccc";
 
  // ⭐ FIXED FEE PROBLEM (converted to NUMBER)
- data.fee = Number(fee(data.category));
+data.category = data.category.trim().split(" ")[0]; // ⭐ Category normalization
+data.fee = Number(fee(data.category));              // ⭐ Fee numeric
+console.log("CHECK FEE BEFORE SENDING:", data.fee); // ⭐ Debug check
+
  data.fileUrl = "No Upload";
 
  // 📌 QUIZ SKIPS UPLOAD
