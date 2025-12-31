@@ -181,13 +181,17 @@ async function submitForm(){
  data.fileUrl="No Upload";
 
  // UPLOAD IF NOT QUIZ
- if(data.category!=="Quiz"){
-   let file=performanceField.files[0];
-   if(!file) return showError("⚠ Please upload your performance video");
-   let up=await uploadFile(file);
-   if(up.status!=="success") return showError("❌ Upload failed, try again");
-   data.fileUrl=up.fileUrl;
- }
+// 📌 QUIZ DOES NOT NEED VIDEO UPLOAD
+if (data.category === "Quiz") {
+  data.fileUrl = "No Upload"; // SKIP UPLOAD
+} else {
+  let file = performanceField.files[0];
+  if (!file) return showError("⚠ Please upload your performance video");
+  let up = await uploadFile(file);
+  if (up.status !== "success") return showError("❌ Upload failed");
+  data.fileUrl = up.fileUrl;
+}
+
 
  // CREATE ORDER
  let order = await fetch(API_URL+"?action=create-order",{
