@@ -157,10 +157,23 @@ function fee(c){
 async function uploadFile(file){
   let form = new FormData();
   form.append("file", file);
-  return await fetch(API_URL+"?action=upload", {
+
+  let response = await fetch(API_URL+"?action=upload", {
     method:"POST",
-    body:form
-  }).then(r=>r.json());
+    body: form
+  });
+
+  let text = await response.text(); // JSON বা HTML যাই আসুক ধরা পড়বে
+
+  try {
+    return JSON.parse(text); // ✔ JSON হলে ঠিকমতো চলবে
+  } catch {
+    return {
+      status:"error",
+      message:"❌ Upload failed - Server returned HTML, not JSON",
+      raw: text.substring(0,100) // Debug info (HTML এর কিছু অংশ)
+    };
+  }
 }
 
 // 🎯 SUBMIT FORM
