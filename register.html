@@ -106,8 +106,17 @@ async function submitForm(){
  if(!/\S+@\S+\.\S+/.test(data.email)) return showError("⚠ Invalid email address");
  if(!termsField.checked) return showError("⚠ Accept terms to continue");
 
- let age=getAge(data.dob);
- if(age<6||age>25) return showError("❌ Age must be 6 to 25 years");
+// AGE CHECK (Enhanced UI Feedback)
+let age = getAge(data.dob);
+if(age < 6 || age > 25){
+  dobField.style.border = "2px solid red";
+  showError("❌ Age must be between 6 and 25 years as of 01 January 2026.");
+  dobField.scrollIntoView({behavior:"smooth", block:"center"});
+  return;
+} else {
+  dobField.style.border = "1px solid #ccc"; // Reset on valid
+}
+
 
  data.category=data.category.split(" ")[0];
  data.fee=fee(data.category);
