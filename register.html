@@ -5,77 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Competition Registration</title>
 
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 <style>
 body{
-  font-family:'Poppins', sans-serif;
-  background:#eef1f7;
-  margin:0;
-  display:flex;
-  justify-content:center;
+  font-family:'Poppins',sans-serif;background:#eef1f7;
+  display:flex;justify-content:center;margin:0;padding:20px;
 }
 .container{
-  background:white;
-  width:95%;
-  max-width:600px;
-  padding:30px;
-  margin:30px 0;
-  border-radius:12px;
-  box-shadow:0 8px 25px rgba(0,0,0,0.1);
+  background:white;width:95%;max-width:600px;padding:25px;
+  border-radius:12px;box-shadow:0 8px 25px rgba(0,0,0,0.1);
 }
-h2{
-  text-align:center;
-  margin-bottom:20px;
-  color:#0d47a1;
-  font-weight:600;
-  font-size:26px;
+h2{text-align:center;color:#0d47a1;margin-bottom:15px;}
+label{font-weight:500;margin-top:10px;display:block;}
+input,select{
+  width:100%;padding:12px;border-radius:6px;border:1px solid #ccc;
+  font-size:16px;margin-top:5px;
 }
-label{
-  font-size:15px;
-  font-weight:500;
-  display:block;
-  margin:10px 0 4px;
-}
-input, select{
-  width:100%;
-  padding:12px;
-  border:1px solid #ccc;
-  border-radius:6px;
-  outline:none;
-  font-size:15px;
-}
-input:focus, select:focus{
-  border-color:#0d47a1;
-  box-shadow:0 0 6px rgba(13,71,161,0.3);
-}
+input:focus,select:focus{border-color:#0d47a1;outline:none;}
 button{
-  width:100%;
-  padding:15px;
-  font-size:18px;
-  border:none;
-  color:white;
-  background:#0d47a1;
-  border-radius:8px;
-  margin-top:20px;
-  cursor:pointer;
-  font-weight:600;
-  transition:0.3s;
+  width:100%;padding:15px;font-size:18px;border:none;border-radius:8px;
+  background:#0d47a1;color:white;margin-top:20px;cursor:pointer;
 }
-button:hover{
-  background:#08306b;
-}
-
+button:hover{background:#08306b;}
 #errorBox{
-  display:none;
-  padding:12px;
-  background:#ffdddd;
-  border-left:5px solid #e60000;
-  margin-bottom:15px;
-  border-radius:5px;
-  color:#600;
-  font-weight:500;
+  display:none;background:#ffe6e6;color:#b00000;border-left:5px solid red;
+  padding:10px;margin-bottom:12px;border-radius:6px;font-weight:600;
 }
 </style>
 </head>
@@ -83,14 +37,10 @@ button:hover{
 <body>
 <div class="container">
 <h2>Competition Registration</h2>
-
 <div id="errorBox"></div>
 
-<label>Name *</label>
-<input id="name" type="text">
-
-<label>Guardian Name *</label>
-<input id="guardian" type="text">
+<label>Name *</label><input id="name" type="text">
+<label>Guardian Name *</label><input id="guardian" type="text">
 
 <label>Relation *</label>
 <select id="relation">
@@ -102,17 +52,10 @@ button:hover{
   <option value="Guardian">Guardian</option>
 </select>
 
-<label>Mobile *</label>
-<input id="mobile" type="text" maxlength="10" placeholder="10-digit mobile number">
-
-<label>Email *</label>
-<input id="email" type="email">
-
-<label>Date of Birth *</label>
-<input id="dob" type="date">
-
-<label>School / Institute (Optional)</label>
-<input id="institution" type="text">
+<label>Mobile *</label><input id="mobile" maxlength="10" placeholder="10 digit mobile">
+<label>Email *</label><input id="email" type="email">
+<label>Date of Birth *</label><input id="dob" type="date">
+<label>School / Institute (Optional)</label><input id="institution" type="text">
 
 <label>Category *</label>
 <select id="category">
@@ -124,98 +67,73 @@ button:hover{
   <option value="Quiz">Quiz (11-25) - ₹100</option>
 </select>
 
-<br><br>
-<label><input type="checkbox" id="terms"> I agree to Terms & Conditions</label>
-
+<br><br><label><input type="checkbox" id="terms"> I agree to Terms & Conditions</label>
 <button onclick="submitForm()">Submit & Pay</button>
 </div>
 
 
-<!-- Razorpay SDK -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
 <script>
-// 🌐 Backend API (Do Not Change)
 const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev";
 
-// 🎯 Age Logic
-function getAge(d){ return new Date("2026-01-01").getFullYear() - new Date(d).getFullYear(); }
+const nameField=document.getElementById("name");
+const guardianField=document.getElementById("guardian");
+const relationField=document.getElementById("relation");
+const mobileField=document.getElementById("mobile");
+const emailField=document.getElementById("email");
+const dobField=document.getElementById("dob");
+const institutionField=document.getElementById("institution");
+const categoryField=document.getElementById("category");
+const termsField=document.getElementById("terms");
+const errorBox=document.getElementById("errorBox");
 
-// 💰 Fee Logic
-function fee(c){
-  return c==="Quiz" ? 100 : (c==="Dance"||c==="Music"?200:150);
-}
+function getAge(d){return new Date("2026-01-01").getFullYear()-new Date(d).getFullYear();}
+function fee(c){return c==="Quiz"?100:(c==="Dance"||c==="Music"?200:150);}
+function showError(msg){errorBox.style.display="block";errorBox.innerText=msg;}
 
-// 🚫 Error Popup
-function showError(msg){
-  const box=document.getElementById("errorBox");
-  box.style.display="block";
-  box.innerText=msg;
-}
-
-// 🚀 Final Submit + Payment
 async function submitForm(){
+ let data={
+   name:nameField.value.trim(), guardian:guardianField.value.trim(),
+   relation:relationField.value.trim(), mobile:mobileField.value.trim(),
+   email:emailField.value.trim(), dob:dobField.value.trim(),
+   institution:institutionField.value.trim()||"Not Provided",
+   category:categoryField.value.trim()
+ };
 
-  let data = {
-    name: name.value.trim(),
-    guardian: guardian.value.trim(),
-    relation: relation.value.trim(),
-    mobile: mobile.value.trim(),
-    email: email.value.trim(),
-    dob: dob.value.trim(),
-    institution: institution.value.trim()||"Not Provided",
-    category: category.value.trim()
-  };
+ if(!data.name||!data.guardian||!data.relation||!data.mobile||!data.email||!data.dob||!data.category)
+   return showError("⚠ Please fill all required fields");
+ if(!/^[0-9]{10}$/.test(data.mobile)) return showError("⚠ Enter valid 10-digit mobile");
+ if(!/\S+@\S+\.\S+/.test(data.email)) return showError("⚠ Invalid email address");
+ if(!termsField.checked) return showError("⚠ Accept terms to continue");
 
-  // ❗Validation
-  if(!data.name||!data.guardian||!data.relation||!data.mobile||!data.email||!data.dob||!data.category)
-    return showError("⚠ Please fill all required fields");
+ let age=getAge(data.dob);
+ if(age<6||age>25) return showError("❌ Age must be 6 to 25 years");
 
-  if(!/^[0-9]{10}$/.test(data.mobile)) return showError("⚠ Enter valid 10-digit mobile number");
-  if(!/\S+@\S+\.\S+/.test(data.email)) return showError("⚠ Enter valid email address");
-  if(!terms.checked) return showError("⚠ Please accept terms");
+ data.category=data.category.split(" ")[0];
+ data.fee=fee(data.category);
 
-  // 🧒 Age Check
-  let age = getAge(data.dob);
-  if(age < 6 || age > 25) return showError("❌ Age must be 6 to 25 years");
+ let order=await fetch(API_URL+"?action=create-order",{
+   method:"POST",
+   headers:{"Content-Type":"application/json"},
+   body:JSON.stringify({amount:data.fee})
+ }).then(r=>r.json());
 
-  // 🎫 Fix category + fee
-  data.category = data.category.split(" ")[0];
-  data.fee = Number(fee(data.category));
-
-  // 💳 Create Razorpay Order
-  let order = await fetch(API_URL+"?action=create-order",{
-    method:"POST",
-    headers:{ "Content-Type":"application/json" },
-    body: JSON.stringify({ amount:data.fee })
-  }).then(r=>r.json());
-
-  // 🧾 Razorpay Checkout
-  let pay = new Razorpay({
-    key:"rzp_live_Rj6ceV2avDzdlC",
-    order_id:order.id,
-    amount:order.amount,
-    currency:"INR",
-    name:"Competition Registration",
-    handler: async function(res){
-      data.payment_id = res.razorpay_payment_id;
-
-      let submit = await fetch(API_URL+"?action=register",{
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body:JSON.stringify(data)
-      }).then(r=>r.json());
-
-      if(submit.status === "success"){
-        alert("🎉 Registration Successful!");
-        window.location.href = "success.html?code="+submit.code+"&pdf="+submit.pdfUrl;
-      } else {
-        alert("❌ Something went wrong: "+submit.message);
-      }
-    }
-  });
-
-  pay.open();
+ let pay = new Razorpay({
+   key:"rzp_live_Rj6ceV2avDzdlC",
+   order_id:order.id, amount:order.amount, currency:"INR",
+   name:"Competition Registration",
+   handler:async(res)=>{
+     data.payment_id=res.razorpay_payment_id;
+     let done=await fetch(API_URL+"?action=register",{
+       method:"POST",headers:{"Content-Type":"application/json"},
+       body:JSON.stringify(data)
+     }).then(r=>r.json());
+     if(done.status==="success"){
+       window.location.href="success.html?code="+done.code+"&pdf="+done.pdfUrl;
+     } else showError("❌ Something went wrong!");
+   }
+ });
+ pay.open();
 }
 </script>
 </body>
