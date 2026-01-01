@@ -1,27 +1,99 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Registration Successful</title>
+
 <style>
-body{font-family:Arial;text-align:center;padding:40px;}
-.box{max-width:500px;margin:auto;padding:20px;border-radius:10px;background:#f3f8ff;}
-a{color:#0d6efd;font-weight:bold;}
+body{
+  font-family: "Poppins", sans-serif;
+  background: #eef4ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100vh;
+  margin:0;
+}
+.box{
+  max-width: 480px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+  text-align: center;
+}
+.box h2{
+  color: #1a73e8;
+  margin-bottom: 10px;
+  font-size: 26px;
+}
+.success-icon{
+  font-size: 60px;
+  color: #28a745;
+  margin-bottom:10px;
+}
+.msg-text{
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.code-box{
+  background: #e7f0ff;
+  padding: 8px;
+  border-radius: 8px;
+  font-weight: bold;
+  color:#0d47a1;
+  margin-bottom:15px;
+}
+a.pdf-btn{
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 18px;
+  background: #1a73e8;
+  color:#fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+a.pdf-btn:hover{
+  background:#0b57cf;
+}
+.small-note{
+  margin-top:15px;
+  font-size:14px;
+  color:#555;
+}
 </style>
 </head>
+
 <body>
 
 <div class="box">
-  <h2>🎉 Registration Successful!</h2>
-  <p id="msg"></p>
-  <a id="pdfLink" target="_blank">📄 Download PDF</a>
+  <div class="success-icon">✔️</div>
+  <h2>Payment Successful 🎉</h2>
+
+  <p class="msg-text">
+    Thank you for your payment! Your registration has been successfully completed.
+  </p>
+
+  <div id="registrationCode" class="code-box"></div>
+
+  <a id="pdfLink" class="pdf-btn" target="_blank">📄 Download Your PDF Slip</a>
+
+  <p class="small-note">
+    A confirmation email with the PDF has been sent to your inbox.<br>
+    From: <b>ssmcttalenthunt@gmail.com</b>
+  </p>
 </div>
 
 <script>
 const p = new URLSearchParams(window.location.search);
-document.getElementById("msg").textContent = 
-"Your Registration Code: " + (p.get("code") || "N/A");
-document.getElementById("pdfLink").href = p.get("pdf");
+const code = p.get("code");
+const pdf  = p.get("pdf");
+
+document.getElementById("registrationCode").innerText =
+"Registration Code: " + (code || "N/A");
+document.getElementById("pdfLink").href = pdf || "#";
 </script>
 
 </body>
