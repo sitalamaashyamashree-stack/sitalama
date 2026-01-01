@@ -95,7 +95,7 @@ const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev"; // D
 
 
 // ============================
-// AGE CALCULATION FUNCTION
+// AGE CALCULATOR FUNCTION
 // ============================
 function getAge(dob){
   const birth = new Date(dob);
@@ -120,18 +120,15 @@ dobField.addEventListener("input", ()=>{
     return;
   }
 
-  // ❌ Invalid Age
   if(age < 6 || age > 25){
     dobField.style.border = "2px solid red";
     ageMessage.style.color = "red";
-    ageMessage.innerText = `❌ Age is ${age}. Allowed age: 6 to 25 years as of 01 Jan 2026.`;
-    return;
+    ageMessage.innerHTML = `❌ Age is <b>${age}</b>. Must be 6–25 years (as of 01 Jan 2026).`;
+  } else {
+    dobField.style.border = "2px solid green";
+    ageMessage.style.color = "green";
+    ageMessage.innerHTML = `✔ Eligible. Age: <b>${age}</b>`;
   }
-
-  // ✔ Valid Age
-  dobField.style.border = "2px solid #28a745";
-  ageMessage.style.color = "green";
-  ageMessage.innerText = `✔ Age is ${age}. Eligible to apply.`;
 });
 
 
@@ -147,7 +144,7 @@ function fee(c){
 
 
 // ============================
-// SHOW ERROR HANDLER
+// ERROR MESSAGE
 // ============================
 function showError(msg){
   errorBox.style.display="block";
@@ -157,7 +154,7 @@ function showError(msg){
 
 
 // ============================
-// MAIN SUBMIT FUNCTION
+// FINAL SUBMIT & PAYMENT
 // ============================
 async function submitForm(){
 
@@ -181,34 +178,27 @@ async function submitForm(){
 
   if(!termsField.checked) return showError("⚠ Accept the terms to continue");
 
-  // AGE CHECK
   let age = getAge(data.dob);
   if(age < 6 || age > 25){
     dobField.style.border = "2px solid red";
-    ageMessage.innerText = `❌ Age is ${age}. Must be between 6 and 25.`;
-    return;
+    return showError(`❌ Age ${age} not eligible (6–25 allowed)`);
   }
 
   data.category = data.category.split(" ")[0];
   data.fee = Number(fee(data.category));
 
-
-  // ============================
-  // CREATE RAZORPAY ORDER
-  // ============================
+  // CREATE ORDER
   let order = await fetch(API_URL+"?action=create-order",{
     method:"POST",
     headers:{ "Content-Type":"application/json" },
     body: JSON.stringify({ amount:data.fee })
   }).then(r=>r.json());
 
-  // ============================
-  // OPEN PAYMENT GATEWAY
-  // ============================
+  // PAYMENT POPUP
   let pay = new Razorpay({
     key:"rzp_live_Rj6ceV2avDzdlC",
-    order_id:order.id,
-    amount:order.amount,
+    order_id: order.id,
+    amount: order.amount,
     currency:"INR",
     name:"Competition Registration",
     handler: async function(res){
@@ -222,7 +212,8 @@ async function submitForm(){
       }).then(r=>r.json());
 
       if(submit.status==="success"){
-        window.location.href="success.html?code="+submit.code+"&pdf="+submit.pdfUrl;
+        alert("🎉 Thank you! Payment completed.\n📩 Your PDF receipt has been sent to your email.");
+        window.location.href = "success.html?code="+submit.code+"&pdf="+submit.pdfUrl;
       } else {
         showError("❌ "+submit.message);
       }
@@ -231,31 +222,8 @@ async function submitForm(){
 
   pay.open();
 }
-
-  handler: async function(res){
-
-  data.payment_id = res.razorpay_payment_id;
-
-  // SAVE DATA & GENERATE PDF
-  let submit = await fetch(API_URL+"?action=register",{
-    method:"POST",
-    headers:{ "Content-Type":"application/json" },
-    body: JSON.stringify(data)
-  }).then(r=>r.json());
-
-  if(submit.status==="success"){
-
-    // ⭐ SHOW THANK YOU MESSAGE
-    alert("🎉 Thank you for your payment! Your registration is confirmed.\nA PDF receipt has been emailed to you.");
-
-    // ⭐ REDIRECT TO SUCCESS PAGE
-    window.location.href = "success.html?code="+submit.code+"&pdf="+submit.pdfUrl;
-  } else {
-    showError("❌ Something went wrong: "+submit.message);
-  }
-}
-
 </script>
+
 
 </body>
 </html>
