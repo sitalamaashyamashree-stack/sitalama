@@ -231,6 +231,30 @@ async function submitForm(){
 
   pay.open();
 }
+
+  handler: async function(res){
+
+  data.payment_id = res.razorpay_payment_id;
+
+  // SAVE DATA & GENERATE PDF
+  let submit = await fetch(API_URL+"?action=register",{
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body: JSON.stringify(data)
+  }).then(r=>r.json());
+
+  if(submit.status==="success"){
+
+    // ⭐ SHOW THANK YOU MESSAGE
+    alert("🎉 Thank you for your payment! Your registration is confirmed.\nA PDF receipt has been emailed to you.");
+
+    // ⭐ REDIRECT TO SUCCESS PAGE
+    window.location.href = "success.html?code="+submit.code+"&pdf="+submit.pdfUrl;
+  } else {
+    showError("❌ Something went wrong: "+submit.message);
+  }
+}
+
 </script>
 
 </body>
