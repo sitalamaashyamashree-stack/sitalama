@@ -122,11 +122,11 @@ button:hover{background:#003bbd;transform:scale(1.02);}
 
 
 
-  <!-- Razorpay Script -->
+<!-- Razorpay Script -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <script>
-// 🎯 FIELD BINDING
+// 🎯 FIELD REFERENCES
 const nameField = document.getElementById("name");
 const guardianField = document.getElementById("guardian");
 const relationField = document.getElementById("relation");
@@ -139,67 +139,62 @@ const performanceField = document.getElementById("performance");
 const termsField = document.getElementById("terms");
 const errorBox = document.getElementById("errorBox");
 
-// 🎯 API URL (Do Not Change)
+// 🎯 API URL (DO NOT CHANGE)
 const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev";
 
-// 🎯 DO NOT CHANGE AGE LOGIC
-function getAge(d){ return new Date("2026-01-01").getFullYear() - new Date(d).getFullYear(); }
+// 🎯 AGE LOGIC (DO NOT CHANGE)
+function getAge(d){ 
+  return new Date("2026-01-01").getFullYear() - new Date(d).getFullYear(); 
+}
 
-// 🎯 FEE LOGIC FOR YOUR CATEGORY VALUES
+// 🎯 FEE LOGIC
 function fee(c){
-  c = c.trim(); // ⭐ Prevent space mismatch
-  return c==="Quiz" ? 100 :
+  c = c.trim();
+  return c === "Quiz" ? 100 :
          (c==="Dance" || c==="Music") ? 200 :
          150;
 }
 
-// 🎯 UPLOAD FILE
+// 📤 FILE UPLOAD (JPG, PNG, MP3, MP4)
 async function uploadFile(file){
   let form = new FormData();
   form.append("file", file);
 
-  let response = await fetch(API_URL+"?action=upload", {
+  let response = await fetch(API_URL, {   // ❗ no action needed (worker detects upload)
     method:"POST",
     body: form
   });
 
-  let text = await response.text(); // JSON বা HTML যাই আসুক ধরা পড়বে
-
-  try {
-    return JSON.parse(text); // ✔ JSON হলে ঠিকমতো চলবে
-  } catch {
-    return {
-      status:"error",
-      message:"❌ Upload failed - Server returned HTML, not JSON",
-      raw: text.substring(0,100) // Debug info (HTML এর কিছু অংশ)
-    };
+  let text = await response.text();
+  try { return JSON.parse(text); }
+  catch {
+    return { status:"error", message:"Upload returned HTML not JSON", raw:text };
   }
 }
 
-// 🎯 SUBMIT FORM
+// 📩 FORM SUBMIT (PAYMENT + DB + PDF)
 async function submitForm(){
 
  let data = {
-   name: nameField.value.trim(),
-   guardian: guardianField.value.trim(),
-   relation: relationField.value.trim(),
-   mobile: mobileField.value.trim(),
-   email: emailField.value.trim(),
-   dob: dobField.value.trim(),
-   institution: institutionField.value.trim() || "Not Provided",
-   category: categoryField.value.trim()
+   name:nameField.value.trim(),
+   guardian:guardianField.value.trim(),
+   relation:relationField.value.trim(),
+   mobile:mobileField.value.trim(),
+   email:emailField.value.trim(),
+   dob:dobField.value.trim(),
+   institution:institutionField.value.trim() || "Not Provided",
+   category:categoryField.value.trim().split(" ")[0]  // removes extra text
  };
 
- // BASIC VALIDATION
+ // 🔐 VALIDATION
  if(!data.name||!data.guardian||!data.relation||!data.mobile||!data.email||!data.dob)
    return showError("⚠ Please fill all required fields");
-
  if(!/^[0-9]{10}$/.test(data.mobile)) return showError("⚠ Enter valid 10-digit mobile number");
- if(!/\S+@\S+\.\S+/.test(data.email)) return showError("⚠ Enter valid email");
+ if(!/\S+@\S+\.\S+/.test(data.email)) return showError("⚠ Enter valid email address");
  if(!termsField.checked) return showError("⚠ Accept terms to continue");
  if(!data.category) return showError("⚠ Select a category");
 
- // AGE CHECK (NO CHANGE)
+ // 🎂 AGE CHECK
  let age = getAge(data.dob);
  if(age < 6 || age > 25){
    dobField.style.border="2px solid red";
@@ -207,50 +202,46 @@ async function submitForm(){
  }
  dobField.style.border="1px solid #ccc";
 
- // ⭐ FIXED FEE PROBLEM (converted to NUMBER)
-data.category = data.category.trim().split(" ")[0]; // ⭐ Category normalization
-data.fee = Number(fee(data.category));              // ⭐ Fee numeric
-console.log("CHECK FEE BEFORE SENDING:", data.fee); // ⭐ Debug check
+ // 💸 FIXED FEE (NO ₹1 PROBLEM)
+ data.fee = Number(fee(data.category));
 
+ // 📁 QUIZ SKIPS UPLOAD
  data.fileUrl = "No Upload";
-
- // 📌 QUIZ SKIPS UPLOAD
  if(data.category !== "Quiz"){
    let file = performanceField.files[0];
-   if(!file) return showError("⚠ Please upload your performance video");
+   if(!file) return showError("⚠ Please upload JPG/PNG/MP3/MP4 file");
    let up = await uploadFile(file);
    if(up.status !== "success") return showError("❌ Upload failed");
    data.fileUrl = up.fileUrl;
  }
 
- // 💳 CREATE ORDER (₹ → Not ₹1 anymore)
- let order = await fetch(API_URL+"?action=create-order", {
+ // 🧾 CREATE RAZORPAY ORDER (FIXED AMOUNT)
+ let order = await fetch(API_URL+"?action=create-order",{
    method:"POST",
-   headers:{ "Content-Type":"application/json" },
-   body: JSON.stringify({ amount: Number(data.fee) }) // ⭐ FIXED
+   headers:{"Content-Type":"application/json"},
+   body:JSON.stringify({ amount: data.fee })
  }).then(r=>r.json());
 
- // ⭐ RAZORPAY CHECKOUT
+ // 💳 RAZORPAY CHECKOUT
  let pay = new Razorpay({
-   key: "rzp_live_Rj6ceV2avDzdlC", // YOUR KEY
+   key: order.key,
    order_id: order.id,
-   amount: order.amount,
-   currency: "INR",
    name:"Competition Registration",
    description:"Entry Fee Payment",
+   amount: order.amount,
    handler: async function(res){
      data.payment_id = res.razorpay_payment_id;
 
-     let submit = await fetch(API_URL+"?action=register",{
+     let save = await fetch(API_URL+"?action=register",{
        method:"POST",
-       headers:{ "Content-Type":"application/json" },
-       body: JSON.stringify(data)
+       headers:{"Content-Type":"application/json"},
+       body:JSON.stringify(data)
      }).then(r=>r.json());
 
-     if(submit.status === "success"){
-       window.location.href = "success.html?code="+submit.code+"&pdf="+submit.pdfUrl;
+     if(save.status === "success"){
+       window.location.href = "success.html?code="+save.code+"&pdf="+save.pdfUrl;
      } else {
-       alert("❌ Something went wrong: "+submit.message);
+       alert("❌ Registration failed: "+save.message);
      }
    }
  });
@@ -258,7 +249,7 @@ console.log("CHECK FEE BEFORE SENDING:", data.fee); // ⭐ Debug check
  pay.open();
 }
 
-// 🎯 ERROR MESSAGE UI
+// ❗ SHOW UI ERRORS
 function showError(msg){
  errorBox.style.display="block";
  errorBox.innerText = msg;
