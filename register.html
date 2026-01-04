@@ -124,7 +124,6 @@ button:hover{background:#08306b;}
 // ============================
 // FIELD BINDING
 // ============================
-// These variables connect HTML inputs to JavaScript
 const nameField = document.getElementById("name");
 const guardianField = document.getElementById("guardian");
 const relationField = document.getElementById("relation");
@@ -137,14 +136,12 @@ const termsField = document.getElementById("terms");
 const errorBox = document.getElementById("errorBox");
 const ageMessage = document.getElementById("ageMessage");
 
-// Cloudflare Worker API (DO NOT CHANGE)
-const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev";
+const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev"; // DO NOT CHANGE
 
 
 // ============================
-// AGE CALCULATOR FUNCTION
+// AGE CALCULATOR (AS OF 01 JAN 2026)
 // ============================
-// Calculates age as of 01 Jan 2026
 function getAge(dob){
   const birth = new Date(dob);
   const ref = new Date("2026-01-01");
@@ -155,50 +152,49 @@ function getAge(dob){
   return age;
 }
 
-// ----------------------------
-// COMMENT: Strict age rule helper
-// Purpose: Used to allow ONLY age 7 or age 25
-// ----------------------------
+// ============================
+// ALLOWED AGE RULE
+// ============================
 function isAllowedAge(age){
   return age === 7 || age === 25;
+}
+
+// ============================
+// AGE GROUP LABEL
+// ============================
+function getAgeGroup(age){
+  return age === 7 ? "Junior" : "Senior";
 }
 
 
 // ============================
 // LIVE AGE VALIDATION
 // ============================
-// Runs when user selects Date of Birth
 dobField.addEventListener("input", ()=>{
-  const age = getAge(dobField.value);
-
-  // If DOB is empty, reset UI
   if(!dobField.value){
     ageMessage.innerText = "";
     dobField.style.border = "1px solid #ccc";
     return;
   }
 
-  // COMMENT: Enforce strict age rule (7 or 25 only)
+  const age = getAge(dobField.value);
+
   if(!isAllowedAge(age)){
     dobField.style.border = "2px solid red";
     ageMessage.style.color = "red";
-    ageMessage.innerHTML = `❌ Only age 7 or 25 allowed. Your age is ${age}.`;
+    ageMessage.innerHTML = `❌ Only age <b>7</b> or <b>25</b> allowed. Your age is <b>${age}</b>.`;
     return;
   }
 
-  // COMMENT: Age is valid
   dobField.style.border = "2px solid green";
   ageMessage.style.color = "green";
-  ageMessage.innerHTML = `✔ Eligible. Age: ${age}`;
+  ageMessage.innerHTML = `✔ Eligible – ${getAgeGroup(age)} Group`;
 });
 
 
 // ============================
-// CATEGORY FILTER LOGIC
+// CATEGORY FILTER BASED ON AGE
 // ============================
-// COMMENT: Hides categories dynamically based on age
-// Age 7  -> Dance, Music only
-// Age 25 -> All categories
 function filterCategoriesByAge(age){
   const options = categoryField.options;
 
@@ -208,17 +204,15 @@ function filterCategoriesByAge(age){
 
     options[i].style.display = "block";
 
-    // COMMENT: Hide non-allowed categories for age 7
+    // Junior (Age 7) → Dance & Music only
     if(age === 7 && val !== "Dance" && val !== "Music"){
       options[i].style.display = "none";
     }
   }
 
-  // COMMENT: Reset category selection after DOB change
   categoryField.value = "";
 }
 
-// COMMENT: Trigger category filtering when DOB changes
 dobField.addEventListener("change", ()=>{
   if(!dobField.value) return;
   const age = getAge(dobField.value);
@@ -231,33 +225,29 @@ dobField.addEventListener("change", ()=>{
 // ============================
 // CATEGORY FEE LOGIC
 // ============================
-// Determines payment amount based on category
 function fee(c){
   c = c.trim();
-  return c==="Quiz" ? 100 :
-         (c==="Dance" || c==="Music") ? 200 :
+  return c === "Quiz" ? 100 :
+         (c === "Dance" || c === "Music") ? 200 :
          150;
 }
 
 
 // ============================
-// ERROR MESSAGE DISPLAY
+// ERROR MESSAGE
 // ============================
-// Shows validation errors on UI
 function showError(msg){
-  errorBox.style.display="block";
+  errorBox.style.display = "block";
   errorBox.innerText = msg;
-  errorBox.style.color="red";
+  errorBox.style.color = "red";
 }
 
 
 // ============================
 // FINAL SUBMIT & PAYMENT
 // ============================
-// Handles form validation, Razorpay payment, and data submission
 async function submitForm(){
 
-  // COMMENT: Collect form data
   let data = {
     name: nameField.value.trim(),
     guardian: guardianField.value.trim(),
@@ -269,61 +259,60 @@ async function submitForm(){
     category: categoryField.value.trim()
   };
 
-  // COMMENT: Required field validation
-  if(!data.name||!data.guardian||!data.relation||!data.mobile||!data.email||!data.dob||!data.category)
+  // REQUIRED FIELD CHECK
+  if(!data.name || !data.guardian || !data.relation || !data.mobile || !data.email || !data.dob || !data.category)
     return showError("⚠ Please fill all required fields");
 
-  // COMMENT: Mobile & email format validation
-  if(!/^[0-9]{10}$/.test(data.mobile)) return showError("⚠ Enter valid 10-digit phone number");
-  if(!/\S+@\S+\.\S+/.test(data.email)) return showError("⚠ Enter valid email");
+  if(!/^[0-9]{10}$/.test(data.mobile))
+    return showError("⚠ Enter valid 10-digit phone number");
 
-  // COMMENT: Terms & Conditions check
-  if(!termsField.checked) return showError("⚠ Accept the terms to continue");
+  if(!/\S+@\S+\.\S+/.test(data.email))
+    return showError("⚠ Enter valid email address");
 
-  let age = getAge(data.dob);
+  if(!termsField.checked)
+    return showError("⚠ Accept the Terms & Conditions to continue");
 
-  // COMMENT: Final age enforcement before payment
-  if(!isAllowedAge(age)){
+  const age = getAge(data.dob);
+
+  if(!isAllowedAge(age))
     return showError(`❌ Only age 7 or 25 allowed. Your age is ${age}.`);
-  }
 
-  // COMMENT: Clean category value and calculate fee
+  // ADD AGE GROUP
+  data.age_group = getAgeGroup(age);
+
+  // CLEAN CATEGORY & FEE
   data.category = data.category.split(" ")[0];
   data.fee = Number(fee(data.category));
 
-  // COMMENT: Create Razorpay order via Cloudflare Worker
-  let order = await fetch(API_URL+"?action=create-order",{
-    method:"POST",
-    headers:{ "Content-Type":"application/json" },
-    body: JSON.stringify({ amount:data.fee })
-  }).then(r=>r.json());
+  // CREATE RAZORPAY ORDER
+  const order = await fetch(API_URL + "?action=create-order",{
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ amount: data.fee })
+  }).then(r => r.json());
 
-  // COMMENT: Open Razorpay checkout
-  let pay = new Razorpay({
-    key:"rzp_live_Rj6ceV2avDzdlC",
+  // OPEN PAYMENT POPUP
+  const pay = new Razorpay({
+    key: "rzp_live_Rj6ceV2avDzdlC",
     order_id: order.id,
     amount: order.amount,
-    currency:"INR",
-    name:"Competition Registration",
+    currency: "INR",
+    name: "Competition Registration",
 
-    // COMMENT: Runs only after successful payment
     handler: async function(res){
 
-      // COMMENT: Attach payment ID to data
       data.payment_id = res.razorpay_payment_id;
 
-      // COMMENT: Send final data to Google Sheet via backend
-      let submit = await fetch(API_URL+"?action=register",{
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
+      const submit = await fetch(API_URL + "?action=register",{
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
-      }).then(r=>r.json());
+      }).then(r => r.json());
 
-      // COMMENT: Redirect to success page with PDF link
-      if(submit.status==="success"){
-        window.location.href = "success.html?code="+submit.code+"&pdf="+submit.pdfUrl;
+      if(submit.status === "success"){
+        window.location.href = "success.html?code=" + submit.code + "&pdf=" + submit.pdfUrl;
       } else {
-        showError("❌ "+submit.message);
+        showError("❌ " + submit.message);
       }
     }
   });
