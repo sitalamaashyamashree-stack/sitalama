@@ -305,13 +305,13 @@ async function submitForm(){
 
       data.payment_id = res.razorpay_payment_id;
 
-     const res = await fetch(API_URL + "?action=register", {
+const response = await fetch(API_URL + "?action=register", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(data)
 });
 
-const text = await res.text();
+const text = await response.text();
 console.log("RAW RESPONSE:", text);
 
 let submit;
@@ -321,6 +321,7 @@ try {
   alert("Server error. Please try again.");
   return false;
 }
+
 
 
       if (submit.status === "success") {
