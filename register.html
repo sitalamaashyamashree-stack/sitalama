@@ -87,7 +87,7 @@ button:hover{background:#08306b;}
 <label>Mobile *</label><input id="mobile" maxlength="10" placeholder="10 digit mobile">
 <label>Email *</label><input id="email" type="email">
 <label>Date of Birth *</label><input id="dob" type="date">
-<label>School / Institute (Optional)</label><input id="institution" type="text">
+<label>School / Institute /collage </label><input id="institution" type="text">
 
 <label>Category *</label>
 <select id="category">
@@ -304,7 +304,7 @@ async function submitForm(){
 
   // PAYMENT
   const pay = new Razorpay({
-    key: "rzp_live_Rj6ceV2avDzdlC",
+    key: "rzp_live_RyvBMwV4crOZwu",
     order_id: order.id,
     amount: order.amount,
     currency: "INR",
