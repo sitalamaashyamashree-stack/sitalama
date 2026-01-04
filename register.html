@@ -115,7 +115,8 @@ button:hover{background:#08306b;}
   </label>
 </div>
 
-<button type="button" onclick="submitForm()">Pay & Register</button>
+<button type="button" onclick="return submitForm()">Pay & Register</button>
+
 </div>
 <!-- Razorpay Script -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -318,8 +319,9 @@ async function submitForm(){
       }
     }
   });
-
-  pay.open();
+  
+pay.open();
+return false; // 🔴 THIS LINE
 }
 </script>
 
