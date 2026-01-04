@@ -156,14 +156,14 @@ function getAge(dob){
 // ALLOWED AGE RULE
 // ============================
 function isAllowedAge(age){
-  return age === 7 || age === 25;
+  return age === 6 || age === 25;
 }
 
 // ============================
 // AGE GROUP LABEL
 // ============================
 function getAgeGroup(age){
-  return age === 7 ? "Junior" : "Senior";
+  return age === 6 ? "Junior" : "Senior";
 }
 
 
@@ -182,7 +182,7 @@ dobField.addEventListener("input", ()=>{
   if(!isAllowedAge(age)){
     dobField.style.border = "2px solid red";
     ageMessage.style.color = "red";
-    ageMessage.innerHTML = `❌ Only age <b>7</b> or <b>25</b> allowed. Your age is <b>${age}</b>.`;
+    ageMessage.innerHTML = `❌ Only age <b>6</b> or <b>25</b> allowed. Your age is <b>${age}</b>.`;
     return;
   }
 
@@ -204,8 +204,8 @@ function filterCategoriesByAge(age){
 
     options[i].style.display = "block";
 
-    // Junior (Age 7) → Dance & Music only
-    if(age === 7 && val !== "Dance" && val !== "Music"){
+    // Junior (Age 6) → Dance & Music only
+    if(age === 6 && val !== "Dance" && val !== "Music"){
       options[i].style.display = "none";
     }
   }
@@ -275,7 +275,7 @@ async function submitForm(){
   const age = getAge(data.dob);
 
   if(!isAllowedAge(age))
-    return showError(`❌ Only age 7 or 25 allowed. Your age is ${age}.`);
+    return showError(`❌ Only age 6 or 25 allowed. Your age is ${age}.`);
 
   // ADD AGE GROUP
   data.age_group = getAgeGroup(age);
