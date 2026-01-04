@@ -140,6 +140,17 @@ const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev"; // D
 
 
 // ============================
+// DOB RANGE CHECK (2001–2026)
+// ============================
+function isDobInAllowedRange(dobStr){
+  const dob = new Date(dobStr);
+  const minDob = new Date("2001-01-01");
+  const maxDob = new Date("2026-01-01");
+  return dob >= minDob && dob <= maxDob;
+}
+
+
+// ============================
 // EXACT AGE CALCULATION (Y/M/D)
 // ============================
 function calculateExactAge(dobStr){
@@ -150,13 +161,13 @@ function calculateExactAge(dobStr){
   let months = ref.getMonth() - dob.getMonth();
   let days = ref.getDate() - dob.getDate();
 
-  if (days < 0) {
+  if(days < 0){
     months--;
     const prevMonth = new Date(ref.getFullYear(), ref.getMonth(), 0);
     days += prevMonth.getDate();
   }
 
-  if (months < 0) {
+  if(months < 0){
     years--;
     months += 12;
   }
@@ -166,18 +177,18 @@ function calculateExactAge(dobStr){
 
 
 // ============================
-// AGE GROUP LOGIC (EXACT MATCH)
+// AGE GROUP LOGIC (FINAL)
 // ============================
 function getAgeGroup(years){
-  if (years >= 6 && years <= 12) return "Junior";
-  if (years >= 13 && years <= 17) return "Mid Age";
-  if (years >= 18 && years <= 25) return "Senior";
+  if(years >= 6 && years <= 12) return "Junior";
+  if(years >= 13 && years <= 17) return "Mid Age";
+  if(years >= 18 && years <= 25) return "Senior";
   return "Not Eligible";
 }
 
 
 // ============================
-// LIVE AGE DISPLAY
+// LIVE DOB VALIDATION
 // ============================
 dobField.addEventListener("input", ()=>{
   if(!dobField.value){
@@ -186,15 +197,23 @@ dobField.addEventListener("input", ()=>{
     return;
   }
 
+  if(!isDobInAllowedRange(dobField.value)){
+    dobField.style.border = "2px solid red";
+    ageMessage.style.color = "red";
+    ageMessage.innerHTML =
+      "❌ DOB must be between <b>01-Jan-2001</b> and <b>01-Jan-2026</b>";
+    return;
+  }
+
   const age = calculateExactAge(dobField.value);
   const group = getAgeGroup(age.years);
 
   if(group === "Not Eligible"){
-    dobField.style.border = "2px solid red";
-    ageMessage.style.color = "red";
+    dobField.style.border = "2px solid orange";
+    ageMessage.style.color = "orange";
     ageMessage.innerHTML =
-      `❌ Age: ${age.years} Years, ${age.months} Months, ${age.days} Days<br>
-       ❌ Not Eligible (Age must be 6–25)`;
+      `⚠ Age: ${age.years} Years, ${age.months} Months, ${age.days} Days<br>
+       ⚠ Not eligible for competition`;
     return;
   }
 
@@ -257,12 +276,16 @@ async function submitForm(){
   if(!termsField.checked)
     return showError("⚠ Accept the Terms & Conditions to continue");
 
-  // AGE & AGE GROUP
+  // DOB RANGE CHECK
+  if(!isDobInAllowedRange(data.dob))
+    return showError("❌ DOB must be between 01-Jan-2001 and 01-Jan-2026");
+
+  // AGE & GROUP CHECK
   const ageObj = calculateExactAge(data.dob);
   const ageGroup = getAgeGroup(ageObj.years);
 
   if(ageGroup === "Not Eligible")
-    return showError("❌ Age must be between 6 and 25 years");
+    return showError("❌ Candidate is not eligible based on age criteria");
 
   // SAVE AGE DETAILS
   data.age = `${ageObj.years} Years, ${ageObj.months} Months, ${ageObj.days} Days`;
@@ -281,7 +304,7 @@ async function submitForm(){
 
   // PAYMENT
   const pay = new Razorpay({
-    key: "rzp_live_RyvBMwV4crOZwu",
+    key: "rzp_live_Rj6ceV2avDzdlC",
     order_id: order.id,
     amount: order.amount,
     currency: "INR",
@@ -309,6 +332,7 @@ async function submitForm(){
   pay.open();
 }
 </script>
+
 
 
 </body>
