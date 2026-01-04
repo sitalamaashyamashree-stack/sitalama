@@ -311,10 +311,12 @@ async function submitForm(){
         body: JSON.stringify(data)
       }).then(r=>r.json());
 
-      if(submit.status==="success"){
-        window.location.href =
-          "success.html?code="+submit.code+"&pdf="+submit.pdfUrl;
-      } else {
+      if (submit.status === "success") {
+  setTimeout(function () {
+    window.location.href =
+      "success.html?code=" + submit.code + "&pdf=" + submit.pdfUrl;
+  }, 300);
+}else {
         showError("❌ "+submit.message);
       }
     }
