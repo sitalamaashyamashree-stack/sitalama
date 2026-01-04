@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment Successful</title>
+
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    .box{
+      max-width: 500px;
+      margin: 80px auto;
+      background: #ffffff;
+      padding: 30px;
+      text-align: center;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    h2{
+      color: #2e7d32;
+      margin-bottom: 10px;
+    }
+
+    p{
+      color: #444;
+      font-size: 15px;
+      margin: 10px 0;
+    }
+
+    .code{
+      background: #f1f1f1;
+      padding: 8px;
+      margin: 15px 0;
+      font-weight: bold;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .btn{
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #1976d2;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .btn:hover{
+      background: #125ea8;
+    }
+
+    .note{
+      font-size: 12px;
+      color: #666;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+    <h2>🎉 Payment Successful</h2>
+
+    <p>Thank you for your payment.<br>
+    Your registration has been completed successfully.</p>
+
+    <div class="code" id="regCode">Registration Code: —</div>
+
+    <a id="downloadBtn" class="btn" href="#" target="_blank">
+      📄 Download Your Receipt
+    </a>
+
+    <p class="note">
+      A copy of your receipt has also been sent to your email.
+    </p>
+  </div>
+
+  <script>
+    // Read URL parameters
+    const params = new URLSearchParams(window.location.search);
+
+    const pdfUrl = params.get("pdf");
+    const code   = params.get("code");
+
+    if(code){
+      document.getElementById("regCode").innerText =
+        "Registration Code: " + code;
+    }
+
+    if(pdfUrl){
+      const btn = document.getElementById("downloadBtn");
+      btn.href = pdfUrl;
+    } else {
+      document.getElementById("downloadBtn").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
