@@ -305,16 +305,30 @@ async function submitForm(){
 
       data.payment_id = res.razorpay_payment_id;
 
-      const submit = await fetch(API_URL+"?action=register",{
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body: JSON.stringify(data)
-      }).then(r=>r.json());
+     const res = await fetch(API_URL + "?action=register", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(data)
+});
+
+const text = await res.text();
+console.log("RAW RESPONSE:", text);
+
+let submit;
+try {
+  submit = JSON.parse(text);
+} catch (e) {
+  alert("Server error. Please try again.");
+  return false;
+}
+
 
       if (submit.status === "success") {
   setTimeout(function () {
     window.location.href =
-      "success.html?code=" + submit.code + "&pdf=" + submit.pdfUrl;
+  "success.html?code=" + submit.code +
+  "&pdf=" + encodeURIComponent(submit.pdfUrl);
+
   }, 300);
 }else {
         showError("❌ "+submit.message);
