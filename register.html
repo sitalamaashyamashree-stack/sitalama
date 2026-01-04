@@ -140,35 +140,44 @@ const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev"; // D
 
 
 // ============================
-// AGE CALCULATOR (AS OF 01 JAN 2026)
+// EXACT AGE CALCULATION (Y/M/D)
 // ============================
-function getAge(dob){
-  const birth = new Date(dob);
+function calculateExactAge(dobStr){
+  const dob = new Date(dobStr);
   const ref = new Date("2026-01-01");
-  let age = ref.getFullYear() - birth.getFullYear();
-  const m = ref.getMonth() - birth.getMonth();
-  const d = ref.getDate() - birth.getDate();
-  if (m < 0 || (m === 0 && d < 0)) age--;
-  return age;
+
+  let years = ref.getFullYear() - dob.getFullYear();
+  let months = ref.getMonth() - dob.getMonth();
+  let days = ref.getDate() - dob.getDate();
+
+  if (days < 0) {
+    months--;
+    const prevMonth = new Date(ref.getFullYear(), ref.getMonth(), 0);
+    days += prevMonth.getDate();
+  }
+
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  return { years, months, days };
 }
 
-// ============================
-// ALLOWED AGE RULE
-// ============================
-function isAllowedAge(age){
-  return age === 6 || age === 25;
-}
 
 // ============================
-// AGE GROUP LABEL
+// AGE GROUP LOGIC (EXACT MATCH)
 // ============================
-function getAgeGroup(age){
-  return age === 6 ? "Junior" : "Senior";
+function getAgeGroup(years){
+  if (years >= 6 && years <= 12) return "Junior";
+  if (years >= 13 && years <= 17) return "Mid Age";
+  if (years >= 18 && years <= 25) return "Senior";
+  return "Not Eligible";
 }
 
 
 // ============================
-// LIVE AGE VALIDATION
+// LIVE AGE DISPLAY
 // ============================
 dobField.addEventListener("input", ()=>{
   if(!dobField.value){
@@ -177,48 +186,23 @@ dobField.addEventListener("input", ()=>{
     return;
   }
 
-  const age = getAge(dobField.value);
+  const age = calculateExactAge(dobField.value);
+  const group = getAgeGroup(age.years);
 
-  if(!isAllowedAge(age)){
+  if(group === "Not Eligible"){
     dobField.style.border = "2px solid red";
     ageMessage.style.color = "red";
-    ageMessage.innerHTML = `❌ Only age <b>6</b> or <b>25</b> allowed. Your age is <b>${age}</b>.`;
+    ageMessage.innerHTML =
+      `❌ Age: ${age.years} Years, ${age.months} Months, ${age.days} Days<br>
+       ❌ Not Eligible (Age must be 6–25)`;
     return;
   }
 
   dobField.style.border = "2px solid green";
   ageMessage.style.color = "green";
-  ageMessage.innerHTML = `✔ Eligible – ${getAgeGroup(age)} Group`;
-});
-
-
-// ============================
-// CATEGORY FILTER BASED ON AGE
-// ============================
-function filterCategoriesByAge(age){
-  const options = categoryField.options;
-
-  for(let i = 0; i < options.length; i++){
-    const val = options[i].value;
-    if(!val) continue;
-
-    options[i].style.display = "block";
-
-    // Junior (Age 6) → Dance & Music only
-    if(age === 6 && val !== "Dance" && val !== "Music"){
-      options[i].style.display = "none";
-    }
-  }
-
-  categoryField.value = "";
-}
-
-dobField.addEventListener("change", ()=>{
-  if(!dobField.value) return;
-  const age = getAge(dobField.value);
-  if(isAllowedAge(age)){
-    filterCategoriesByAge(age);
-  }
+  ageMessage.innerHTML =
+    `✔ Age: ${age.years} Years, ${age.months} Months, ${age.days} Days<br>
+     ✔ Age Group: <b>${group}</b>`;
 });
 
 
@@ -259,8 +243,9 @@ async function submitForm(){
     category: categoryField.value.trim()
   };
 
-  // REQUIRED FIELD CHECK
-  if(!data.name || !data.guardian || !data.relation || !data.mobile || !data.email || !data.dob || !data.category)
+  // BASIC VALIDATION
+  if(!data.name || !data.guardian || !data.relation ||
+     !data.mobile || !data.email || !data.dob || !data.category)
     return showError("⚠ Please fill all required fields");
 
   if(!/^[0-9]{10}$/.test(data.mobile))
@@ -272,26 +257,29 @@ async function submitForm(){
   if(!termsField.checked)
     return showError("⚠ Accept the Terms & Conditions to continue");
 
-  const age = getAge(data.dob);
+  // AGE & AGE GROUP
+  const ageObj = calculateExactAge(data.dob);
+  const ageGroup = getAgeGroup(ageObj.years);
 
-  if(!isAllowedAge(age))
-    return showError(`❌ Only age 6 or 25 allowed. Your age is ${age}.`);
+  if(ageGroup === "Not Eligible")
+    return showError("❌ Age must be between 6 and 25 years");
 
-  // ADD AGE GROUP
-  data.age_group = getAgeGroup(age);
+  // SAVE AGE DETAILS
+  data.age = `${ageObj.years} Years, ${ageObj.months} Months, ${ageObj.days} Days`;
+  data.age_group = ageGroup;
 
-  // CLEAN CATEGORY & FEE
+  // CATEGORY & FEE
   data.category = data.category.split(" ")[0];
   data.fee = Number(fee(data.category));
 
-  // CREATE RAZORPAY ORDER
+  // CREATE ORDER
   const order = await fetch(API_URL + "?action=create-order",{
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ amount: data.fee })
   }).then(r => r.json());
 
-  // OPEN PAYMENT POPUP
+  // PAYMENT
   const pay = new Razorpay({
     key: "rzp_live_RyvBMwV4crOZwu",
     order_id: order.id,
@@ -310,7 +298,8 @@ async function submitForm(){
       }).then(r => r.json());
 
       if(submit.status === "success"){
-        window.location.href = "success.html?code=" + submit.code + "&pdf=" + submit.pdfUrl;
+        window.location.href =
+          "success.html?code=" + submit.code + "&pdf=" + submit.pdfUrl;
       } else {
         showError("❌ " + submit.message);
       }
@@ -320,6 +309,7 @@ async function submitForm(){
   pay.open();
 }
 </script>
+
 
 </body>
 </html>
