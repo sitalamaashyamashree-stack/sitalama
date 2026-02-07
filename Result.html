@@ -37,33 +37,33 @@
 
     .blob {
       position: absolute;
-      width: 400px;
-      height: 400px;
+      width: 420px;
+      height: 420px;
       border-radius: 50%;
-      filter: blur(80px);
+      filter: blur(90px);
       opacity: 0.7;
       animation: float 8s infinite alternate ease-in-out;
     }
 
     .blob:nth-child(1) {
       background: #38bdf8;
-      top: -120px;
-      left: -120px;
+      top: -140px;
+      left: -140px;
     }
 
     .blob:nth-child(2) {
       background: #a855f7;
-      bottom: -140px;
-      right: -140px;
+      bottom: -160px;
+      right: -160px;
       animation-delay: 2s;
     }
 
     .blob:nth-child(3) {
       background: #22c55e;
-      top: 40%;
-      left: 60%;
-      width: 300px;
-      height: 300px;
+      top: 45%;
+      left: 65%;
+      width: 320px;
+      height: 320px;
       animation-delay: 4s;
     }
 
@@ -75,13 +75,13 @@
     /* Main Card */
     .container {
       width: 100%;
-      max-width: 600px;
-      padding: 40px;
-      border-radius: 22px;
+      max-width: 620px;
+      padding: 45px;
+      border-radius: 24px;
       background: rgba(255, 255, 255, 0.07);
       backdrop-filter: blur(18px);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0px 0px 40px rgba(56, 189, 248, 0.25);
+      box-shadow: 0px 0px 45px rgba(56, 189, 248, 0.25);
       animation: fadeIn 1s ease;
       position: relative;
     }
@@ -98,29 +98,29 @@
 
     .header h1 {
       font-family: "Orbitron", sans-serif;
-      font-size: 30px;
+      font-size: 32px;
       font-weight: 700;
       letter-spacing: 2px;
       background: linear-gradient(90deg, #38bdf8, #a855f7, #22c55e);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .header p {
       font-size: 14px;
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
     .input-box {
       display: flex;
       gap: 12px;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     input {
       flex: 1;
-      padding: 15px 16px;
+      padding: 16px 18px;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.18);
       background: rgba(0,0,0,0.25);
@@ -137,11 +137,11 @@
     }
 
     button {
-      padding: 15px 18px;
+      padding: 16px 20px;
       border: none;
       border-radius: 14px;
       cursor: pointer;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 14px;
       letter-spacing: 1px;
       color: white;
@@ -183,7 +183,7 @@
     /* Result Card */
     .result-card {
       margin-top: 22px;
-      padding: 22px;
+      padding: 26px;
       border-radius: 18px;
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.12);
@@ -195,7 +195,7 @@
     .row {
       display: flex;
       justify-content: space-between;
-      padding: 10px 0;
+      padding: 12px 0;
       border-bottom: 1px solid rgba(255,255,255,0.08);
       font-size: 14px;
     }
@@ -209,18 +209,31 @@
     }
 
     .value {
-      font-weight: 700;
+      font-weight: 800;
       text-align: right;
     }
 
-    .badge {
+    .remarks-box {
       margin-top: 18px;
+      padding: 18px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.6;
+      font-weight: 600;
+      opacity: 0.95;
+    }
+
+    .badge {
+      margin-top: 20px;
       display: inline-block;
       width: 100%;
       padding: 14px;
       border-radius: 14px;
       font-size: 16px;
-      font-weight: 800;
+      font-weight: 900;
       text-align: center;
       letter-spacing: 1px;
     }
@@ -247,26 +260,10 @@
     }
 
     .footer {
-      margin-top: 20px;
+      margin-top: 25px;
       text-align: center;
       font-size: 12px;
       opacity: 0.65;
-    }
-
-    .back-btn {
-      margin-top: 16px;
-      width: 100%;
-      padding: 14px;
-      border-radius: 14px;
-      font-weight: 700;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: none;
-    }
-
-    .back-btn:hover {
-      transform: none;
-      box-shadow: 0px 0px 20px rgba(255,255,255,0.1);
     }
   </style>
 </head>
@@ -283,7 +280,7 @@
 
     <div class="header">
       <h1>RESULT PORTAL</h1>
-      <p>Enter your Contestant Code to view your final remarks & status</p>
+      <p>Enter your Contestant Code to check your status & remarks</p>
     </div>
 
     <div class="input-box">
@@ -300,20 +297,10 @@
         <div class="value" id="codeOut"></div>
       </div>
 
-      <div class="row">
-        <div class="label">Time Slot</div>
-        <div class="value" id="timeOut"></div>
-      </div>
-
-      <div class="row">
-        <div class="label">Remarks</div>
-        <div class="value" id="remarksOut"></div>
-      </div>
+      <div class="remarks-box" id="remarksOut"></div>
 
       <div id="badgeOut"></div>
     </div>
-
-    <button class="back-btn" onclick="goBack()">⬅ BACK TO HOME</button>
 
     <div class="footer">⚡ Powered by Google Sheets Live Result System</div>
   </div>
@@ -365,13 +352,12 @@
       const text = await response.text();
 
       const rows = parseCSV(text.trim());
-      rows.shift();
+      rows.shift(); // remove headers
 
       sheetData = rows.map(r => ({
         code: (r[1] || "").trim().toUpperCase(),
         result: (r[2] || "").trim().toUpperCase(),
-        remarks: (r[3] || "").trim(),
-        timeSlot: (r[4] || "").trim()
+        remarks: (r[3] || "").trim()
       }));
 
       console.log("Loaded Sheet Data:", sheetData);
@@ -402,7 +388,7 @@
       } catch (err) {
         loader.style.display = "none";
         errorMsg.style.display = "block";
-        errorMsg.innerText = "❌ Unable to load results. Make sheet public (Anyone with link).";
+        errorMsg.innerText = "❌ Unable to load results. Please make sure sheet is public.";
         console.log("Fetch Error:", err);
         return;
       }
@@ -418,8 +404,11 @@
       }
 
       document.getElementById("codeOut").innerText = found.code;
-      document.getElementById("timeOut").innerText = found.timeSlot || "Not Available";
-      document.getElementById("remarksOut").innerText = found.remarks || "No Remarks";
+
+      document.getElementById("remarksOut").innerHTML =
+        found.remarks
+          ? found.remarks
+          : "No remarks available.";
 
       let badgeClass = "pending";
       let badgeText = "NOT PUBLISHED ⏳";
@@ -430,6 +419,9 @@
       } else if (found.result.includes("FAIL")) {
         badgeClass = "fail";
         badgeText = "❌ FAIL";
+      } else if (found.result.includes("PUBLISHED")) {
+        badgeClass = "pass";
+        badgeText = "✅ PUBLISHED";
       }
 
       document.getElementById("badgeOut").innerHTML =
@@ -438,15 +430,12 @@
       resultCard.style.display = "block";
     }
 
+    // Enter key support
     document.getElementById("codeInput").addEventListener("keypress", function(event) {
       if (event.key === "Enter") {
         findResult();
       }
     });
-
-    function goBack() {
-      window.location.href = "index.html";
-    }
   </script>
 
 </body>
