@@ -411,18 +411,23 @@
           : "No remarks available.";
 
       let badgeClass = "pending";
-      let badgeText = "NOT PUBLISHED ⏳";
+let badgeText = "NOT PUBLISHED ⏳";
 
-      if (found.result.includes("PASS")) {
-        badgeClass = "pass";
-        badgeText = "🎉 PASS ✅";
-      } else if (found.result.includes("FAIL")) {
-        badgeClass = "fail";
-        badgeText = "❌ FAIL";
-      } else if (found.result.includes("PUBLISHED")) {
-        badgeClass = "pass";
-        badgeText = "✅ PUBLISHED";
-      }
+// If remarks exist, show Published
+if (found.remarks && found.remarks.trim() !== "") {
+  badgeClass = "pass";
+  badgeText = "✅ PUBLISHED";
+}
+
+// PASS / FAIL overrides published
+if (found.result.includes("PASS")) {
+  badgeClass = "pass";
+  badgeText = "🎉 PASS ✅";
+} else if (found.result.includes("FAIL")) {
+  badgeClass = "fail";
+  badgeText = "❌ FAIL";
+}
+
 
       document.getElementById("badgeOut").innerHTML =
         `<div class="badge ${badgeClass}">${badgeText}</div>`;
