@@ -93,8 +93,8 @@
 
     /* SVG Ring */
     svg {
-      width: 500px;
-      height: 500px;
+      width: 520px;
+      height: 520px;
       transform: rotate(-90deg);
     }
 
@@ -116,7 +116,7 @@
     /* Timer Text */
     .time-text {
       position: absolute;
-      font-size: 6.5rem;
+      font-size: 6.8rem;
       font-weight: 900;
       color: #00ff66;
       text-shadow: 0px 0px 20px rgba(0,255,100,0.6);
@@ -133,7 +133,7 @@
 
     /* Blink animation */
     .blink {
-      animation: blinkAnim 0.6s infinite;
+      animation: blinkAnim 0.55s infinite;
     }
 
     @keyframes blinkAnim {
@@ -162,7 +162,7 @@
     <input type="number" id="minutes" placeholder="Min" min="0" value="2">
     <input type="number" id="seconds" placeholder="Sec" min="0" max="59" value="0">
     <br>
-    <button onclick="startTimer()">START</button>
+    <button onclick="startTimer()">START (Fullscreen)</button>
   </div>
 
   <!-- Timer UI -->
@@ -170,8 +170,8 @@
     <div class="glow-bg"></div>
 
     <svg>
-      <circle class="ring-bg" cx="250" cy="250" r="200"></circle>
-      <circle class="ring-progress" cx="250" cy="250" r="200"></circle>
+      <circle class="ring-bg" cx="260" cy="260" r="210"></circle>
+      <circle class="ring-progress" cx="260" cy="260" r="210"></circle>
     </svg>
 
     <div class="time-text" id="timeText">00:00</div>
@@ -192,38 +192,52 @@
     const statusText = document.getElementById("statusText");
 
     const progressCircle = document.querySelector(".ring-progress");
-    const radius = 200;
+    const radius = 210;
     const circumference = 2 * Math.PI * radius;
 
     progressCircle.style.strokeDasharray = circumference;
     progressCircle.style.strokeDashoffset = 0;
 
-    // SOUND
-    function beep(freq = 800, duration = 200) {
+    // Better buzzer sound (more like real competition timer)
+    function buzzerSound(duration = 250, frequency = 900) {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const osc = ctx.createOscillator();
+
+      const osc1 = ctx.createOscillator();
+      const osc2 = ctx.createOscillator();
       const gain = ctx.createGain();
 
-      osc.type = "sine";
-      osc.frequency.value = freq;
+      osc1.type = "square";
+      osc2.type = "triangle";
+
+      osc1.frequency.value = frequency;
+      osc2.frequency.value = frequency - 200;
+
       gain.gain.value = 0.25;
 
-      osc.connect(gain);
+      osc1.connect(gain);
+      osc2.connect(gain);
       gain.connect(ctx.destination);
 
-      osc.start();
+      osc1.start();
+      osc2.start();
+
       setTimeout(() => {
-        osc.stop();
+        osc1.stop();
+        osc2.stop();
         ctx.close();
       }, duration);
     }
 
-    function tick() {
-      beep(1200, 90);
+    function tickSound() {
+      buzzerSound(90, 1200);
     }
 
-    function longBeep() {
-      beep(650, 1500);
+    function halfTimeSound() {
+      buzzerSound(450, 700);
+    }
+
+    function finishSound() {
+      buzzerSound(1600, 650);
     }
 
     function formatTime(seconds) {
@@ -242,6 +256,14 @@
       progressCircle.style.strokeDashoffset = circumference * (1 - percent);
     }
 
+    // AUTO FULLSCREEN MODE
+    function goFullscreen() {
+      const elem = document.documentElement;
+      if (elem.requestFullscreen) elem.requestFullscreen();
+      else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
+      else if (elem.msRequestFullscreen) elem.msRequestFullscreen();
+    }
+
     function startTimer() {
       const min = parseInt(document.getElementById("minutes").value) || 0;
       const sec = parseInt(document.getElementById("seconds").value) || 0;
@@ -253,6 +275,9 @@
         alert("Please set time greater than 0.");
         return;
       }
+
+      // Fullscreen starts automatically when START is pressed
+      goFullscreen();
 
       // Hide setup
       setupBox.classList.add("hidden");
@@ -273,16 +298,16 @@
         timeText.textContent = formatTime(totalSeconds);
         updateRing();
 
-        // HALF TIME ALERT
-        /*const halfTime = Math.floor(initialSeconds / 2);
+       /* // HALF TIME ALERT
+        const halfTime = Math.floor(initialSeconds / 2);
         if (totalSeconds === halfTime && !halfAlertDone) {
           statusText.textContent = "HALF TIME";
-          beep(500, 500);
+          halfTimeSound();
           blinkOnce();
           halfAlertDone = true;
         }*/
 
-        // LAST 30 SECONDS
+        // LAST 30 SECONDS ALERT
         if (totalSeconds === 30 && !last30Started) {
           last30Started = true;
           statusText.textContent = "LAST 30 SECONDS";
@@ -290,9 +315,9 @@
           progressCircle.style.stroke = "red";
         }
 
-        // Tick each second during last 30 seconds
+        // Tick each second during last 10 seconds
         if (totalSeconds <= 10 && totalSeconds > 0) {
-          tick();
+          tickSound();
         }
 
         // FINISH
@@ -305,7 +330,7 @@
           timeText.classList.add("finished");
 
           progressCircle.style.stroke = "lime";
-          longBeep();
+          finishSound();
         }
 
       }, 1000);
