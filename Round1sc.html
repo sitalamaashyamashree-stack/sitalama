@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LED Sheet Display</title>
+
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #000;
+      padding: 30px;
+      margin: 0;
+      color: white;
+    }
+
+    .container {
+      max-width: 1800px;
+      margin: auto;
+      background: #111;
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0px 15px 40px rgba(0,0,0,0.5);
+      text-align: center;
+      border: 3px solid #007bff;
+    }
+
+    /* ENTER MESSAGE */
+    .info {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #fff;
+      background: rgba(0,123,255,0.2);
+      display: inline-block;
+      padding: 12px 25px;
+      border-radius: 50px;
+      border: 2px solid #007bff;
+    }
+
+    .info b {
+      color: #00ff99;
+    }
+
+    .msg {
+      margin-top: 15px;
+      font-size: 26px;
+      font-weight: 700;
+      color: #00ff99;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    th {
+      background: linear-gradient(45deg, #007bff, #00c6ff);
+      color: white;
+      padding: 25px;
+      font-size: 36px;
+      font-weight: 900;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    td {
+      padding: 22px;
+      border-bottom: 2px solid #333;
+      font-size: 32px;
+      font-weight: 800;
+      text-align: center;
+      color: white;
+      word-break: break-word;
+    }
+
+    /* MAKE NAME COLUMN BIGGER */
+    th:nth-child(1), td:nth-child(1) { width: 25%; }
+    th:nth-child(2), td:nth-child(2) { width: 45%; font-size: 38px; }
+    th:nth-child(3), td:nth-child(3) { width: 15%; }
+    th:nth-child(4), td:nth-child(4) { width: 15%; }
+
+    tr:nth-child(even) {
+      background: #1b1b1b;
+    }
+
+    tr:nth-child(odd) {
+      background: #121212;
+    }
+
+    /* Animation for new row */
+    tr.new-row {
+      animation: glowSlide 1s ease-in-out;
+      background: #0b5ed7 !important;
+      color: white;
+    }
+
+    @keyframes glowSlide {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+        box-shadow: 0px 0px 0px rgba(0,255,153,0);
+      }
+      60% {
+        opacity: 1;
+        transform: translateY(-10px);
+        box-shadow: 0px 0px 30px rgba(0,255,153,0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0px);
+        box-shadow: 0px 0px 0px rgba(0,255,153,0);
+      }
+    }
+
+    /* Responsive for smaller screens */
+    @media(max-width: 1200px) {
+      th {
+        font-size: 26px;
+        padding: 18px;
+      }
+
+      td {
+        font-size: 22px;
+        padding: 16px;
+      }
+
+      th:nth-child(2), td:nth-child(2) {
+        font-size: 24px;
+      }
+
+      .info {
+        font-size: 20px;
+      }
+
+      .msg {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="info">
+      👉 Press <b>ENTER</b> to load next row
+    </div>
+
+    <div id="msg" class="msg">Loading sheet data...</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Contestant Code</th>
+          <th>Name</th>
+          <th>Score</th>
+          <th>Remarks</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+
+  </div>
+
+<script>
+  const sheetID = "1eneYaHW-2UAgLgi3wOBbP6pKP_02ocleIgsikhFHqQg";
+  const gid = "0";
+
+  // CSV Export URL
+  const sheetURL = `https://docs.google.com/spreadsheets/d/${sheetID}/export?format=csv&gid=${gid}`;
+
+  const msg = document.getElementById("msg");
+  const tableBody = document.getElementById("tableBody");
+
+  let rows = [];
+  let currentIndex = 1; // skip header row
+
+  // CSV parser
+  function parseCSV(text) {
+    return text.trim().split("\n").map(line =>
+      line.split(",").map(cell => cell.replace(/(^"|"$)/g, "").trim())
+    );
+  }
+
+  // Fetch Sheet Data
+  async function fetchSheetData() {
+    try {
+      const res = await fetch(sheetURL);
+      const csvText = await res.text();
+
+      rows = parseCSV(csvText);
+
+      msg.innerText = "✅ Sheet Loaded! Press ENTER.";
+
+    } catch (error) {
+      msg.innerText = "❌ ERROR: Sheet not public / not published!";
+      console.log(error);
+    }
+  }
+
+  // Show Next Row
+  function showNextRow() {
+    if (rows.length === 0) return;
+
+    if (currentIndex >= rows.length) {
+      msg.innerText = "✅ No more rows available!";
+      return;
+    }
+
+    const rowData = rows[currentIndex];
+
+    // rowData format:
+    // [0]=Group, [1]=Code, [2]=Name, [3]=Score, [4]=Remarks
+
+    const tr = document.createElement("tr");
+    tr.classList.add("new-row");
+
+    tr.innerHTML = `
+      <td>${rowData[1] || ""}</td>
+      <td>${rowData[2] || ""}</td>
+      <td>${rowData[3] || ""}</td>
+      <td>${rowData[4] || ""}</td>
+    `;
+
+    tableBody.appendChild(tr);
+
+    msg.innerText = `✅ Row ${currentIndex} loaded successfully!`;
+
+    tr.scrollIntoView({ behavior: "smooth", block: "end" });
+
+    currentIndex++;
+  }
+
+  // ENTER KEY EVENT
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      showNextRow();
+    }
+  });
+
+  fetchSheetData();
+</script>
+
+</body>
+</html>
