@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Competition Timer</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle at top, #222, #000);
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      overflow: hidden;
+    }
+
+    /* Setup */
+    .setup-box {
+      background: rgba(255,255,255,0.06);
+      padding: 30px 45px;
+      border-radius: 18px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0px 0px 50px rgba(0,0,0,0.9);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .setup-box h2 {
+      margin: 0 0 20px;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #00ff88;
+      text-shadow: 0px 0px 15px rgba(0,255,136,0.7);
+    }
+
+    input {
+      width: 90px;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      font-size: 1.2rem;
+      text-align: center;
+      margin: 8px;
+      outline: none;
+      background: rgba(255,255,255,0.12);
+      color: white;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 45px;
+      border: none;
+      border-radius: 14px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      background: #00ff88;
+      color: black;
+      transition: 0.2s;
+      box-shadow: 0px 0px 25px rgba(0,255,136,0.6);
+    }
+
+    button:hover {
+      background: #00cc6d;
+      box-shadow: 0px 0px 35px rgba(0,255,136,0.9);
+    }
+
+    /* Timer Container */
+    .timer-container {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: relative;
+      gap: 15px;
+    }
+
+    /* Glowing background */
+    .glow-bg {
+      position: absolute;
+      width: 750px;
+      height: 750px;
+      border-radius: 50%;
+      background: rgba(0,255,136,0.07);
+      filter: blur(120px);
+      z-index: -1;
+    }
+
+    /* SVG Ring */
+    svg {
+      width: 500px;
+      height: 500px;
+      transform: rotate(-90deg);
+    }
+
+    .ring-bg {
+      stroke: rgba(255,255,255,0.1);
+      stroke-width: 18;
+      fill: none;
+    }
+
+    .ring-progress {
+      stroke: #00ff66;
+      stroke-width: 18;
+      fill: none;
+      stroke-linecap: round;
+      filter: drop-shadow(0px 0px 12px rgba(0,255,100,0.8));
+      transition: stroke 0.3s;
+    }
+
+    /* Timer Text */
+    .time-text {
+      position: absolute;
+      font-size: 6.5rem;
+      font-weight: 900;
+      color: #00ff66;
+      text-shadow: 0px 0px 20px rgba(0,255,100,0.6);
+      user-select: none;
+    }
+
+    /* Status text */
+    .status-text {
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* Blink animation */
+    .blink {
+      animation: blinkAnim 0.6s infinite;
+    }
+
+    @keyframes blinkAnim {
+      0%   { color: #00ff66; }
+      50%  { color: red; text-shadow: 0px 0px 25px rgba(255,0,0,0.9); }
+      100% { color: #00ff66; }
+    }
+
+    /* Finished */
+    .finished {
+      color: lime !important;
+      text-shadow: 0px 0px 35px rgba(0,255,0,1) !important;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Setup UI -->
+  <div class="setup-box" id="setupBox">
+    <h2>Set Timer</h2>
+    <input type="number" id="minutes" placeholder="Min" min="0" value="2">
+    <input type="number" id="seconds" placeholder="Sec" min="0" max="59" value="0">
+    <br>
+    <button onclick="startTimer()">START</button>
+  </div>
+
+  <!-- Timer UI -->
+  <div class="timer-container" id="timerContainer">
+    <div class="glow-bg"></div>
+
+    <svg>
+      <circle class="ring-bg" cx="250" cy="250" r="200"></circle>
+      <circle class="ring-progress" cx="250" cy="250" r="200"></circle>
+    </svg>
+
+    <div class="time-text" id="timeText">00:00</div>
+    <div class="status-text" id="statusText">READY</div>
+  </div>
+
+  <script>
+    let totalSeconds = 0;
+    let initialSeconds = 0;
+    let interval = null;
+
+    let halfAlertDone = false;
+    let last30Started = false;
+
+    const setupBox = document.getElementById("setupBox");
+    const timerContainer = document.getElementById("timerContainer");
+    const timeText = document.getElementById("timeText");
+    const statusText = document.getElementById("statusText");
+
+    const progressCircle = document.querySelector(".ring-progress");
+    const radius = 200;
+    const circumference = 2 * Math.PI * radius;
+
+    progressCircle.style.strokeDasharray = circumference;
+    progressCircle.style.strokeDashoffset = 0;
+
+    // SOUND
+    function beep(freq = 800, duration = 200) {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = "sine";
+      osc.frequency.value = freq;
+      gain.gain.value = 0.25;
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start();
+      setTimeout(() => {
+        osc.stop();
+        ctx.close();
+      }, duration);
+    }
+
+    function tick() {
+      beep(1200, 90);
+    }
+
+    function longBeep() {
+      beep(650, 1500);
+    }
+
+    function formatTime(seconds) {
+      const m = Math.floor(seconds / 60);
+      const s = seconds % 60;
+      return String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+    }
+
+    function blinkOnce() {
+      timeText.classList.add("blink");
+      setTimeout(() => timeText.classList.remove("blink"), 1000);
+    }
+
+    function updateRing() {
+      const percent = totalSeconds / initialSeconds;
+      progressCircle.style.strokeDashoffset = circumference * (1 - percent);
+    }
+
+    function startTimer() {
+      const min = parseInt(document.getElementById("minutes").value) || 0;
+      const sec = parseInt(document.getElementById("seconds").value) || 0;
+
+      totalSeconds = (min * 60) + sec;
+      initialSeconds = totalSeconds;
+
+      if (totalSeconds <= 0) {
+        alert("Please set time greater than 0.");
+        return;
+      }
+
+      // Hide setup
+      setupBox.classList.add("hidden");
+
+      // Show timer
+      timerContainer.style.display = "flex";
+
+      statusText.textContent = "SINGING STARTED";
+      timeText.textContent = formatTime(totalSeconds);
+
+      updateRing();
+
+      interval = setInterval(() => {
+        totalSeconds--;
+
+        if (totalSeconds < 0) totalSeconds = 0;
+
+        timeText.textContent = formatTime(totalSeconds);
+        updateRing();
+
+        // HALF TIME ALERT
+        /*const halfTime = Math.floor(initialSeconds / 2);
+        if (totalSeconds === halfTime && !halfAlertDone) {
+          statusText.textContent = "HALF TIME";
+          beep(500, 500);
+          blinkOnce();
+          halfAlertDone = true;
+        }*/
+
+        // LAST 30 SECONDS
+        if (totalSeconds === 30 && !last30Started) {
+          last30Started = true;
+          statusText.textContent = "LAST 30 SECONDS";
+          timeText.classList.add("blink");
+          progressCircle.style.stroke = "red";
+        }
+
+        // Tick each second during last 30 seconds
+        if (totalSeconds <= 10 && totalSeconds > 0) {
+          tick();
+        }
+
+        // FINISH
+        if (totalSeconds === 0) {
+          clearInterval(interval);
+          interval = null;
+
+          statusText.textContent = "TIME UP!";
+          timeText.classList.remove("blink");
+          timeText.classList.add("finished");
+
+          progressCircle.style.stroke = "lime";
+          longBeep();
+        }
+
+      }, 1000);
+    }
+
+    // Block refresh keys (optional)
+    document.addEventListener("keydown", function(e) {
+      if ((e.ctrlKey && e.key === "r") || e.key === "F5") {
+        e.preventDefault();
+      }
+    });
+  </script>
+
+</body>
+</html>
