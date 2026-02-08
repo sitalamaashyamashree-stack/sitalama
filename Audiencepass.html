@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Audience Pass Booking</title>
+
+  <!-- Razorpay -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #0ea5e9, #0f172a 55%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: white;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 460px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 22px;
+      padding: 24px;
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.55);
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(15px);}
+      to {opacity: 1; transform: translateY(0px);}
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 26px;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 14px;
+      color: #cbd5e1;
+      margin-bottom: 18px;
+    }
+
+    .top-badge {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .top-badge span {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 12px;
+      background: rgba(56, 189, 248, 0.18);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #e0f2fe;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #e2e8f0;
+    }
+
+    input, select {
+      width: 100%;
+      margin-top: 6px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      outline: none;
+      font-size: 14px;
+      background: rgba(255,255,255,0.08);
+      color: white;
+      transition: 0.25s;
+    }
+
+    input:focus, select:focus {
+      border: 1px solid rgba(56, 189, 248, 0.6);
+      box-shadow: 0px 0px 0px 4px rgba(56, 189, 248, 0.12);
+    }
+
+    input::placeholder {
+      color: #94a3b8;
+    }
+
+    select option {
+      color: black;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .quantity-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+      padding: 10px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .quantity-box button {
+      width: 45px;
+      height: 40px;
+      border-radius: 12px;
+      border: none;
+      background: rgba(56, 189, 248, 0.9);
+      color: black;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .quantity-box button:hover {
+      background: #0ea5e9;
+      transform: scale(1.04);
+    }
+
+    .quantity-box span {
+      font-size: 18px;
+      font-weight: 700;
+      color: #e2e8f0;
+    }
+
+    .summary {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .summary p {
+      display: flex;
+      justify-content: space-between;
+      margin: 6px 0;
+      font-size: 14px;
+      color: #e2e8f0;
+    }
+
+    .summary .gross {
+      font-size: 18px;
+      font-weight: 800;
+      color: #38bdf8;
+    }
+
+    .pay-btn {
+      width: 100%;
+      margin-top: 18px;
+      padding: 14px;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      color: black;
+      transition: 0.25s;
+    }
+
+    .pay-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0px 12px 30px rgba(56, 189, 248, 0.25);
+    }
+
+    .pay-btn:disabled {
+      background: rgba(148, 163, 184, 0.25);
+      color: rgba(255,255,255,0.6);
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    #message {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    .secure {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      margin-top: 6px;
+      font-size: 12px;
+      color: #cbd5e1;
+    }
+
+    .secure span {
+      color: #38bdf8;
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <div class="logo">🎟 Audience Pass</div>
+    <div class="subtitle">Premium Booking Experience</div>
+
+    <div class="top-badge">
+      <span>✨ Limited Seats Available</span>
+    </div>
+
+    <form id="bookingForm">
+
+      <label>Full Name</label>
+      <input type="text" id="name" placeholder="Enter your full name" required />
+
+      <label>Email Address</label>
+      <input type="email" id="email" placeholder="example@gmail.com" required />
+
+      <label>Mobile Number</label>
+      <input type="tel" id="mobile" placeholder="Enter your mobile number" required />
+
+      <div class="grid">
+        <div>
+          <label>Select Date</label>
+          <select id="date" required>
+            <option value="">-- Select --</option>
+            <option value="12 March">12 March</option>
+            <option value="15 March">15 March</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Pass Tier</label>
+          <select id="tier" required>
+            <option value="">-- Select --</option>
+            <option value="Upper Tier" data-price="100">Upper Tier - ₹100</option>
+            <option value="Lower Back Tier" data-price="150">Lower Back Tier - ₹150</option>
+            <option value="Lower Front Tier" data-price="200">Lower Front Tier - ₹200</option>
+          </select>
+        </div>
+      </div>
+
+      <label>Quantity</label>
+      <div class="quantity-box">
+        <button type="button" id="minusBtn">-</button>
+        <span id="quantity">1</span>
+        <button type="button" id="plusBtn">+</button>
+      </div>
+
+      <div class="summary">
+        <p><span>Price per Pass</span> <span id="price">₹0</span></p>
+        <p class="gross"><span>Gross Total</span> <span id="total">₹0</span></p>
+      </div>
+
+      <button type="button" class="pay-btn" id="payBtn">Pay & Confirm Booking</button>
+
+      <p id="message"></p>
+
+    </form>
+
+    <div class="footer-note">
+      <div class="secure">🔒 Secured Payments by <span>Razorpay</span></div>
+      <div style="margin-top:6px;">Powered by Audience Pass Booking System</div>
+    </div>
+  </div>
+
+<script>
+  let quantity = 1;
+  let price = 0;
+
+  const tierSelect = document.getElementById("tier");
+  const quantitySpan = document.getElementById("quantity");
+  const priceSpan = document.getElementById("price");
+  const totalSpan = document.getElementById("total");
+  const message = document.getElementById("message");
+  const payBtn = document.getElementById("payBtn");
+
+  const plusBtn = document.getElementById("plusBtn");
+  const minusBtn = document.getElementById("minusBtn");
+
+  // ✅ Your Details Added
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztO_xHtCnJ5YDv2RVOoSRj-KwzTOfugwTIRn9O7mmaW-AiWuSp2dtLBzSIHVyuTxVvVw/exec";
+  const RAZORPAY_KEY = "rzp_live_RyvBMwV4crOZwu";
+
+  function updateTotal() {
+    const total = price * quantity;
+    priceSpan.innerText = "₹" + price;
+    totalSpan.innerText = "₹" + total;
+  }
+
+  tierSelect.addEventListener("change", () => {
+    const selectedOption = tierSelect.options[tierSelect.selectedIndex];
+    price = parseInt(selectedOption.getAttribute("data-price")) || 0;
+    updateTotal();
+  });
+
+  plusBtn.addEventListener("click", () => {
+    quantity++;
+    quantitySpan.innerText = quantity;
+    updateTotal();
+  });
+
+  minusBtn.addEventListener("click", () => {
+    if (quantity > 1) {
+      quantity--;
+      quantitySpan.innerText = quantity;
+      updateTotal();
+    }
+  });
+
+  function showMessage(text, color) {
+    message.style.color = color;
+    message.innerText = text;
+  }
+
+  payBtn.addEventListener("click", () => {
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const mobile = document.getElementById("mobile").value.trim();
+    const date = document.getElementById("date").value;
+    const tier = document.getElementById("tier").value;
+
+    if (!name || !email || !mobile || !date || !tier || price === 0) {
+      showMessage("⚠ Please fill all details and select tier/date.", "orange");
+      return;
+    }
+
+    const totalAmount = price * quantity;
+
+    showMessage("Opening payment gateway...", "#38bdf8");
+
+    const options = {
+      key: RAZORPAY_KEY,
+      amount: totalAmount * 100,
+      currency: "INR",
+      name: "Audience Pass Booking",
+      description: `${tier} | ${date}`,
+      handler: function (response) {
+        showMessage("✅ Payment Successful! Saving booking...", "lightgreen");
+
+        saveBooking(
+          name,
+          email,
+          mobile,
+          date,
+          tier,
+          price,
+          quantity,
+          totalAmount,
+          response.razorpay_payment_id
+        );
+      },
+      prefill: {
+        name: name,
+        email: email,
+        contact: mobile
+      },
+      theme: {
+        color: "#38bdf8"
+      }
+    };
+
+    const rzp = new Razorpay(options);
+    rzp.open();
+  });
+
+  function saveBooking(name, email, mobile, date, tier, price, quantity, total, paymentId) {
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        mobile: mobile,
+        date: date,
+        tier: tier,
+        price: price,
+        quantity: quantity,
+        total: total,
+        paymentId: paymentId
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === "success") {
+        showMessage("🎉 Booking Confirmed! Email Sent Successfully.", "lightgreen");
+        document.getElementById("bookingForm").reset();
+        quantity = 1;
+        price = 0;
+        quantitySpan.innerText = "1";
+        updateTotal();
+      } else {
+        showMessage("❌ Error saving data: " + data.message, "red");
+      }
+    })
+    .catch(err => {
+      showMessage("❌ Server Error: " + err, "red");
+    });
+  }
+</script>
+
+</body>
+</html>
