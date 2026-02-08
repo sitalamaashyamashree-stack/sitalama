@@ -294,7 +294,7 @@
     </div>
   </div>
 
-<script>
+<!--<script>
   let quantity = 1;
   let price = 0;
 
@@ -426,7 +426,165 @@
       showMessage("❌ Server Error: " + err, "red");
     });
   }
+</script>-->
+  <script>
+  let quantity = 1;
+  let price = 0;
+
+  const tierSelect = document.getElementById("tier");
+  const quantitySpan = document.getElementById("quantity");
+  const priceSpan = document.getElementById("price");
+  const totalSpan = document.getElementById("total");
+  const message = document.getElementById("message");
+  const payBtn = document.getElementById("payBtn");
+
+  const plusBtn = document.getElementById("plusBtn");
+  const minusBtn = document.getElementById("minusBtn");
+
+  const bookingForm = document.getElementById("bookingForm");
+  const wrapper = document.querySelector(".wrapper");
+
+  // ✅ Your Details
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztO_xHtCnJ5YDv2RVOoSRj-KwzTOfugwTIRn9O7mmaW-AiWuSp2dtLBzSIHVyuTxVvVw/exec";
+  const RAZORPAY_KEY = "rzp_live_RyvBMwV4crOZwu";
+
+  function updateTotal() {
+    const total = price * quantity;
+    priceSpan.innerText = "₹" + price;
+    totalSpan.innerText = "₹" + total;
+  }
+
+  tierSelect.addEventListener("change", () => {
+    const selectedOption = tierSelect.options[tierSelect.selectedIndex];
+    price = parseInt(selectedOption.getAttribute("data-price")) || 0;
+    updateTotal();
+  });
+
+  plusBtn.addEventListener("click", () => {
+    quantity++;
+    quantitySpan.innerText = quantity;
+    updateTotal();
+  });
+
+  minusBtn.addEventListener("click", () => {
+    if (quantity > 1) {
+      quantity--;
+      quantitySpan.innerText = quantity;
+      updateTotal();
+    }
+  });
+
+  function showMessage(text, color) {
+    message.style.color = color;
+    message.innerText = text;
+  }
+
+  payBtn.addEventListener("click", () => {
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const mobile = document.getElementById("mobile").value.trim();
+    const date = document.getElementById("date").value;
+    const tier = document.getElementById("tier").value;
+
+    if (!name || !email || !mobile || !date || !tier || price === 0) {
+      showMessage("⚠ Please fill all details and select tier/date.", "orange");
+      return;
+    }
+
+    const totalAmount = price * quantity;
+
+    showMessage("Opening payment gateway...", "#38bdf8");
+
+    const options = {
+      key: RAZORPAY_KEY,
+      amount: totalAmount * 100,
+      currency: "INR",
+      name: "Audience Pass Booking",
+      description: `${tier} | ${date}`,
+      handler: function (response) {
+        showMessage("✅ Payment Successful! Saving booking...", "lightgreen");
+
+        saveBooking(
+          name,
+          email,
+          mobile,
+          date,
+          tier,
+          price,
+          quantity,
+          totalAmount,
+          response.razorpay_payment_id
+        );
+      },
+      prefill: {
+        name: name,
+        email: email,
+        contact: mobile
+      },
+      theme: {
+        color: "#38bdf8"
+      }
+    };
+
+    const rzp = new Razorpay(options);
+    rzp.open();
+  });
+
+  function saveBooking(name, email, mobile, date, tier, price, quantity, total, paymentId) {
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        mobile: mobile,
+        date: date,
+        tier: tier,
+        price: price,
+        quantity: quantity,
+        total: total,
+        paymentId: paymentId
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === "success") {
+
+        // ✅ Hide form and show Thank You message
+        wrapper.innerHTML = `
+          <div style="text-align:center; padding: 30px;">
+            <h1 style="color:#38bdf8; font-size:28px;">🎉 Booking Confirmed!</h1>
+            <p style="margin-top:10px; color:#cbd5e1; font-size:15px;">
+              Thank you <b>${name}</b> for booking your Audience Pass.
+            </p>
+
+            <div style="margin-top:20px; background:rgba(255,255,255,0.08); padding:18px; border-radius:16px; border:1px solid rgba(255,255,255,0.12);">
+              <p style="margin:6px 0; font-size:14px;">📅 Date: <b>${date}</b></p>
+              <p style="margin:6px 0; font-size:14px;">🎟 Tier: <b>${tier}</b></p>
+              <p style="margin:6px 0; font-size:14px;">🔢 Quantity: <b>${quantity}</b></p>
+              <p style="margin:6px 0; font-size:16px; color:#38bdf8;">💰 Total Paid: <b>₹${total}</b></p>
+              <p style="margin:6px 0; font-size:13px; color:#94a3b8;">Payment ID: ${paymentId}</p>
+            </div>
+
+            <p style="margin-top:18px; font-size:13px; color:#94a3b8;">
+              📩 Confirmation email has been sent to <b>${email}</b>.
+            </p>
+
+            <p style="margin-top:25px; font-size:12px; color:#64748b;">
+              🔒 Secured Payment Powered by Razorpay
+            </p>
+          </div>
+        `;
+
+      } else {
+        showMessage("❌ Error saving booking: " + data.message, "red");
+      }
+    })
+    .catch(err => {
+      showMessage("❌ Server Error: " + err, "red");
+    });
+  }
 </script>
+
 
 </body>
 </html>
