@@ -370,7 +370,7 @@
       let cell = "";
       let insideQuotes = false;
 
-      for (let i = 0; i < text.length; i++) {
+      /*for (let i = 0; i < text.length; i++) {
         const char = text[i];
         const nextChar = text[i + 1];
 
@@ -397,7 +397,34 @@
         rows.push(row);
       }
 
-      return rows;
+      return rows;*/
+      for (let i = 0; i < text.length; i++) {
+  const char = text[i];
+  const nextChar = text[i + 1];
+
+  if (char === '"' && insideQuotes && nextChar === '"') {
+    cell += '"';
+    i++;
+  } else if (char === '"') {
+    insideQuotes = !insideQuotes;
+  } else if (char === "," && !insideQuotes) {
+    row.push(cell);
+    cell = "";
+  } else if (char === "\n" && !insideQuotes) {
+    row.push(cell);
+    rows.push(row);
+    row = [];
+    cell = "";
+  } else {
+    cell += char;
+  }
+}
+
+/* FIX HERE */
+row.push(cell);
+rows.push(row);
+
+return rows;
     }
 
     async function loadSheetData() {
