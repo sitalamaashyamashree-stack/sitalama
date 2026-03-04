@@ -321,10 +321,29 @@ async function submitForm(){
 
   filterCategoriesByAgeGroup(ageGroup);
 
-  // If Quiz selected → age group becomes General
+  /*// If Quiz selected → age group becomes General
 if(data.category.includes("Quiz")){
   data.age_group = "General";
 }else{
+  data.age_group = ageGroup;
+}*/
+  // Category specific age group logic
+
+if(data.category.includes("Quiz")){
+  // Quiz → no age group separation
+  data.age_group = "General";
+
+}else if(data.category.includes("Recitation")){
+
+  // Recitation → only Junior & Senior
+  if(ageGroup === "Mid Age"){
+    data.age_group = "Junior";
+  }else{
+    data.age_group = ageGroup;
+  }
+
+}else{
+  // Art or other events → normal age group
   data.age_group = ageGroup;
 }
 
