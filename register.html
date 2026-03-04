@@ -180,11 +180,20 @@ const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev"; // D
     age--;
   }
 
-  if(age <= 12) return "Junior";
-  if(age <= 18) return "Mid Age";
-  if(age <= 25) return "Senior";
+ if(dob >= new Date("2014-01-01") && dob <= new Date("2020-01-01"))
+    return "Junior";
 
-  return "Senior"; // anyone above 25 also goes to Senior
+  if(dob >= new Date("2008-01-01") && dob <= new Date("2013-12-31"))
+    return "Mid Age";
+
+  if(dob >= new Date("2001-01-01") && dob <= new Date("2007-12-31"))
+    return "Senior";
+
+  // anyone born before 2001 (age above ~25)
+  if(dob < new Date("2001-01-01"))
+    return "Senior";
+
+  return "Junior"; // anyone above 25 also goes to Senior
 }
 
 
