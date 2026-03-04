@@ -155,7 +155,7 @@ const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev"; // D
 // ============================
 // AGE GROUP BY DOB (EXACT TABLE LOGIC)
 // ============================
-function getAgeGroupByDOB(dobStr){
+/*function getAgeGroupByDOB(dobStr){
   const dob = new Date(dobStr);
 
   if(dob >= new Date("2014-01-01") && dob <= new Date("2020-01-01"))
@@ -168,6 +168,23 @@ function getAgeGroupByDOB(dobStr){
     return "Senior";
 
   return "Not Eligible";
+}*/
+  function getAgeGroupByDOB(dobStr){
+  const dob = new Date(dobStr);
+  const today = new Date();
+
+  let age = today.getFullYear() - dob.getFullYear();
+  const m = today.getMonth() - dob.getMonth();
+
+  if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+    age--;
+  }
+
+  if(age <= 12) return "Junior";
+  if(age <= 17) return "Mid Age";
+  if(age <= 25) return "Senior";
+
+  return "Open";
 }
 
 
@@ -217,7 +234,7 @@ dobField.addEventListener("input", ()=>{
   if(group === "Not Eligible"){
     dobField.style.border = "2px solid orange";
     ageMessage.style.color = "orange";
-    ageMessage.innerHTML = "⚠ Not eligible based on age criteria";
+   /* ageMessage.innerHTML = "⚠ Not eligible based on age criteria";*/
     return;
   }
 
