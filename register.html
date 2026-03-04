@@ -169,7 +169,7 @@ const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev"; // D
 
   return "Not Eligible";
 }*/
-  function getAgeGroupByDOB(dobStr){
+ function getAgeGroupByDOB(dobStr){
   const dob = new Date(dobStr);
   const today = new Date();
 
@@ -181,10 +181,10 @@ const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev"; // D
   }
 
   if(age <= 12) return "Junior";
-  if(age <= 17) return "Mid Age";
+  if(age <= 18) return "Mid Age";
   if(age <= 25) return "Senior";
 
-  return "Open";
+  return "Senior"; // anyone above 25 also goes to Senior
 }
 
 
@@ -305,7 +305,12 @@ async function submitForm(){
 
   filterCategoriesByAgeGroup(ageGroup);
 
+  // If Quiz selected → age group becomes General
+if(data.category.includes("Quiz")){
+  data.age_group = "General";
+}else{
   data.age_group = ageGroup;
+}
 
   data.category = data.category.split(" ")[0];
   data.fee = Number(fee(data.category));
