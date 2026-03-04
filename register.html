@@ -191,7 +191,7 @@ const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev"; // D
 // ============================
 // CATEGORY FILTER BY AGE GROUP
 // ============================
-function filterCategoriesByAgeGroup(group){
+/*function filterCategoriesByAgeGroup(group){
   const options = categoryField.options;
 
   for(let i=0;i<options.length;i++){
@@ -207,6 +207,13 @@ function filterCategoriesByAgeGroup(group){
   }
 
   categoryField.value = "";
+}*/
+  function filterCategoriesByAgeGroup(group){
+  const options = categoryField.options;
+
+  for(let i=0;i<options.length;i++){
+    options[i].style.display = "block"; // show all events
+  }
 }
 
 
