@@ -143,9 +143,12 @@ const API_URL = "https://register-worker.sitalamaashyamashree.workers.dev"; // D
 // ============================
 // DOB RANGE CHECK (STRICT)
 // ============================
-function isDobAllowed(dobStr){
+/*function isDobAllowed(dobStr){
   const dob = new Date(dobStr);
   return dob >= new Date("2001-01-01") && dob <= new Date("2026-01-01");
+}*/
+  function isDobAllowed(dobStr){
+  return true; // allow all ages
 }
 
 
@@ -203,9 +206,10 @@ dobField.addEventListener("input", ()=>{
   if(!isDobAllowed(dobField.value)){
     dobField.style.border = "2px solid red";
     ageMessage.style.color = "red";
-    ageMessage.innerHTML =
+    /*ageMessage.innerHTML =
       "❌ DOB must be between <b>01-01-2001</b> and <b>01-01-2026</b>";
-    return;
+    return;*/
+    ageMessage.innerHTML = "";
   }
 
   const group = getAgeGroupByDOB(dobField.value);
