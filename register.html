@@ -329,7 +329,7 @@ if(data.category.includes("Quiz")){
 }*/
   // Category specific age group logic
 
-if(data.category.includes("Quiz")){
+/*if(data.category.includes("Quiz")){
   // Quiz → no age group separation
   data.age_group = "General";
 
@@ -344,6 +344,35 @@ if(data.category.includes("Quiz")){
 
 }else{
   // Art or other events → normal age group
+  data.age_group = ageGroup;
+}*/
+  // Category specific age group logic
+
+if(data.category.includes("Quiz")){
+
+  // Quiz → no age group separation
+  data.age_group = "General";
+
+}else if(data.category.includes("Recitation")){
+
+  // Recitation → only Junior & Senior
+  if(ageGroup === "Mid Age"){
+    data.age_group = "Junior";
+  }else{
+    data.age_group = ageGroup;
+  }
+
+}else if(data.category.includes("Art")){
+
+  // Art → Mid Age becomes Senior
+  if(ageGroup === "Mid Age"){
+    data.age_group = "Senior";
+  }else{
+    data.age_group = ageGroup;
+  }
+
+}else{
+
   data.age_group = ageGroup;
 }
 
