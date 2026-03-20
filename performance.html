@@ -12,7 +12,7 @@
 
 body{
   font-family:Poppins;
-  background:radial-gradient(circle at top,#0f172a,#020617);
+  background: radial-gradient(circle at top,#1e1b4b,#020617);
   color:white;
   display:flex;
   justify-content:center;
@@ -21,6 +21,7 @@ body{
   padding:20px;
 }
 
+/* Container */
 .container{
   width:100%;
   max-width:650px;
@@ -29,15 +30,16 @@ body{
   background:rgba(255,255,255,0.06);
   backdrop-filter:blur(18px);
   border:1px solid rgba(255,255,255,0.1);
-  box-shadow:0 0 40px rgba(56,189,248,0.25);
+  box-shadow:0 0 40px rgba(139,92,246,0.25);
 }
 
+/* Header */
 .title{
   text-align:center;
   font-size:28px;
   font-weight:700;
   margin-bottom:10px;
-  background:linear-gradient(90deg,#38bdf8,#a855f7,#22c55e);
+  background:linear-gradient(90deg,#8b5cf6,#6366f1,#ec4899);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
@@ -49,6 +51,7 @@ body{
   margin-bottom:25px;
 }
 
+/* Input */
 .input-box{
   display:flex;
   gap:10px;
@@ -62,18 +65,31 @@ input{
   background:rgba(0,0,0,0.3);
   color:white;
   outline:none;
+  transition:0.3s;
+}
+
+input:focus{
+  border:1px solid #8b5cf6;
+  box-shadow:0 0 12px rgba(139,92,246,0.5);
 }
 
 button{
   padding:15px 20px;
   border:none;
   border-radius:12px;
-  background:linear-gradient(135deg,#38bdf8,#2563eb,#a855f7);
+  background:linear-gradient(135deg,#8b5cf6,#6366f1,#ec4899);
   color:white;
   font-weight:700;
   cursor:pointer;
+  transition:0.3s;
+  box-shadow:0 0 20px rgba(139,92,246,0.5);
 }
 
+button:hover{
+  transform:translateY(-2px);
+}
+
+/* Result */
 .result{
   margin-top:25px;
   display:none;
@@ -84,18 +100,20 @@ button{
   padding:18px;
   border-radius:14px;
   margin-top:12px;
+  border:1px solid rgba(255,255,255,0.08);
 }
 
 .card-title{
   font-weight:600;
   margin-bottom:10px;
-  color:#38bdf8;
+  color:#a78bfa;
 }
 
+/* Error */
 .error{
   margin-top:15px;
   text-align:center;
-  color:#ff4d4d;
+  color:#ff4d6d;
   display:none;
 }
 
@@ -124,12 +142,12 @@ button{
   <div class="result" id="resultBox">
 
     <div class="card">
-      <div class="card-title">🎤 Semifinal</div>
+      <div class="card-title">🎤 Semifinal Songs</div>
       <div id="semi"></div>
     </div>
 
     <div class="card">
-      <div class="card-title">🏆 Final</div>
+      <div class="card-title">🏆 Final Songs</div>
       <div id="final"></div>
     </div>
 
@@ -146,12 +164,40 @@ const SHEET_URL = "https://docs.google.com/spreadsheets/d/1EVztlDpuXwmkoaWOOWive
 
 let data = [];
 
-function parseCSV(text){
-  return text.split("\n").map(r=>r.split(","));
+/* Advanced CSV parser (multiline support) */
+function parseCSV(text) {
+  const rows = [];
+  let row = [];
+  let cell = "";
+  let insideQuotes = false;
+
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+
+    if (char === '"') {
+      insideQuotes = !insideQuotes;
+    } else if (char === ',' && !insideQuotes) {
+      row.push(cell);
+      cell = "";
+    } else if (char === '\n' && !insideQuotes) {
+      row.push(cell);
+      rows.push(row);
+      row = [];
+      cell = "";
+    } else {
+      cell += char;
+    }
+  }
+
+  row.push(cell);
+  rows.push(row);
+
+  return rows;
 }
 
+/* Format multiline songs */
 function formatList(text){
-  return text.split(/\n|,/)
+  return text.split(/\n/)
     .map(x=>x.trim())
     .filter(x=>x)
     .map(x=>"• "+x)
@@ -162,6 +208,7 @@ async function loadData(){
   const res = await fetch(SHEET_URL);
   const txt = await res.text();
   const rows = parseCSV(txt);
+
   rows.shift();
 
   data = rows.map(r=>({
@@ -170,6 +217,8 @@ async function loadData(){
     final:(r[2]||""),
     category:(r[3]||"")
   }));
+
+  console.log("Loaded:", data);
 }
 
 async function searchData(){
@@ -195,6 +244,13 @@ async function searchData(){
 
   document.getElementById("resultBox").style.display="block";
 }
+
+/* Enter key support */
+document.getElementById("codeInput").addEventListener("keypress", function(e){
+  if(e.key==="Enter"){
+    searchData();
+  }
+});
 </script>
 
 </body>
