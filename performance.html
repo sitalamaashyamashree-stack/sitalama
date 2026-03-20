@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Performance Portal</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:Poppins;
+  background:radial-gradient(circle at top,#0f172a,#020617);
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  padding:20px;
+}
+
+.container{
+  width:100%;
+  max-width:650px;
+  padding:35px;
+  border-radius:22px;
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,0.1);
+  box-shadow:0 0 40px rgba(56,189,248,0.25);
+}
+
+.title{
+  text-align:center;
+  font-size:28px;
+  font-weight:700;
+  margin-bottom:10px;
+  background:linear-gradient(90deg,#38bdf8,#a855f7,#22c55e);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+  text-align:center;
+  font-size:13px;
+  opacity:0.8;
+  margin-bottom:25px;
+}
+
+.input-box{
+  display:flex;
+  gap:10px;
+}
+
+input{
+  flex:1;
+  padding:15px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.2);
+  background:rgba(0,0,0,0.3);
+  color:white;
+  outline:none;
+}
+
+button{
+  padding:15px 20px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(135deg,#38bdf8,#2563eb,#a855f7);
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.result{
+  margin-top:25px;
+  display:none;
+}
+
+.card{
+  background:rgba(255,255,255,0.05);
+  padding:18px;
+  border-radius:14px;
+  margin-top:12px;
+}
+
+.card-title{
+  font-weight:600;
+  margin-bottom:10px;
+  color:#38bdf8;
+}
+
+.error{
+  margin-top:15px;
+  text-align:center;
+  color:#ff4d4d;
+  display:none;
+}
+
+/* Mobile */
+@media(max-width:600px){
+  .input-box{flex-direction:column;}
+  button{width:100%;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="title">Performance Portal</div>
+  <div class="subtitle">Check your semifinal & final songs</div>
+
+  <div class="input-box">
+    <input id="codeInput" placeholder="Enter Code (CON0001)">
+    <button onclick="searchData()">Search</button>
+  </div>
+
+  <div class="error" id="error">❌ Code not found</div>
+
+  <div class="result" id="resultBox">
+
+    <div class="card">
+      <div class="card-title">🎤 Semifinal</div>
+      <div id="semi"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🏆 Final</div>
+      <div id="final"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📌 Category</div>
+      <div id="category"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/1EVztlDpuXwmkoaWOOWivejrWHAdSBhej7lOcRKVDJ0s/gviz/tq?tqx=out:csv";
+
+let data = [];
+
+function parseCSV(text){
+  return text.split("\n").map(r=>r.split(","));
+}
+
+function formatList(text){
+  return text.split(/\n|,/)
+    .map(x=>x.trim())
+    .filter(x=>x)
+    .map(x=>"• "+x)
+    .join("<br>");
+}
+
+async function loadData(){
+  const res = await fetch(SHEET_URL);
+  const txt = await res.text();
+  const rows = parseCSV(txt);
+  rows.shift();
+
+  data = rows.map(r=>({
+    code:(r[0]||"").trim().toUpperCase(),
+    semi:(r[1]||""),
+    final:(r[2]||""),
+    category:(r[3]||"")
+  }));
+}
+
+async function searchData(){
+  const code = document.getElementById("codeInput").value.trim().toUpperCase();
+
+  document.getElementById("error").style.display="none";
+  document.getElementById("resultBox").style.display="none";
+
+  if(data.length===0){
+    await loadData();
+  }
+
+  const found = data.find(x=>x.code===code);
+
+  if(!found){
+    document.getElementById("error").style.display="block";
+    return;
+  }
+
+  document.getElementById("semi").innerHTML = formatList(found.semi);
+  document.getElementById("final").innerHTML = formatList(found.final);
+  document.getElementById("category").innerText = found.category;
+
+  document.getElementById("resultBox").style.display="block";
+}
+</script>
+
+</body>
+</html>
