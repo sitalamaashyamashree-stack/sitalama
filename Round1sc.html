@@ -258,6 +258,8 @@
     
 
     const rowData = rows[currentIndex];
+    const group = rowData[0] || "---";
+ groupNameDiv.innerText = "GROUP: " + group;
 
     // rowData format:
     // [0]=Group, [1]=Code, [2]=Name, [3]=Score, [4]=Remarks
