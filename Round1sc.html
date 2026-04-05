@@ -251,8 +251,6 @@
   // Show Next Row
   function showNextRow() {
     if (rows.length === 0) return;
- const group = rowData[0] || "---";
- groupNameDiv.innerText = "GROUP: " + group;
     if (currentIndex >= rows.length) {
       msg.innerText = "✅ No more rows available!";
       return;
