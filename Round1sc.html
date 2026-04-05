@@ -98,6 +98,45 @@
       background: #0b5ed7 !important;
       color: white;
     }
+    /* HEADER BOX */
+.header-box {
+  margin-bottom: 25px;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  background: radial-gradient(circle at center, #2a2a00, #000);
+  border: 2px solid rgba(255,215,0,0.3);
+  box-shadow: 0px 0px 50px rgba(255,215,0,0.2);
+}
+
+/* SCORE BOARD TITLE */
+.title {
+  font-size: 80px;
+  font-weight: 900;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #ffd700;
+  margin: 0;
+
+  text-shadow:
+    0 0 10px rgba(255,215,0,0.9),
+    0 0 20px rgba(255,215,0,0.8),
+    0 0 40px rgba(255,215,0,0.7),
+    0 0 80px rgba(255,215,0,0.6);
+}
+
+/* GROUP TEXT */
+.groupTitle {
+  margin-top: 15px;
+  font-size: 40px;
+  font-weight: 900;
+  color: #ddd;
+  letter-spacing: 2px;
+
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.7),
+    0 0 20px rgba(255,215,0,0.4);
+}
 
     @keyframes glowSlide {
       0% {
@@ -147,7 +186,11 @@
 <body>
 
   <div class="container">
-
+     <!-- LUXURY HEADER -->
+<div class="header-box">
+  <h1 class="title">Score Board</h1>
+  <div id="groupName" class="groupTitle">GROUP: ---</div>
+</div>
     <div class="info">
       👉 Press <b>ENTER</b> to load next row
     </div>
@@ -169,6 +212,7 @@
   </div>
 
 <script>
+  const groupNameDiv = document.getElementById("groupName");
   const sheetID = "1eneYaHW-2UAgLgi3wOBbP6pKP_02ocleIgsikhFHqQg";
   const gid = "0";
 
@@ -207,11 +251,13 @@
   // Show Next Row
   function showNextRow() {
     if (rows.length === 0) return;
-
+ const group = rowData[0] || "---";
+ groupNameDiv.innerText = "GROUP: " + group;
     if (currentIndex >= rows.length) {
       msg.innerText = "✅ No more rows available!";
       return;
     }
+    
 
     const rowData = rows[currentIndex];
 
