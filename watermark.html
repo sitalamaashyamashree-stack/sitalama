@@ -2,104 +2,64 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Watermark Tool</title>
+<title>Secure Watermark Tool</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    height: 100vh;
     background: linear-gradient(135deg, #020617, #0f172a);
-    font-family: 'Segoe UI', sans-serif;
+    font-family: sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
     color: white;
 }
 
 .container {
     width: 420px;
-    padding: 30px;
+    padding: 25px;
     border-radius: 20px;
-    backdrop-filter: blur(20px);
-    background: rgba(30, 41, 59, 0.65);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.7);
-
+    background: rgba(30,41,59,0.7);
+    backdrop-filter: blur(15px);
     display: flex;
     flex-direction: column;
-    gap: 18px;
-    text-align: center;
+    gap: 15px;
 }
 
-h2 {
-    font-weight: 600;
-}
-
-/* Upload */
 .upload-box {
     border: 2px dashed #38bdf8;
-    border-radius: 12px;
-    height: 90px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+    padding: 25px;
+    text-align: center;
+    border-radius: 10px;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-.upload-box:hover {
-    background: rgba(56,189,248,0.15);
-}
-
-/* Hidden input */
 input[type="file"] {
     display: none;
 }
 
-/* Canvas */
 canvas {
     width: 100%;
     max-height: 220px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 12px;
-    padding: 10px;
+    background: #0003;
+    border-radius: 10px;
 }
 
-/* Slider */
-.slider {
-    font-size: 14px;
-}
-
-.slider input {
+/* Controls */
+select, input[type=range] {
     width: 100%;
-}
-
-/* Buttons */
-.controls {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
 }
 
 button {
-    padding: 10px 18px;
+    padding: 10px;
     border: none;
     border-radius: 10px;
-    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-    color: black;
-    font-weight: bold;
+    background: #38bdf8;
     cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    transform: translateY(-2px);
+    font-weight: bold;
 }
 </style>
 </head>
@@ -108,111 +68,120 @@ button:hover {
 
 <div class="container">
 
-    <h2>✨ Watermark Tool</h2>
+<h3>🔐 Secure Watermark</h3>
 
-    <!-- Upload FIX -->
-    <label for="uploadInput" class="upload-box">
-        Click to Upload Image
-    </label>
-    <input type="file" id="uploadInput" accept="image/*">
+<label for="upload" class="upload-box">Upload Image</label>
+<input type="file" id="upload">
 
-    <!-- Preview -->
-    <canvas id="canvas"></canvas>
+<canvas id="canvas"></canvas>
 
-    <!-- Size control -->
-    <div class="slider">
-        Watermark Size
-        <input type="range" id="sizeSlider" min="10" max="50" value="30">
-    </div>
+<!-- Position -->
+<select id="position">
+<option value="center">Center</option>
+<option value="top-left">Top Left</option>
+<option value="top-right">Top Right</option>
+<option value="bottom-left">Bottom Left</option>
+<option value="bottom-right">Bottom Right</option>
+<option value="tile">Tile (Full Protection)</option>
+</select>
 
-    <!-- Buttons -->
-    <div class="controls">
-        <button onclick="downloadImage()">Download</button>
-        <button onclick="resetCanvas()">Reset</button>
-    </div>
+<!-- Size -->
+<input type="range" id="size" min="10" max="50" value="30">
+
+<button onclick="download()">Download</button>
 
 </div>
 
 <script>
-const upload = document.getElementById('uploadInput');
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-const slider = document.getElementById('sizeSlider');
+const upload = document.getElementById("upload");
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+const position = document.getElementById("position");
+const size = document.getElementById("size");
 
 const logo = new Image();
-logo.src = "SSMCT Logo1.png"; // 👉 তোর logo file
+logo.src = "SSMCT Logo1.png";
 
-let currentImage = null;
+let imgData = null;
 
-/* Upload */
-upload.addEventListener('change', function(e) {
+upload.addEventListener("change", (e) => {
     const file = e.target.files[0];
-
-    if (!file) return;
-
     const reader = new FileReader();
 
-    reader.onload = function(event) {
+    reader.onload = function(ev) {
         const img = new Image();
 
         img.onload = function() {
-            currentImage = img;
-            drawImage();
+            imgData = img;
+            draw();
         };
 
-        img.src = event.target.result;
+        img.src = ev.target.result;
     };
 
     reader.readAsDataURL(file);
 });
 
-/* Slider change */
-slider.addEventListener('input', drawImage);
+position.addEventListener("change", draw);
+size.addEventListener("input", draw);
 
-/* Draw function */
-function drawImage() {
-    if (!currentImage || !logo.complete) return;
+function draw() {
+    if (!imgData || !logo.complete) return;
 
-    canvas.width = currentImage.width;
-    canvas.height = currentImage.height;
+    canvas.width = imgData.width;
+    canvas.height = imgData.height;
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.drawImage(imgData,0,0);
 
-    // main image
-    ctx.drawImage(currentImage, 0, 0);
-
-    // scale
-    const percent = slider.value / 100;
-
-    const scale = Math.min(
-        canvas.width / logo.width,
-        canvas.height / logo.height
-    ) * percent;
+    const percent = size.value / 100;
+    const scale = Math.min(canvas.width/logo.width, canvas.height/logo.height) * percent;
 
     const w = logo.width * scale;
     const h = logo.height * scale;
 
-    // PERFECT CENTER
-    const x = (canvas.width - w) / 2;
-    const y = (canvas.height - h) / 2;
+    ctx.globalAlpha = 0.3;
 
-    ctx.globalAlpha = 0.35;
-    ctx.drawImage(logo, x, y, w, h);
+    const pos = position.value;
+
+    if (pos === "center") {
+        ctx.drawImage(logo, (canvas.width-w)/2, (canvas.height-h)/2, w, h);
+    }
+
+    else if (pos === "top-left") {
+        ctx.drawImage(logo, 10, 10, w, h);
+    }
+
+    else if (pos === "top-right") {
+        ctx.drawImage(logo, canvas.width-w-10, 10, w, h);
+    }
+
+    else if (pos === "bottom-left") {
+        ctx.drawImage(logo, 10, canvas.height-h-10, w, h);
+    }
+
+    else if (pos === "bottom-right") {
+        ctx.drawImage(logo, canvas.width-w-10, canvas.height-h-10, w, h);
+    }
+
+    // 🔥 TILE (hard to remove)
+    else if (pos === "tile") {
+        for (let x = 0; x < canvas.width; x += w + 40) {
+            for (let y = 0; y < canvas.height; y += h + 40) {
+                ctx.drawImage(logo, x, y, w, h);
+            }
+        }
+    }
+
     ctx.globalAlpha = 1;
 }
 
-/* Download */
-function downloadImage() {
-    const link = document.createElement('a');
-    link.download = "watermarked.png";
-    link.href = canvas.toDataURL("image/png");
+function download() {
+    const link = document.createElement("a");
+    link.download = "secure-watermark.png";
+    link.href = canvas.toDataURL();
     link.click();
-}
-
-/* Reset */
-function resetCanvas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    currentImage = null;
 }
 </script>
 
