@@ -133,6 +133,22 @@ canvas{
 
 <button onclick="downloadZIP()">Download ZIP</button>
 <button class="reset" onclick="resetAll()">Reset</button>
+    <label>Text Watermark</label>
+<input type="text" id="textInput" placeholder="Enter text">
+
+<label>Text Size</label>
+<input type="range" id="textSize" min="10" max="80" value="30">
+
+<label>Text Color</label>
+<input type="color" id="textColor" value="#ffffff">
+
+<label>Rotation</label>
+<input type="range" id="rotation" min="0" max="360" value="0">
+
+<label>Tile Gap</label>
+<input type="range" id="gap" min="20" max="150" value="40">
+
+<button onclick="downloadSingle()">Download First Image</button>
 
 </div>
 
@@ -281,6 +297,95 @@ function resetAll(){
 images=[];
 grid.innerHTML="";
 upload.value="";
+}
+</script>
+    <script>
+const textInput=document.getElementById("textInput");
+const textSize=document.getElementById("textSize");
+const textColor=document.getElementById("textColor");
+const rotation=document.getElementById("rotation");
+const gap=document.getElementById("gap");
+
+/* touch support */
+function enableTouch(canvas,item){
+canvas.addEventListener("touchmove",(e)=>{
+if(position.value==="custom"){
+const rect=canvas.getBoundingClientRect();
+const touch=e.touches[0];
+
+item.x=(touch.clientX-rect.left)*(canvas.width/rect.width);
+item.y=(touch.clientY-rect.top)*(canvas.height/rect.height);
+
+drawAll();
+}
+});
+}
+
+/* update draw */
+function drawAll(){
+if(!logo.complete)return;
+
+images.forEach(item=>{
+const {img,canvas,ctx}=item;
+
+canvas.width=img.width;
+canvas.height=img.height;
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.drawImage(img,0,0);
+
+const scale=Math.min(canvas.width/logo.width,canvas.height/logo.height)*(size.value/100);
+const w=logo.width*scale;
+const h=logo.height*scale;
+
+ctx.globalAlpha=opacity.value/100;
+
+let x,y;
+
+switch(position.value){
+case "center": x=(canvas.width-w)/2; y=(canvas.height-h)/2; break;
+case "top-left": x=10; y=10; break;
+case "top-right": x=canvas.width-w-10; y=10; break;
+case "bottom-left": x=10; y=canvas.height-h-10; break;
+case "bottom-right": x=canvas.width-w-10; y=canvas.height-h-10; break;
+default: x=item.x-w/2; y=item.y-h/2;
+}
+
+/* rotation */
+ctx.save();
+ctx.translate(x+w/2,y+h/2);
+ctx.rotate(rotation.value*Math.PI/180);
+ctx.drawImage(logo,-w/2,-h/2,w,h);
+ctx.restore();
+
+/* TEXT WATERMARK */
+if(textInput.value){
+ctx.fillStyle=textColor.value;
+ctx.font=textSize.value+"px Arial";
+ctx.fillText(textInput.value,20,40);
+}
+
+ctx.globalAlpha=1;
+});
+}
+
+/* tile gap control */
+if(position.value==="tile"){
+for(let x=0;x<canvas.width;x+=w+gap.value){
+for(let y=0;y<canvas.height;y+=h+gap.value){
+ctx.drawImage(logo,x,y,w,h);
+}
+}
+}
+
+/* download single */
+function downloadSingle(){
+if(images.length===0)return;
+
+const link=document.createElement("a");
+link.download="image.png";
+link.href=images[0].canvas.toDataURL();
+link.click();
 }
 </script>
 
