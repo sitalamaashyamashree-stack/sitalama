@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Pro Watermark Tool</title>
+<title>Watermark Tool</title>
 
 <style>
 * {
@@ -13,7 +13,7 @@
 
 body {
     height: 100vh;
-    background: linear-gradient(135deg, #0f172a, #020617);
+    background: linear-gradient(135deg, #020617, #0f172a);
     font-family: 'Segoe UI', sans-serif;
     display: flex;
     justify-content: center;
@@ -21,87 +21,74 @@ body {
     color: white;
 }
 
-/* Glass Card */
 .container {
     width: 420px;
-    padding: 35px 25px;
+    padding: 30px;
     border-radius: 20px;
     backdrop-filter: blur(20px);
     background: rgba(30, 41, 59, 0.65);
     box-shadow: 0 20px 60px rgba(0,0,0,0.7);
-    text-align: center;
 
     display: flex;
     flex-direction: column;
-    gap: 18px; /* 🔥 spacing fix */
+    gap: 18px;
+    text-align: center;
 }
 
 h2 {
     font-weight: 600;
-    letter-spacing: 1px;
-    margin-bottom: 5px;
 }
 
-/* Upload Box FIX */
+/* Upload */
 .upload-box {
     border: 2px dashed #38bdf8;
-    padding: 25px;
     border-radius: 12px;
-    cursor: pointer;
-    transition: 0.3s;
+    height: 90px;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    height: 90px; /* 🔥 fixed height */
-}
-@keyframes fadeIn {
-    from {opacity:0; transform: translateY(20px);}
-    to {opacity:1; transform: translateY(0);}
-}
-
-/*h2 {
-    margin-bottom: 20px;
-    font-weight: 600;
-    letter-spacing: 1px;
-}*/
-
-/* Upload Box */
-/*.upload-box {
-    border: 2px dashed #38bdf8;
-    padding: 35px;
-    border-radius: 15px;
     cursor: pointer;
     transition: 0.3s;
-    margin-bottom: 15px;
-}*/
+}
 
 .upload-box:hover {
     background: rgba(56,189,248,0.15);
-    transform: scale(1.02);
 }
 
-input {
+/* Hidden input */
+input[type="file"] {
     display: none;
 }
 
-/* Canvas Preview */
+/* Canvas */
 canvas {
     width: 100%;
-    margin-top: 15px;
+    max-height: 220px;
+    background: rgba(0,0,0,0.3);
     border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    padding: 10px;
+}
+
+/* Slider */
+.slider {
+    font-size: 14px;
+}
+
+.slider input {
+    width: 100%;
 }
 
 /* Buttons */
 .controls {
-    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 button {
     padding: 10px 18px;
-    margin: 5px;
     border: none;
     border-radius: 10px;
     background: linear-gradient(135deg, #38bdf8, #0ea5e9);
@@ -113,16 +100,6 @@ button {
 
 button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(56,189,248,0.5);
-}
-
-/* Slider */
-.slider {
-    margin-top: 10px;
-}
-
-.slider input {
-    width: 100%;
 }
 </style>
 </head>
@@ -130,39 +107,49 @@ button:hover {
 <body>
 
 <div class="container">
+
     <h2>✨ Watermark Tool</h2>
 
-    <label class="upload-box">
+    <!-- Upload FIX -->
+    <label for="uploadInput" class="upload-box">
         Click to Upload Image
-        <input type="file" id="upload" accept="image/*">
     </label>
+    <input type="file" id="uploadInput" accept="image/*">
 
+    <!-- Preview -->
     <canvas id="canvas"></canvas>
 
+    <!-- Size control -->
     <div class="slider">
-        <p>Watermark Size</p>
+        Watermark Size
         <input type="range" id="sizeSlider" min="10" max="50" value="30">
     </div>
 
+    <!-- Buttons -->
     <div class="controls">
         <button onclick="downloadImage()">Download</button>
         <button onclick="resetCanvas()">Reset</button>
     </div>
+
 </div>
 
 <script>
-const upload = document.getElementById('upload');
+const upload = document.getElementById('uploadInput');
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const slider = document.getElementById('sizeSlider');
 
 const logo = new Image();
-logo.src = "SSMCT Logo1.png"; // 👉 এখানে তোর logo
+logo.src = "SSMCT Logo1.png"; // 👉 তোর logo file
 
 let currentImage = null;
 
+/* Upload */
 upload.addEventListener('change', function(e) {
     const file = e.target.files[0];
+
+    if (!file) return;
+
     const reader = new FileReader();
 
     reader.onload = function(event) {
@@ -179,48 +166,50 @@ upload.addEventListener('change', function(e) {
     reader.readAsDataURL(file);
 });
 
+/* Slider change */
 slider.addEventListener('input', drawImage);
 
+/* Draw function */
 function drawImage() {
-    if (!currentImage) return;
+    if (!currentImage || !logo.complete) return;
 
-    logo.onload = function() {
+    canvas.width = currentImage.width;
+    canvas.height = currentImage.height;
 
-        canvas.width = currentImage.width;
-        canvas.height = currentImage.height;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // main image
+    ctx.drawImage(currentImage, 0, 0);
 
-        // main image
-        ctx.drawImage(currentImage, 0, 0);
+    // scale
+    const percent = slider.value / 100;
 
-        // scale based on slider
-        const percent = slider.value / 100;
+    const scale = Math.min(
+        canvas.width / logo.width,
+        canvas.height / logo.height
+    ) * percent;
 
-        const scale = Math.min(
-            canvas.width / logo.width,
-            canvas.height / logo.height
-        ) * percent;
+    const w = logo.width * scale;
+    const h = logo.height * scale;
 
-        const w = logo.width * scale;
-        const h = logo.height * scale;
+    // PERFECT CENTER
+    const x = (canvas.width - w) / 2;
+    const y = (canvas.height - h) / 2;
 
-        const x = (canvas.width - w) / 2;
-        const y = (canvas.height - h) / 2;
-
-        ctx.globalAlpha = 0.35;
-        ctx.drawImage(logo, x, y, w, h);
-        ctx.globalAlpha = 1;
-    };
+    ctx.globalAlpha = 0.35;
+    ctx.drawImage(logo, x, y, w, h);
+    ctx.globalAlpha = 1;
 }
 
+/* Download */
 function downloadImage() {
     const link = document.createElement('a');
-    link.download = 'watermark.png';
+    link.download = "watermarked.png";
     link.href = canvas.toDataURL("image/png");
     link.click();
 }
 
+/* Reset */
 function resetCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     currentImage = null;
