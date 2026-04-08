@@ -24,35 +24,58 @@ body {
 /* Glass Card */
 .container {
     width: 420px;
-    padding: 30px;
+    padding: 35px 25px;
     border-radius: 20px;
     backdrop-filter: blur(20px);
-    background: rgba(30, 41, 59, 0.6);
+    background: rgba(30, 41, 59, 0.65);
     box-shadow: 0 20px 60px rgba(0,0,0,0.7);
     text-align: center;
-    animation: fadeIn 0.6s ease;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* 🔥 spacing fix */
 }
 
+h2 {
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+/* Upload Box FIX */
+.upload-box {
+    border: 2px dashed #38bdf8;
+    padding: 25px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 90px; /* 🔥 fixed height */
+}
 @keyframes fadeIn {
     from {opacity:0; transform: translateY(20px);}
     to {opacity:1; transform: translateY(0);}
 }
 
-h2 {
+/*h2 {
     margin-bottom: 20px;
     font-weight: 600;
     letter-spacing: 1px;
-}
+}*/
 
 /* Upload Box */
-.upload-box {
+/*.upload-box {
     border: 2px dashed #38bdf8;
     padding: 35px;
     border-radius: 15px;
     cursor: pointer;
     transition: 0.3s;
     margin-bottom: 15px;
-}
+}*/
 
 .upload-box:hover {
     background: rgba(56,189,248,0.15);
