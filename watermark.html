@@ -48,18 +48,30 @@ canvas {
 /* Controls */
 select, input[type=range] {
     width: 100%;
-    padding: 5px;
-    border-radius: 5px;
+    padding: 6px;
+    border-radius: 6px;
     border: none;
 }
 
+/* Buttons */
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
 button {
+    flex: 1;
     padding: 10px;
     border: none;
     border-radius: 10px;
     background: #38bdf8;
     cursor: pointer;
     font-weight: bold;
+}
+
+.reset {
+    background: #ef4444;
+    color: white;
 }
 </style>
 </head>
@@ -75,7 +87,6 @@ button {
 
 <canvas id="canvas"></canvas>
 
-<!-- Position -->
 <select id="position">
 <option value="center">Center</option>
 <option value="top-left">Top Left</option>
@@ -85,10 +96,12 @@ button {
 <option value="tile">Tile (Full Protection)</option>
 </select>
 
-<!-- Size -->
 <input type="range" id="size" min="10" max="50" value="30">
 
-<button onclick="download()">Download</button>
+<div class="buttons">
+    <button onclick="download()">Download</button>
+    <button class="reset" onclick="resetAll()">Reset</button>
+</div>
 
 </div>
 
@@ -105,8 +118,11 @@ logo.src = "SSMCT Logo1.png";
 
 let imgData = null;
 
+/* Upload */
 upload.addEventListener("change", (e) => {
     const file = e.target.files[0];
+    if (!file) return;
+
     const reader = new FileReader();
 
     reader.onload = function(ev) {
@@ -123,9 +139,11 @@ upload.addEventListener("change", (e) => {
     reader.readAsDataURL(file);
 });
 
+/* Controls */
 position.addEventListener("change", draw);
 size.addEventListener("input", draw);
 
+/* Draw */
 function draw() {
     if (!imgData || !logo.complete) return;
 
@@ -148,24 +166,18 @@ function draw() {
     if (pos === "center") {
         ctx.drawImage(logo, (canvas.width-w)/2, (canvas.height-h)/2, w, h);
     }
-
     else if (pos === "top-left") {
         ctx.drawImage(logo, 10, 10, w, h);
     }
-
     else if (pos === "top-right") {
         ctx.drawImage(logo, canvas.width-w-10, 10, w, h);
     }
-
     else if (pos === "bottom-left") {
         ctx.drawImage(logo, 10, canvas.height-h-10, w, h);
     }
-
     else if (pos === "bottom-right") {
         ctx.drawImage(logo, canvas.width-w-10, canvas.height-h-10, w, h);
     }
-
-    // 🔥 TILE (hard to remove)
     else if (pos === "tile") {
         for (let x = 0; x < canvas.width; x += w + 40) {
             for (let y = 0; y < canvas.height; y += h + 40) {
@@ -177,11 +189,22 @@ function draw() {
     ctx.globalAlpha = 1;
 }
 
+/* Download */
 function download() {
     const link = document.createElement("a");
     link.download = "secure-watermark.png";
     link.href = canvas.toDataURL();
     link.click();
+}
+
+/* 🔥 RESET FUNCTION */
+function resetAll() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    imgData = null;
+
+    upload.value = "";          // clear file input
+    size.value = 30;            // reset slider
+    position.value = "center";  // reset position
 }
 </script>
 
