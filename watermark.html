@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Watermark Tool</title>
+
+<style>
+body {
+    background: #0f172a;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    text-align: center;
+    width: 400px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.upload-box {
+    border: 2px dashed #38bdf8;
+    padding: 30px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.upload-box:hover {
+    background: rgba(56,189,248,0.1);
+}
+
+input {
+    display: none;
+}
+
+canvas {
+    margin-top: 20px;
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #38bdf8;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #0ea5e9;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Watermark Tool</h2>
+
+    <label class="upload-box">
+        Click to Upload Image
+        <input type="file" id="upload" accept="image/*">
+    </label>
+
+    <canvas id="canvas"></canvas>
+
+    <button onclick="downloadImage()">Download</button>
+</div>
+
+<script>
+const upload = document.getElementById('upload');
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+const logo = new Image();
+logo.src = "SSMCT Logo.png"; // 👉 তোর logo এখানে দিবি
+
+upload.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+        const img = new Image();
+
+        img.onload = function() {
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw main image
+            ctx.drawImage(img, 0, 0);
+
+            // Logo size (responsive)
+            const logoWidth = img.width * 0.3;
+            const logoHeight = logo.height * (logoWidth / logo.width);
+
+            // CENTER position 🔥
+            const x = (img.width - logoWidth) / 2;
+            const y = (img.height - logoHeight) / 2;
+
+            // Opacity
+            ctx.globalAlpha = 0.4;
+
+            ctx.drawImage(logo, x, y, logoWidth, logoHeight);
+
+            ctx.globalAlpha = 1;
+        };
+
+        img.src = event.target.result;
+    };
+
+    reader.readAsDataURL(file);
+});
+
+function downloadImage() {
+    const link = document.createElement('a');
+    link.download = 'watermarked.png';
+    link.href = canvas.toDataURL();
+    link.click();
+}
+</script>
+
+</body>
+</html>
