@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Audience Pass Booking</title>
 
-  <!-- Razorpay -->
+  //Razorpay 
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
   <style>
@@ -245,7 +245,7 @@
       <label>Mobile Number</label>
       <input type="tel" id="mobile" placeholder="Enter your mobile number" required />
 
-      <!-- ✅ New Optional Contestant Code -->
+      // ✅ New Optional Contestant Code
       <label>Contestant Code (Optional)</label>
       <input type="text" id="contestantCode" placeholder="Enter contestant code (if any)" />
 
@@ -254,8 +254,8 @@
           <label>Select Date</label>
           <select id="date" required>
             <option value="">-- Select --</option>
-            <!--<option value="5 April 2026">5 April 2026</option>-->
-            <!--<option value="12 April 2026">12 April 2026</option>-->
+            <option value="5 April 2026">5 April 2026</option>
+            <option value="12 April 2026">12 April 2026</option>
           </select>
         </div>
 
@@ -263,9 +263,9 @@
           <label>Pass Tier</label>
           <select id="tier" required>
             <option value="">-- Select --</option>
-           <!-- <option value="Upper Tier" data-price="100">Upper Tier - ₹100</option>-->
-           <!-- <option value="Lower Back Tier" data-price="150">Upper Tier - ₹150</option>-->
-           <!-- <option value="Lower Front Tier" data-price="200">Lower Tier - ₹200</option>-->
+           <option value="Upper Tier" data-price="100">Upper Tier - ₹100</option>
+           <option value="Lower Back Tier" data-price="150">Upper Tier - ₹150</option>
+           <option value="Lower Front Tier" data-price="200">Lower Tier - ₹200</option>
           </select>
         </div>
       </div>
@@ -470,4 +470,32 @@
 </script>
 
 </body>
+</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Closed</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;min-height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);overflow:hidden;color:#fff} .bg span{position:absolute;border-radius:50%;background:rgba(255,255,255,.12);animation:float 12s infinite ease-in-out}.bg span:nth-child(1){width:90px;height:90px;left:10%;top:20%}.bg span:nth-child(2){width:140px;height:140px;right:12%;top:15%;animation-delay:2s}.bg span:nth-child(3){width:70px;height:70px;left:20%;bottom:15%;animation-delay:4s}.bg span:nth-child(4){width:110px;height:110px;right:20%;bottom:18%;animation-delay:1s}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-35px)}} .card{position:relative;z-index:2;width:min(92%,760px);padding:42px;border-radius:28px;background:rgba(255,255,255,.12);backdrop-filter:blur(14px);box-shadow:0 20px 60px rgba(0,0,0,.35);text-align:center;animation:pop .9s ease}.badge{display:inline-block;padding:8px 16px;border-radius:999px;background:#22c55e;color:#062; font-weight:700;margin-bottom:18px}.title{font-size:clamp(30px,5vw,56px);font-weight:800;letter-spacing:1px;text-transform:uppercase}.subtitle{margin-top:12px;font-size:clamp(16px,2vw,22px);opacity:.95}.year{margin:18px 0;font-size:clamp(22px,4vw,38px);font-weight:800;color:#fde047}.note{font-size:clamp(15px,2vw,20px);line-height:1.7;opacity:.95;margin-top:10px}.glow{margin-top:26px;font-size:20px;font-weight:700;color:#93c5fd;animation:pulse 1.8s infinite}.footer{margin-top:22px;font-size:14px;opacity:.8}.line{width:0;height:4px;background:#fff;margin:22px auto;border-radius:999px;animation:grow 2s forwards .4s}@keyframes pop{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1;text-shadow:0 0 18px #93c5fd}}@keyframes grow{to{width:180px}}
+</style>
+</head>
+<body>
+<div class='bg'><span></span><span></span><span></span><span></span></div>
+<div class='card' style='max-width:780px;padding:55px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(18px);animation:pop 1s ease, float 5s ease-in-out infinite;'>
+<div class='badge' style='background:linear-gradient(90deg,#22c55e,#06b6d4);color:#fff'>LIVE UPDATE</div>
+<div class='title' style='background:linear-gradient(90deg,#fff,#93c5fd,#fde047);-webkit-background-clip:text;-webkit-text-fill-color:transparent'>SESSION CLOSED</div>
+<div class='subtitle' style='margin-top:18px;font-size:24px'>Please wait for the new session.</div>
+<div class='line'></div>
+<div class='note' style='font-size:20px'>The current system is closed. We will announce the next opening date as soon as possible.</div>
+<div class='glow' style='font-size:24px'>✨ New Update Coming Soon ✨</div>
+<div class='footer' style='margin-top:28px'>Thank you for your patience.</div>
+</div>
+<script>
+const titles=['Session Closed','Wait For New Session','Update Coming Soon'];let i=0;
+setInterval(()=>{document.title=titles[i%titles.length];i++;},1400);
+</script>
+</body>
 </html>
+
