@@ -2,186 +2,27 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>AI Video Studio</title>
-
-<style>
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #0f172a, #1e293b);
-    color: white;
-}
-
-/* Container */
-.container {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
-    text-align: center;
-}
-
-/* Card */
-.card {
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-}
-
-/* Inputs */
-input {
-    width: 80%;
-    padding: 12px;
-    margin: 10px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    font-size: 16px;
-}
-
-/* Upload box */
-.upload-box {
-    border: 2px dashed #38bdf8;
-    padding: 30px;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.upload-box:hover {
-    background: rgba(56,189,248,0.1);
-}
-
-/* Button */
-button {
-    margin-top: 15px;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 10px;
-    background: linear-gradient(45deg, #22c55e, #4ade80);
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    transform: scale(1.05);
-}
-
-/* Video */
-.video-wrapper {
-    position: relative;
-    margin-top: 20px;
-}
-
-video {
-    width: 100%;
-    border-radius: 15px;
-}
-
-/* Overlay title */
-.video-title {
-    position: absolute;
-    top: 15px;
-    width: 100%;
-    text-align: center;
-    font-size: 26px;
-    font-weight: bold;
-    color: #38bdf8;
-    text-shadow: 2px 2px 10px black;
-}
-
-/* Overlay subtitle */
-.video-subtitle {
-    position: absolute;
-    top: 55px;
-    width: 100%;
-    text-align: center;
-    font-size: 18px;
-    color: #e2e8f0;
-    text-shadow: 2px 2px 10px black;
-}
-
-/* Caption */
-.caption {
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    text-align: center;
-    font-size: 22px;
-    font-weight: bold;
-    color: #facc15;
-    text-shadow: 2px 2px 10px black;
-}
-</style>
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Pro Media Converter</title>
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.6/dist/ffmpeg.min.js"></script>
+<style>*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:#070b16;min-height:100vh;color:#fff;overflow-x:hidden}body:before,body:after{content:'';position:fixed;inset:auto;filter:blur(60px);border-radius:50%;opacity:.45;animation:float 10s ease-in-out infinite}body:before{width:320px;height:320px;background:#2563eb;top:8%;left:6%}body:after{width:380px;height:380px;background:#10b981;right:8%;bottom:8%;animation-delay:-4s}.stars{position:fixed;inset:0;background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.15) 1px,transparent 1px),radial-gradient(circle at 80% 30%,rgba(255,255,255,.12) 1px,transparent 1px),radial-gradient(circle at 40% 70%,rgba(255,255,255,.12) 1px,transparent 1px);background-size:180px 180px;opacity:.35;pointer-events:none}.wrap{max-width:1150px;margin:auto;padding:32px;position:relative;z-index:2}.card{background:rgba(255,255,255,.08);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,.35);animation:fade .6s ease}.hero{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}.title{font-size:36px;font-weight:800}.sub{opacity:.8}.drop{margin-top:20px;border:2px dashed rgba(255,255,255,.25);padding:34px;border-radius:22px;text-align:center;transition:.3s}.drop:hover{transform:translateY(-2px);border-color:#60a5fa}.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}.btn,#format{border:none;padding:14px 18px;border-radius:14px;font-weight:700;cursor:pointer;transition:.25s}.primary{background:#2563eb;color:#fff}.secondary{background:#10b981;color:#fff}.ghost,#format{background:rgba(255,255,255,.08);color:#fff}.btn:hover,#format:hover{transform:translateY(-2px) scale(1.02)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:22px}.item{background:rgba(255,255,255,.06);padding:14px;border-radius:18px;transition:.25s}.item:hover{transform:translateY(-2px)}.meta{font-size:13px;opacity:.8;margin-top:6px}.progress{height:9px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin-top:10px}.bar{height:100%;width:0;background:linear-gradient(90deg,#22c55e,#3b82f6);transition:width .25s}.status{margin-top:8px;font-size:14px}.footer{margin-top:18px;opacity:.8}@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-24px)}}</style>
 </head>
-<body>
-
-<div class="container">
-    <div class="card">
-        <h1>🎬 AI Video Studio</h1>
-
-        <!-- Upload -->
-        <div class="upload-box" onclick="document.getElementById('fileInput').click()">
-            📁 Click to Upload Video
-            <input type="file" id="fileInput" hidden accept="video/*">
-        </div>
-
-        <!-- User Inputs -->
-        <input type="text" id="userTitle" placeholder="Enter Video Title">
-        <input type="text" id="userSubtitle" placeholder="Enter Subtitle">
-
-        <button onclick="generate()">✨ Apply to Video</button>
-
-        <!-- Video -->
-        <div class="video-wrapper">
-            <video id="video" controls></video>
-
-            <div class="video-title" id="title"></div>
-            <div class="video-subtitle" id="subtitle"></div>
-            <div class="caption" id="caption">🔥 Grand Finale</div>
-        </div>
-    </div>
-</div>
-
+<body><div class='stars'></div>
+<div class='wrap'><div class='card'>
+<div class='hero'><div><div class='title'>Pro Bulk Converter</div><div class='sub'>Convert any video file to MP4 with smooth UI</div></div><div id='global'>Ready</div></div>
+<div class='drop' id='drop'>Drag & Drop Files Here (Max 2GB each)<br><br><input id='files' type='file' multiple></div>
+<div class='btns'><button class='btn primary' onclick='loadEngine()'>Load Engine</button><select id='format'><option value='mp4'>MP4</option><option value='m4v'>M4V</option><option value='mov'>MOV</option><option value='avi'>AVI</option><option value='mkv'>MKV</option><option value='webm'>WEBM</option><option value='wmv'>WMV</option><option value='flv'>FLV</option><option value='3gp'>3GP</option><option value='mpeg'>MPEG</option><option value='mpg'>MPG</option><option value='ts'>TS</option><option value='m2ts'>M2TS</option><option value='ogv'>OGV</option><option value='gif'>GIF</option></select><button class='btn secondary' onclick='startConvert()'>Convert All</button><button class='btn ghost' onclick='clearQueue()'>Clear</button></div>
+<div class='grid' id='list'></div><div class='footer'>Supports up to 2GB per file (browser memory/device limits may affect speed). Main target: WXF to MP4.</div>
+</div></div>
 <script>
-let videoFile = null;
-
-document.getElementById("fileInput").addEventListener("change", function(e) {
-    videoFile = e.target.files[0];
-
-    if (videoFile) {
-        const url = URL.createObjectURL(videoFile);
-        document.getElementById("video").src = url;
-    }
-});
-
-function generate() {
-    if (!videoFile) {
-        alert("Upload a video first!");
-        return;
-    }
-
-    const title = document.getElementById("userTitle").value;
-    const subtitle = document.getElementById("userSubtitle").value;
-
-    document.getElementById("title").innerText = title || "No Title";
-    document.getElementById("subtitle").innerText = subtitle || "No Subtitle";
-
-    // Optional random caption
-    const captions = [
-        "🔥 This is the moment!",
-        "💃 Dance like a champion!",
-        "⚡ Energy on another level!",
-        "👑 Grand Finale Begins!"
-    ];
-
-    document.getElementById("caption").innerText =
-        captions[Math.floor(Math.random() * captions.length)];
-}
+const {createFFmpeg,fetchFile}=FFmpeg; const ffmpeg=createFFmpeg({log:true}); let files=[]; let loaded=false; let converting=false;
+const el=id=>document.getElementById(id);
+function render(){el('list').innerHTML=files.map((f,i)=>`<div class='item'><b>${f.name}</b><div class='meta'>${(f.size/1048576).toFixed(2)} MB</div><div class='progress'><div class='bar' id='bar${i}'></div></div><div class='status' id='msg${i}'>Waiting</div></div>`).join('')}
+el('files').onchange=e=>{const picked=[...e.target.files].filter(f=>f.size<=2147483648); files=[...files,...picked]; render(); if([...e.target.files].some(f=>f.size>2147483648)) el('global').innerText='Some files skipped (over 2GB)';};
+const drop=el('drop'); drop.ondragover=e=>{e.preventDefault();drop.style.borderColor='#22c55e'}; drop.ondragleave=e=>{drop.style.borderColor='rgba(255,255,255,.25)'}; drop.ondrop=e=>{e.preventDefault();drop.style.borderColor='rgba(255,255,255,.25)'; const picked=[...e.dataTransfer.files].filter(f=>f.size<=2147483648); files=[...files,...picked]; render(); if([...e.dataTransfer.files].some(f=>f.size>2147483648)) el('global').innerText='Some files skipped (over 2GB)';};
+async function loadEngine(){ try{ el('global').innerText='Loading Engine...'; if(!loaded){await ffmpeg.load(); loaded=true;} el('global').innerText='Engine Ready'; }catch(e){ el('global').innerText='Load Failed'; }}
+function clearQueue(){ if(converting) return; files=[]; el('files').value=''; render(); el('global').innerText='Queue Cleared'; }
+async function startConvert(){ if(converting||!files.length) return; if(!loaded) await loadEngine(); converting=true; for(let i=0;i<files.length;i++){let f=files[i]; let safeName=f.name.replace(/[^a-zA-Z0-9._-]/g,'_'); let inName='in_'+Date.now()+'_'+i+'_'+safeName; let base=safeName.replace(/\.[^.]+$/,''); let ext=el('format').value; let out=base+'.'+ext; el('msg'+i).innerText='Processing (Large files may take time)'; ffmpeg.setProgress(({ratio})=>{let p=Math.min(100,Math.round(ratio*100)); let b=el('bar'+i); if(b) b.style.width=p+'%';}); try{ffmpeg.FS('writeFile',inName,await fetchFile(f)); let ext=el('format').value; let args=['-err_detect','ignore_err','-i',inName,'-map','0:v:0?','-map','0:a:0?']; if(ext==='mp4'||ext==='mov'){args=args.concat(['-c:v','libx264','-preset','fast','-crf','23','-pix_fmt','yuv420p','-c:a','aac','-b:a','192k']);} else if(ext==='webm'){args=args.concat(['-c:v','libvpx','-b:v','1M','-c:a','libvorbis']);} else {args=args.concat(['-c:v','mpeg4','-q:v','5','-c:a','aac']);} args.push(out); await ffmpeg.run(...args); const data=ffmpeg.FS('readFile',out); const mimeMap={mp4:'video/mp4',webm:'video/webm',mov:'video/quicktime',avi:'video/x-msvideo',mkv:'video/x-matroska',flv:'video/x-flv'}; const url=URL.createObjectURL(new Blob([data.buffer],{type:mimeMap[ext]||'application/octet-stream'})); el('msg'+i).innerHTML=`Completed - <a href='${url}' download='${out}' style='display:inline-block;background:#22c55e;color:#fff;padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:700'>Download File</a>`;}catch(err){try{ let fallback=base+'.mp4'; await ffmpeg.run('-err_detect','ignore_err','-i',inName,'-c:v','libx264','-preset','ultrafast','-pix_fmt','yuv420p','-c:a','aac',fallback); const data=ffmpeg.FS('readFile',fallback); const url=URL.createObjectURL(new Blob([data.buffer],{type:'video/mp4'})); el('msg'+i).innerHTML=`Recovered - <a href='${url}' download='${fallback}' style='display:inline-block;background:#22c55e;color:#fff;padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:700'>Download File</a>`;}catch(e2){el('msg'+i).innerText='Failed (file not readable)';}}}
+converting=false; el('global').innerText='All Tasks Finished';}
 </script>
-
-</body>
-</html>
+</body></html>
