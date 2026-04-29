@@ -4,128 +4,104 @@ import requests
 import subprocess
 import os
 import re
-import glob
 import uuid
+import tempfile
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app)
 
-PORT = int(os.environ.get("PORT", 10000))
-
-
-# -----------------------------
-# Helpers
-# -----------------------------
-def delete_temp():
-    for f in glob.glob("input_*"):
-        try:
-            os.remove(f)
-        except:
-            pass
-
-    for f in glob.glob("output_*"):
-        try:
-            os.remove(f)
-        except:
-            pass
+PORT = int(os.environ.get("PORT", 10000"))
 
 
-def extract_drive_id(url):
-    m1 = re.search(r"/d/([^/]+)", url)
-    m2 = re.search(r"id=([^&]+)", url)
-
-    if m1:
-        return m1.group(1)
-    if m2:
-        return m2.group(1)
-
-    return None
-
-
-def download_drive_file(file_id, filename):
-    session = requests.Session()
-
-    URL = "https://drive.google.com/uc?export=download"
-
-    response = session.get(URL, params={"id": file_id}, stream=True)
-
-    token = None
-
-    for key, value in response.cookies.items():
-        if key.startswith("download_warning"):
-            token = value
-
-    if token:
-        response = session.get(
-            URL,
-            params={"id": file_id, "confirm": token},
-            stream=True
-        )
-
-    with open(filename, "wb") as f:
-        for chunk in response.iter_content(32768):
-            if chunk:
-                f.write(chunk)
-
-
-# -----------------------------
-# Routes
-# -----------------------------
+# ------------------------
+# Home
+# ------------------------
 @app.route("/")
 def home():
-    return "Docker Video Converter Running"
+    return "Video Converter Running"
 
 
+# ------------------------
+# Convert Route
+# ------------------------
 @app.route("/convert", methods=["POST", "OPTIONS"])
 def convert():
+
     if request.method == "OPTIONS":
         return "", 200
 
     try:
-        data = request.get_json()
+        data = request.get_json(force=True)
         url = data.get("url", "").strip()
 
         if not url:
-            return jsonify({"error": "No URL provided"}), 400
+            return jsonify({"error": "No URL"}), 400
 
-        delete_temp()
+        # ---------- Extract Google Drive ID ----------
+        file_id = None
 
-        file_id = extract_drive_id(url)
+        m = re.search(r"/d/([a-zA-Z0-9_-]+)", url)
+        if m:
+            file_id = m.group(1)
 
         if not file_id:
-            return jsonify({"error": "Invalid Google Drive link"}), 400
+            m = re.search(r"id=([a-zA-Z0-9_-]+)", url)
+            if m:
+                file_id = m.group(1)
 
+        if not file_id:
+            return jsonify({"error": "Invalid Drive link"}), 400
+
+        # ---------- Temp Files ----------
         uid = str(uuid.uuid4())[:8]
 
-        input_file = f"input_{uid}.mxf"
-        output_file = f"output_{uid}.mp4"
+        input_file = f"/tmp/input_{uid}.mxf"
+        output_file = f"/tmp/output_{uid}.mp4"
 
-        # Download from Google Drive
-        download_drive_file(file_id, input_file)
+        # ---------- Download from Drive ----------
+        session = requests.Session()
 
-        # Convert with ffmpeg
+        base = "https://drive.google.com/uc?export=download"
+
+        r = session.get(base, params={"id": file_id}, stream=True)
+
+        token = None
+        for k, v in r.cookies.items():
+            if "download_warning" in k:
+                token = v
+
+        if token:
+            r = session.get(
+                base,
+                params={"id": file_id, "confirm": token},
+                stream=True
+            )
+
+        with open(input_file, "wb") as f:
+            for chunk in r.iter_content(1024 * 1024):
+                if chunk:
+                    f.write(chunk)
+
+        # ---------- Convert ----------
         cmd = [
             "ffmpeg",
             "-y",
             "-i", input_file,
             "-c:v", "libx264",
-            "-preset", "medium",
-            "-crf", "23",
             "-c:a", "aac",
-            "-movflags", "+faststart",
             output_file
         ]
 
-        result = subprocess.run(
+        process = subprocess.run(
             cmd,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
         )
 
-        if result.returncode != 0:
+        if process.returncode != 0:
             return jsonify({
-                "error": "FFmpeg failed",
-                "details": result.stderr.decode(errors="ignore")
+                "error": "ffmpeg failed",
+                "details": process.stderr.decode(errors="ignore")
             }), 500
 
         return send_file(
