@@ -1,523 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Working Media Converter</title>
 
-<title>Pro Bulk Converter</title>
-
-<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.6/dist/ffmpeg.min.js"></script>
 
 <style>
-
 *{
-  box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#070b16;
-  color:#fff;
-  min-height:100vh;
-  overflow-x:hidden;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#0f172a,#111827,#1e293b);
+min-height:100vh;
+color:white;
+padding:30px;
 }
 
-body::before,
-body::after{
-  content:'';
-  position:fixed;
-  border-radius:50%;
-  filter:blur(70px);
-  opacity:.35;
-  animation:float 10s ease-in-out infinite;
-}
-
-body::before{
-  width:320px;
-  height:320px;
-  background:#2563eb;
-  top:5%;
-  left:5%;
-}
-
-body::after{
-  width:360px;
-  height:360px;
-  background:#10b981;
-  right:5%;
-  bottom:5%;
-  animation-delay:-4s;
-}
-
-@keyframes float{
-
-  0%,100%{
-    transform:translateY(0);
-  }
-
-  50%{
-    transform:translateY(-20px);
-  }
-}
-
-.wrap{
-  max-width:1100px;
-  margin:auto;
-  padding:30px;
-  position:relative;
-  z-index:2;
+.container{
+max-width:1000px;
+margin:auto;
 }
 
 .card{
-  background:rgba(255,255,255,.08);
-  backdrop-filter:blur(14px);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:26px;
-  padding:30px;
+background:rgba(255,255,255,.08);
+padding:30px;
+border-radius:20px;
+backdrop-filter:blur(10px);
 }
 
-.hero{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-  flex-wrap:wrap;
+h1{
+margin-bottom:10px;
 }
 
-.title{
-  font-size:42px;
-  font-weight:800;
+p{
+opacity:.8;
+margin-bottom:20px;
 }
 
-.sub{
-  margin-top:5px;
-  opacity:.8;
+input,button,select{
+padding:12px 16px;
+border:none;
+border-radius:10px;
+margin:10px 6px 0 0;
 }
 
-.drop{
-  margin-top:24px;
-  border:2px dashed rgba(255,255,255,.18);
-  border-radius:20px;
-  padding:40px;
-  text-align:center;
+button{
+background:#2563eb;
+color:white;
+cursor:pointer;
 }
 
-.btns{
-  margin-top:20px;
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-
-.btn,
-#format{
-  border:none;
-  padding:14px 18px;
-  border-radius:14px;
-  font-weight:700;
-  cursor:pointer;
-}
-
-.primary{
-  background:#2563eb;
-  color:#fff;
-}
-
-.secondary{
-  background:#10b981;
-  color:#fff;
-}
-
-.ghost,
-#format{
-  background:rgba(255,255,255,.08);
-  color:#fff;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:16px;
-  margin-top:24px;
+button:hover{
+background:#1d4ed8;
 }
 
 .item{
-  background:rgba(255,255,255,.05);
-  padding:16px;
-  border-radius:18px;
-}
-
-.meta{
-  margin-top:6px;
-  font-size:13px;
-  opacity:.75;
+background:rgba(255,255,255,.06);
+padding:14px;
+border-radius:14px;
+margin-top:12px;
 }
 
 .progress{
-  margin-top:12px;
-  height:10px;
-  background:rgba(255,255,255,.08);
-  border-radius:999px;
-  overflow:hidden;
+height:8px;
+background:#334155;
+border-radius:50px;
+margin-top:10px;
+overflow:hidden;
 }
 
 .bar{
-  width:0%;
-  height:100%;
-  background:linear-gradient(90deg,#22c55e,#3b82f6);
-  transition:.2s;
+height:100%;
+width:0%;
+background:#22c55e;
 }
 
-.status{
-  margin-top:10px;
-  font-size:14px;
+a{
+color:white;
+text-decoration:none;
+background:#10b981;
+padding:8px 12px;
+border-radius:8px;
+display:inline-block;
+margin-top:10px;
 }
-
-.download-btn{
-  display:inline-block;
-  margin-top:10px;
-  background:#10b981;
-  color:#fff;
-  padding:10px 14px;
-  border-radius:10px;
-  text-decoration:none;
-  font-weight:700;
-}
-
-.footer{
-  margin-top:20px;
-  opacity:.75;
-}
-
 </style>
-
 </head>
-
 <body>
 
-<div class="wrap">
+<div class="container">
+<div class="card">
 
-  <div class="card">
+<h1>Working Video Converter</h1>
+<p>Real conversion with FFmpeg</p>
 
-    <div class="hero">
+<input type="file" id="files" multiple>
 
-      <div>
+<button onclick="loadFFmpeg()">Load Engine</button>
 
-        <div class="title">
-          Pro Bulk Converter
-        </div>
+<select id="format">
+<option value="mp4">MP4</option>
+<option value="avi">AVI</option>
+<option value="mov">MOV</option>
+<option value="webm">WEBM</option>
+</select>
 
-        <div class="sub">
-          GitHub Pages Compatible FFmpeg Converter
-        </div>
+<button onclick="convertFiles()">Convert</button>
+<button onclick="clearFiles()">Clear</button>
 
-      </div>
+<h3 id="status">Ready</h3>
 
-      <div id="global">
-        Ready
-      </div>
+<div id="list"></div>
 
-    </div>
-
-    <div class="drop" id="drop">
-
-      Drag & Drop Files Here
-
-      <br><br>
-
-      <input id="files" type="file" multiple>
-
-    </div>
-
-    <div class="btns">
-
-      <button class="btn primary" onclick="loadEngine()">
-        Load Engine
-      </button>
-
-      <select id="format">
-
-        <option value="mp4">MP4</option>
-        <option value="mov">MOV</option>
-        <option value="avi">AVI</option>
-        <option value="mkv">MKV</option>
-        <option value="webm">WEBM</option>
-
-      </select>
-
-      <button class="btn secondary" onclick="startConvert()">
-        Convert All
-      </button>
-
-      <button class="btn ghost" onclick="clearQueue()">
-        Clear
-      </button>
-
-    </div>
-
-    <div class="grid" id="list"></div>
-
-    <div class="footer">
-      Best for small videos under 100MB.
-    </div>
-
-  </div>
-
+</div>
 </div>
 
 <script>
-
 function el(id){
-  return document.getElementById(id);
+return document.getElementById(id);
 }
 
-let files = [];
+const { createFFmpeg, fetchFile } = FFmpeg;
+const ffmpeg = createFFmpeg({ log:true });
 
-let ffmpeg = null;
+let loaded = false;
+let selectedFiles = [];
 
-let fetchFile = null;
-
-function render(){
-
-  el('list').innerHTML = files.map((f,i)=>`
-
-    <div class="item">
-
-      <b>${f.name}</b>
-
-      <div class="meta">
-
-        ${(f.size / 1048576).toFixed(2)} MB
-
-      </div>
-
-      <div class="progress">
-
-        <div class="bar" id="bar${i}"></div>
-
-      </div>
-
-      <div class="status" id="msg${i}">
-        Ready
-      </div>
-
-    </div>
-
-  `).join('');
-}
-
-window.addEventListener('DOMContentLoaded',()=>{
-
-  el('files').onchange=(e)=>{
-
-    files = [...e.target.files];
-
-    render();
-  };
-
-  const drop = el('drop');
-
-  drop.ondragover=(e)=>{
-    e.preventDefault();
-  };
-
-  drop.ondrop=(e)=>{
-
-    e.preventDefault();
-
-    files = [...e.dataTransfer.files];
-
-    render();
-  };
-
+el("files").addEventListener("change", function(e){
+selectedFiles = [...e.target.files];
+renderFiles();
 });
 
-async function loadEngine(){
+function renderFiles(){
+el("list").innerHTML = "";
 
-  try{
-
-    el('global').innerText='Loading Engine...';
-
-    const { createFFmpeg, fetchFile:ffFetchFile } = FFmpeg;
-
-    fetchFile = ffFetchFile;
-
-    ffmpeg = createFFmpeg({
-
-      log:true,
-
-      corePath:
-      'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js'
-
-    });
-
-    await ffmpeg.load();
-
-    el('global').innerText='Engine Loaded';
-
-  }catch(err){
-
-    console.error(err);
-
-    el('global').innerText='Engine Failed';
-
-    alert(
-      'FFmpeg failed.\n\n' +
-      'For GitHub Pages you MUST create a _headers file.'
-    );
-  }
+selectedFiles.forEach((file,index)=>{
+el("list").innerHTML += `
+<div class="item">
+<b>${file.name}</b>
+<div class="progress">
+<div class="bar" id="bar${index}"></div>
+</div>
+<div id="msg${index}">Waiting</div>
+</div>
+`;
+});
 }
 
-function clearQueue(){
-
-  files = [];
-
-  el('files').value='';
-
-  render();
-
-  el('global').innerText='Queue Cleared';
+async function loadFFmpeg(){
+try{
+el("status").innerText = "Loading Engine...";
+await ffmpeg.load();
+loaded = true;
+el("status").innerText = "Engine Ready";
+}catch(error){
+el("status").innerText = "Load Failed";
+}
 }
 
-async function startConvert(){
-
-  if(!ffmpeg){
-
-    el('global').innerText='Load Engine First';
-
-    return;
-  }
-
-  if(!files.length){
-
-    el('global').innerText='Select Files';
-
-    return;
-  }
-
-  const ext = el('format').value;
-
-  el('global').innerText='Converting...';
-
-  for(let i=0;i<files.length;i++){
-
-    const file = files[i];
-
-    try{
-
-      el('msg'+i).innerText='Preparing...';
-
-      ffmpeg.setProgress(({ ratio })=>{
-
-        const percent = Math.min(100, ratio * 100);
-
-        el('bar'+i).style.width = percent + '%';
-
-        el('msg'+i).innerText =
-          'Converting ' + percent.toFixed(0) + '%';
-      });
-
-      const inputName = file.name;
-
-      const outputName =
-        file.name.replace(/\.[^.]+$/,'') + '.' + ext;
-
-      ffmpeg.FS(
-        'writeFile',
-        inputName,
-        await fetchFile(file)
-      );
-
-      if(ext === 'webm'){
-
-        await ffmpeg.run(
-          '-i',
-          inputName,
-          '-c:v',
-          'libvpx',
-          '-c:a',
-          'libvorbis',
-          outputName
-        );
-
-      }else{
-
-        await ffmpeg.run(
-          '-i',
-          inputName,
-          '-c:v',
-          'libx264',
-          '-preset',
-          'ultrafast',
-          '-c:a',
-          'aac',
-          outputName
-        );
-      }
-
-      const data = ffmpeg.FS(
-        'readFile',
-        outputName
-      );
-
-      let mime='video/mp4';
-
-      if(ext==='mov'){
-        mime='video/quicktime';
-      }
-
-      if(ext==='avi'){
-        mime='video/x-msvideo';
-      }
-
-      if(ext==='mkv'){
-        mime='video/x-matroska';
-      }
-
-      if(ext==='webm'){
-        mime='video/webm';
-      }
-
-      const blob = new Blob(
-        [data.buffer],
-        { type:mime }
-      );
-
-      const url = URL.createObjectURL(blob);
-
-      el('msg'+i).innerHTML = `
-
-        Completed
-
-        <br><br>
-
-        <a
-          href="${url}"
-          download="${outputName}"
-          class="download-btn">
-
-          Download ${outputName}
-
-        </a>
-      `;
-
-      ffmpeg.FS('unlink', inputName);
-
-      ffmpeg.FS('unlink', outputName);
-
-    }catch(err){
-
-      console.error(err);
-
-      el('msg'+i).innerText='Conversion Failed';
-    }
-  }
-
-  el('global').innerText='All Conversions Completed';
+function clearFiles(){
+selectedFiles = [];
+el("files").value = "";
+el("list").innerHTML = "";
+el("status").innerText = "Cleared";
 }
 
+async function convertFiles(){
+
+if(!selectedFiles.length){
+el("status").innerText = "Choose files first";
+return;
+}
+
+if(!loaded){
+await loadFFmpeg();
+}
+
+const format = el("format").value;
+
+for(let i=0;i<selectedFiles.length;i++){
+
+const file = selectedFiles[i];
+const inputName = "input_" + i + "_" + file.name;
+const outputName = file.name.replace(/\.[^.]+$/,"") + "." + format;
+
+el("msg"+i).innerText = "Processing...";
+
+ffmpeg.setProgress(({ ratio })=>{
+el("bar"+i).style.width = Math.round(ratio*100) + "%";
+});
+
+try{
+
+ffmpeg.FS("writeFile", inputName, await fetchFile(file));
+
+await ffmpeg.run(
+"-i", inputName,
+outputName
+);
+
+const data = ffmpeg.FS("readFile", outputName);
+
+const url = URL.createObjectURL(
+new Blob([data.buffer])
+);
+
+el("msg"+i).innerHTML =
+`<a href="${url}" download="${outputName}">Download ${outputName}</a>`;
+
+}catch(err){
+el("msg"+i).innerText = "Failed";
+}
+
+}
+
+el("status").innerText = "Done";
+}
 </script>
 
 </body>
