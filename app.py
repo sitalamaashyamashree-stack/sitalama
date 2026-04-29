@@ -1,38 +1,86 @@
 from flask import Flask, request, send_file, jsonify
 from flask_cors import CORS
 import requests
-import re
-import os
 import subprocess
+import os
+import re
 import glob
+import uuid
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 PORT = int(os.environ.get("PORT", 10000))
 
 
-def clean_files():
-    for f in glob.glob("input.*"):
+# -----------------------------
+# Helpers
+# -----------------------------
+def delete_temp():
+    for f in glob.glob("input_*"):
         try:
             os.remove(f)
         except:
             pass
 
-    for f in glob.glob("output.*"):
+    for f in glob.glob("output_*"):
         try:
             os.remove(f)
         except:
             pass
 
 
+def extract_drive_id(url):
+    m1 = re.search(r"/d/([^/]+)", url)
+    m2 = re.search(r"id=([^&]+)", url)
+
+    if m1:
+        return m1.group(1)
+    if m2:
+        return m2.group(1)
+
+    return None
+
+
+def download_drive_file(file_id, filename):
+    session = requests.Session()
+
+    URL = "https://drive.google.com/uc?export=download"
+
+    response = session.get(URL, params={"id": file_id}, stream=True)
+
+    token = None
+
+    for key, value in response.cookies.items():
+        if key.startswith("download_warning"):
+            token = value
+
+    if token:
+        response = session.get(
+            URL,
+            params={"id": file_id, "confirm": token},
+            stream=True
+        )
+
+    with open(filename, "wb") as f:
+        for chunk in response.iter_content(32768):
+            if chunk:
+                f.write(chunk)
+
+
+# -----------------------------
+# Routes
+# -----------------------------
 @app.route("/")
 def home():
-    return "MXF to MP4 Backend Live"
+    return "Docker Video Converter Running"
 
 
-@app.route("/convert", methods=["POST"])
+@app.route("/convert", methods=["POST", "OPTIONS"])
 def convert():
+    if request.method == "OPTIONS":
+        return "", 200
+
     try:
         data = request.get_json()
         url = data.get("url", "").strip()
@@ -40,63 +88,48 @@ def convert():
         if not url:
             return jsonify({"error": "No URL provided"}), 400
 
-        clean_files()
+        delete_temp()
 
-        # Google Drive file id detect
-        file_id = None
-
-        m1 = re.search(r"/d/([^/]+)", url)
-        m2 = re.search(r"id=([^&]+)", url)
-
-        if m1:
-            file_id = m1.group(1)
-        elif m2:
-            file_id = m2.group(1)
+        file_id = extract_drive_id(url)
 
         if not file_id:
-            return jsonify({"error": "Invalid Google Drive Link"}), 400
+            return jsonify({"error": "Invalid Google Drive link"}), 400
 
-        # direct download link
-        direct = f"https://drive.google.com/uc?export=download&id={file_id}"
+        uid = str(uuid.uuid4())[:8]
 
-        # download source file
-        r = requests.get(direct, stream=True)
+        input_file = f"input_{uid}.mxf"
+        output_file = f"output_{uid}.mp4"
 
-        if r.status_code != 200:
-            return jsonify({"error": "Unable to download file"}), 400
+        # Download from Google Drive
+        download_drive_file(file_id, input_file)
 
-        with open("input.mxf", "wb") as f:
-            for chunk in r.iter_content(1024 * 1024):
-                if chunk:
-                    f.write(chunk)
-
-        # convert to mp4 using ffmpeg
+        # Convert with ffmpeg
         cmd = [
             "ffmpeg",
             "-y",
-            "-i", "input.mxf",
+            "-i", input_file,
             "-c:v", "libx264",
             "-preset", "medium",
             "-crf", "23",
             "-c:a", "aac",
             "-movflags", "+faststart",
-            "output.mp4"
+            output_file
         ]
 
-        process = subprocess.run(
+        result = subprocess.run(
             cmd,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
         )
 
-        if process.returncode != 0:
+        if result.returncode != 0:
             return jsonify({
-                "error": "FFmpeg conversion failed",
-                "details": process.stderr.decode("utf-8", errors="ignore")
+                "error": "FFmpeg failed",
+                "details": result.stderr.decode(errors="ignore")
             }), 500
 
         return send_file(
-            "output.mp4",
+            output_file,
             as_attachment=True,
             download_name="video.mp4",
             mimetype="video/mp4"
