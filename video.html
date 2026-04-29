@@ -7,7 +7,6 @@
 
 <title>Pro Bulk Converter</title>
 
-<!-- FFmpeg -->
 <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
 
 <style>
@@ -211,7 +210,7 @@ body::after{
         </div>
 
         <div class="sub">
-          Convert videos using FFmpeg WASM
+          GitHub Pages Compatible FFmpeg Converter
         </div>
 
       </div>
@@ -261,7 +260,7 @@ body::after{
     <div class="grid" id="list"></div>
 
     <div class="footer">
-      Browser FFmpeg may fail on very large files.
+      Best for small videos under 100MB.
     </div>
 
   </div>
@@ -365,10 +364,8 @@ async function loadEngine(){
     el('global').innerText='Engine Failed';
 
     alert(
-      'FFmpeg failed to load.\n\n' +
-      'IMPORTANT:\n' +
-      'You MUST add SharedArrayBuffer headers.\n\n' +
-      'Create .htaccess file.'
+      'FFmpeg failed.\n\n' +
+      'For GitHub Pages you MUST create a _headers file.'
     );
   }
 }
