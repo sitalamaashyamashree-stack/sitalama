@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Video Link to MP4 Downloader</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Any Video Link to MP4</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.6/dist/ffmpeg.min.js"></script>
 
 <style>
 body{
@@ -14,14 +16,14 @@ padding:40px;
 }
 
 .box{
-max-width:700px;
+max-width:750px;
 margin:auto;
 background:#111827;
 padding:30px;
 border-radius:16px;
 }
 
-input,button,select{
+input,button{
 width:100%;
 padding:14px;
 margin-top:12px;
@@ -39,12 +41,21 @@ button:hover{
 background:#1d4ed8;
 }
 
-pre{
-background:#000;
-padding:14px;
-border-radius:10px;
+video{
+width:100%;
 margin-top:20px;
-overflow:auto;
+border-radius:10px;
+}
+
+a{
+display:block;
+margin-top:20px;
+padding:14px;
+background:#10b981;
+color:white;
+text-decoration:none;
+text-align:center;
+border-radius:10px;
 }
 </style>
 </head>
@@ -52,45 +63,72 @@ overflow:auto;
 
 <div class="box">
 
-<h1>Any Video Link to MP4</h1>
+<h1>Any Video URL to MP4</h1>
 
-<input type="text" id="url" placeholder="Paste Video Link">
+<input type="text" id="url" placeholder="Paste Direct Video URL (.mp4 .webm .mov etc)">
 
-<select id="quality">
-<option value="best">Best Quality</option>
-<option value="720">720p</option>
-<option value="480">480p</option>
-</select>
+<button onclick="convert()">Convert To MP4</button>
 
-<button onclick="showCode()">Generate Command</button>
-
-<pre id="result"></pre>
+<div id="status"></div>
+<div id="result"></div>
 
 </div>
 
 <script>
-function showCode(){
+const { createFFmpeg, fetchFile } = FFmpeg;
+const ffmpeg = createFFmpeg({ log:true });
+
+let loaded = false;
+
+async function convert(){
 
 let url = document.getElementById("url").value.trim();
 
 if(url===""){
-alert("Paste link first");
+alert("Paste direct video URL");
 return;
 }
 
-let q = document.getElementById("quality").value;
+document.getElementById("status").innerText = "Loading Engine...";
 
-let cmd = "";
-
-if(q==="best"){
-cmd =
-`yt-dlp -f bestvideo+bestaudio --merge-output-format mp4 "${url}"`;
-}else{
-cmd =
-`yt-dlp -f "bestvideo[height<=${q}]+bestaudio/best[height<=${q}]" --merge-output-format mp4 "${url}"`;
+if(!loaded){
+await ffmpeg.load();
+loaded = true;
 }
 
-document.getElementById("result").textContent = cmd;
+document.getElementById("status").innerText = "Downloading Video...";
+
+try{
+
+const response = await fetch(url);
+const blob = await response.blob();
+
+ffmpeg.FS("writeFile","input", await fetchFile(blob));
+
+document.getElementById("status").innerText = "Converting...";
+
+await ffmpeg.run(
+"-i","input",
+"-c:v","libx264",
+"-c:a","aac",
+"output.mp4"
+);
+
+const data = ffmpeg.FS("readFile","output.mp4");
+
+const outputURL = URL.createObjectURL(
+new Blob([data.buffer], {type:"video/mp4"})
+);
+
+document.getElementById("result").innerHTML =
+`<a href="${outputURL}" download="video.mp4">Download MP4</a>`;
+
+document.getElementById("status").innerText = "Done";
+
+}catch(err){
+document.getElementById("status").innerText = "Failed (Need direct video URL)";
+}
+
 }
 </script>
 
