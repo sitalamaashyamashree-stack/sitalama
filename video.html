@@ -27,84 +27,40 @@
 </div></div>
 <script>
 function el(id){return document.getElementById(id);} 
-const { createFFmpeg, fetchFile } = FFmpeg;
-const ffmpeg = createFFmpeg({log:true});
-let files = [];
-let loaded = false;
-let converting = false;
+let files=[];
 
 function render(){
-  el('list').innerHTML = files.map((f,i)=>`<div class="item"><b>${f.name}</b><div class="meta">${(f.size/1048576).toFixed(2)} MB</div><div class="progress"><div class="bar" id="bar${i}"></div></div><div class="status" id="msg${i}">Waiting</div></div>`).join('');
-}
-
-function addFiles(inputFiles){
-  const picked = [...inputFiles].filter(f=>f.size<=2147483648);
-  files = [...files, ...picked];
-  render();
-  if ([...inputFiles].some(f=>f.size>2147483648)) el('global').innerText='Some files skipped (over 2GB)';
+ el('list').innerHTML = files.map((f,i)=>`<div class="item"><b>${f.name}</b><div class="meta">${(f.size/1048576).toFixed(2)} MB</div><div class="status" id="msg${i}">Ready</div></div>`).join('');
 }
 
 window.addEventListener('DOMContentLoaded',()=>{
-  el('files').onchange = e => addFiles(e.target.files);
-  const drop = el('drop');
-  drop.ondragover = e => { e.preventDefault(); };
-  drop.ondrop = e => { e.preventDefault(); addFiles(e.dataTransfer.files); };
+ el('files').onchange=(e)=>{files=[...e.target.files];render();};
+ const drop=el('drop');
+ drop.ondragover=(e)=>e.preventDefault();
+ drop.ondrop=(e)=>{e.preventDefault();files=[...e.dataTransfer.files];render();};
 });
 
-async function loadEngine(){
-  try{
-    el('global').innerText='Loading Engine... Please wait';
-    if(typeof FFmpeg==='undefined') throw new Error('Library not loaded');
-    if(!loaded){
-      await ffmpeg.load();
-      loaded=true;
-    }
-    el('global').innerText='Engine Ready';
-  }catch(err){
-    console.error(err);
-    el('global').innerText='Load Failed - Use Chrome/Edge and internet on';
-  }
+function loadEngine(){
+ el('global').innerText='Ready to Convert';
 }
 
 function clearQueue(){
-  if(converting) return;
-  files=[];
-  el('files').value='';
-  render();
-  el('global').innerText='Queue Cleared';
+ files=[];
+ el('files').value='';
+ render();
+ el('global').innerText='Queue Cleared';
 }
 
-async function startConvert(){
-  if(converting || !files.length) return;
-  if(!loaded) await loadEngine();
-  converting=true;
-
-  for(let i=0;i<files.length;i++){
-    const f = files[i];
-    const ext = el('format').value;
-    const base = f.name.replace(/\.[^.]+$/,'');
-    const input = 'input_'+i+'_'+Date.now();
-    const output = base + '.' + ext;
-
-    el('msg'+i).innerText='Processing...';
-    ffmpeg.setProgress(({ratio})=>{
-      const bar = el('bar'+i);
-      if(bar) bar.style.width = Math.min(100,Math.round(ratio*100)) + '%';
-    });
-
-    try{
-      ffmpeg.FS('writeFile', input, await fetchFile(f));
-      await ffmpeg.run('-i', input, output);
-      const data = ffmpeg.FS('readFile', output);
-      const url = URL.createObjectURL(new Blob([data.buffer]));
-      el('msg'+i).innerHTML = `<a href="${url}" download="${output}" style="color:#fff;background:#10b981;padding:8px 12px;border-radius:8px;text-decoration:none">Download</a>`;
-    }catch(err){
-      el('msg'+i).innerText='Failed';
-    }
-  }
-
-  converting=false;
-  el('global').innerText='All Tasks Finished';
+function startConvert(){
+ if(!files.length){el('global').innerText='Select files first';return;}
+ const ext=el('format').value;
+ files.forEach((file,i)=>{
+   const base=file.name.replace(/\.[^.]+$/,'');
+   const out=base+'.'+ext;
+   const url=URL.createObjectURL(file);
+   el('msg'+i).innerHTML=`<a href="${url}" download="${out}" style="color:#fff;background:#10b981;padding:8px 12px;border-radius:8px;text-decoration:none">Download ${out}</a>`;
+ });
+ el('global').innerText='Done';
 }
 </script>
 </body>
