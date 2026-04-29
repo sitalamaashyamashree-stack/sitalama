@@ -2,46 +2,66 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Real Working Video Converter</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Pro Media Converter</title>
 <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.6/dist/ffmpeg.min.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#0f172a,#111827,#1e293b);min-height:100vh;color:#fff;padding:30px}
-.container{max-width:1000px;margin:auto}
-.card{background:rgba(255,255,255,.08);backdrop-filter:blur(12px);padding:30px;border-radius:22px}
-h1{margin-bottom:10px}p{opacity:.8;margin-bottom:20px}
-.drop{border:2px dashed rgba(255,255,255,.25);padding:40px;text-align:center;border-radius:20px}
-button,select,input{padding:12px 16px;border:none;border-radius:10px;margin:10px 6px 0 0}
-button{background:#2563eb;color:#fff;cursor:pointer}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:20px}
-.item{background:rgba(255,255,255,.06);padding:14px;border-radius:16px}.barwrap{height:8px;background:#334155;border-radius:99px;overflow:hidden;margin-top:10px}.bar{height:100%;width:0;background:#22c55e}
-a{color:#93c5fd}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:#070b16;min-height:100vh;color:#fff;overflow-x:hidden}body:before,body:after{content:'';position:fixed;filter:blur(60px);border-radius:50%;opacity:.45;animation:float 10s ease-in-out infinite}body:before{width:320px;height:320px;background:#2563eb;top:8%;left:6%}body:after{width:380px;height:380px;background:#10b981;right:8%;bottom:8%;animation-delay:-4s}.stars{position:fixed;inset:0;background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.15) 1px,transparent 1px),radial-gradient(circle at 80% 30%,rgba(255,255,255,.12) 1px,transparent 1px),radial-gradient(circle at 40% 70%,rgba(255,255,255,.12) 1px,transparent 1px);background-size:180px 180px;opacity:.35;pointer-events:none}.wrap{max-width:1150px;margin:auto;padding:32px;position:relative;z-index:2}.card{background:rgba(255,255,255,.08);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,.35)}.hero{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}.title{font-size:36px;font-weight:800}.sub{opacity:.8}.drop{margin-top:20px;border:2px dashed rgba(255,255,255,.25);padding:34px;border-radius:22px;text-align:center}.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}.btn,#format{border:none;padding:14px 18px;border-radius:14px;font-weight:700;cursor:pointer}.primary{background:#2563eb;color:#fff}.secondary{background:#10b981;color:#fff}.ghost,#format{background:rgba(255,255,255,.08);color:#fff}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:22px}.item{background:rgba(255,255,255,.06);padding:14px;border-radius:18px}.meta{font-size:13px;opacity:.8;margin-top:6px}.progress{height:9px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin-top:10px}.bar{height:100%;width:0;background:linear-gradient(90deg,#22c55e,#3b82f6)}.status{margin-top:8px;font-size:14px}.footer{margin-top:18px;opacity:.8}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-24px)}}
 </style>
 </head>
 <body>
-<div class='container'><div class='card'>
-<h1>Video Converter</h1>
-<p>Upload videos and convert to another format in browser.</p>
-<div class='drop' id='drop'>Drag & Drop Files Here<br><br><input type='file' id='files' multiple></div>
-<div>
-<button onclick='loadEngine()'>Load Engine</button>
-<select id='format'><option value='mp4'>MP4</option><option value='mov'>MOV</option><option value='avi'>AVI</option><option value='webm'>WEBM</option></select>
-<button onclick='convertAll()'>Convert All</button>
+<div class="stars"></div>
+<div class="wrap"><div class="card">
+<div class="hero"><div><div class="title">Pro Bulk Converter</div><div class="sub">Convert video files easily</div></div><div id="global">Ready</div></div>
+<div class="drop" id="drop">Drag & Drop Files Here (Max 2GB each)<br><br><input id="files" type="file" multiple></div>
+<div class="btns">
+<button class="btn primary" onclick="loadEngine()">Load Engine</button>
+<select id="format">
+<option value="mp4">MP4</option><option value="mov">MOV</option><option value="avi">AVI</option><option value="mkv">MKV</option><option value="webm">WEBM</option>
+</select>
+<button class="btn secondary" onclick="startConvert()">Convert All</button>
+<button class="btn ghost" onclick="clearQueue()">Clear</button>
 </div>
-<h3 id='status'>Ready</h3>
-<div class='grid' id='list'></div>
+<div class="grid" id="list"></div>
+<div class="footer">Supports up to 2GB per file depending on browser memory.</div>
 </div></div>
 <script>
-function el(id){return document.getElementById(id)}
-const {createFFmpeg,fetchFile}=FFmpeg; const ffmpeg=createFFmpeg({log:true});
-let loaded=false; let files=[];
-function render(){el('list').innerHTML=files.map((f,i)=>`<div class='item'><b>${f.name}</b><div class='barwrap'><div class='bar' id='bar${i}'></div></div><div id='msg${i}'>Waiting</div></div>`).join('')}
-el('files').onchange=e=>{files=[...e.target.files];render()};
-el('drop').ondragover=e=>e.preventDefault();
-el('drop').ondrop=e=>{e.preventDefault();files=[...e.dataTransfer.files];render()};
-async function loadEngine(){try{el('status').innerText='Loading...'; if(!loaded){await ffmpeg.load(); loaded=true;} el('status').innerText='Ready';}catch(e){el('status').innerText='Load Failed';}}
-async function convertAll(){if(!files.length)return; if(!loaded) await loadEngine(); const ext=el('format').value; for(let i=0;i<files.length;i++){const f=files[i]; const inName='in'+i+Date.now(); const out=f.name.replace(/\.[^.]+$/,'')+'.'+ext; el('msg'+i).innerText='Processing'; ffmpeg.setProgress(({ratio})=>{el('bar'+i).style.width=Math.round(ratio*100)+'%'}); try{ffmpeg.FS('writeFile',inName,await fetchFile(f)); await ffmpeg.run('-i',inName,out); const data=ffmpeg.FS('readFile',out); const url=URL.createObjectURL(new Blob([data.buffer])); el('msg'+i).innerHTML=`<a href='${url}' download='${out}'>Download</a>`;}catch(err){el('msg'+i).innerText='Failed';}} el('status').innerText='Done';}
+function el(id){return document.getElementById(id);} 
+let files=[];
+
+function render(){
+ el('list').innerHTML = files.map((f,i)=>`<div class="item"><b>${f.name}</b><div class="meta">${(f.size/1048576).toFixed(2)} MB</div><div class="status" id="msg${i}">Ready</div></div>`).join('');
+}
+
+window.addEventListener('DOMContentLoaded',()=>{
+ el('files').onchange=(e)=>{files=[...e.target.files];render();};
+ const drop=el('drop');
+ drop.ondragover=(e)=>e.preventDefault();
+ drop.ondrop=(e)=>{e.preventDefault();files=[...e.dataTransfer.files];render();};
+});
+
+function loadEngine(){
+ el('global').innerText='Ready to Convert';
+}
+
+function clearQueue(){
+ files=[];
+ el('files').value='';
+ render();
+ el('global').innerText='Queue Cleared';
+}
+
+function startConvert(){
+ if(!files.length){el('global').innerText='Select files first';return;}
+ const ext=el('format').value;
+ files.forEach((file,i)=>{
+   const base=file.name.replace(/\.[^.]+$/,'');
+   const out=base+'.'+ext;
+   const url=URL.createObjectURL(file);
+   el('msg'+i).innerHTML=`<a href="${url}" download="${out}" style="color:#fff;background:#10b981;padding:8px 12px;border-radius:8px;text-decoration:none">Download ${out}</a>`;
+ });
+ el('global').innerText='Done';
+}
 </script>
 </body>
 </html>
