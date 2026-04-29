@@ -5,46 +5,73 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Any Video Link to MP4</title>
 
-<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.6/dist/ffmpeg.min.js"></script>
-
 <style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
 body{
 font-family:Arial,sans-serif;
-background:#0f172a;
+background:linear-gradient(135deg,#0f172a,#111827,#1e293b);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
 color:white;
-padding:40px;
 }
 
 .box{
-max-width:750px;
-margin:auto;
-background:#111827;
-padding:30px;
-border-radius:16px;
+width:100%;
+max-width:700px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(12px);
+padding:35px;
+border-radius:20px;
+box-shadow:0 20px 40px rgba(0,0,0,.35);
+}
+
+h1{
+margin-bottom:10px;
+font-size:32px;
+}
+
+p{
+opacity:.8;
+margin-bottom:20px;
 }
 
 input,button{
 width:100%;
-padding:14px;
-margin-top:12px;
+padding:15px;
 border:none;
-border-radius:10px;
+border-radius:12px;
+margin-top:12px;
+font-size:16px;
+}
+
+input{
+background:white;
+color:black;
 }
 
 button{
 background:#2563eb;
 color:white;
 cursor:pointer;
+font-weight:bold;
 }
 
 button:hover{
 background:#1d4ed8;
 }
 
-video{
-width:100%;
-margin-top:20px;
-border-radius:10px;
+#status{
+margin-top:18px;
+font-size:15px;
+opacity:.9;
 }
 
 a{
@@ -55,7 +82,8 @@ background:#10b981;
 color:white;
 text-decoration:none;
 text-align:center;
-border-radius:10px;
+border-radius:12px;
+font-weight:bold;
 }
 </style>
 </head>
@@ -63,70 +91,67 @@ border-radius:10px;
 
 <div class="box">
 
-<h1>Any Video URL to MP4</h1>
+<h1>Any Video Link to MP4</h1>
+<p>Paste link and download as MP4</p>
 
-<input type="text" id="url" placeholder="Paste Direct Video URL (.mp4 .webm .mov etc)">
+<input type="text" id="url" placeholder="Paste video link here">
 
-<button onclick="convert()">Convert To MP4</button>
+<button onclick="convert()">Convert Now</button>
 
-<div id="status"></div>
+<div id="status">Ready</div>
+
 <div id="result"></div>
 
 </div>
 
 <script>
-const { createFFmpeg, fetchFile } = FFmpeg;
-const ffmpeg = createFFmpeg({ log:true });
-
-let loaded = false;
-
 async function convert(){
 
-let url = document.getElementById("url").value.trim();
+const url = document.getElementById("url").value.trim();
 
-if(url===""){
-alert("Paste direct video URL");
+if(!url){
+alert("Paste link first");
 return;
 }
 
-document.getElementById("status").innerText = "Loading Engine...";
+const status = document.getElementById("status");
+const result = document.getElementById("result");
 
-if(!loaded){
-await ffmpeg.load();
-loaded = true;
-}
-
-document.getElementById("status").innerText = "Downloading Video...";
+status.innerText = "Connecting server...";
+result.innerHTML = "";
 
 try{
 
-const response = await fetch(url);
-const blob = await response.blob();
+const res = await fetch("https://YOUR-BACKEND-URL.onrender.com/convert",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+url:url
+})
+});
 
-ffmpeg.FS("writeFile","input", await fetchFile(blob));
+if(!res.ok){
+status.innerText = "Conversion failed";
+return;
+}
 
-document.getElementById("status").innerText = "Converting...";
+status.innerText = "Preparing file...";
 
-await ffmpeg.run(
-"-i","input",
-"-c:v","libx264",
-"-c:a","aac",
-"output.mp4"
-);
+const blob = await res.blob();
 
-const data = ffmpeg.FS("readFile","output.mp4");
+const fileURL = URL.createObjectURL(blob);
 
-const outputURL = URL.createObjectURL(
-new Blob([data.buffer], {type:"video/mp4"})
-);
+result.innerHTML =
+`<a href="${fileURL}" download="video.mp4">Download MP4</a>`;
 
-document.getElementById("result").innerHTML =
-`<a href="${outputURL}" download="video.mp4">Download MP4</a>`;
-
-document.getElementById("status").innerText = "Done";
+status.innerText = "Done";
 
 }catch(err){
-document.getElementById("status").innerText = "Failed (Need direct video URL)";
+
+status.innerText = "Server offline or error";
+
 }
 
 }
