@@ -8,7 +8,6 @@
 
 <title>Pro Bulk Converter</title>
 
-<!-- WORKING FFMPEG VERSION -->
 <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
 
 <style>
@@ -19,10 +18,10 @@
 
 body{
   margin:0;
-  font-family:Inter,Arial,sans-serif;
+  font-family:Arial,sans-serif;
   background:#070b16;
-  min-height:100vh;
   color:#fff;
+  min-height:100vh;
   overflow-x:hidden;
 }
 
@@ -30,88 +29,87 @@ body:before,
 body:after{
   content:'';
   position:fixed;
-  filter:blur(60px);
   border-radius:50%;
-  opacity:.45;
+  filter:blur(60px);
+  opacity:.4;
   animation:float 10s ease-in-out infinite;
 }
 
 body:before{
-  width:320px;
-  height:320px;
+  width:300px;
+  height:300px;
   background:#2563eb;
-  top:8%;
-  left:6%;
+  top:5%;
+  left:5%;
 }
 
 body:after{
-  width:380px;
-  height:380px;
+  width:350px;
+  height:350px;
   background:#10b981;
-  right:8%;
-  bottom:8%;
+  bottom:5%;
+  right:5%;
   animation-delay:-4s;
 }
 
-.stars{
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle at 20% 20%,rgba(255,255,255,.15) 1px,transparent 1px),
-    radial-gradient(circle at 80% 30%,rgba(255,255,255,.12) 1px,transparent 1px),
-    radial-gradient(circle at 40% 70%,rgba(255,255,255,.12) 1px,transparent 1px);
-  background-size:180px 180px;
-  opacity:.35;
-  pointer-events:none;
+@keyframes float{
+
+  0%,100%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-20px);
+  }
 }
 
 .wrap{
-  max-width:1150px;
+  max-width:1100px;
   margin:auto;
-  padding:32px;
+  padding:30px;
   position:relative;
   z-index:2;
 }
 
 .card{
   background:rgba(255,255,255,.08);
-  backdrop-filter:blur(16px);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:28px;
-  padding:28px;
-  box-shadow:0 20px 50px rgba(0,0,0,.35);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:26px;
+  padding:30px;
 }
 
 .hero{
   display:flex;
   justify-content:space-between;
-  gap:16px;
   align-items:center;
+  gap:20px;
   flex-wrap:wrap;
 }
 
 .title{
-  font-size:36px;
+  font-size:42px;
   font-weight:800;
 }
 
 .sub{
   opacity:.8;
+  margin-top:5px;
 }
 
 .drop{
-  margin-top:20px;
-  border:2px dashed rgba(255,255,255,.25);
-  padding:34px;
-  border-radius:22px;
+  margin-top:24px;
+  border:2px dashed rgba(255,255,255,.2);
+  border-radius:20px;
+  padding:40px;
   text-align:center;
 }
 
 .btns{
+  margin-top:20px;
   display:flex;
   gap:12px;
   flex-wrap:wrap;
-  margin-top:18px;
 }
 
 .btn,
@@ -142,67 +140,56 @@ body:after{
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:14px;
-  margin-top:22px;
+  gap:16px;
+  margin-top:24px;
 }
 
 .item{
-  background:rgba(255,255,255,.06);
-  padding:14px;
+  background:rgba(255,255,255,.05);
   border-radius:18px;
+  padding:16px;
 }
 
 .meta{
-  font-size:13px;
-  opacity:.8;
   margin-top:6px;
+  font-size:13px;
+  opacity:.75;
 }
 
 .progress{
-  height:9px;
+  margin-top:12px;
+  height:10px;
   background:rgba(255,255,255,.08);
-  border-radius:99px;
+  border-radius:999px;
   overflow:hidden;
-  margin-top:10px;
 }
 
 .bar{
-  height:100%;
   width:0%;
+  height:100%;
   background:linear-gradient(90deg,#22c55e,#3b82f6);
   transition:.2s;
 }
 
 .status{
-  margin-top:8px;
+  margin-top:10px;
   font-size:14px;
-}
-
-.footer{
-  margin-top:18px;
-  opacity:.8;
 }
 
 .download-btn{
   display:inline-block;
   margin-top:10px;
-  background:#10b981;
-  color:#fff;
   padding:10px 14px;
   border-radius:10px;
+  background:#10b981;
+  color:#fff;
   text-decoration:none;
   font-weight:700;
 }
 
-@keyframes float{
-
-  0%,100%{
-    transform:translateY(0);
-  }
-
-  50%{
-    transform:translateY(-24px);
-  }
+.footer{
+  margin-top:20px;
+  opacity:.75;
 }
 
 </style>
@@ -210,8 +197,6 @@ body:after{
 </head>
 
 <body>
-
-<div class="stars"></div>
 
 <div class="wrap">
 
@@ -226,7 +211,7 @@ body:after{
         </div>
 
         <div class="sub">
-          Convert video files using FFmpeg
+          Convert videos using FFmpeg WASM
         </div>
 
       </div>
@@ -256,13 +241,9 @@ body:after{
       <select id="format">
 
         <option value="mp4">MP4</option>
-
         <option value="mov">MOV</option>
-
         <option value="avi">AVI</option>
-
         <option value="mkv">MKV</option>
-
         <option value="webm">WEBM</option>
 
       </select>
@@ -280,7 +261,7 @@ body:after{
     <div class="grid" id="list"></div>
 
     <div class="footer">
-      Large files may require high RAM in browser.
+      Browser FFmpeg may fail on very large files.
     </div>
 
   </div>
@@ -295,9 +276,9 @@ function el(id){
 
 let files = [];
 
-let ffmpeg;
+let ffmpeg = null;
 
-let fetchFile;
+let fetchFile = null;
 
 function render(){
 
@@ -309,7 +290,7 @@ function render(){
 
       <div class="meta">
 
-        ${(f.size/1048576).toFixed(2)} MB
+        ${(f.size / 1048576).toFixed(2)} MB
 
       </div>
 
@@ -361,14 +342,17 @@ async function loadEngine(){
 
     el('global').innerText='Loading Engine...';
 
-    const ffmpegModule = FFmpeg;
+    const { createFFmpeg, fetchFile:ffFetchFile } = FFmpeg;
 
-    const createFFmpeg = ffmpegModule.createFFmpeg;
-
-    fetchFile = ffmpegModule.fetchFile;
+    fetchFile = ffFetchFile;
 
     ffmpeg = createFFmpeg({
-      log:true
+
+      log:true,
+
+      corePath:
+      'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js'
+
     });
 
     await ffmpeg.load();
@@ -379,7 +363,16 @@ async function loadEngine(){
 
     console.error(err);
 
-    el('global').innerText='Failed to Load Engine';
+    el('global').innerText='Engine Failed';
+
+    alert(
+      'FFmpeg failed to load.\n\n' +
+      'Possible causes:\n' +
+      '- Hosting blocks WASM\n' +
+      '- Browser cache issue\n' +
+      '- Browser memory issue\n\n' +
+      'Open Console with F12 to see details.'
+    );
   }
 }
 
@@ -387,7 +380,7 @@ function clearQueue(){
 
   files = [];
 
-  el('files').value = '';
+  el('files').value='';
 
   render();
 
@@ -405,7 +398,7 @@ async function startConvert(){
 
   if(!files.length){
 
-    el('global').innerText='Select Files First';
+    el('global').innerText='Select Files';
 
     return;
   }
@@ -462,6 +455,8 @@ async function startConvert(){
           inputName,
           '-c:v',
           'libx264',
+          '-preset',
+          'ultrafast',
           '-c:a',
           'aac',
           outputName
@@ -500,7 +495,7 @@ async function startConvert(){
 
       el('msg'+i).innerHTML = `
 
-        Conversion Completed
+        Completed
 
         <br><br>
 
@@ -532,4 +527,5 @@ async function startConvert(){
 </script>
 
 </body>
+
 </html>
