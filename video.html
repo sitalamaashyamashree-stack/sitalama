@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pro Media Converter</title>
+<title>Pro Bulk Converter</title>
 
-<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.6/dist/ffmpeg.min.js"></script>
+<!-- WORKING FFMPEG VERSION -->
+<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
 
 <style>
+
 *{
   box-sizing:border-box;
 }
@@ -181,24 +185,28 @@ body:after{
 
 .download-btn{
   display:inline-block;
-  margin-top:8px;
-  color:#fff;
+  margin-top:10px;
   background:#10b981;
-  padding:8px 12px;
-  border-radius:8px;
+  color:#fff;
+  padding:10px 14px;
+  border-radius:10px;
   text-decoration:none;
-  font-size:14px;
+  font-weight:700;
 }
 
 @keyframes float{
+
   0%,100%{
     transform:translateY(0);
   }
+
   50%{
     transform:translateY(-24px);
   }
 }
+
 </style>
+
 </head>
 
 <body>
@@ -206,21 +214,37 @@ body:after{
 <div class="stars"></div>
 
 <div class="wrap">
+
   <div class="card">
 
     <div class="hero">
+
       <div>
-        <div class="title">Pro Bulk Converter</div>
-        <div class="sub">Convert video files using FFmpeg</div>
+
+        <div class="title">
+          Pro Bulk Converter
+        </div>
+
+        <div class="sub">
+          Convert video files using FFmpeg
+        </div>
+
       </div>
 
-      <div id="global">Ready</div>
+      <div id="global">
+        Ready
+      </div>
+
     </div>
 
     <div class="drop" id="drop">
+
       Drag & Drop Files Here
+
       <br><br>
+
       <input id="files" type="file" multiple>
+
     </div>
 
     <div class="btns">
@@ -230,11 +254,17 @@ body:after{
       </button>
 
       <select id="format">
+
         <option value="mp4">MP4</option>
+
         <option value="mov">MOV</option>
+
         <option value="avi">AVI</option>
+
         <option value="mkv">MKV</option>
+
         <option value="webm">WEBM</option>
+
       </select>
 
       <button class="btn secondary" onclick="startConvert()">
@@ -254,6 +284,7 @@ body:after{
     </div>
 
   </div>
+
 </div>
 
 <script>
@@ -263,8 +294,10 @@ function el(id){
 }
 
 let files = [];
-let ffmpeg = null;
-let fetchFile = null;
+
+let ffmpeg;
+
+let fetchFile;
 
 function render(){
 
@@ -275,11 +308,15 @@ function render(){
       <b>${f.name}</b>
 
       <div class="meta">
+
         ${(f.size/1048576).toFixed(2)} MB
+
       </div>
 
       <div class="progress">
+
         <div class="bar" id="bar${i}"></div>
+
       </div>
 
       <div class="status" id="msg${i}">
@@ -294,19 +331,25 @@ function render(){
 window.addEventListener('DOMContentLoaded',()=>{
 
   el('files').onchange=(e)=>{
-    files=[...e.target.files];
+
+    files = [...e.target.files];
+
     render();
   };
 
-  const drop=el('drop');
+  const drop = el('drop');
 
   drop.ondragover=(e)=>{
+
     e.preventDefault();
   };
 
   drop.ondrop=(e)=>{
+
     e.preventDefault();
-    files=[...e.dataTransfer.files];
+
+    files = [...e.dataTransfer.files];
+
     render();
   };
 
@@ -316,12 +359,7 @@ async function loadEngine(){
 
   try{
 
-    if(ffmpeg){
-      el('global').innerText='Engine Already Loaded';
-      return;
-    }
-
-    el('global').innerText='Loading FFmpeg...';
+    el('global').innerText='Loading Engine...';
 
     const ffmpegModule = FFmpeg;
 
@@ -335,7 +373,7 @@ async function loadEngine(){
 
     await ffmpeg.load();
 
-    el('global').innerText='FFmpeg Loaded Successfully';
+    el('global').innerText='Engine Loaded';
 
   }catch(err){
 
@@ -347,9 +385,9 @@ async function loadEngine(){
 
 function clearQueue(){
 
-  files=[];
+  files = [];
 
-  el('files').value='';
+  el('files').value = '';
 
   render();
 
@@ -359,12 +397,16 @@ function clearQueue(){
 async function startConvert(){
 
   if(!ffmpeg){
+
     el('global').innerText='Load Engine First';
+
     return;
   }
 
   if(!files.length){
+
     el('global').innerText='Select Files First';
+
     return;
   }
 
@@ -382,7 +424,7 @@ async function startConvert(){
 
       ffmpeg.setProgress(({ ratio })=>{
 
-        const percent = Math.min(100, ratio*100);
+        const percent = Math.min(100, ratio * 100);
 
         el('bar'+i).style.width = percent + '%';
 
@@ -433,10 +475,21 @@ async function startConvert(){
 
       let mime='video/mp4';
 
-      if(ext==='webm') mime='video/webm';
-      if(ext==='mkv') mime='video/x-matroska';
-      if(ext==='avi') mime='video/x-msvideo';
-      if(ext==='mov') mime='video/quicktime';
+      if(ext==='mov'){
+        mime='video/quicktime';
+      }
+
+      if(ext==='avi'){
+        mime='video/x-msvideo';
+      }
+
+      if(ext==='mkv'){
+        mime='video/x-matroska';
+      }
+
+      if(ext==='webm'){
+        mime='video/webm';
+      }
 
       const blob = new Blob(
         [data.buffer],
@@ -446,16 +499,23 @@ async function startConvert(){
       const url = URL.createObjectURL(blob);
 
       el('msg'+i).innerHTML = `
-        Completed
+
+        Conversion Completed
+
         <br><br>
-        <a class="download-btn"
-           href="${url}"
-           download="${outputName}">
-           Download ${outputName}
+
+        <a
+          href="${url}"
+          download="${outputName}"
+          class="download-btn">
+
+          Download ${outputName}
+
         </a>
       `;
 
       ffmpeg.FS('unlink', inputName);
+
       ffmpeg.FS('unlink', outputName);
 
     }catch(err){
