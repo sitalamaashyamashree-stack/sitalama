@@ -2,158 +2,96 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Any Video Link to MP4</title>
+<title>Video Converter</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+body {
+  background: #0b1a33;
+  color: white;
+  font-family: Arial;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
-
-body{
-font-family:Arial,sans-serif;
-background:linear-gradient(135deg,#0f172a,#111827,#1e293b);
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:20px;
-color:white;
+.box {
+  background: #1e2b45;
+  padding: 30px;
+  border-radius: 12px;
+  width: 400px;
+  text-align: center;
 }
-
-.box{
-width:100%;
-max-width:700px;
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(12px);
-padding:35px;
-border-radius:20px;
-box-shadow:0 20px 40px rgba(0,0,0,.35);
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 10px;
 }
-
-h1{
-margin-bottom:10px;
-font-size:32px;
+button {
+  margin-top: 15px;
+  width: 100%;
+  padding: 12px;
+  background: #2d5cff;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
 }
-
-p{
-opacity:.8;
-margin-bottom:20px;
-}
-
-input,button{
-width:100%;
-padding:15px;
-border:none;
-border-radius:12px;
-margin-top:12px;
-font-size:16px;
-}
-
-input{
-background:white;
-color:black;
-}
-
-button{
-background:#2563eb;
-color:white;
-cursor:pointer;
-font-weight:bold;
-}
-
-button:hover{
-background:#1d4ed8;
-}
-
-#status{
-margin-top:18px;
-font-size:15px;
-opacity:.9;
-}
-
-a{
-display:block;
-margin-top:20px;
-padding:14px;
-background:#10b981;
-color:white;
-text-decoration:none;
-text-align:center;
-border-radius:12px;
-font-weight:bold;
+#status {
+  margin-top: 10px;
 }
 </style>
 </head>
+
 <body>
 
 <div class="box">
-
-<h1>Any Video Link to MP4</h1>
-<p>Paste link and download as MP4</p>
-
-<input type="text" id="url" placeholder="Paste video link here">
-
-<button onclick="convert()">Convert Now</button>
-
-<div id="status">Ready</div>
-
-<div id="result"></div>
-
+  <h2>Any Video Link to MP4</h2>
+  <input id="url" placeholder="Paste Google Drive video link">
+  <button onclick="convert()">Convert Now</button>
+  <div id="status"></div>
 </div>
 
 <script>
-async function convert(){
+async function convert() {
+  const url = document.getElementById("url").value;
+  const status = document.getElementById("status");
 
-const url = document.getElementById("url").value.trim();
+  if (!url) {
+    status.innerText = "Enter a link!";
+    return;
+  }
 
-if(!url){
-alert("Paste link first");
-return;
-}
+  status.innerText = "Processing...";
 
-const status = document.getElementById("status");
-const result = document.getElementById("result");
+  try {
+    const res = await fetch("https://sitalama-docker.onrender.com/convert", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ url })
+    });
 
-status.innerText = "Connecting server...";
-result.innerHTML = "";
+    if (!res.ok) {
+      const err = await res.text();
+      status.innerText = "Error: " + err;
+      return;
+    }
 
-try{
+    const blob = await res.blob();
 
-const res = await fetch("https://sitalama-docker.onrender.com/convert",{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-url:url
-})
-});
+    const downloadUrl = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = downloadUrl;
+    a.download = "video.mp4";
+    a.click();
 
-if(!res.ok){
-status.innerText = "Conversion failed";
-return;
-}
-
-status.innerText = "Preparing file...";
-
-const blob = await res.blob();
-
-const fileURL = URL.createObjectURL(blob);
-
-result.innerHTML =
-`<a href="${fileURL}" download="video.mp4">Download MP4</a>`;
-
-status.innerText = "Done";
-
-}catch(err){
-
-status.innerText = "Server offline or error";
-
-}
-
+    status.innerText = "Download started!";
+  } catch (e) {
+    status.innerText = "Failed: " + e.message;
+  }
 }
 </script>
 
