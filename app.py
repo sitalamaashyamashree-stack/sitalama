@@ -8,13 +8,11 @@ import requests
 app = Flask(__name__)
 CORS(app)
 
-PORT = int(os.environ.get("PORT", 10000))
-
 TEMP_DIR = "temp"
 os.makedirs(TEMP_DIR, exist_ok=True)
 
 
-def get_google_drive_direct(url):
+def convert_drive_link(url):
     if "drive.google.com" in url and "/file/d/" in url:
         file_id = url.split("/file/d/")[1].split("/")[0]
         return f"https://drive.google.com/uc?export=download&id={file_id}"
@@ -23,7 +21,7 @@ def get_google_drive_direct(url):
 
 @app.route("/")
 def home():
-    return "Server Running"
+    return "Server running"
 
 
 @app.route("/convert", methods=["POST"])
@@ -33,13 +31,14 @@ def convert():
         video_url = data.get("url")
 
         if not video_url:
-            return jsonify({"error": "No URL provided"}), 400
+            return jsonify({"error": "No URL"}), 400
 
-        video_url = get_google_drive_direct(video_url)
+        video_url = convert_drive_link(video_url)
 
-        input_file = os.path.join(TEMP_DIR, f"{uuid.uuid4()}.input")
-        output_file = os.path.join(TEMP_DIR, f"{uuid.uuid4()}.mp4")
+        input_file = f"{TEMP_DIR}/{uuid.uuid4()}.input"
+        output_file = f"{TEMP_DIR}/{uuid.uuid4()}.mp4"
 
+        # Download file
         r = requests.get(video_url, stream=True)
         if r.status_code != 200:
             return jsonify({"error": "Download failed"}), 400
@@ -49,6 +48,7 @@ def convert():
                 if chunk:
                     f.write(chunk)
 
+        # Convert using ffmpeg
         cmd = [
             "ffmpeg",
             "-y",
@@ -69,10 +69,9 @@ def convert():
         return send_file(output_file, as_attachment=True)
 
     except Exception as e:
-        return jsonify({
-            "error": str(e)
-        }), 500
+        return jsonify({"error": str(e)}), 500
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=PORT)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
