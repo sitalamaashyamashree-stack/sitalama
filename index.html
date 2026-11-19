@@ -68,18 +68,18 @@
 
     /* KEYFRAME ANIMATIONS */
     @keyframes floatSlow {
-      0%, 100% { transform: translateY(0px) rotate(-4deg); }
-      50% { transform: translateY(-9px) rotate(3deg); }
+      0%, 100% { transform: translateY(0px) rotate(-3deg); }
+      50% { transform: translateY(-8px) rotate(2deg); }
     }
 
-    @keyframes leafSway {
-      0%, 100% { transform: rotate(-6deg) scale(1); }
-      50% { transform: rotate(8deg) scale(1.06); }
+    @keyframes leafBreeze {
+      0%, 100% { transform: rotate(-4deg) scale(1); }
+      50% { transform: rotate(5deg) scale(1.04); }
     }
 
     @keyframes pulseHeart {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.15); }
+      50% { transform: scale(1.14); }
     }
 
     @keyframes pulseGlow {
@@ -104,14 +104,14 @@
       transform: translateY(0);
     }
 
-    /* DECORATIVE SCATTERED LEAVES (MATCHING REFERENCE IMAGE) */
-    .scattered-leaf {
+    /* CORNER BOTANICAL LEAF CLUSTERS (MATCHING REFERENCE IMAGE) */
+    .corner-leaf-cluster {
       position: absolute;
-      width: 34px;
-      height: 34px;
+      width: 68px;
+      height: 68px;
       pointer-events: none;
-      opacity: 0.78;
-      animation: leafSway 5s ease-in-out infinite;
+      opacity: 0.85;
+      animation: leafBreeze 6s ease-in-out infinite;
       z-index: 1;
     }
 
@@ -415,18 +415,18 @@
     .leaf-divider::before,
     .leaf-divider::after {
       content: "";
-      width: 75px;
+      width: 80px;
       height: 1.8px;
       background: linear-gradient(90deg, transparent, #8ca897, transparent);
     }
 
     .leaf-svg-badge {
-      width: 28px;
-      height: 28px;
+      width: 30px;
+      height: 30px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      animation: leafSway 4s ease-in-out infinite;
+      animation: leafBreeze 4s ease-in-out infinite;
     }
 
     .section-header-decorated h2 {
@@ -447,6 +447,7 @@
       padding: 75px 40px;
       background-color: var(--cream-bg);
       position: relative;
+      overflow: hidden;
     }
 
     .programme-grid {
@@ -583,7 +584,7 @@
       color: var(--gold-hover);
     }
 
-    /* 3-COLUMN WHY SUPPORT US + CENTER EMOTIONAL PHOTO + OUR IMPACT (EXACTLY LIKE IMAGE) */
+    /* 3-COLUMN SECTION: WHY SUPPORT US + BENGALI GRANDMOTHER & CHILD PHOTO + OUR IMPACT */
     .why-impact-wrapper {
       display: grid;
       grid-template-columns: 1.15fr 1fr 0.9fr;
@@ -749,21 +750,21 @@
       line-height: 1.55;
     }
 
-    /* Center Column: Boy Hugging Elderly Grandmother Photo (Exact Match to Reference Image) */
+    /* Center Column: Bengali/Indian Elderly Grandmother & Grandchild Photo */
     .center-hug-photo {
       position: relative;
-      min-height: 460px;
+      min-height: 470px;
       overflow: hidden;
-      background-color: #d9d2c0;
+      background-color: #e6dec8;
     }
 
     .center-hug-photo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center;
+      object-position: center top;
       display: block;
-      transition: transform 0.6s ease;
+      transition: transform 0.65s ease;
     }
 
     .why-impact-wrapper:hover .center-hug-photo img {
@@ -791,8 +792,8 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      margin-bottom: 22px;
-      padding: 12px 14px;
+      margin-bottom: 20px;
+      padding: 13px 15px;
       background: #ffffff;
       border-radius: 12px;
       border: 1px solid #e4decb;
@@ -839,87 +840,9 @@
       margin-top: 2px;
     }
 
-    /* ABOUT US DEDICATED SECTION BELOW (PRESERVING YOUR FULL ABOUT CONTENT) */
-    .about-section {
-      background-color: #ffffff;
-      padding: 75px 40px;
-      border-bottom: 1px solid #e6e2d6;
-      position: relative;
-    }
-
-    .about-container {
-      max-width: 1140px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1.3fr 0.9fr;
-      gap: 45px;
-      align-items: center;
-      position: relative;
-      z-index: 2;
-    }
-
-    .about-text h2 {
-      font-size: 36px;
-      color: var(--forest-dark);
-      margin-bottom: 18px;
-    }
-
-    .about-text p {
-      font-size: 16.5px;
-      color: #36493e;
-      line-height: 1.72;
-      margin-bottom: 16px;
-    }
-
-    .about-trust-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .trust-pill {
-      background-color: #eaf3ed;
-      color: var(--forest-dark);
-      font-size: 13px;
-      font-weight: 700;
-      padding: 7px 14px;
-      border-radius: 20px;
-      border: 1px solid #cbe0d3;
-    }
-
-    .about-image-card {
-      background: var(--cream-bg);
-      padding: 28px;
-      border-radius: 16px;
-      border: 1px solid #e5e0d3;
-      text-align: center;
-      box-shadow: 0 10px 26px rgba(19, 59, 38, 0.08);
-      transition: transform 0.35s ease;
-    }
-
-    .about-image-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .about-image-card img {
-      max-width: 240px;
-      width: 100%;
-      height: auto;
-      margin: 0 auto 14px;
-      display: block;
-    }
-
-    .about-image-card p {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 16px;
-      color: var(--forest-dark);
-    }
-
     /* EVERY CONTRIBUTION COUNTS STRIP (OPEN-SOURCE HANDS HOLDING RED HEART + CALLIGRAPHY) */
     .contribution-strip {
-      background: linear-gradient(180deg, #fbf9f3 0%, #f5f1e6 100%);
+      background: linear-gradient(180deg, #ffffff 0%, #fbf9f3 100%);
       padding: 65px 40px;
       text-align: center;
       border-bottom: 1px solid #e6e2d6;
@@ -932,19 +855,20 @@
       left: 4%;
       top: 50%;
       transform: translateY(-50%);
-      width: 145px;
-      height: 145px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 4px solid #ffffff;
-      box-shadow: 0 10px 25px rgba(19, 59, 38, 0.14);
+      width: 170px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       animation: floatSlow 4.2s ease-in-out infinite;
     }
 
     .strip-side-left img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      filter: drop-shadow(0 8px 16px rgba(19, 59, 38, 0.12));
     }
 
     .strip-side-right {
@@ -953,7 +877,7 @@
       top: 50%;
       transform: translateY(-50%) rotate(-5deg);
       font-family: 'Caveat', cursive;
-      font-size: 30px;
+      font-size: 31px;
       font-weight: 700;
       color: var(--forest-dark);
       line-height: 1.1;
@@ -1046,11 +970,91 @@
       transform: scale(1.04);
     }
 
+    /* DEDICATED ABOUT US SECTION BELOW (PRESERVING YOUR FULL ABOUT CONTENT) */
+    .about-section {
+      background-color: var(--cream-bg);
+      padding: 75px 40px;
+      border-bottom: 1px solid #e6e2d6;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-container {
+      max-width: 1140px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 45px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .about-text h2 {
+      font-size: 36px;
+      color: var(--forest-dark);
+      margin-bottom: 18px;
+    }
+
+    .about-text p {
+      font-size: 16.5px;
+      color: #36493e;
+      line-height: 1.72;
+      margin-bottom: 16px;
+    }
+
+    .about-trust-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .trust-pill {
+      background-color: #eaf3ed;
+      color: var(--forest-dark);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 20px;
+      border: 1px solid #cbe0d3;
+    }
+
+    .about-image-card {
+      background: #ffffff;
+      padding: 28px;
+      border-radius: 16px;
+      border: 1px solid #e5e0d3;
+      text-align: center;
+      box-shadow: 0 10px 26px rgba(19, 59, 38, 0.08);
+      transition: transform 0.35s ease;
+    }
+
+    .about-image-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .about-image-card img {
+      max-width: 240px;
+      width: 100%;
+      height: auto;
+      margin: 0 auto 14px;
+      display: block;
+    }
+
+    .about-image-card p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--forest-dark);
+    }
+
     /* RESOURCES SECTION (ALL ORIGINAL LINKS PRESERVED) */
     .resources-section {
       padding: 75px 40px;
       background-color: #ffffff;
       position: relative;
+      overflow: hidden;
     }
 
     .resources-container {
@@ -1201,7 +1205,7 @@
       background-color: var(--forest-mid);
     }
 
-    /* FOOTER (FOREST GREEN MULTI-COLUMN MATCHING REFERENCE IMAGE) */
+    /* FOOTER (FOREST GREEN MULTI-COLUMN WITH FOLLOW US ON FAR RIGHT LIKE REFERENCE IMAGE) */
     .site-footer {
       background: var(--forest-dark);
       color: #e6efe9;
@@ -1209,30 +1213,31 @@
     }
 
     .footer-grid {
-      max-width: 1180px;
+      max-width: 1220px;
       margin: 0 auto 40px;
       display: grid;
-      grid-template-columns: 1.4fr 1fr 1.2fr 1.2fr;
-      gap: 35px;
+      grid-template-columns: 1.3fr 0.9fr 1.1fr 1.2fr 0.95fr;
+      gap: 28px;
       text-align: left;
     }
 
     .footer-brand h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 22px;
+      font-size: 21px;
       color: #ffffff;
       margin-bottom: 8px;
+      line-height: 1.25;
     }
 
     .footer-brand p {
-      font-size: 14px;
+      font-size: 13.5px;
       color: #bfd4c7;
       font-style: italic;
     }
 
     .site-footer h4 {
       font-family: 'Inter', sans-serif;
-      font-size: 16px;
+      font-size: 15.5px;
       font-weight: 700;
       margin-bottom: 16px;
       color: var(--gold-accent);
@@ -1260,7 +1265,7 @@
 
     .footer-contact p {
       margin-bottom: 10px;
-      font-size: 14px;
+      font-size: 13.8px;
       color: #e6efe9;
     }
 
@@ -1279,7 +1284,7 @@
       padding: 10px 12px;
       border: none;
       border-radius: 6px;
-      font-size: 14px;
+      font-size: 13.5px;
     }
 
     .subscribe-form button {
@@ -1288,7 +1293,7 @@
       color: var(--forest-dark);
       font-weight: 700;
       border: none;
-      font-size: 14px;
+      font-size: 13.5px;
       border-radius: 6px;
       cursor: pointer;
       transition: 0.25s ease;
@@ -1298,8 +1303,42 @@
       background-color: #facc15;
     }
 
+    /* Follow Us Social Icons Column (Right Side like Reference Image) */
+    .social-icons-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .social-circle-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background-color: #ffffff;
+      color: var(--forest-dark);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.28s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .social-circle-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .social-circle-btn:hover {
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
+      transform: translateY(-4px) scale(1.08);
+    }
+
     .footer-bottom-bar {
-      max-width: 1180px;
+      max-width: 1220px;
       margin: 0 auto;
       padding-top: 20px;
       border-top: 1px solid rgba(255, 255, 255, 0.15);
@@ -1312,8 +1351,8 @@
       color: #bfd4c7;
     }
 
-    /* ========== TABLET (max-width: 1080px) ========== */
-    @media (max-width: 1080px) {
+    /* ========== TABLET (max-width: 1120px) ========== */
+    @media (max-width: 1120px) {
       header {
         padding: 14px 20px;
       }
@@ -1323,7 +1362,7 @@
       }
 
       .center-hug-photo {
-        min-height: 360px;
+        min-height: 380px;
       }
 
       .about-container {
@@ -1618,18 +1657,24 @@
     </div>
   </section>
 
-  <!-- OUR INITIATIVES / PROJECTS SECTION (SQUARE BOXES WITH SCATTERED LEAVES) -->
+  <!-- OUR INITIATIVES / PROJECTS SECTION (SQUARE BOXES WITH CORNER BOTANICAL LEAVES) -->
   <section class="programmes-section reveal" id="projects">
-    <!-- Small decorative leaves matching reference image -->
-    <svg class="scattered-leaf" style="top: 26px; left: 5%;" viewBox="0 0 32 32" fill="#2b734d"><path d="M27 5C16 5 7 11 5 24c4-2 8-3 12-3 6 0 11-5 10-16zM6 26l10-10"/></svg>
-    <svg class="scattered-leaf" style="top: 34px; right: 6%; animation-delay: 1.4s;" viewBox="0 0 32 32" fill="#eab308"><path d="M27 5C16 5 7 11 5 24c4-2 8-3 12-3 6 0 11-5 10-16z"/></svg>
-    <svg class="scattered-leaf" style="bottom: 22px; left: 4%; animation-delay: 2.1s;" viewBox="0 0 32 32" fill="#1d5236"><path d="M27 5C16 5 7 11 5 24c4-2 8-3 12-3 6 0 11-5 10-16z"/></svg>
+    <!-- Botanical Leaf Clusters placed cleanly in section corners like reference image -->
+    <svg class="corner-leaf-cluster" style="top: 14px; left: 18px;" viewBox="0 0 80 80" fill="none">
+      <path d="M12 65C22 42 42 24 66 16C58 40 40 58 12 65Z" fill="#2b734d" opacity="0.35"/>
+      <path d="M8 42C16 25 32 14 50 10C44 26 28 38 8 42Z" fill="#1d5236" opacity="0.45"/>
+      <path d="M12 65L54 24" stroke="#133b26" stroke-width="1.5" opacity="0.4"/>
+    </svg>
+    <svg class="corner-leaf-cluster" style="top: 14px; right: 18px; transform: scaleX(-1);" viewBox="0 0 80 80" fill="none">
+      <path d="M12 65C22 42 42 24 66 16C58 40 40 58 12 65Z" fill="#2b734d" opacity="0.35"/>
+      <path d="M8 42C16 25 32 14 50 10C44 26 28 38 8 42Z" fill="#eab308" opacity="0.45"/>
+    </svg>
 
     <div class="section-header-decorated">
       <div class="leaf-divider">
         <span class="leaf-svg-badge">
-          <svg viewBox="0 0 32 32" width="26" height="26" fill="#1d5236">
-            <path d="M16 28V12M16 18c-5-6-11-5-11-5s1 7 11 5zm0-4c5-6 11-5 11-5s-1 7-11 5z"/>
+          <svg viewBox="0 0 36 36" width="30" height="30" fill="#1d5236">
+            <path d="M18 32V13M18 20c-6-7-13-6-13-6s1 8 13 6zm0-5c6-7 13-6 13-6s-1 8-13 6z"/>
           </svg>
         </span>
       </div>
@@ -1700,7 +1745,7 @@
     </div>
   </section>
 
-  <!-- 3-COLUMN SECTION: WHY SUPPORT US + BOY HUGGING GRANDMOTHER IMAGE + OUR IMPACT (AUTO-SYNCED) -->
+  <!-- 3-COLUMN SECTION: WHY SUPPORT US + BENGALI GRANDMOTHER & GRANDCHILD PHOTO + OUR IMPACT -->
   <section class="why-impact-wrapper reveal" id="impact">
     <!-- Left Column: Why Support Us -->
     <div class="why-donate-panel">
@@ -1763,14 +1808,23 @@
       </div>
     </div>
 
-    <!-- Center Column: Open-Source Image of Boy Hugging Elderly Grandmother (Matching Reference Image) -->
+    <!-- Center Column: Open-Source Image of Indian/Bengali Elderly Grandmother Hugging Grandchild -->
     <div class="center-hug-photo">
-      <img src="https://images.pexels.com/photos/7551672/pexels-photo-7551672.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Child hugging elderly grandmother with love and care" />
+      <img 
+        src="https://images.unsplash.com/photo-1595003969156-2d2c9c7d9c2a?auto=format&fit=crop&w=900&q=85" 
+        onerror="this.onerror=null; this.src='https://images.pexels.com/photos/3375741/pexels-photo-3375741.jpeg?auto=compress&cs=tinysrgb&w=900';"
+        alt="Indian elderly grandmother smiling warmly with grandchild" 
+      />
     </div>
 
     <!-- Right Column: Our Impact (Auto-Animated Counters + Auto-Updating Project Count) -->
     <div class="our-impact-panel">
-      <svg class="scattered-leaf" style="top: 18px; right: 22px;" viewBox="0 0 32 32" fill="#2b734d"><path d="M27 5C16 5 7 11 5 24c4-2 8-3 12-3 6 0 11-5 10-16z"/></svg>
+      <!-- Clean corner leaf accent -->
+      <svg class="corner-leaf-cluster" style="top: 10px; right: 12px; width: 54px; height: 54px;" viewBox="0 0 80 80" fill="none">
+        <path d="M12 65C22 42 42 24 66 16C58 40 40 58 12 65Z" fill="#2b734d" opacity="0.35"/>
+        <path d="M8 42C16 25 32 14 50 10C44 26 28 38 8 42Z" fill="#1d5236" opacity="0.45"/>
+      </svg>
+
       <h2>Our Impact</h2>
 
       <div class="impact-stat-row">
@@ -1816,14 +1870,19 @@
     </div>
   </section>
 
-  <!-- EVERY CONTRIBUTION COUNTS STRIP (OPEN-SOURCE HANDS HOLDING HEART IMAGE + CALLIGRAPHY) -->
+  <!-- EVERY CONTRIBUTION COUNTS STRIP (OPEN-SOURCE HANDS HOLDING RED HEART + CALLIGRAPHY + CORNER LEAVES) -->
   <section class="contribution-strip reveal">
-    <svg class="scattered-leaf" style="top: 18px; left: 22%;" viewBox="0 0 32 32" fill="#2b734d"><path d="M27 5C16 5 7 11 5 24c4-2 8-3 12-3 6 0 11-5 10-16z"/></svg>
-    <svg class="scattered-leaf" style="bottom: 18px; right: 22%; animation-delay: 1.2s;" viewBox="0 0 32 32" fill="#eab308"><path d="M27 5C16 5 7 11 5 24c4-2 8-3 12-3 6 0 11-5 10-16z"/></svg>
+    <!-- Subtle botanical corner leaves -->
+    <svg class="corner-leaf-cluster" style="top: 10px; left: 16%; width: 52px; height: 52px;" viewBox="0 0 80 80" fill="none">
+      <path d="M12 65C22 42 42 24 66 16C58 40 40 58 12 65Z" fill="#2b734d" opacity="0.32"/>
+    </svg>
+    <svg class="corner-leaf-cluster" style="bottom: 10px; right: 16%; width: 52px; height: 52px; transform: scaleX(-1);" viewBox="0 0 80 80" fill="none">
+      <path d="M12 65C22 42 42 24 66 16C58 40 40 58 12 65Z" fill="#eab308" opacity="0.38"/>
+    </svg>
 
-    <!-- Open-source image of hands holding a red heart on the left -->
+    <!-- Open-source illustration/photo of two cupped hands holding a red heart on the left (Matching Reference Image) -->
     <div class="strip-side-left">
-      <img src="https://images.pexels.com/photos/6994982/pexels-photo-6994982.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Hands holding red heart" />
+      <img src="https://img.icons8.com/color/240/trust--v1.png" alt="Hands holding red heart with love" />
     </div>
 
     <!-- Handwritten calligraphy on the right matching reference image -->
@@ -1858,7 +1917,11 @@
 
   <!-- DEDICATED ABOUT US SECTION BELOW (ALL ORIGINAL CONTENT & LOGO PRESERVED) -->
   <section class="about-section reveal" id="about">
-    <svg class="scattered-leaf" style="top: 28px; right: 5%;" viewBox="0 0 32 32" fill="#2b734d"><path d="M27 5C16 5 7 11 5 24c4-2 8-3 12-3 6 0 11-5 10-16z"/></svg>
+    <svg class="corner-leaf-cluster" style="top: 16px; right: 20px; transform: scaleX(-1);" viewBox="0 0 80 80" fill="none">
+      <path d="M12 65C22 42 42 24 66 16C58 40 40 58 12 65Z" fill="#2b734d" opacity="0.35"/>
+      <path d="M8 42C16 25 32 14 50 10C44 26 28 38 8 42Z" fill="#1d5236" opacity="0.45"/>
+    </svg>
+
     <div class="about-container">
       <div class="about-text">
         <h2>About Us</h2>
@@ -1885,13 +1948,17 @@
 
   <!-- RESOURCES SECTION (ALL ORIGINAL LINKS PRESERVED) -->
   <section class="resources-section reveal" id="resources">
-    <svg class="scattered-leaf" style="top: 28px; left: 5%;" viewBox="0 0 32 32" fill="#1d5236"><path d="M27 5C16 5 7 11 5 24c4-2 8-3 12-3 6 0 11-5 10-16z"/></svg>
+    <svg class="corner-leaf-cluster" style="top: 16px; left: 20px;" viewBox="0 0 80 80" fill="none">
+      <path d="M12 65C22 42 42 24 66 16C58 40 40 58 12 65Z" fill="#2b734d" opacity="0.35"/>
+      <path d="M8 42C16 25 32 14 50 10C44 26 28 38 8 42Z" fill="#1d5236" opacity="0.45"/>
+    </svg>
+
     <div class="resources-container">
       <div class="section-header-decorated">
         <div class="leaf-divider">
           <span class="leaf-svg-badge">
-            <svg viewBox="0 0 32 32" width="26" height="26" fill="#1d5236">
-              <path d="M16 28V12M16 18c-5-6-11-5-11-5s1 7 11 5zm0-4c5-6 11-5 11-5s-1 7-11 5z"/>
+            <svg viewBox="0 0 36 36" width="30" height="30" fill="#1d5236">
+              <path d="M18 32V13M18 20c-6-7-13-6-13-6s1 8 13 6zm0-5c6-7 13-6 13-6s-1 8-13 6z"/>
             </svg>
           </span>
         </div>
@@ -1920,7 +1987,7 @@
     </div>
   </section>
 
-  <!-- FOOTER (FOREST GREEN MULTI-COLUMN MATCHING REFERENCE IMAGE) -->
+  <!-- FOOTER (FOREST GREEN MULTI-COLUMN WITH FOLLOW US ON FAR RIGHT LIKE REFERENCE IMAGE) -->
   <footer class="site-footer">
     <div class="footer-grid">
       <div class="footer-brand">
@@ -1952,6 +2019,29 @@
           <input type="email" placeholder="Enter your email" required />
           <button type="submit">Subscribe</button>
         </form>
+      </div>
+
+      <!-- Follow Us Social Section on the Far Right (Replace # with your real URLs anytime) -->
+      <div>
+        <h4>Follow Us</h4>
+        <div class="social-icons-row">
+          <!-- Facebook -->
+          <a href="#" target="_blank" rel="noopener" class="social-circle-btn" aria-label="Facebook" title="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
+          </a>
+          <!-- Instagram -->
+          <a href="#" target="_blank" rel="noopener" class="social-circle-btn" aria-label="Instagram" title="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <!-- YouTube -->
+          <a href="#" target="_blank" rel="noopener" class="social-circle-btn" aria-label="YouTube" title="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="#" target="_blank" rel="noopener" class="social-circle-btn" aria-label="LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+          </a>
+        </div>
       </div>
     </div>
 
@@ -2060,7 +2150,6 @@
     }
     syncProjectCounter();
 
-    // Also watch for dynamic project additions automatically
     const gridObserver = new MutationObserver(syncProjectCounter);
     const initiativesGrid = document.getElementById('initiativesGrid');
     if (initiativesGrid) {
