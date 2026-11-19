@@ -30,6 +30,7 @@
     :root {
       --forest-dark: #133b26;
       --forest-mid: #1d5236;
+      --forest-light: #2b734d;
       --cream-bg: #fbf9f3;
       --cream-card: #f3efe4;
       --gold-accent: #eab308;
@@ -54,6 +55,7 @@
       line-height: 1.6;
       color: var(--text-dark);
       background-color: var(--cream-bg);
+      overflow-x: hidden;
     }
 
     h1, h2, .serif-heading {
@@ -64,9 +66,42 @@
       font-family: 'Caveat', cursive;
     }
 
+    /* KEYFRAME ANIMATIONS */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(-4deg); }
+      50% { transform: translateY(-10px) rotate(2deg); }
+    }
+
+    @keyframes pulseHeart {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.18); }
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.55); }
+      70% { box-shadow: 0 0 0 12px rgba(234, 179, 8, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(234, 179, 8, 0); }
+    }
+
+    @keyframes riseFade {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* TOP UTILITY BAR */
     .top-bar {
-      background-color: var(--forest-dark);
+      background: linear-gradient(90deg, var(--forest-dark), #194d32, var(--forest-dark));
       color: #e2ede6;
       font-size: 13px;
       padding: 8px 40px;
@@ -81,15 +116,21 @@
       gap: 8px;
     }
 
+    .beating-heart {
+      display: inline-block;
+      animation: pulseHeart 1.8s infinite ease-in-out;
+    }
+
     .top-bar-right {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 16px;
     }
 
     .top-bar-right a {
       color: #e2ede6;
       text-decoration: none;
+      font-weight: 500;
       transition: color 0.2s;
     }
 
@@ -99,7 +140,8 @@
 
     /* HEADER & NAVIGATION */
     header {
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
       padding: 14px 40px;
       display: flex;
       justify-content: space-between;
@@ -108,7 +150,8 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 10px rgba(19, 59, 38, 0.05);
+      box-shadow: 0 4px 20px rgba(19, 59, 38, 0.06);
+      transition: padding 0.3s ease;
     }
 
     .logo-container {
@@ -120,12 +163,17 @@
     .logo {
       height: 62px;
       width: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .logo-container:hover .logo {
+      transform: scale(1.04);
     }
 
     .logo-text-wrap strong {
       display: block;
       font-family: 'Playfair Display', serif;
-      font-size: 17px;
+      font-size: 17.5px;
       color: var(--forest-dark);
       line-height: 1.2;
     }
@@ -140,22 +188,37 @@
     .desktop-nav {
       display: flex;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 14px;
+      gap: 22px;
     }
 
     .desktop-nav a {
       text-decoration: none;
       color: var(--text-dark);
-      font-size: 13.5px;
-      font-weight: 500;
-      transition: color 0.2s;
-      padding: 4px 2px;
+      font-size: 14px;
+      font-weight: 600;
+      position: relative;
+      padding: 5px 0;
+      transition: color 0.25s;
+    }
+
+    .desktop-nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 2.5px;
+      background-color: var(--gold-accent);
+      border-radius: 2px;
+      transition: width 0.3s ease;
     }
 
     .desktop-nav a:hover {
       color: var(--forest-mid);
-      border-bottom: 2px solid var(--gold-accent);
+    }
+
+    .desktop-nav a:hover::after {
+      width: 100%;
     }
 
     .global-donate-btn {
@@ -163,19 +226,22 @@
       color: var(--forest-dark);
       text-decoration: none;
       font-weight: 700;
-      padding: 9px 20px;
+      padding: 10px 22px;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
       font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       transition: all 0.25s ease;
-      box-shadow: 0 2px 6px rgba(234, 179, 8, 0.3);
+      animation: pulseGlow 2.5s infinite;
     }
 
     .global-donate-btn:hover {
       background-color: var(--gold-hover);
       color: #fff;
-      transform: translateY(-1px);
+      transform: translateY(-2px);
     }
 
     .mobile-header-right {
@@ -212,12 +278,14 @@
       background-position: center;
       background-repeat: no-repeat;
       opacity: 0;
-      transition: opacity 1s ease-in-out;
+      transform: scale(1.04);
+      transition: opacity 1.1s ease-in-out, transform 6s ease-out;
       display: block;
     }
 
     .hero-slide.active {
       opacity: 1;
+      transform: scale(1);
       z-index: 1;
     }
 
@@ -230,7 +298,7 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to right, rgba(19, 59, 38, 0.45), rgba(0, 0, 0, 0.25));
+      background: linear-gradient(to right, rgba(19, 59, 38, 0.42), rgba(0, 0, 0, 0.22));
       z-index: 2;
     }
 
@@ -241,19 +309,54 @@
       padding: 20px;
     }
 
+    /* Floating Kindness Heart Badge like Reference Image */
     .hero-badge-right {
       position: absolute;
-      top: 30px;
-      right: 40px;
+      top: 32px;
+      right: 45px;
       z-index: 3;
       color: #ffffff;
       font-family: 'Caveat', cursive;
-      font-size: 30px;
+      font-size: 32px;
       line-height: 1.05;
       text-align: center;
-      transform: rotate(-6deg);
-      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+      animation: floatSlow 4s ease-in-out infinite;
+      text-shadow: 0 3px 14px rgba(0,0,0,0.65);
       pointer-events: none;
+    }
+
+    .hero-badge-right .hand-heart {
+      display: inline-block;
+      font-size: 38px;
+      color: #fde047;
+      animation: pulseHeart 2s infinite;
+    }
+
+    /* Slide Indicator Dots */
+    .hero-dots {
+      position: absolute;
+      bottom: 35px;
+      right: 40px;
+      z-index: 4;
+      display: flex;
+      gap: 8px;
+    }
+
+    .hero-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .hero-dot.active {
+      width: 26px;
+      border-radius: 10px;
+      background: var(--gold-accent);
+      border-color: var(--gold-accent);
     }
 
     .donate-btn {
@@ -261,7 +364,7 @@
       bottom: 35px;
       left: 40px;
       z-index: 4;
-      padding: 13px 28px;
+      padding: 14px 30px;
       background: var(--forest-dark);
       border: 2px solid var(--gold-accent);
       border-radius: 30px;
@@ -273,20 +376,21 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
       transition: all 0.3s ease;
     }
 
     .donate-btn:hover {
       background: var(--gold-accent);
       color: var(--forest-dark);
-      transform: scale(1.04);
+      transform: translateY(-3px) scale(1.03);
     }
 
-    /* SECTION TITLE WITH LEAF DIVIDER (MATCHING IMAGE) */
+    /* SECTION TITLE WITH LEAF & HEART DIVIDER */
     .section-header-decorated {
       text-align: center;
-      margin-bottom: 42px;
+      margin-bottom: 45px;
+      position: relative;
     }
 
     .leaf-divider {
@@ -294,71 +398,102 @@
       align-items: center;
       justify-content: center;
       gap: 14px;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .leaf-divider::before,
     .leaf-divider::after {
       content: "";
-      width: 65px;
-      height: 1.5px;
-      background-color: #b7c4bc;
+      width: 75px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #9db5a7, transparent);
     }
 
     .leaf-icon {
       color: var(--forest-mid);
-      font-size: 18px;
+      font-size: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .section-header-decorated h2 {
-      font-size: 36px;
+      font-size: 38px;
       color: var(--forest-dark);
       font-weight: 700;
       margin-bottom: 6px;
     }
 
     .section-header-decorated p {
-      font-size: 16px;
+      font-size: 16.5px;
       color: var(--text-muted);
       font-weight: 500;
     }
 
-    /* OUR INITIATIVES / PROJECTS SECTION (SQUARE BOXES LIKE THE REFERENCE IMAGE) */
+    /* FLOATING DECORATIVE HEARTS */
+    .floating-heart-dec {
+      position: absolute;
+      font-size: 22px;
+      opacity: 0.25;
+      pointer-events: none;
+      animation: floatSlow 5s ease-in-out infinite;
+    }
+
+    /* OUR INITIATIVES / PROJECTS SECTION (SQUARE BOXES WITH ENHANCED ANIMATION) */
     .programmes-section {
-      padding: 70px 40px;
+      padding: 75px 40px;
       background-color: var(--cream-bg);
+      position: relative;
     }
 
     .programme-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 26px;
       max-width: 1180px;
       margin: 0 auto;
     }
 
     .programme-card {
       background: #ffffff;
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
       border: 1px solid #e5e0d3;
-      box-shadow: 0 4px 14px rgba(19, 59, 38, 0.06);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      box-shadow: 0 6px 18px rgba(19, 59, 38, 0.06);
+      transition: all 0.38s cubic-bezier(0.22, 1, 0.36, 1);
       display: flex;
       flex-direction: column;
       text-decoration: none;
       color: inherit;
+      position: relative;
+    }
+
+    .programme-card::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--forest-dark), var(--gold-accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
     }
 
     .programme-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 26px rgba(19, 59, 38, 0.14);
+      transform: translateY(-9px);
+      box-shadow: 0 18px 36px rgba(19, 59, 38, 0.16);
       border-color: var(--forest-mid);
+    }
+
+    .programme-card:hover::after {
+      transform: scaleX(1);
     }
 
     .card-thumb {
       width: 100%;
-      height: 155px;
+      height: 165px;
       position: relative;
       overflow: hidden;
       background-color: #dce6df;
@@ -368,15 +503,35 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.4s ease;
+      transition: transform 0.55s ease;
     }
 
     .programme-card:hover .card-thumb img.cover-photo {
-      transform: scale(1.06);
+      transform: scale(1.09);
+    }
+
+    .card-heart-tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 255, 255, 0.92);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .programme-card:hover .card-heart-tag {
+      transform: scale(1.18) rotate(8deg);
     }
 
     .card-bottom-bar {
-      padding: 16px 16px 12px;
+      padding: 16px 16px 10px;
       display: flex;
       align-items: center;
       gap: 12px;
@@ -384,21 +539,32 @@
     }
 
     .card-icon-badge {
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
       background-color: #eaf3ed;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      padding: 7px;
+      padding: 8px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .programme-card:hover .card-icon-badge {
+      background-color: var(--forest-dark);
+      transform: rotate(-4deg);
     }
 
     .card-icon-badge img {
       width: 24px;
       height: 24px;
       object-fit: contain;
+      transition: filter 0.3s ease;
+    }
+
+    .programme-card:hover .card-icon-badge img {
+      filter: brightness(0) invert(1);
     }
 
     .card-bottom-bar h3 {
@@ -410,18 +576,29 @@
       margin: 0;
     }
 
-    .programme-card:hover .card-bottom-bar h3 {
-      color: var(--forest-mid);
-    }
-
     .card-desc {
-      padding: 0 16px 16px;
+      padding: 0 16px 14px;
       font-size: 13.5px;
       color: var(--text-muted);
-      line-height: 1.45;
+      line-height: 1.48;
+      flex-grow: 1;
     }
 
-    /* WHY SUPPORT US & IMPACT SPLIT BANNER (MATCHING DARK GREEN + CREAM SECTION IN IMAGE) */
+    .card-explore-link {
+      padding: 0 16px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--forest-mid);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .programme-card:hover .card-explore-link {
+      color: var(--gold-hover);
+    }
+
+    /* WHY SUPPORT US & ABOUT US SPLIT SECTION + EXPANDABLE DROPDOWN */
     .why-impact-wrapper {
       display: grid;
       grid-template-columns: 1.25fr 1fr;
@@ -431,14 +608,15 @@
     }
 
     .why-donate-panel {
-      background-color: var(--forest-dark);
+      background: linear-gradient(145deg, var(--forest-dark) 0%, #0e2e1d 100%);
       color: #ffffff;
       padding: 65px 50px;
       position: relative;
+      overflow: hidden;
     }
 
     .why-donate-panel h2 {
-      font-size: 34px;
+      font-size: 36px;
       color: #ffffff;
       margin-bottom: 8px;
     }
@@ -453,18 +631,26 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 16px;
-      margin-bottom: 30px;
+      margin-bottom: 26px;
     }
 
     .reason-item {
       display: flex;
       align-items: flex-start;
       gap: 12px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+
+    .reason-item:hover {
+      background: rgba(255, 255, 255, 0.06);
+      transform: translateX(4px);
     }
 
     .reason-check {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       background-color: var(--gold-accent);
       color: var(--forest-dark);
@@ -474,7 +660,7 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      margin-top: 3px;
+      margin-top: 2px;
     }
 
     .reason-item h3 {
@@ -490,20 +676,86 @@
       display: inline;
     }
 
+    /* Interactive Learn More Dropdown Toggle Button */
     .learn-more-pill {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       background-color: var(--gold-accent);
       color: var(--forest-dark);
       font-weight: 700;
       font-size: 14px;
-      padding: 11px 24px;
-      border-radius: 25px;
-      text-decoration: none;
-      transition: background 0.25s;
+      padding: 12px 26px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(234, 179, 8, 0.3);
     }
 
     .learn-more-pill:hover {
       background-color: #facc15;
+      transform: translateY(-2px);
+    }
+
+    .learn-more-pill .arrow-icon {
+      transition: transform 0.35s ease;
+      display: inline-block;
+    }
+
+    .learn-more-pill.open .arrow-icon {
+      transform: rotate(90deg);
+    }
+
+    /* Smooth Expandable Dropdown Panel inside Why Support Us */
+    .learn-more-dropdown {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease, margin-top 0.4s ease;
+      background: rgba(255, 255, 255, 0.08);
+      border-left: 3px solid var(--gold-accent);
+      border-radius: 0 10px 10px 0;
+      padding: 0 20px;
+    }
+
+    .learn-more-dropdown.open {
+      max-height: 500px;
+      opacity: 1;
+      margin-top: 20px;
+      padding: 18px 20px;
+    }
+
+    .dropdown-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .dropdown-tab-btn {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .dropdown-tab-btn.active,
+    .dropdown-tab-btn:hover {
+      background: var(--gold-accent);
+      color: var(--forest-dark);
+      border-color: var(--gold-accent);
+    }
+
+    .dropdown-tab-content {
+      font-size: 14px;
+      color: #e6f2eb;
+      line-height: 1.6;
     }
 
     .about-impact-panel {
@@ -512,10 +764,11 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      position: relative;
     }
 
     .about-impact-panel h2 {
-      font-size: 32px;
+      font-size: 34px;
       color: var(--forest-dark);
       margin-bottom: 16px;
     }
@@ -524,7 +777,7 @@
       font-size: 15.5px;
       color: #36493e;
       margin-bottom: 16px;
-      line-height: 1.65;
+      line-height: 1.68;
     }
 
     .about-brand-strip {
@@ -532,10 +785,16 @@
       align-items: center;
       gap: 16px;
       margin-top: 14px;
-      padding: 16px;
+      padding: 18px;
       background: #ffffff;
-      border-radius: 12px;
+      border-radius: 14px;
       border: 1px solid #e2dccb;
+      box-shadow: 0 6px 16px rgba(19, 59, 38, 0.06);
+      transition: transform 0.3s ease;
+    }
+
+    .about-brand-strip:hover {
+      transform: translateY(-3px);
     }
 
     .about-brand-strip img {
@@ -555,17 +814,43 @@
       color: var(--text-muted);
     }
 
-    /* EVERY CONTRIBUTION COUNTS STRIP (MATCHING IMAGE) */
+    /* EVERY CONTRIBUTION COUNTS STRIP (MATCHING REFERENCE IMAGE WITH SIDE ART & CALLIGRAPHY) */
     .contribution-strip {
-      background-color: #ffffff;
-      padding: 55px 40px;
+      background: linear-gradient(180deg, #ffffff 0%, #fbf9f3 100%);
+      padding: 65px 40px;
       text-align: center;
       border-bottom: 1px solid #e6e2d6;
       position: relative;
+      overflow: hidden;
+    }
+
+    .strip-side-left {
+      position: absolute;
+      left: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 52px;
+      animation: floatSlow 4.2s ease-in-out infinite;
+      user-select: none;
+    }
+
+    .strip-side-right {
+      position: absolute;
+      right: 5%;
+      top: 50%;
+      transform: translateY(-50%) rotate(-5deg);
+      font-family: 'Caveat', cursive;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--forest-dark);
+      line-height: 1.1;
+      text-align: center;
+      animation: floatSlow 4.8s ease-in-out infinite;
+      user-select: none;
     }
 
     .contribution-strip h2 {
-      font-size: 32px;
+      font-size: 34px;
       color: var(--forest-dark);
       margin-bottom: 6px;
     }
@@ -581,46 +866,63 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 12px;
-      margin-bottom: 24px;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 2;
     }
 
     .amount-pill-btn {
-      background-color: var(--cream-bg);
+      background-color: #ffffff;
       border: 1.5px solid #cbd5ce;
       color: var(--forest-dark);
       font-weight: 700;
       font-size: 15px;
-      padding: 9px 20px;
-      border-radius: 8px;
+      padding: 10px 22px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.25s ease;
     }
 
-    .amount-pill-btn:hover {
+    .amount-pill-btn:hover,
+    .amount-pill-btn.selected {
       background-color: var(--forest-dark);
       color: #ffffff;
       border-color: var(--forest-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(19, 59, 38, 0.2);
+    }
+
+    .impact-preview-note {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--forest-mid);
+      margin-bottom: 22px;
+      min-height: 22px;
+      transition: opacity 0.25s ease;
     }
 
     .strip-donate-cta {
       background-color: var(--forest-dark);
       color: #ffffff;
-      border: none;
-      padding: 12px 32px;
-      border-radius: 25px;
-      font-size: 15px;
+      border: 2px solid var(--gold-accent);
+      padding: 13px 34px;
+      border-radius: 30px;
+      font-size: 15.5px;
       font-weight: 700;
       cursor: pointer;
-      transition: background 0.25s;
+      transition: all 0.25s ease;
+      box-shadow: 0 6px 18px rgba(19, 59, 38, 0.22);
     }
 
     .strip-donate-cta:hover {
-      background-color: var(--forest-mid);
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
+      transform: scale(1.04);
     }
 
     /* RESOURCES SECTION */
     .resources-section {
-      padding: 70px 40px;
+      padding: 75px 40px;
       background-color: var(--cream-bg);
     }
 
@@ -637,18 +939,20 @@
 
     .resource-card {
       background: #ffffff;
-      padding: 26px 22px;
-      border-radius: 12px;
+      padding: 28px 24px;
+      border-radius: 14px;
       border: 1px solid #e5e0d3;
-      box-shadow: 0 4px 12px rgba(19, 59, 38, 0.05);
-      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(19, 59, 38, 0.05);
+      transition: all 0.35s ease;
       text-align: left;
+      position: relative;
+      overflow: hidden;
     }
 
     .resource-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px);
       border-color: var(--forest-mid);
-      box-shadow: 0 10px 22px rgba(19, 59, 38, 0.1);
+      box-shadow: 0 14px 28px rgba(19, 59, 38, 0.12);
     }
 
     .resource-card h3 a {
@@ -657,6 +961,9 @@
       font-weight: 700;
       color: var(--forest-dark);
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .resource-card h3 a:hover {
@@ -679,22 +986,24 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(4px);
       overflow-y: auto;
     }
 
     .modal-content {
       background-color: #fff;
       margin: 4% auto;
-      padding: 26px 30px;
-      border-radius: 12px;
+      padding: 28px 32px;
+      border-radius: 14px;
       width: 90%;
       max-width: 480px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
       max-height: 90vh;
       overflow-y: auto;
       position: relative;
-      border-top: 5px solid var(--forest-dark);
+      border-top: 6px solid var(--forest-dark);
+      animation: riseFade 0.35s ease;
     }
 
     .modal-content h2 {
@@ -734,9 +1043,10 @@
       padding: 10px 12px;
       margin-top: 5px;
       border: 1px solid #cbd5ce;
-      border-radius: 6px;
+      border-radius: 8px;
       font-size: 15px;
       background-color: #fbf9f3;
+      transition: border-color 0.2s, background-color 0.2s;
     }
 
     form input:focus {
@@ -754,7 +1064,7 @@
       font-size: 16px;
       font-weight: 700;
       width: 100%;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
       transition: background 0.25s;
     }
@@ -767,7 +1077,7 @@
     .site-footer {
       background: var(--forest-dark);
       color: #e6efe9;
-      padding: 60px 40px 25px;
+      padding: 65px 40px 25px;
     }
 
     .footer-grid {
@@ -812,11 +1122,12 @@
       color: #e6efe9;
       text-decoration: none;
       font-size: 14px;
-      transition: color 0.2s;
+      transition: color 0.2s, padding-left 0.2s;
     }
 
     .footer-links a:hover {
       color: var(--gold-accent);
+      padding-left: 4px;
     }
 
     .footer-contact p {
@@ -883,6 +1194,11 @@
         grid-template-columns: 1fr;
       }
 
+      .strip-side-left,
+      .strip-side-right {
+        display: none;
+      }
+
       .footer-grid {
         grid-template-columns: 1fr 1fr;
       }
@@ -911,7 +1227,7 @@
       }
 
       .global-donate-btn {
-        padding: 7px 13px;
+        padding: 7px 14px;
         font-size: 13px;
       }
 
@@ -938,11 +1254,11 @@
       }
 
       .mobile-nav a {
-        padding: 8px 10px;
+        padding: 9px 10px;
         text-decoration: none;
         color: var(--forest-dark);
         font-size: 14px;
-        font-weight: 500;
+        font-weight: 600;
         border-bottom: 1px solid #f2efe6;
       }
 
@@ -965,6 +1281,11 @@
         left: 20px;
         padding: 10px 20px;
         font-size: 0.95rem;
+      }
+
+      .hero-dots {
+        bottom: 26px;
+        right: 20px;
       }
 
       /* Mobile hero slides (PRESERVED) */
@@ -1026,7 +1347,8 @@
   <!-- Top Utility Bar -->
   <div class="top-bar">
     <div class="top-bar-left">
-      <span>💛 Together, we can build a kinder, healthier and happier society.</span>
+      <span class="beating-heart">💛</span>
+      <span>Together, we can build a kinder, healthier and happier society.</span>
     </div>
     <div class="top-bar-right">
       <a href="ContactUs.html">Volunteer | Partner With Us</a>
@@ -1043,40 +1365,44 @@
       </div>
     </div>
 
-    <!-- Desktop Navigation (All Original Links Preserved) -->
+    <!-- Desktop Navigation -->
     <nav class="desktop-nav">
       <a href="#about">About Us</a>
       <a href="#projects">Projects</a>
       <a href="#resources">Resources</a>
       <a href="ShitalaCanteen.html">Shitala Canteen</a>
       <a href="ContactUs.html">Contact Us</a>
+      <!-- Commented Out Navbar Buttons as Requested
       <a href="Timer.html">Timer</a>
       <a href="Live.html">Live</a>
       <a href="Round1sc.html">Round1</a>
       <a href="Round2.html">Round2</a>
       <a href="watermark.html">watermark</a>
       <a href="video.html">video</a>
+      -->
     </nav>
 
     <!-- Mobile Right: Donate + Hamburger -->
     <div class="mobile-header-right">
-      <button class="global-donate-btn" onclick="openGeneralDonateForm()">DONATE NOW</button>
+      <button class="global-donate-btn" onclick="openGeneralDonateForm()">💛 DONATE NOW</button>
       <div class="hamburger" onclick="toggleMenu()">☰</div>
     </div>
 
-    <!-- Mobile Navigation (All Original Links Preserved) -->
+    <!-- Mobile Navigation -->
     <nav class="mobile-nav" id="mobileMenu">
       <a href="#about" onclick="closeMenu()">About Us</a>
       <a href="#projects" onclick="closeMenu()">Projects</a>
       <a href="#resources" onclick="closeMenu()">Resources</a>
       <a href="ShitalaCanteen.html" onclick="closeMenu()">Shitala Canteen</a>
       <a href="ContactUs.html" onclick="closeMenu()">Contact Us</a>
+      <!-- Commented Out Mobile Navbar Buttons as Requested
       <a href="Timer.html" onclick="closeMenu()">Timer</a>
       <a href="Live.html" onclick="closeMenu()">Live</a>
       <a href="Round1sc.html" onclick="closeMenu()">Round1</a>
       <a href="Round2.html" onclick="closeMenu()">Round2</a>
       <a href="watermark.html" onclick="closeMenu()">watermark</a>
       <a href="video.html" onclick="closeMenu()">video</a>
+      -->
     </nav>
   </header>
 
@@ -1084,7 +1410,7 @@
   <div id="generalDonationModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeGeneralModal()">&times;</span>
-      <h2>Make a General Donation</h2>
+      <h2>Make a General Donation 💛</h2>
 
       <form id="generalDonationForm">
         <label>Name *</label>
@@ -1122,9 +1448,9 @@
     <!-- Overlay -->
     <div class="hero-overlay"></div>
 
-    <!-- Handwritten Script Badge matching reference image -->
+    <!-- Floating Love Sign Badge matching Reference Image -->
     <div class="hero-badge-right">
-      ♡<br>Kindness<br>Changes<br>Lives
+      <span class="hand-heart">♡</span><br>Kindness<br>Changes<br>Lives
     </div>
 
     <!-- Content -->
@@ -1132,15 +1458,27 @@
 
     <!-- Donate Button (bottom-left) -->
     <a class="donate-btn" onclick="openGeneralDonateForm()">
-      💛 DONATE NOW →
+      <span class="beating-heart">💛</span> DONATE NOW →
     </a>
+
+    <!-- Slide Dots -->
+    <div class="hero-dots" id="heroDots">
+      <span class="hero-dot active" onclick="manualSlide(event, 0)"></span>
+      <span class="hero-dot" onclick="manualSlide(event, 1)"></span>
+      <span class="hero-dot" onclick="manualSlide(event, 2)"></span>
+      <span class="hero-dot" onclick="manualSlide(event, 3)"></span>
+      <span class="hero-dot" onclick="manualSlide(event, 4)"></span>
+    </div>
   </section>
 
-  <!-- OUR INITIATIVES / PROJECTS SECTION (SQUARE BOXES MATCHING REFERENCE IMAGE) -->
-  <section class="programmes-section" id="projects">
+  <!-- OUR INITIATIVES / PROJECTS SECTION (SQUARE BOXES WITH ANIMATIONS & LOVE SIGNS) -->
+  <section class="programmes-section reveal" id="projects">
+    <span class="floating-heart-dec" style="top: 30px; left: 6%;">💚</span>
+    <span class="floating-heart-dec" style="top: 45px; right: 7%; animation-delay: 1.5s;">💛</span>
+
     <div class="section-header-decorated">
       <div class="leaf-divider">
-        <span class="leaf-icon">🌿</span>
+        <span class="leaf-icon">🌿 💛 🌿</span>
       </div>
       <h2>Our Initiatives</h2>
       <p>Together, We Create a Better Tomorrow</p>
@@ -1151,6 +1489,7 @@
       <a href="educational.html" class="programme-card">
         <div class="card-thumb">
           <img class="cover-photo" src="BG4.png" alt="Education & Skill Development" onerror="this.src='SSMCT Logo.png'" />
+          <span class="card-heart-tag">💛</span>
         </div>
         <div class="card-bottom-bar">
           <div class="card-icon-badge">
@@ -1159,12 +1498,14 @@
           <h3>Education &amp; Skill Development</h3>
         </div>
         <p class="card-desc">Empowering youth through knowledge, skills, and opportunity.</p>
+        <span class="card-explore-link">Explore Initiative →</span>
       </a>
 
       <!-- Box 2: Health & Disability Support -->
       <a href="empowerment.html" class="programme-card">
         <div class="card-thumb">
           <img class="cover-photo" src="BG5.png" alt="Health & Disability Support" onerror="this.src='SSMCT Logo.png'" />
+          <span class="card-heart-tag">💚</span>
         </div>
         <div class="card-bottom-bar">
           <div class="card-icon-badge">
@@ -1173,12 +1514,14 @@
           <h3>Health &amp; Disability Support</h3>
         </div>
         <p class="card-desc">Empowering lives through health and disability care.</p>
+        <span class="card-explore-link">Explore Initiative →</span>
       </a>
 
       <!-- Box 3: Women Empowerment -->
       <a href="woman.html" class="programme-card">
         <div class="card-thumb">
           <img class="cover-photo" src="SHEBG2.png" alt="Women Empowerment" onerror="this.src='SSMCT Logo.png'" />
+          <span class="card-heart-tag">❤️</span>
         </div>
         <div class="card-bottom-bar">
           <div class="card-icon-badge">
@@ -1187,12 +1530,14 @@
           <h3>Women Empowerment</h3>
         </div>
         <p class="card-desc">Empowering women, inspiring change, building equality.</p>
+        <span class="card-explore-link">Explore Initiative →</span>
       </a>
 
       <!-- Box 4: Livelihood & Social Welfare -->
       <a href="livehood.html" class="programme-card">
         <div class="card-thumb">
           <img class="cover-photo" src="BG2.png" alt="Livelihood & Social Welfare" onerror="this.src='SSMCT Logo.png'" />
+          <span class="card-heart-tag">💛</span>
         </div>
         <div class="card-bottom-bar">
           <div class="card-icon-badge">
@@ -1201,15 +1546,16 @@
           <h3>Livelihood &amp; Social Welfare</h3>
         </div>
         <p class="card-desc">Empowering people, uplifting communities, spreading hope.</p>
+        <span class="card-explore-link">Explore Initiative →</span>
       </a>
     </div>
   </section>
 
-  <!-- WHY SUPPORT US & ABOUT US (SPLIT DESIGN MATCHING REFERENCE IMAGE) -->
-  <section class="why-impact-wrapper" id="about">
+  <!-- WHY SUPPORT US & ABOUT US (SPLIT DESIGN WITH INTERACTIVE LEARN MORE DROPDOWN) -->
+  <section class="why-impact-wrapper reveal" id="about">
     <div class="why-donate-panel">
       <h2>Why Support Us?</h2>
-      <p class="subtitle">Your kindness can create lasting change.</p>
+      <p class="subtitle">Your kindness can create lasting change. 💛</p>
 
       <div class="donate-reasons-list">
         <div class="reason-item">
@@ -1249,7 +1595,29 @@
         </div>
       </div>
 
-      <a href="#resources" class="learn-more-pill">LEARN MORE →</a>
+      <!-- Interactive Dropdown Trigger Button (Replaces old page-jump behavior) -->
+      <button type="button" class="learn-more-pill" id="learnMoreToggle" onclick="toggleLearnMoreDropdown()">
+        LEARN MORE <span class="arrow-icon">→</span>
+      </button>
+
+      <!-- Smooth Expandable Dropdown with Interactive Choice Tabs -->
+      <div class="learn-more-dropdown" id="learnMoreDropdown">
+        <div class="dropdown-tabs">
+          <button type="button" class="dropdown-tab-btn active" onclick="switchDropdownTab(this, 'tab-legal')">📜 Legal &amp; 80G</button>
+          <button type="button" class="dropdown-tab-btn" onclick="switchDropdownTab(this, 'tab-funds')">📊 Fund Utilization</button>
+          <button type="button" class="dropdown-tab-btn" onclick="switchDropdownTab(this, 'tab-mission')">🌱 Our Vision</button>
+        </div>
+
+        <div id="tab-legal" class="dropdown-tab-content">
+          <strong>Registered Public Charitable Trust:</strong> Registered under the Indian Registration Act, 1909, with valid <strong>12AB &amp; 80G Tax Exemption</strong> certificates and listed on <strong>NITI Aayog NGO Darpan</strong>. Every rupee is audited and receipted.
+        </div>
+        <div id="tab-funds" class="dropdown-tab-content" style="display:none;">
+          <strong>Direct Grassroots Allocation:</strong> Over 90% of contributions go straight toward Shitala Canteen meals, Nirbhoyini women safety kits, Antardrishti braille &amp; white canes, and student scholarships.
+        </div>
+        <div id="tab-mission" class="dropdown-tab-content" style="display:none;">
+          <strong>Building Self-Reliant Communities:</strong> From Howrah across West Bengal, we focus on long-term dignity—combining hunger relief, education, healthcare, and women’s empowerment.
+        </div>
+      </div>
     </div>
 
     <div class="about-impact-panel">
@@ -1271,29 +1639,36 @@
     </div>
   </section>
 
-  <!-- EVERY CONTRIBUTION COUNTS STRIP (CONNECTS DIRECTLY TO YOUR RAZORPAY MODAL) -->
-  <section class="contribution-strip">
-    <h2>Every Contribution Counts ❤️</h2>
+  <!-- EVERY CONTRIBUTION COUNTS STRIP (WITH FLOATING HEART & CALLIGRAPHY LIKE IMAGE) -->
+  <section class="contribution-strip reveal">
+    <div class="strip-side-left">🤲❤️</div>
+    <div class="strip-side-right">Be the Reason<br>Someone Smiles Today ✨</div>
+
+    <h2>Every Contribution Counts <span class="beating-heart">❤️</span></h2>
     <p>Choose a contribution amount and be a part of someone's brighter future.</p>
 
     <div class="amount-pills">
-      <button type="button" class="amount-pill-btn" onclick="openPresetDonation(101)">₹101</button>
-      <button type="button" class="amount-pill-btn" onclick="openPresetDonation(251)">₹251</button>
-      <button type="button" class="amount-pill-btn" onclick="openPresetDonation(501)">₹501</button>
-      <button type="button" class="amount-pill-btn" onclick="openPresetDonation(1001)">₹1,001</button>
-      <button type="button" class="amount-pill-btn" onclick="openPresetDonation(2501)">₹2,501</button>
+      <button type="button" class="amount-pill-btn" onclick="selectAmountChip(this, 101, '🍽️ ₹101 helps serve warm, nutritious meals through Shitala Canteen!')">₹101</button>
+      <button type="button" class="amount-pill-btn" onclick="selectAmountChip(this, 251, '📚 ₹251 provides essential notebooks and study kits for a student!')">₹251</button>
+      <button type="button" class="amount-pill-btn selected" onclick="selectAmountChip(this, 501, '🩺 ₹501 supports basic health check-ups and medicines for families!')">₹501</button>
+      <button type="button" class="amount-pill-btn" onclick="selectAmountChip(this, 1001, '🦯 ₹1,001 helps provide white canes & braille tools under Antardrishti!')">₹1,001</button>
+      <button type="button" class="amount-pill-btn" onclick="selectAmountChip(this, 2501, '👩 ₹2,501 sponsors skill training & safety kits under Women Empowerment!')">₹2,501</button>
       <button type="button" class="amount-pill-btn" onclick="openGeneralDonateForm()">Custom Amount</button>
     </div>
 
-    <button type="button" class="strip-donate-cta" onclick="openGeneralDonateForm()">💛 DONATE NOW →</button>
+    <div class="impact-preview-note" id="impactPreviewNote">
+      🩺 ₹501 supports basic health check-ups and medicines for families!
+    </div>
+
+    <button type="button" class="strip-donate-cta" onclick="proceedSelectedDonation()">💛 DONATE NOW →</button>
   </section>
 
   <!-- RESOURCES SECTION (ALL ORIGINAL LINKS PRESERVED) -->
-  <section class="resources-section" id="resources">
+  <section class="resources-section reveal" id="resources">
     <div class="resources-container">
       <div class="section-header-decorated">
         <div class="leaf-divider">
-          <span class="leaf-icon">🌿</span>
+          <span class="leaf-icon">🌿 💛 🌿</span>
         </div>
         <h2>Resources</h2>
         <p>Explore our latest updates, reports, and inspiring stories from the field.</p>
@@ -1325,7 +1700,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <h3>Shyamashree Shitala Maa Charitable Trust</h3>
-        <p>Serving Humanity with Love, Compassion &amp; Kindness</p>
+        <p>Serving Humanity with Love, Compassion &amp; Kindness 💛</p>
       </div>
 
       <div>
@@ -1360,9 +1735,10 @@
     </div>
   </footer>
 
-  <!-- ORIGINAL SCRIPTS PRESERVED 100% -->
+  <!-- ORIGINAL SCRIPTS PRESERVED + NEW INTERACTIVE UI ENHANCEMENTS -->
   <script>
     let slides = document.querySelectorAll('.hero-slide');
+    let dots = document.querySelectorAll('.hero-dot');
     let current = 0;
 
     function showSlide(index) {
@@ -1370,10 +1746,20 @@
         slide.classList.remove('active');
         if (i === index) slide.classList.add('active');
       });
+      dots.forEach((dot, i) => {
+        dot.classList.remove('active');
+        if (i === index) dot.classList.add('active');
+      });
     }
 
     function nextSlide() {
       current = (current + 1) % slides.length;
+      showSlide(current);
+    }
+
+    function manualSlide(e, index) {
+      e.stopPropagation();
+      current = index;
       showSlide(current);
     }
 
@@ -1383,7 +1769,7 @@
 
     // Open link when hero background clicked
     document.getElementById('heroClick').addEventListener('click', function(e) {
-      if (e.target.closest('.donate-btn')) return;
+      if (e.target.closest('.donate-btn') || e.target.closest('.hero-dots')) return;
 
       let activeSlide = slides[current];
       let link = activeSlide.getAttribute('data-link');
@@ -1396,9 +1782,18 @@
       document.getElementById('generalDonationModal').style.display = 'block';
     }
 
-    function openPresetDonation(amt) {
+    let selectedPresetAmount = 501;
+
+    function selectAmountChip(btn, amt, noteText) {
+      document.querySelectorAll('.amount-pill-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedPresetAmount = amt;
+      document.getElementById('impactPreviewNote').textContent = noteText;
+    }
+
+    function proceedSelectedDonation() {
       openGeneralDonateForm();
-      document.getElementById('amount').value = amt;
+      document.getElementById('amount').value = selectedPresetAmount;
     }
 
     function closeGeneralModal() {
@@ -1412,6 +1807,32 @@
         closeGeneralModal();
       }
     }
+
+    /* Interactive Learn More Dropdown & Tabs */
+    function toggleLearnMoreDropdown() {
+      const btn = document.getElementById('learnMoreToggle');
+      const dropdown = document.getElementById('learnMoreDropdown');
+      btn.classList.toggle('open');
+      dropdown.classList.toggle('open');
+    }
+
+    function switchDropdownTab(btn, tabId) {
+      document.querySelectorAll('.dropdown-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.dropdown-tab-content').forEach(c => c.style.display = 'none');
+      document.getElementById(tabId).style.display = 'block';
+    }
+
+    /* Scroll Reveal Animation */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
     function toggleMenu() {
       document.getElementById("mobileMenu").classList.toggle("show");
