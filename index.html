@@ -104,7 +104,7 @@
       transform: translateY(0);
     }
 
-    /* BOTANICAL LEAF BUNDLE DECORATIONS (MATCHING REFERENCE IMAGE) */
+    /* BOTANICAL LEAF BUNDLE DECORATIONS */
     .leaf-bundle {
       position: absolute;
       width: 115px;
@@ -399,7 +399,7 @@
     /* SECTION TITLE WITH LEAF BUNDLE DIVIDER */
     .section-header-decorated {
       text-align: center;
-      margin-bottom: 45px;
+      margin-bottom: 42px;
       position: relative;
       z-index: 2;
     }
@@ -442,9 +442,9 @@
       font-weight: 500;
     }
 
-    /* OUR INITIATIVES / PROJECTS SECTION (SQUARE BOXES) */
+    /* OUR INITIATIVES SECTION (10 CARDS IN 5x2 GRID EXACTLY LIKE REFERENCE IMAGE) */
     .programmes-section {
-      padding: 80px 40px;
+      padding: 75px 36px;
       background-color: var(--cream-bg);
       position: relative;
       overflow: hidden;
@@ -452,9 +452,9 @@
 
     .programme-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      max-width: 1200px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+      max-width: 1260px;
       margin: 0 auto;
       position: relative;
       z-index: 2;
@@ -462,11 +462,11 @@
 
     .programme-card {
       background: #ffffff;
-      border-radius: 14px;
+      border-radius: 12px;
       overflow: hidden;
       border: 1px solid #e5e0d3;
-      box-shadow: 0 6px 18px rgba(19, 59, 38, 0.06);
-      transition: all 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: 0 5px 15px rgba(19, 59, 38, 0.06);
+      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
       display: flex;
       flex-direction: column;
       text-decoration: none;
@@ -480,16 +480,16 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 4px;
+      height: 3.5px;
       background: linear-gradient(90deg, var(--forest-dark), var(--gold-accent));
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 0.35s ease;
+      transition: transform 0.32s ease;
     }
 
     .programme-card:hover {
-      transform: translateY(-9px);
-      box-shadow: 0 18px 36px rgba(19, 59, 38, 0.16);
+      transform: translateY(-7px);
+      box-shadow: 0 14px 30px rgba(19, 59, 38, 0.15);
       border-color: var(--forest-mid);
     }
 
@@ -499,7 +499,7 @@
 
     .card-thumb {
       width: 100%;
-      height: 165px;
+      height: 142px;
       position: relative;
       overflow: hidden;
       background-color: #dce6df;
@@ -513,27 +513,28 @@
     }
 
     .programme-card:hover .card-thumb img.cover-photo {
-      transform: scale(1.09);
+      transform: scale(1.08);
     }
 
     .card-bottom-bar {
-      padding: 16px 16px 10px;
+      padding: 13px 12px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       background: #ffffff;
+      flex-grow: 1;
     }
 
     .card-icon-badge {
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
       background-color: #eaf3ed;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      padding: 8px;
+      padding: 6px;
       transition: background-color 0.3s ease, transform 0.3s ease;
     }
 
@@ -543,8 +544,8 @@
     }
 
     .card-icon-badge img {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       object-fit: contain;
       transition: filter 0.3s ease;
     }
@@ -555,36 +556,18 @@
 
     .card-bottom-bar h3 {
       font-family: 'Inter', sans-serif;
-      font-size: 15.5px;
+      font-size: 14px;
       font-weight: 700;
       color: var(--forest-dark);
-      line-height: 1.3;
+      line-height: 1.28;
       margin: 0;
     }
 
-    .card-desc {
-      padding: 0 16px 14px;
-      font-size: 13.5px;
-      color: var(--text-muted);
-      line-height: 1.48;
-      flex-grow: 1;
-    }
-
-    .card-explore-link {
-      padding: 0 16px 16px;
-      font-size: 13px;
-      font-weight: 700;
+    .programme-card:hover .card-bottom-bar h3 {
       color: var(--forest-mid);
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
     }
 
-    .programme-card:hover .card-explore-link {
-      color: var(--gold-hover);
-    }
-
-    /* 3-COLUMN SECTION: WHY SUPPORT US + RURAL BENGALI GRANDMOTHER & CHILD PHOTO + OUR IMPACT */
+    /* 3-COLUMN SECTION: WHY SUPPORT US + RURAL ELDERLY GRANDMOTHER & CHILD PHOTO + OUR IMPACT */
     .why-impact-wrapper {
       display: grid;
       grid-template-columns: 1.15fr 1fr 0.92fr;
@@ -873,7 +856,7 @@
       margin-top: 2px;
     }
 
-    /* EVERY CONTRIBUTION COUNTS STRIP (OPEN-SOURCE TWO HANDS HOLDING HEART PHOTO + CALLIGRAPHY) */
+    /* EVERY CONTRIBUTION COUNTS STRIP (OPEN-SOURCE PHOTO OF TWO HANDS HOLDING RED HEART IN CENTER) */
     .contribution-strip {
       background: linear-gradient(180deg, #ffffff 0%, #fbf9f3 100%);
       padding: 70px 40px;
@@ -1387,13 +1370,16 @@
       color: #bfd4c7;
     }
 
-    /* ========== TABLET & SMALL LAPTOP (max-width: 1150px) ========== */
-    @media (max-width: 1150px) {
+    /* ========== TABLET & SMALL LAPTOP (max-width: 1180px) ========== */
+    @media (max-width: 1180px) {
       header {
         padding: 14px 20px;
       }
 
-      .programme-grid,
+      .programme-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
       .resources-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -1533,7 +1519,7 @@
       .about-section,
       .resources-section,
       .contribution-strip {
-        padding: 50px 18px;
+        padding: 50px 16px;
       }
 
       .programme-grid {
@@ -1542,7 +1528,7 @@
       }
 
       .card-thumb {
-        height: 115px;
+        height: 112px;
       }
 
       .card-bottom-bar {
@@ -1551,12 +1537,12 @@
       }
 
       .card-icon-badge {
-        width: 32px;
-        height: 32px;
+        width: 30px;
+        height: 30px;
       }
 
       .card-bottom-bar h3 {
-        font-size: 13px;
+        font-size: 12.8px;
       }
 
       .why-impact-wrapper {
@@ -1582,7 +1568,7 @@
       }
     }
 
-    @media (max-width: 440px) {
+    @media (max-width: 400px) {
       .logo-text-wrap {
         display: none;
       }
@@ -1738,7 +1724,7 @@
     </div>
   </section>
 
-  <!-- OUR INITIATIVES / PROJECTS SECTION (SQUARE BOXES WITH MULTI-LEAF BUNDLES) -->
+  <!-- OUR INITIATIVES SECTION (10 CARDS IN 5x2 GRID EXACTLY LIKE REFERENCE IMAGE WITH ORIGINAL REDIRECTS) -->
   <section class="programmes-section reveal" id="projects">
     <!-- Top-Left Leaf Bundle -->
     <svg class="leaf-bundle" style="top: 8px; left: 10px;" viewBox="0 0 120 120" fill="none">
@@ -1760,7 +1746,6 @@
     <div class="section-header-decorated">
       <div class="leaf-divider">
         <span class="leaf-svg-badge">
-          <!-- 3-Leaf Bundle Icon -->
           <svg viewBox="0 0 44 36" width="36" height="30" fill="#1d5236">
             <path d="M22 33V11M22 22c-7-8-16-7-16-7s2 10 16 7zm0-6c7-8 16-7 16-7s-2 10-16 7zm0-5c-3-6 0-10 0-10s3 4 0 10z"/>
           </svg>
@@ -1771,64 +1756,134 @@
     </div>
 
     <div class="programme-grid" id="initiativesGrid">
-      <!-- Box 1: Education & Skill Development -->
-      <a href="educational.html" class="programme-card">
-        <div class="card-thumb">
-          <img class="cover-photo" src="demo45.jpeg" alt="Education & Skill Development" onerror="this.src='SSMCT Logo.png'" />
-        </div>
-        <div class="card-bottom-bar">
-          <div class="card-icon-badge">
-            <img src="https://img.icons8.com/ios-filled/100/133b26/book.png" alt="Education Icon" />
-          </div>
-          <h3>Education &amp; Skill Development</h3>
-        </div>
-        <p class="card-desc">Empowering youth through knowledge, skills, and opportunity.</p>
-        <span class="card-explore-link">Explore Initiative →</span>
-      </a>
-
-      <!-- Box 2: Health & Disability Support -->
+      <!-- 1. Eye Check-up Camp (Redirects to empowerment.html) -->
       <a href="empowerment.html" class="programme-card">
         <div class="card-thumb">
-          <img class="cover-photo" src="BG5.png" alt="Health & Disability Support" onerror="this.src='SSMCT Logo.png'" />
+          <img class="cover-photo" src="https://images.pexels.com/photos/5752282/pexels-photo-5752282.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Eye Check-up Camp" />
         </div>
         <div class="card-bottom-bar">
           <div class="card-icon-badge">
-            <img src="https://img.icons8.com/ios-filled/100/133b26/heart-with-pulse--v1.png" alt="Healthcare Icon" />
+            <img src="https://img.icons8.com/ios-filled/100/133b26/visible--v1.png" alt="Eye Icon" />
           </div>
-          <h3>Health &amp; Disability Support</h3>
+          <h3>Eye Check-up Camp</h3>
         </div>
-        <p class="card-desc">Empowering lives through health and disability care.</p>
-        <span class="card-explore-link">Explore Initiative →</span>
       </a>
 
-      <!-- Box 3: Women Empowerment -->
-      <a href="woman.html" class="programme-card">
+      <!-- 2. Books Distribution (Redirects to educational.html) -->
+      <a href="educational.html" class="programme-card">
         <div class="card-thumb">
-          <img class="cover-photo" src="SHEBG2.png" alt="Women Empowerment" onerror="this.src='SSMCT Logo.png'" />
+          <img class="cover-photo" src="https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Books Distribution" />
         </div>
         <div class="card-bottom-bar">
           <div class="card-icon-badge">
-            <img src="https://img.icons8.com/ios-filled/100/133b26/female.png" alt="Women Empowerment Icon" />
+            <img src="https://img.icons8.com/ios-filled/100/133b26/books.png" alt="Books Icon" />
+          </div>
+          <h3>Books Distribution</h3>
+        </div>
+      </a>
+
+      <!-- 3. Child Education (Redirects to educational.html) -->
+      <a href="educational.html" class="programme-card">
+        <div class="card-thumb">
+          <img class="cover-photo" src="https://images.pexels.com/photos/8617742/pexels-photo-8617742.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Child Education" />
+        </div>
+        <div class="card-bottom-bar">
+          <div class="card-icon-badge">
+            <img src="https://img.icons8.com/ios-filled/100/133b26/graduation-cap.png" alt="Education Icon" />
+          </div>
+          <h3>Child Education</h3>
+        </div>
+      </a>
+
+      <!-- 4. Women Empowerment (Redirects to woman.html) -->
+      <a href="woman.html" class="programme-card">
+        <div class="card-thumb">
+          <img class="cover-photo" src="https://images.pexels.com/photos/7653103/pexels-photo-7653103.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Women Empowerment" />
+        </div>
+        <div class="card-bottom-bar">
+          <div class="card-icon-badge">
+            <img src="https://img.icons8.com/ios-filled/100/133b26/female.png" alt="Women Icon" />
           </div>
           <h3>Women Empowerment</h3>
         </div>
-        <p class="card-desc">Empowering women, inspiring change, building equality.</p>
-        <span class="card-explore-link">Explore Initiative →</span>
       </a>
 
-      <!-- Box 4: Livelihood & Social Welfare -->
-      <a href="livehood.html" class="programme-card">
+      <!-- 5. Health Check-up Camp (Redirects to empowerment.html) -->
+      <a href="empowerment.html" class="programme-card">
         <div class="card-thumb">
-          <img class="cover-photo" src="BG2.png" alt="Livelihood & Social Welfare" onerror="this.src='SSMCT Logo.png'" />
+          <img class="cover-photo" src="https://images.pexels.com/photos/7579831/pexels-photo-7579831.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Health Check-up Camp" />
         </div>
         <div class="card-bottom-bar">
           <div class="card-icon-badge">
-            <img src="https://img.icons8.com/ios-filled/100/133b26/resume.png" alt="Livelihood Icon" />
+            <img src="https://img.icons8.com/ios-filled/100/133b26/stethoscope.png" alt="Stethoscope Icon" />
           </div>
-          <h3>Livelihood &amp; Social Welfare</h3>
+          <h3>Health Check-up Camp</h3>
         </div>
-        <p class="card-desc">Empowering people, uplifting communities, spreading hope.</p>
-        <span class="card-explore-link">Explore Initiative →</span>
+      </a>
+
+      <!-- 6. Free Medicine Distribution (Redirects to empowerment.html) -->
+      <a href="empowerment.html" class="programme-card">
+        <div class="card-thumb">
+          <img class="cover-photo" src="https://images.pexels.com/photos/3683074/pexels-photo-3683074.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Free Medicine Distribution" />
+        </div>
+        <div class="card-bottom-bar">
+          <div class="card-icon-badge">
+            <img src="https://img.icons8.com/ios-filled/100/133b26/pill.png" alt="Medicine Icon" />
+          </div>
+          <h3>Free Medicine Distribution</h3>
+        </div>
+      </a>
+
+      <!-- 7. Free Food Distribution (Redirects to ShitalaCanteen.html) -->
+      <a href="ShitalaCanteen.html" class="programme-card">
+        <div class="card-thumb">
+          <img class="cover-photo" src="https://images.pexels.com/photos/6646917/pexels-photo-6646917.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Free Food Distribution" />
+        </div>
+        <div class="card-bottom-bar">
+          <div class="card-icon-badge">
+            <img src="https://img.icons8.com/ios-filled/100/133b26/soup-plate.png" alt="Food Icon" />
+          </div>
+          <h3>Free Food Distribution</h3>
+        </div>
+      </a>
+
+      <!-- 8. Tree Plantation (Redirects to livehood.html) -->
+      <a href="livehood.html" class="programme-card">
+        <div class="card-thumb">
+          <img class="cover-photo" src="https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Tree Plantation" />
+        </div>
+        <div class="card-bottom-bar">
+          <div class="card-icon-badge">
+            <img src="https://img.icons8.com/ios-filled/100/133b26/deciduous-tree.png" alt="Tree Icon" />
+          </div>
+          <h3>Tree Plantation</h3>
+        </div>
+      </a>
+
+      <!-- 9. Talent Hunt Scholarship (Redirects to educational.html) -->
+      <a href="educational.html" class="programme-card">
+        <div class="card-thumb">
+          <img class="cover-photo" src="https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Talent Hunt Scholarship" />
+        </div>
+        <div class="card-bottom-bar">
+          <div class="card-icon-badge">
+            <img src="https://img.icons8.com/ios-filled/100/133b26/trophy.png" alt="Trophy Icon" />
+          </div>
+          <h3>Talent Hunt Scholarship</h3>
+        </div>
+      </a>
+
+      <!-- 10. Old Garments Distribution (Redirects to livehood.html) -->
+      <a href="livehood.html" class="programme-card">
+        <div class="card-thumb">
+          <img class="cover-photo" src="https://images.pexels.com/photos/6995247/pexels-photo-6995247.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Old Garments Distribution" />
+        </div>
+        <div class="card-bottom-bar">
+          <div class="card-icon-badge">
+            <img src="https://img.icons8.com/ios-filled/100/133b26/t-shirt.png" alt="Garments Icon" />
+          </div>
+          <h3>Old Garments Distribution</h3>
+        </div>
       </a>
     </div>
   </section>
@@ -1899,14 +1954,14 @@
     <!-- Center Column: Rural Bengali/Indian Elderly Grandmother Hugging Child Photo -->
     <div class="center-hug-photo">
       <img 
-        src="https://images.pexels.com/photos/7322232/pexels-photo-7322232.jpeg?auto=compress&cs=tinysrgb&w=950" 
+        src="whysup.png" 
         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1595003969156-2d2c9c7d9c2a?auto=format&fit=crop&w=950&q=85';"
         alt="Rural Indian elderly grandmother warmly embracing grandchild" 
       />
       <div class="center-photo-caption">Care, Dignity &amp; Love for Every Generation</div>
     </div>
 
-    <!-- Right Column: Our Impact (Auto-Animated Counters + Auto-Updating Project Count) -->
+    <!-- Right Column: Our Impact (Auto-Animated Counters + Auto-Synced Project Count) -->
     <div class="our-impact-panel">
       <!-- Botanical Leaf Bundle in Top-Right -->
       <svg class="leaf-bundle" style="top: 6px; right: 6px; width: 85px; height: 85px; transform: scaleX(-1);" viewBox="0 0 120 120" fill="none">
@@ -1929,32 +1984,32 @@
 
       <div class="impact-stat-row">
         <div class="impact-stat-icon">
-          <img src="https://img.icons8.com/ios-filled/100/133b26/meal.png" alt="Meals & Books" />
+          <img src="https://img.icons8.com/ios-filled/100/133b26/books.png" alt="Books & Meals Distributed" />
         </div>
         <div class="impact-stat-info">
           <strong class="impact-counter" data-target="5000" data-suffix="+">0</strong>
-          <span>Meals &amp; Study Kits Distributed</span>
+          <span>Books &amp; Meals Distributed</span>
         </div>
       </div>
 
       <div class="impact-stat-row">
         <div class="impact-stat-icon">
-          <img src="https://img.icons8.com/ios-filled/100/133b26/village.png" alt="Villages Reached" />
+          <img src="https://img.icons8.com/ios-filled/100/133b26/deciduous-tree.png" alt="Trees Planted" />
         </div>
         <div class="impact-stat-info">
-          <strong class="impact-counter" data-target="100" data-suffix="+">0</strong>
-          <span>Villages &amp; Communities Reached</span>
+          <strong class="impact-counter" data-target="1000" data-suffix="+">0</strong>
+          <span>Trees Planted &amp; Nurtured</span>
         </div>
       </div>
 
       <!-- Automatically updates whenever a new project card is added in #initiativesGrid -->
       <div class="impact-stat-row">
         <div class="impact-stat-icon">
-          <img src="https://img.icons8.com/ios-filled/100/133b26/trust.png" alt="Core Programs" />
+          <img src="https://img.icons8.com/ios-filled/100/133b26/trust.png" alt="Active Initiatives" />
         </div>
         <div class="impact-stat-info">
-          <strong id="autoProjectCounter">4</strong>
-          <span>Active Core Initiatives (Auto-Synced)</span>
+          <strong id="autoProjectCounter">10+</strong>
+          <span>Active Initiatives (Auto-Synced)</span>
         </div>
       </div>
     </div>
