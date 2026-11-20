@@ -3,197 +3,447 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact Us - SSMC Trust</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <title>Contact Us - Shyamashree Shitala Maa Charitable Trust</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet"/>
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <link rel="icon" type="image/png" href="/favicon.png">
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-149NCZ03L5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-149NCZ03L5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-149NCZ03L5');
+  </script>
 
-  gtag('config', 'G-149NCZ03L5');
-</script>
   <style>
+    :root {
+      --forest-dark: #133b26;
+      --forest-mid: #1d5236;
+      --forest-light: #2b734d;
+      --cream-bg: #fbf9f3;
+      --cream-card: #f3efe4;
+      --gold-accent: #eab308;
+      --gold-hover: #ca8a04;
+      --text-dark: #1a2e22;
+      --text-muted: #4b5e53;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     /* ===== Base Styling ===== */
     body {
-      margin: 0;
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #eef2ff, #dbeafe, #bfdbfe);
-      color: #333;
+      background-color: var(--cream-bg);
+      color: var(--text-dark);
+      line-height: 1.6;
       overflow-x: hidden;
     }
-    header {
-      background: linear-gradient(90deg, #004080, #0066cc);
-      color: white;
-      padding: 3rem 1rem 1rem;
-      text-align: center;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-      border-bottom-left-radius: 40px;
-      border-bottom-right-radius: 40px;
-      position: relative;
+
+    h1, h2 {
+      font-family: 'Playfair Display', Georgia, serif;
     }
-    header img {
-      width: 100%;
-      max-height: 250px;
-      object-fit: cover;
+
+    /* ===== Top Compact Navigation Strip ===== */
+    .top-nav-strip {
+      background-color: #ffffff;
+      padding: 12px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e5e0d3;
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      box-shadow: 0 3px 14px rgba(19, 59, 38, 0.06);
+    }
+
+    .brand-mini {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--forest-dark);
+    }
+
+    .brand-mini img {
+      height: 44px;
+      width: auto;
+    }
+
+    .brand-mini strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 15.5px;
+      line-height: 1.2;
+    }
+
+    .back-home-btn {
+      background-color: var(--forest-dark);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
       border-radius: 20px;
-      margin-bottom: 1rem;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      border: 1.5px solid var(--gold-accent);
+      transition: all 0.25s ease;
     }
+
+    .back-home-btn:hover {
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
+    }
+
+    /* ===== Header ===== */
+    header {
+      background: linear-gradient(135deg, var(--forest-dark) 0%, #0e2e1d 100%);
+      color: #ffffff;
+      padding: 3.4rem 1.2rem 2.8rem;
+      text-align: center;
+      box-shadow: 0 6px 22px rgba(19, 59, 38, 0.16);
+      border-bottom: 5px solid var(--gold-accent);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .leaf-bundle {
+      position: absolute;
+      width: 105px;
+      height: 105px;
+      pointer-events: none;
+      opacity: 0.35;
+    }
+
+    .hero-pill {
+      display: inline-block;
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 5px 15px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
     h1 {
       margin: 0;
-      font-size: 3rem;
-      letter-spacing: 1.5px;
-      animation: fadeInDown 1s ease-in-out;
+      font-size: clamp(2.1rem, 4.2vw, 3rem);
+      letter-spacing: 0.5px;
+      line-height: 1.2;
     }
-    @keyframes fadeInDown {
-      from {opacity: 0; transform: translateY(-40px);}
-      to {opacity: 1; transform: translateY(0);}
+
+    header p.header-sub {
+      margin-top: 8px;
+      font-size: 15.5px;
+      color: #d6e7dd;
+      font-style: italic;
     }
 
     /* ===== Layout ===== */
     .container {
-      max-width: 1200px;
-      margin: 4rem auto;
-      padding: 1rem;
+      max-width: 1140px;
+      margin: 2.8rem auto;
+      padding: 0 1.2rem;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 2.2rem;
+      align-items: stretch;
     }
 
     /* ===== Cards Styling ===== */
     .card {
-      background: rgba(255,255,255,0.8);
-      backdrop-filter: blur(20px);
-      padding: 2.5rem;
-      border-radius: 25px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-      transition: all 0.4s ease;
+      background: #ffffff;
+      padding: 2.2rem 2rem;
+      border-radius: 16px;
+      border: 1px solid #e5e0d3;
+      border-top: 5px solid var(--forest-dark);
+      box-shadow: 0 8px 26px rgba(19, 59, 38, 0.07);
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
+
     .card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(19, 59, 38, 0.13);
+      border-color: var(--forest-mid);
     }
+
     h2 {
-      margin-bottom: 1rem;
-      color: #004080;
-      font-size: 2rem;
+      margin-bottom: 1.2rem;
+      color: var(--forest-dark);
+      font-size: 1.75rem;
       font-weight: 700;
-      text-align: center;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     /* ===== Contact Info ===== */
-    .contact-info p {
-      margin: 0.8rem 0;
-      font-size: 1.1rem;
-      line-height: 1.6;
-      text-align: center;
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 1.2rem;
     }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background-color: var(--cream-bg);
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid #e6e2d6;
+    }
+
+    .info-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background-color: #eaf3ed;
+      color: var(--forest-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+
+    .contact-info p {
+      margin: 0;
+      font-size: 14.5px;
+      line-height: 1.5;
+      color: #2c3e33;
+      text-align: left;
+    }
+
+    .contact-info a {
+      color: var(--forest-mid);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
     iframe {
       width: 100%;
-      height: 300px;
-      border: none;
-      border-radius: 20px;
-      margin-top: 1.5rem;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      height: 260px;
+      border: 2px solid #e5e0d3;
+      border-radius: 14px;
+      margin-top: 0.4rem;
+      box-shadow: 0 6px 18px rgba(19, 59, 38, 0.08);
     }
 
     /* ===== Form Styling ===== */
+    .form-intro {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+
     .contact-form form {
       display: flex;
       flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
     }
-    .contact-form input, .contact-form textarea {
+
+    .field-group {
       margin-bottom: 1rem;
-      padding: 1rem;
-      font-size: 1rem;
-      border: none;
-      border-radius: 15px;
-      outline: none;
-      background: #f8fafc;
-      transition: all 0.3s ease;
-      box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
     }
-    .contact-form input:focus, .contact-form textarea:focus {
-      background: #fff;
-      box-shadow: 0 0 12px rgba(0,102,204,0.3);
+
+    .field-label {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--forest-dark);
+      margin-bottom: 5px;
     }
+
+    .contact-form input,
     .contact-form textarea {
-      resize: none;
-      min-height: 130px;
+      width: 100%;
+      padding: 0.9rem 1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.98rem;
+      border: 1.5px solid #cbd5ce;
+      border-radius: 10px;
+      outline: none;
+      background-color: var(--cream-bg);
+      color: var(--text-dark);
+      transition: all 0.25s ease;
     }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      background-color: #ffffff;
+      border-color: var(--forest-mid);
+      box-shadow: 0 0 0 3px rgba(29, 82, 54, 0.12);
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 145px;
+    }
+
     .contact-form button {
-      padding: 1rem;
-      font-size: 1.2rem;
-      font-weight: bold;
-      background: linear-gradient(90deg, #004080, #0066cc);
-      color: white;
-      border: none;
-      border-radius: 15px;
+      padding: 0.95rem 1.5rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      background-color: var(--forest-dark);
+      color: #ffffff;
+      border: 2px solid var(--gold-accent);
+      border-radius: 30px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      transition: all 0.28s ease;
+      box-shadow: 0 6px 18px rgba(19, 59, 38, 0.18);
+      margin-top: 0.5rem;
     }
+
     .contact-form button:hover {
-      background: linear-gradient(90deg, #0066cc, #004080);
-      transform: scale(1.05);
-      box-shadow: 0 6px 25px rgba(0,0,0,0.25);
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(234, 179, 8, 0.32);
     }
 
     /* ===== Footer ===== */
     footer {
-      background: linear-gradient(90deg, #004080, #0066cc);
-      color: white;
+      background-color: var(--forest-dark);
+      color: #e6efe9;
       text-align: center;
-      padding: 1.5rem;
-      font-size: 1rem;
+      padding: 1.6rem 1rem;
+      font-size: 0.95rem;
       margin-top: 3rem;
-      border-top-left-radius: 40px;
-      border-top-right-radius: 40px;
-      box-shadow: 0 -6px 20px rgba(0,0,0,0.15);
+      border-top: 4px solid var(--gold-accent);
+    }
+
+    footer span {
+      display: block;
+      font-size: 13px;
+      color: #bfd4c7;
+      margin-top: 4px;
+      font-style: italic;
     }
 
     /* ===== Responsive ===== */
     @media (max-width: 900px) {
       .container {
         grid-template-columns: 1fr;
+        margin: 2rem auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .top-nav-strip {
+        padding: 10px 16px;
+      }
+
+      .brand-mini strong {
+        display: none;
+      }
+
+      header {
+        padding: 2.5rem 1rem 2rem;
+      }
+
+      .card {
+        padding: 1.6rem 1.3rem;
       }
     }
   </style>
 </head>
 <body>
+
+  <!-- Compact Top Navigation Bar -->
+  <div class="top-nav-strip">
+    <a href="index.html" class="brand-mini">
+      <img src="SSMCT Logo1.png" alt="SSMCT Logo">
+      <strong>Shyamashree Shitala Maa Charitable Trust</strong>
+    </a>
+    <a href="index.html" class="back-home-btn">← Back to Home</a>
+  </div>
+
+  <!-- Header -->
   <header>
-   <!-- <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=1200&q=80" alt="Charity Image">-->
+    <svg class="leaf-bundle" style="top: 8px; left: 12px;" viewBox="0 0 120 120" fill="none">
+      <path d="M14 102C28 66 56 36 96 22C84 62 56 90 14 102Z" fill="#eab308"/>
+      <path d="M10 72C22 44 46 22 76 12C66 44 44 66 10 72Z" fill="#ffffff"/>
+    </svg>
+    <svg class="leaf-bundle" style="bottom: 8px; right: 12px; transform: scale(-1);" viewBox="0 0 120 120" fill="none">
+      <path d="M14 102C28 66 56 36 96 22C84 62 56 90 14 102Z" fill="#eab308"/>
+      <path d="M10 72C22 44 46 22 76 12C66 44 44 66 10 72Z" fill="#ffffff"/>
+    </svg>
+
+    <span class="hero-pill">💛 We'd Love to Hear From You</span>
     <h1 data-aos="fade-down">Contact Us</h1>
+    <p class="header-sub">Reach out to volunteer, partner with us, or support our grassroots initiatives</p>
   </header>
   
   <div class="container">
     <!-- Contact Information -->
     <div class="card contact-info" data-aos="fade-right">
-      <h2>Get in Touch</h2>
-      <p><strong>📍 Address:</strong> Shyamashree Shitala Maa Charitable Trust, 267/1, Netaji Subhas Road, Howrah:-711101</p>
-      <p><strong>📞 Phone:</strong> +91-91233 40886</p>
-      <p><strong>📧 Email:</strong> info@ssmctrust.org</p>
-      <!--<iframe 
-        src="https://www.google.com/maps/place/Shyamashree+Sitala+Maa+Temple/@22.5817119,88.32139,17z/data=!3m1!4b1!4m6!3m5!1s0x3a027900166bb45b:0x5369a1e7716c373a!8m2!3d22.581707!4d88.3239649!16s%2Fg%2F11vzgj456c?authuser=2&entry=tts&g_ep=EgoyMDI1MDgyNS4wIPu8ASoASAFQAw%3D%3D&skid=b54cc748-f4e5-4542-aa1d-eb35072f0d26" 
-        allowfullscreen="" 
-        loading="lazy">
-      </iframe>-->
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.9300551544766!2d88.32390769999999!3d22.581719200000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0279bf4f919b39%3A0xb08c23546d8c3e73!2sSHYAMASHREE%20SHITALA%20MAA%20CHARITABLE%20TRUST!5e0!3m2!1sen!2sin!4v1795161028010!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <div>
+        <h2>🌿 Get in Touch</h2>
+        <div class="info-list">
+          <div class="info-row">
+            <div class="info-icon">📍</div>
+            <p><strong>Address:</strong><br>Shyamashree Shitala Maa Charitable Trust, 267/1, Netaji Subhas Road, Howrah - 711101</p>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">📞</div>
+            <p><strong>Phone:</strong><br><a href="tel:+919123340886">+91-91233 40886</a></p>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">📧</div>
+            <p><strong>Email:</strong><br><a href="mailto:info@ssmctrust.org">info@ssmctrust.org</a></p>
+          </div>
+        </div>
+      </div>
+
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.9300551544766!2d88.32390769999999!3d22.581719200000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0279bf4f919b39%3A0xb08c23546d8c3e73!2sSHYAMASHREE%20SHITALA%20MAA%20CHARITABLE%20TRUST!5e0!3m2!1sen!2sin!4v1795161028010!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
     </div>
 
-    <!-- Contact Form -->
+    <!-- Contact Form (EXACT ORIGINAL FORMSPREE ACTION & INPUTS PRESERVED) -->
     <div class="card contact-form" data-aos="fade-left">
-      <h2>Send Us a Message</h2>
+      <div>
+        <h2>✉️ Send Us a Message</h2>
+        <p class="form-intro">Have a question about donations, CSR partnerships, or volunteering? Fill out the form below and our team will respond promptly.</p>
+      </div>
+
       <form action="https://formspree.io/f/your_form_id" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="email" name="email" placeholder="Your Email" required />
-        <textarea name="message" placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
+        <div>
+          <div class="field-group">
+            <label class="field-label">Full Name *</label>
+            <input type="text" name="name" placeholder="Your Name" required />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Email Address *</label>
+            <input type="email" name="email" placeholder="Your Email" required />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Message *</label>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+          </div>
+        </div>
+
+        <button type="submit">💛 Send Message →</button>
         <input type="hidden" name="_next" value="https://ssmctrust.org/thank-you.html">
       </form>
     </div>
@@ -201,9 +451,10 @@
 
   <footer>
     © 2025 Shyamashree Shitala Maa Charitable Trust | All Rights Reserved
+    <span>Serving Humanity with Love, Compassion &amp; Kindness</span>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Scripts (EXACT ORIGINAL AOS INIT PRESERVED) -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init({
