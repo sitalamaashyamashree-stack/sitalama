@@ -3,90 +3,581 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Project Chhaya | Learn More</title>
+  <title>Project Chhaya | Learn More | Shyamashree Shitala Maa Charitable Trust</title>
   <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-149NCZ03L5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-149NCZ03L5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-149NCZ03L5');
+  </script>
 
-  gtag('config', 'G-149NCZ03L5');
-</script>
   <style>
     :root {
-      --brand:#6b21a8;   /* deep purple */
-      --brand-dark:#4a148c;
-      --accent:#f97316; /* orange */
-      --bg:#fffaf5;
-      --card:#ffffff;
-      --ink:#1a1a1a;
-      --muted:#555;
-    }
-    *{box-sizing:border-box}
-    body {
-      margin:0;
-      font-family:"Inter","Segoe UI",Roboto,sans-serif;
-      background:var(--bg);
-      color:var(--ink);
-      line-height:1.55;
+      --forest-dark: #133b26;
+      --forest-mid: #1d5236;
+      --forest-light: #2b734d;
+      --cream-bg: #fbf9f3;
+      --cream-card: #f3efe4;
+      --gold-accent: #eab308;
+      --gold-hover: #ca8a04;
+      --text-dark: #1a2e22;
+      --text-muted: #4b5e53;
     }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--cream-bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3.serif-title {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    /* TOP COMPACT NAVIGATION BAR */
+    .top-nav-strip {
+      background-color: #ffffff;
+      padding: 12px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e5e0d3;
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      box-shadow: 0 3px 14px rgba(19, 59, 38, 0.06);
+    }
+
+    .brand-mini {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--forest-dark);
+    }
+
+    .brand-mini img {
+      height: 44px;
+      width: auto;
+    }
+
+    .brand-mini strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 15.5px;
+      line-height: 1.2;
+    }
+
+    .back-home-btn {
+      background-color: var(--forest-dark);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 1.5px solid var(--gold-accent);
+      transition: all 0.25s ease;
+    }
+
+    .back-home-btn:hover {
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
+    }
+
+    /* HERO HEADER */
     header {
-      height:55vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      color:#fff;
+      height: 54vh;
+      min-height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      border-bottom: 5px solid var(--forest-dark);
       background:
-        linear-gradient(180deg,rgba(107,33,168,0.5),rgba(74,20,140,0.6)),
+        linear-gradient(135deg, rgba(19, 59, 38, 0.8), rgba(13, 43, 27, 0.64)),
         url("69.jpg") center/cover no-repeat;
     }
-    .hero {padding:1rem;max-width:1000px}
-    .pill {background:#fff3e0;color:var(--brand);padding:6px 12px;border-radius:999px;font-weight:600;display:inline-block;margin-bottom:10px}
-    .hero h1 {margin:0;font-size:clamp(1.8rem,3.8vw,2.8rem);}
-    .hero p {margin:.6rem 0 0;color:#fef9f6}
 
-    main {max-width:1100px;margin:1.5rem auto;padding:0 1rem}
+    .hero {
+      padding: 1.2rem;
+      max-width: 960px;
+      position: relative;
+      z-index: 2;
+    }
 
-    h2 {color:var(--brand);text-align:center;margin:0 0 .7rem;font-size:clamp(1.2rem,2.2vw,1.6rem)}
-    .card {background:var(--card);padding:18px;border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,0.07);margin-bottom:14px}
-    .lead {color:var(--muted);font-size:1.05rem}
-    ul {padding-left:1.1rem;margin:.5rem 0}
-    li {margin:6px 0}
+    .pill {
+      display: inline-block;
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
+      padding: 5px 16px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
 
-    .cta {display:flex;gap:12px;justify-content:center;margin-top:12px}
-    .btn {padding:11px 18px;border:none;border-radius:28px;font-weight:700;cursor:pointer}
-    .btn-primary {background:var(--brand);color:#fff}
-    .btn-outline {background:#fff;border:2px solid var(--brand);color:var(--brand)}
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(1.85rem, 4vw, 2.85rem);
+      line-height: 1.2;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+    }
 
-    /* Gallery */
-    .gallery {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px}
-    .g-item {position:relative;border-radius:12px;overflow:hidden;background:#fff7ed;box-shadow:0 6px 22px rgba(0,0,0,0.08)}
-    .g-item img {width:100%;height:100%;object-fit:cover;transition:transform .5s}
-    .g-item:hover img {transform:scale(1.07)}
-    .g-cap {position:absolute;left:0;right:0;bottom:0;padding:10px;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.6));color:#fff;font-weight:600;opacity:0;transition:opacity .3s}
-    .g-item:hover .g-cap {opacity:1}
+    .hero p {
+      margin: 0.65rem 0 0;
+      color: #e2ede6;
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      font-style: italic;
+    }
 
-    /* Lightbox */
-    .lightbox {position:fixed;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;background:rgba(0,0,0,0.82);z-index:9999;padding:16px}
-    .lightbox.active {display:flex}
-    .lightbox img {max-width:92%;max-height:78%;border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,0.7)}
-    .controls {display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;justify-content:center}
-    .ctrl {background:var(--accent);border:none;color:#fff;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
-    .ctrl.alt {background:var(--brand);}
+    /* MAIN COMPACT WRAPPER */
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 40px 20px 24px;
+    }
 
-    footer {background:linear-gradient(90deg,var(--brand),var(--brand-dark));color:#fff;text-align:center;padding:18px;margin-top:24px;border-top-left-radius:8px;border-top-right-radius:8px}
-    footer p {margin:6px 0 0}
+    section {
+      margin-bottom: 24px;
+    }
 
-    @media(max-width:560px){.controls{gap:8px}}
+    h2 {
+      color: var(--forest-dark);
+      text-align: center;
+      margin: 0 0 12px;
+      font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+    }
+
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 22px 24px;
+      border-radius: 14px;
+      border: 1px solid #e5e0d3;
+      border-top: 4px solid var(--forest-dark);
+      box-shadow: 0 6px 18px rgba(19, 59, 38, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 26px rgba(19, 59, 38, 0.11);
+      border-color: var(--forest-mid);
+    }
+
+    .card h2 {
+      text-align: left;
+      font-size: 1.32rem;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      font-size: 14.5px;
+      color: #36493e;
+      margin-bottom: 10px;
+    }
+
+    .lead {
+      color: #2c3e33;
+      font-size: 15px;
+    }
+
+    ul {
+      padding-left: 0;
+      margin: 6px 0 10px;
+    }
+
+    li {
+      margin: 7px 0;
+      list-style: none;
+      font-size: 14px;
+      color: #2c3e33;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    li::before {
+      content: "✓";
+      background-color: #eaf3ed;
+      color: var(--forest-dark);
+      font-weight: 800;
+      font-size: 11px;
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    blockquote {
+      margin: 8px 0 0;
+      padding: 14px 18px;
+      border-left: 5px solid var(--gold-accent);
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--forest-dark), #0e2e1d);
+      color: #ffffff;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.02rem;
+    }
+
+    .highlight-chip {
+      display: inline-block;
+      background-color: #fef9c3;
+      color: var(--forest-dark);
+      font-weight: 700;
+      font-size: 13.5px;
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--gold-accent);
+      margin-top: 4px;
+    }
+
+    .tax-badge-box {
+      background-color: var(--cream-bg);
+      border: 1px dashed #9db5a7;
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 13px !important;
+      color: var(--forest-mid) !important;
+      font-weight: 600;
+      margin-top: 8px;
+      margin-bottom: 0 !important;
+    }
+
+    /* COST TABLE */
+    .cost-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .cost-table th {
+      background-color: var(--forest-dark);
+      color: #ffffff;
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .cost-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e6e2d6;
+      color: var(--text-dark);
+    }
+
+    .cost-table tr:nth-child(even) td {
+      background-color: var(--cream-bg);
+    }
+
+    .cost-table tr:last-child td {
+      background-color: #fef9c3;
+      color: var(--forest-dark);
+      border-bottom: none;
+    }
+
+    /* BUTTONS */
+    .cta {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-start;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 11px 22px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--gold-accent);
+      border: 2px solid var(--gold-accent);
+      color: var(--forest-dark);
+    }
+
+    .btn-primary:hover {
+      background-color: #facc15;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #ffffff;
+      color: #ffffff;
+    }
+
+    .btn-outline:hover {
+      background: #ffffff;
+      color: var(--forest-dark);
+      transform: translateY(-2px);
+    }
+
+    /* DECORATED SECTION HEADERS */
+    .section-head-leaf {
+      text-align: center;
+      margin: 28px 0 16px;
+    }
+
+    .leaf-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+
+    .leaf-line::before,
+    .leaf-line::after {
+      content: "";
+      width: 65px;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, #8ca897, transparent);
+    }
+
+    /* GALLERY */
+    .gallery-section {
+      background: #ffffff;
+      padding: 28px 24px;
+      border-radius: 16px;
+      border: 1px solid #e5e0d3;
+      box-shadow: 0 8px 22px rgba(19, 59, 38, 0.05);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .g-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #e5e0d3;
+      aspect-ratio: 4 / 3;
+      border: 2px solid #ffffff;
+      box-shadow: 0 6px 18px rgba(19, 59, 38, 0.1);
+      cursor: pointer;
+    }
+
+    .g-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.55s ease;
+    }
+
+    .g-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .g-cap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 10px 12px;
+      background: linear-gradient(180deg, transparent, rgba(19, 59, 38, 0.88));
+      color: #fff;
+      font-size: 13.5px;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .g-item:hover .g-cap {
+      opacity: 1;
+    }
+
+    /* LIGHTBOX (EXACT ORIGINAL IDS & CONTROLS PRESERVED) */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.88);
+      z-index: 9999;
+      padding: 16px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 92%;
+      max-height: 76%;
+      border-radius: 12px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    .controls {
+      margin-top: 16px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .ctrl {
+      background: var(--forest-dark);
+      border: 1.5px solid var(--gold-accent);
+      color: #fff;
+      padding: 9px 16px;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 13.5px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .ctrl:hover {
+      background: var(--gold-accent);
+      color: var(--forest-dark);
+    }
+
+    .ctrl.alt {
+      background: #991b1b;
+      border-color: #fca5a5;
+    }
+
+    .ctrl.alt:hover {
+      background: #dc2626;
+      color: #fff;
+    }
+
+    /* CONTACT BANNER */
+    .contact-banner {
+      background: linear-gradient(135deg, var(--forest-dark) 0%, #0e2e1d 100%);
+      color: #ffffff;
+      border-radius: 16px;
+      padding: 30px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      box-shadow: 0 12px 28px rgba(19, 59, 38, 0.16);
+    }
+
+    .contact-banner h2 {
+      color: var(--gold-accent);
+      text-align: left;
+      margin-bottom: 8px;
+    }
+
+    .contact-banner p {
+      color: #e6f2eb;
+      margin-bottom: 0;
+      font-size: 14.5px;
+      line-height: 1.65;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--forest-dark);
+      color: #e6efe9;
+      text-align: center;
+      padding: 28px 20px;
+      margin-top: 32px;
+      border-top: 4px solid var(--gold-accent);
+    }
+
+    footer h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: #ffffff;
+      margin: 0 0 6px;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 14px;
+      color: #bfd4c7;
+    }
+
+    @media (max-width: 860px) {
+      .two-col-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .top-nav-strip {
+        padding: 10px 16px;
+      }
+
+      .brand-mini strong {
+        display: none;
+      }
+
+      header {
+        height: 44vh;
+      }
+
+      .controls {
+        gap: 8px;
+      }
+    }
   </style>
 </head>
 <body>
 
+<!-- Compact Top Navigation Bar -->
+<div class="top-nav-strip">
+  <a href="index.html" class="brand-mini">
+    <img src="SSMCT Logo1.png" alt="SSMCT Logo">
+    <strong>Shyamashree Shitala Maa Charitable Trust</strong>
+  </a>
+  <a href="index.html" class="back-home-btn">← Back to Home</a>
+</div>
+
+<!-- Hero Header -->
 <header>
   <div class="hero">
     <div class="pill">🌂 Project Chhaya</div>
@@ -96,97 +587,120 @@
 </header>
 
 <main>
-  <section>
-    <h2>🧭 What is Project Chhaya?</h2>
-    <div class="card">
-      <p class="lead">A heartfelt initiative to provide free umbrellas to those who live without shelter — individuals who endure the scorching sun, heavy rains, and unpredictable weather every day.</p>
-      <p>A simple umbrella can offer relief, dignity, and humanity.</p>
-    </div>
-  </section>
+  <!-- Compact 2-Column Row 1: What is Project Chhaya & Our Goal -->
+  <div class="two-col-grid">
+    <section class="card" style="margin-bottom:0;">
+      <div>
+        <h2>🧭 What is Project Chhaya?</h2>
+        <p class="lead">A heartfelt initiative to provide free umbrellas to those who live without shelter — individuals who endure the scorching sun, heavy rains, and unpredictable weather every day.</p>
+      </div>
+      <p style="margin-bottom:0; font-weight:600; color:var(--forest-mid);">A simple umbrella can offer relief, dignity, and humanity.</p>
+    </section>
 
-  <section>
-    <h2>🎯 Our Goal</h2>
-    <div class="card">
-      <p>To donate 500+ umbrellas to unsheltered individuals across rural and semi-urban communities.</p>
+    <section class="card" style="margin-bottom:0;">
+      <div>
+        <h2>🎯 Our Goal</h2>
+        <p>To donate 500+ umbrellas to unsheltered individuals across rural and semi-urban communities.</p>
+      </div>
       <blockquote>“No one should have to face the rain or sun without even a shade of protection.”</blockquote>
-    </div>
-  </section>
+    </section>
+  </div>
 
-  <section>
-    <h2>👥 Who Will Benefit?</h2>
-    <div class="card">
-      <ul>
-        <li>Homeless individuals living on footpaths</li>
-        <li>Daily wage earners without shelter</li>
-        <li>Elderly in extreme poverty</li>
-        <li>Street vendors & hawkers exposed all day</li>
-        <li>Children walking long distances to school</li>
-        <li>Widows & abandoned women in shelters</li>
-      </ul>
-    </div>
-  </section>
+  <!-- Compact 2-Column Row 2: Who Will Benefit & Areas of Focus -->
+  <div class="two-col-grid">
+    <section class="card" style="margin-bottom:0;">
+      <div>
+        <h2>👥 Who Will Benefit?</h2>
+        <ul>
+          <li>Homeless individuals living on footpaths</li>
+          <li>Daily wage earners without shelter</li>
+          <li>Elderly in extreme poverty</li>
+          <li>Street vendors &amp; hawkers exposed all day</li>
+          <li>Children walking long distances to school</li>
+          <li>Widows &amp; abandoned women in shelters</li>
+        </ul>
+      </div>
+    </section>
 
-  <section>
-    <h2>📍 Areas of Focus</h2>
-    <div class="card">
-      <p>Phase 1 will cover:</p>
-      <ul>
-        <li>Rural villages & roadside settlements</li>
-        <li>Slums and temporary hutments</li>
-        <li>Public places where homeless reside</li>
-      </ul>
-      <p><b>Starting in:</b> Purba Bardhaman, West Bengal</p>
-    </div>
-  </section>
+    <section class="card" style="margin-bottom:0;">
+      <div>
+        <h2>📍 Areas of Focus</h2>
+        <p>Phase 1 will cover:</p>
+        <ul>
+          <li>Rural villages &amp; roadside settlements</li>
+          <li>Slums and temporary hutments</li>
+          <li>Public places where homeless reside</li>
+        </ul>
+      </div>
+      <div>
+        <span class="highlight-chip"><b>Starting in:</b> Purba Bardhaman, West Bengal</span>
+      </div>
+    </section>
+  </div>
 
-  <section>
-    <h2>💰 Project Cost</h2>
-    <div class="card">
-      <table style="width:100%;border-collapse:collapse">
-        <tr><th align="left">Item</th><th align="left">Unit Cost</th><th align="left">Total</th></tr>
-        <tr><td>Umbrella (good quality)</td><td>₹120 – ₹150</td><td>₹60,000 – ₹75,000</td></tr>
-        <tr><td>Logistics & delivery</td><td>–</td><td>₹5,000</td></tr>
-        <tr><td>Materials (leaflets, tags)</td><td>–</td><td>₹2,000</td></tr>
-        <tr><td><b>Total</b></td><td>–</td><td><b>₹67,000 – ₹82,000</b></td></tr>
-      </table>
-    </div>
-  </section>
+  <!-- Compact 2-Column Row 3: Project Cost & How You Can Help -->
+  <div class="two-col-grid">
+    <section class="card" style="margin-bottom:0;">
+      <div>
+        <h2>💰 Project Cost</h2>
+        <table class="cost-table">
+          <tr><th align="left">Item</th><th align="left">Unit Cost</th><th align="left">Total</th></tr>
+          <tr><td>Umbrella (good quality)</td><td>₹120 – ₹150</td><td>₹60,000 – ₹75,000</td></tr>
+          <tr><td>Logistics &amp; delivery</td><td>–</td><td>₹5,000</td></tr>
+          <tr><td>Materials (leaflets, tags)</td><td>–</td><td>₹2,000</td></tr>
+          <tr><td><b>Total</b></td><td>–</td><td><b>₹67,000 – ₹82,000</b></td></tr>
+        </table>
+      </div>
+    </section>
 
-  <section>
-    <h2>💖 How You Can Help</h2>
-    <div class="card">
-      <ul>
-        <li>Sponsor 1 umbrella – ₹150</li>
-        <li>Sponsor 10 umbrellas – ₹1,500</li>
-        <li>Sponsor 50 umbrellas – ₹7,500</li>
-        <li>Sponsor 100 umbrellas – ₹15,000</li>
-        <li>Full project sponsor – ₹75,000+</li>
-      </ul>
-      <p>✅ Tax-deductible under Section 80G<br>✅ Corporate donors can opt for branding on umbrellas</p>
-    </div>
-  </section>
+    <section class="card" style="margin-bottom:0;">
+      <div>
+        <h2>💛 How You Can Help</h2>
+        <ul>
+          <li>Sponsor 1 umbrella – ₹150</li>
+          <li>Sponsor 10 umbrellas – ₹1,500</li>
+          <li>Sponsor 50 umbrellas – ₹7,500</li>
+          <li>Sponsor 100 umbrellas – ₹15,000</li>
+          <li>Full project sponsor – ₹75,000+</li>
+        </ul>
+      </div>
+      <p class="tax-badge-box">✓ Tax-deductible under Section 80G &nbsp;|&nbsp; ✓ Corporate donors can opt for branding on umbrellas</p>
+    </section>
+  </div>
 
-  <section>
-    <h2>🫱🏽‍🫲🏼 Why Umbrellas?</h2>
-    <div class="card">
-      <ul>
-        <li>Low-cost, high-impact aid</li>
-        <li>Instant relief from sun & rain</li>
-        <li>Light to carry, easy to distribute</li>
-        <li>Symbol of protection & dignity</li>
-      </ul>
-    </div>
-  </section>
+  <!-- Compact 2-Column Row 4: Why Umbrellas & Our Approach -->
+  <div class="two-col-grid">
+    <section class="card" style="margin-bottom:0;">
+      <div>
+        <h2>🫱🏽‍🫲🏼 Why Umbrellas?</h2>
+        <ul>
+          <li>Low-cost, high-impact aid</li>
+          <li>Instant relief from sun &amp; rain</li>
+          <li>Light to carry, easy to distribute</li>
+          <li>Symbol of protection &amp; dignity</li>
+        </ul>
+      </div>
+    </section>
 
-  <section>
-    <h2>📷 Our Approach</h2>
-    <div class="card">
-      <p>We personally visit target locations, identify vulnerable individuals, and hand over umbrellas with respect. Every distribution is documented transparently.</p>
-    </div>
-  </section>
+    <section class="card" style="margin-bottom:0;">
+      <div>
+        <h2>📷 Our Approach</h2>
+        <p>We personally visit target locations, identify vulnerable individuals, and hand over umbrellas with respect. Every distribution is documented transparently.</p>
+      </div>
+      <p class="tax-badge-box">✓ Direct Grassroots Handover &amp; Transparent Photo Documentation</p>
+    </section>
+  </div>
 
-  <section>
-    <h2>🖼 Gallery</h2>
+  <!-- Gallery -->
+  <section class="gallery-section">
+    <div class="section-head-leaf" style="margin-top:0;">
+      <div class="leaf-line">
+        <svg viewBox="0 0 44 36" width="32" height="26" fill="#1d5236">
+          <path d="M22 33V11M22 22c-7-8-16-7-16-7s2 10 16 7zm0-6c7-8 16-7 16-7s-2 10-16 7zm0-5c-3-6 0-10 0-10s3 4 0 10z"/>
+        </svg>
+      </div>
+      <h2>🖼 Gallery</h2>
+    </div>
     <div class="gallery">
       <figure class="g-item"><img src="https://images.unsplash.com/photo-1528892952291-009c663ce843?auto=format&fit=crop&w=1200&q=80" alt="Umbrellas in rain"><figcaption class="g-cap">Relief from rain</figcaption></figure>
       <figure class="g-item"><img src="https://images.unsplash.com/photo-1534081333815-ae5019106622?auto=format&fit=crop&w=1200&q=80" alt="Street vendors with umbrellas"><figcaption class="g-cap">Street vendors</figcaption></figure>
@@ -195,7 +709,7 @@
     </div>
   </section>
 
-  <!-- Lightbox -->
+  <!-- Lightbox (EXACT ORIGINAL IDS & CONTROLS PRESERVED) -->
   <div class="lightbox" id="lightbox">
     <img src="" alt="Expanded gallery" id="lbImage"/>
     <div class="controls">
@@ -207,18 +721,17 @@
     </div>
   </div>
 
-  <section>
-    <h2>📞 Contact Us</h2>
-    <div class="card">
-      <p><b>Shyamashree Sitala Maa Charitable Trust</b><br>
-      📍 [Insert Address]<br>
-      📱 +91-XXXXXXXXXX<br>
-      📧 yourtrustemail@example.com<br>
-      🌐 www.shyamashreetrust.org</p>
-      <div class="cta">
-        <button class="btn btn-primary">Donate Now</button>
-        <button class="btn btn-outline">Volunteer</button>
-      </div>
+  <!-- Contact Banner -->
+  <section class="contact-banner" style="margin-bottom:0;">
+    <div>
+      <h2>📞 Contact Us</h2>
+      <p><b>Shyamashree Shitala Maa Charitable Trust</b><br>
+      📍 [Insert Address] &nbsp;|&nbsp; 📱 +91-XXXXXXXXXX<br>
+      📧 yourtrustemail@example.com &nbsp;|&nbsp; 🌐 www.shyamashreetrust.org</p>
+    </div>
+    <div class="cta" style="margin-top:0;">
+      <button class="btn btn-primary">💛 Donate Now</button>
+      <button class="btn btn-outline">🌿 Volunteer</button>
     </div>
   </section>
 </main>
@@ -228,6 +741,7 @@
   <p>A shade of care for the unsheltered.</p>
 </footer>
 
+<!-- EXACT ORIGINAL SCRIPT PRESERVED -->
 <script>
 (function(){
   const imgs=document.querySelectorAll('.g-item img');
