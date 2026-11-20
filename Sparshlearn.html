@@ -3,98 +3,575 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project Sparsh – Learn More</title>
+  <title>Project Sparsh – Learn More | Shyamashree Shitala Maa Charitable Trust</title>
   <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-149NCZ03L5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-149NCZ03L5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-149NCZ03L5');
+  </script>
 
-  gtag('config', 'G-149NCZ03L5');
-</script>
   <style>
-    :root{
-      --brand:#004d40; /* athletic teal/green */
-      --brand-dark:#00332c;
-      --bg:#f9fdfc;
-      --ink:#222;
-      --ink-muted:#444;
-      --card:#ffffff;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;line-height:1.6;background:var(--bg);color:var(--ink)}
-
-    /* Hero */
-    header{
-      position:relative;height:60vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;
-      background:url('70.jpg') center/cover no-repeat;
-    }
-    header::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(163, 153, 153, 0.639))}
-    .hero{position:relative;z-index:1;padding:0 1rem}
-    .hero h1{margin:0;font-size:clamp(2rem,4vw,3rem)}
-    .hero p{margin:.6rem 0 0;font-size:clamp(1rem,2.2vw,1.2rem);opacity:.95}
-
-    /* Sections */
-    section{max-width:1000px;margin:2rem auto;padding:0 1rem}
-    h2{color:var(--brand);font-size:clamp(1.25rem,2.4vw,1.7rem);margin:0 0 .75rem;text-align:center}
-    p{color:var(--ink)}
-    .lead{font-size:1.05rem;color:var(--ink-muted)}
-
-    .card{background:var(--card);border-radius:18px;box-shadow:0 6px 20px rgba(0,0,0,.08);padding:1.25rem}
-
-    .list{padding-left:1rem}
-    .list li{margin:.4rem 0}
-
-    .grid{display:grid;gap:18px}
-    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
-    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
-    @media (max-width:900px){
-      .grid.cols-3{grid-template-columns:repeat(2,1fr)}
-    }
-    @media (max-width:640px){
-      .grid.cols-2,.grid.cols-3{grid-template-columns:1fr}
+    :root {
+      --forest-dark: #133b26;
+      --forest-mid: #1d5236;
+      --forest-light: #2b734d;
+      --cream-bg: #fbf9f3;
+      --cream-card: #f3efe4;
+      --gold-accent: #eab308;
+      --gold-hover: #ca8a04;
+      --text-dark: #1a2e22;
+      --text-muted: #4b5e53;
     }
 
-    blockquote{margin:0;padding:1rem 1.2rem;border-left:6px solid var(--brand);border-radius:6px;background:#e0f2f1}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    /* CTA */
-    .cta{display:flex;gap:10px;justify-content:center;align-items:center;margin:1.5rem 0 0}
-    .btn{appearance:none;border:none;border-radius:28px;padding:12px 22px;font-weight:600;cursor:pointer;transition:.25s}
-    .btn-primary{background:var(--brand);color:#fff}
-    .btn-primary:hover{background:var(--brand-dark)}
-    .pill{display:inline-block;background:#c8e6c9;color:var(--brand);padding:.35rem .75rem;border-radius:999px;font-size:.9rem;font-weight:600}
+    html {
+      scroll-behavior: smooth;
+    }
 
-    /* Timeline */
-    .timeline{width:100%;border-collapse:collapse;border-radius:14px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.06)}
-    .timeline th,.timeline td{padding:.9rem 1rem;border-bottom:1px solid #eee}
-    .timeline th{background:#c8e6c9;color:#004d40;text-align:left}
-    .timeline tr:last-child td{border-bottom:none}
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      background-color: var(--cream-bg);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
 
-    /* Gallery */
-    .gallery-wrap{margin-top:1.25rem}
-    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-    .g-item{position:relative;overflow:hidden;border-radius:16px;background:#eee;box-shadow:0 6px 18px rgba(0,0,0,.12);transform:translateZ(0)}
-    .g-item img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
-    .g-item:hover img{transform:scale(1.08)}
-    .g-cap{position:absolute;inset:auto 0 0 0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.55));color:#fff;padding:10px 12px;font-size:.95rem;opacity:0;transition:.35s;letter-spacing:.2px}
-    .g-item:hover .g-cap{opacity:1}
-    
-    /* Lightbox */
-    .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;background:rgba(0,0,0,.8);z-index:9999;padding:1rem}
-    .lightbox.active{display:flex}
-    .lightbox img{max-width:92%;max-height:78%;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.55)}
-    .controls{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-    .ctrl{background:var(--brand);color:#fff;border:none;border-radius:10px;padding:10px 14px;font-weight:600;cursor:pointer;transition:.2s}
-    .ctrl:hover{background:var(--brand-dark)}
+    h1, h2, h3.serif-title {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
 
-    footer{background:var(--brand);color:#fff;text-align:center;padding:1.6rem;margin-top:2rem}
-    footer h3{margin:.2rem 0 .8rem;font-weight:600}
+    /* TOP COMPACT NAVIGATION BAR */
+    .top-nav-strip {
+      background-color: #ffffff;
+      padding: 12px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e5e0d3;
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      box-shadow: 0 3px 14px rgba(19, 59, 38, 0.06);
+    }
+
+    .brand-mini {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--forest-dark);
+    }
+
+    .brand-mini img {
+      height: 44px;
+      width: auto;
+    }
+
+    .brand-mini strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 15.5px;
+      line-height: 1.2;
+    }
+
+    .back-home-btn {
+      background-color: var(--forest-dark);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 1.5px solid var(--gold-accent);
+      transition: all 0.25s ease;
+    }
+
+    .back-home-btn:hover {
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
+    }
+
+    /* HERO HEADER */
+    header {
+      position: relative;
+      height: 54vh;
+      min-height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      background: url('70.jpg') center/cover no-repeat;
+      border-bottom: 5px solid var(--forest-dark);
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(19, 59, 38, 0.8), rgba(13, 43, 27, 0.64));
+    }
+
+    .hero {
+      position: relative;
+      z-index: 2;
+      padding: 0 1.2rem;
+      max-width: 900px;
+    }
+
+    .pill {
+      display: inline-block;
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
+      padding: 5px 16px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(1.85rem, 4vw, 2.85rem);
+      line-height: 1.2;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero p {
+      margin: 0.65rem 0 0;
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      color: #e2ede6;
+      font-style: italic;
+    }
+
+    /* COMPACT MAIN WRAPPER */
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 40px 20px 24px;
+    }
+
+    section {
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      color: var(--forest-dark);
+      font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+      margin: 0 0 12px;
+      text-align: center;
+    }
+
+    p {
+      color: #36493e;
+      font-size: 14.5px;
+    }
+
+    .lead {
+      font-size: 15px;
+      color: #2c3e33;
+      margin-bottom: 10px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid #e5e0d3;
+      border-top: 4px solid var(--forest-dark);
+      box-shadow: 0 6px 18px rgba(19, 59, 38, 0.05);
+      padding: 22px 24px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 26px rgba(19, 59, 38, 0.11);
+      border-color: var(--forest-mid);
+    }
+
+    .card h2 {
+      text-align: left;
+      font-size: 1.32rem;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.18rem;
+      color: var(--forest-dark);
+      margin: 0 0 8px;
+    }
+
+    .list {
+      padding-left: 0;
+      margin: 8px 0;
+    }
+
+    .list li {
+      margin: 7px 0;
+      list-style: none;
+      font-size: 14px;
+      color: #2c3e33;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .list li::before {
+      content: "✓";
+      background-color: #eaf3ed;
+      color: var(--forest-dark);
+      font-weight: 800;
+      font-size: 11px;
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .grid.cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid.cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    blockquote {
+      margin: 0;
+      padding: 18px 22px;
+      border-left: 5px solid var(--gold-accent);
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--forest-dark), #0e2e1d);
+      color: #ffffff;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.08rem;
+      box-shadow: 0 8px 20px rgba(19, 59, 38, 0.14);
+    }
+
+    /* CTA BUTTONS */
+    .cta {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-start;
+      align-items: center;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      appearance: none;
+      border-radius: 30px;
+      padding: 11px 24px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--forest-dark);
+      border: 2px solid var(--gold-accent);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: #ffffff;
+      border: 2px solid var(--forest-dark);
+      color: var(--forest-dark);
+    }
+
+    .btn-outline:hover {
+      background: var(--forest-dark);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* TIMELINE TABLE */
+    .timeline {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e5e0d3;
+      background: #ffffff;
+      box-shadow: 0 4px 14px rgba(19, 59, 38, 0.05);
+      font-size: 14px;
+    }
+
+    .timeline th,
+    .timeline td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #e6e2d6;
+    }
+
+    .timeline th {
+      background-color: var(--forest-dark);
+      color: #ffffff;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .timeline tr:nth-child(even) td {
+      background-color: var(--cream-bg);
+    }
+
+    .timeline tr:last-child td {
+      border-bottom: none;
+    }
+
+    .status-pill {
+      display: inline-block;
+      background-color: #eaf3ed;
+      color: var(--forest-dark);
+      font-weight: 700;
+      font-size: 12.5px;
+      padding: 3px 12px;
+      border-radius: 20px;
+    }
+
+    /* DECORATED SECTION HEADERS */
+    .section-head-leaf {
+      text-align: center;
+      margin: 34px 0 18px;
+    }
+
+    .leaf-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+
+    .leaf-line::before,
+    .leaf-line::after {
+      content: "";
+      width: 65px;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, #8ca897, transparent);
+    }
+
+    /* GALLERY */
+    .gallery-section {
+      background: #ffffff;
+      padding: 28px 24px;
+      border-radius: 16px;
+      border: 1px solid #e5e0d3;
+      box-shadow: 0 8px 22px rgba(19, 59, 38, 0.05);
+    }
+
+    .gallery-wrap {
+      margin-top: 16px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+    }
+
+    .g-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #e5e0d3;
+      aspect-ratio: 4 / 3;
+      border: 2px solid #ffffff;
+      box-shadow: 0 6px 18px rgba(19, 59, 38, 0.1);
+      cursor: pointer;
+    }
+
+    .g-item img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.55s ease;
+    }
+
+    .g-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .g-cap {
+      position: absolute;
+      inset: auto 0 0 0;
+      background: linear-gradient(180deg, transparent, rgba(19, 59, 38, 0.88));
+      color: #ffffff;
+      padding: 10px 12px;
+      font-size: 13.5px;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .g-item:hover .g-cap {
+      opacity: 1;
+    }
+
+    /* LIGHTBOX (EXACT ORIGINAL IDS & CONTROLS PRESERVED) */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.88);
+      z-index: 9999;
+      padding: 1rem;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 92%;
+      max-height: 76%;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .controls {
+      margin-top: 16px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .ctrl {
+      background: var(--forest-dark);
+      color: #fff;
+      border: 1.5px solid var(--gold-accent);
+      border-radius: 25px;
+      padding: 9px 16px;
+      font-weight: 700;
+      font-size: 13.5px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .ctrl:hover {
+      background: var(--gold-accent);
+      color: var(--forest-dark);
+    }
+
+    /* CONTACT BANNER */
+    .contact-card-split {
+      background: linear-gradient(135deg, var(--forest-dark) 0%, #0e2e1d 100%);
+      color: #ffffff;
+      border-radius: 16px;
+      padding: 30px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      box-shadow: 0 12px 28px rgba(19, 59, 38, 0.16);
+    }
+
+    .contact-card-split h2 {
+      color: var(--gold-accent);
+      text-align: left;
+      margin-bottom: 8px;
+    }
+
+    .contact-card-split p {
+      color: #e6f2eb;
+      margin-bottom: 6px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--forest-dark);
+      color: #e6efe9;
+      text-align: center;
+      padding: 28px 20px;
+      margin-top: 32px;
+      border-top: 4px solid var(--gold-accent);
+    }
+
+    footer h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: #ffffff;
+      margin: 0 0 6px;
+    }
+
+    footer p {
+      color: #bfd4c7;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .grid.cols-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .top-nav-strip {
+        padding: 10px 16px;
+      }
+
+      .brand-mini strong {
+        display: none;
+      }
+
+      header {
+        height: 44vh;
+      }
+
+      .grid.cols-2,
+      .grid.cols-3 {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Compact Top Navigation Bar -->
+  <div class="top-nav-strip">
+    <a href="index.html" class="brand-mini">
+      <img src="SSMCT Logo1.png" alt="SSMCT Logo">
+      <strong>Shyamashree Shitala Maa Charitable Trust</strong>
+    </a>
+    <a href="index.html" class="back-home-btn">← Back to Home</a>
+  </div>
+
   <!-- Hero -->
   <header>
     <div class="hero">
@@ -104,44 +581,21 @@
     </div>
   </header>
 
-  <!-- What is Sparsh -->
-  <section>
-    <h2>🌟 What is Project Sparsh?</h2>
-    <div class="card">
-      <p class="lead">
-        Project Sparsh is a winter humanitarian campaign launched by <b>Shyamashree Sitala Maa Charitable Trust</b> to distribute woolen blankets to unsheltered and homeless individuals.
-      </p>
-      <p>
-        The word <b>Sparsh (स्पर्श)</b> means “a gentle touch” — and that’s what this project aims to be: a compassionate gesture that brings relief, dignity, and hope to those battling the cold without protection.
-      </p>
-    </div>
-  </section>
-
-  <!-- Goal -->
-  <section>
-    <h2>🎯 Goal of the Project</h2>
-    <blockquote>
-      To protect vulnerable and unsheltered individuals from the harsh effects of winter by providing warm woolen blankets, ensuring dignity, safety, and survival for those living without shelter.
-    </blockquote>
-  </section>
-
-  <!-- Where & Beneficiaries -->
-  <section>
-    <h2>📍 Where Will It Happen?</h2>
-    <div class="grid cols-2">
+  <main>
+    <!-- Compact 2-Column Row: What is Sparsh & Where Will It Happen -->
+    <section class="grid cols-2">
       <div class="card">
-        <p>Project Sparsh focuses on unsheltered populations in and around <b>Burdwan District, West Bengal</b>.</p>
-        <p><b>Target areas include:</b></p>
-        <ul class="list">
-          <li>Roadside settlements</li>
-          <li>Railway stations and bus terminals</li>
-          <li>Slum pockets</li>
-          <li>Footpaths and open public spaces</li>
-          <li>Remote villages lacking winter support</li>
-        </ul>
+        <h2>🌟 What is Project Sparsh?</h2>
+        <p class="lead">
+          Project Sparsh is a winter humanitarian campaign launched by <b>Shyamashree Sitala Maa Charitable Trust</b> to distribute woolen blankets to unsheltered and homeless individuals.
+        </p>
+        <p>
+          The word <b>Sparsh (स्पर्श)</b> means “a gentle touch” — and that’s what this project aims to be: a compassionate gesture that brings relief, dignity, and hope to those battling the cold without protection.
+        </p>
       </div>
+
       <div class="card">
-        <h3 style="margin-top:0;color:var(--brand)">👥 Who Will Benefit?</h3>
+        <h2>👥 Who Will Benefit?</h2>
         <ul class="list">
           <li>Homeless individuals sleeping in the open</li>
           <li>Elderly people without family support</li>
@@ -150,131 +604,162 @@
           <li>Anyone at risk due to lack of warm clothing or bedding</li>
         </ul>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Distribution -->
-  <section>
-    <h2>📦 What Will Be Distributed?</h2>
-    <div class="grid cols-3">
+    <!-- Goal Quote -->
+    <section>
+      <blockquote>
+        🎯 <b>Goal of the Project:</b> To protect vulnerable and unsheltered individuals from the harsh effects of winter by providing warm woolen blankets, ensuring dignity, safety, and survival for those living without shelter.
+      </blockquote>
+    </section>
+
+    <!-- Where & Timeline Compact 2-Column -->
+    <section class="grid cols-2">
       <div class="card">
-        <h3 style="margin:0 0 .5rem;color:var(--brand)">New woolen blankets</h3>
-        <p>Each blanket is a lifesaving gift, especially during freezing nights when shelters are out of reach.</p>
+        <h2>📍 Where Will It Happen?</h2>
+        <p>Project Sparsh focuses on unsheltered populations in and around <b>Burdwan District, West Bengal</b>.</p>
+        <p style="margin-top:8px;"><b>Target areas include:</b></p>
+        <ul class="list">
+          <li>Roadside settlements</li>
+          <li>Railway stations and bus terminals</li>
+          <li>Slum pockets</li>
+          <li>Footpaths and open public spaces</li>
+          <li>Remote villages lacking winter support</li>
+        </ul>
       </div>
+
       <div class="card">
-        <h3 style="margin:0 0 .5rem;color:var(--brand)">Warm clothing / shawls</h3>
-        <p>Occasional distribution based on in-kind donations.</p>
+        <h2>📅 Project Timeline</h2>
+        <table class="timeline">
+          <thead>
+            <tr><th>Phase</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Planning</td><td><span class="status-pill">Ongoing</span></td></tr>
+            <tr><td>Launch Date</td><td>Winter 2025 (Exact Date TBA)</td></tr>
+            <tr><td>Distribution</td><td>To begin as cold intensifies</td></tr>
+          </tbody>
+        </table>
       </div>
+    </section>
+
+    <!-- Distribution -->
+    <section>
+      <div class="section-head-leaf">
+        <div class="leaf-line">
+          <svg viewBox="0 0 44 36" width="32" height="26" fill="#1d5236">
+            <path d="M22 33V11M22 22c-7-8-16-7-16-7s2 10 16 7zm0-6c7-8 16-7 16-7s-2 10-16 7zm0-5c-3-6 0-10 0-10s3 4 0 10z"/>
+          </svg>
+        </div>
+        <h2>📦 What Will Be Distributed?</h2>
+      </div>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>New woolen blankets</h3>
+          <p>Each blanket is a lifesaving gift, especially during freezing nights when shelters are out of reach.</p>
+        </div>
+        <div class="card">
+          <h3>Warm clothing / shawls</h3>
+          <p>Occasional distribution based on in-kind donations.</p>
+        </div>
+        <div class="card">
+          <h3>Emergency warmth kits</h3>
+          <p>Optional in future phases to support the most vulnerable.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to Help & Transparency Compact 2-Column -->
+    <section class="grid cols-2">
       <div class="card">
-        <h3 style="margin:0 0 .5rem;color:var(--brand)">Emergency warmth kits</h3>
-        <p>Optional in future phases to support the most vulnerable.</p>
+        <h2>🤝 How Can You Help?</h2>
+        <p>Whether you're an individual, a company, or an NGO partner — your support can make a direct difference.</p>
+        <ul class="list">
+          <li><b>Donate:</b> ₹250 = 1 blanket = 1 life made warmer</li>
+          <li><b>In-kind Contribution:</b> New woolen blankets or shawls</li>
+          <li><b>Sponsor a Batch:</b> Fund 50/100/200 blankets</li>
+          <li><b>Volunteer:</b> Join us in ground distribution</li>
+          <li><b>Corporate CSR:</b> Partner with us for visibility and impact</li>
+          <li><b>Spread the Word:</b> Share our campaign on social media</li>
+        </ul>
+        <div class="cta">
+          <button class="btn btn-primary">💛 Donate a Blanket</button>
+          <button class="btn btn-outline">🌿 Volunteer</button>
+        </div>
+      </div>
+
+      <div class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <h2>📸 Transparency &amp; Reporting</h2>
+          <ul class="list">
+            <li>All donations are acknowledged</li>
+            <li>Distribution will be documented with photos &amp; reports</li>
+            <li>80G tax benefits available for financial donations</li>
+            <li>Full impact report shared with major donors and CSR partners</li>
+          </ul>
+        </div>
+        <blockquote style="margin-top:16px; font-size:0.98rem;">
+          💬 “We can’t solve winter, but we can save lives from it.” A simple blanket can prevent hypothermia, reduce illness, and offer emotional reassurance to someone surviving on the streets.
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery-section">
+      <div class="section-head-leaf" style="margin-top:0;">
+        <div class="leaf-line">
+          <svg viewBox="0 0 44 36" width="32" height="26" fill="#1d5236">
+            <path d="M22 33V11M22 22c-7-8-16-7-16-7s2 10 16 7zm0-6c7-8 16-7 16-7s-2 10-16 7zm0-5c-3-6 0-10 0-10s3 4 0 10z"/>
+          </svg>
+        </div>
+        <h2>🖼 Photo Gallery</h2>
+      </div>
+      <p class="lead" style="text-align:center">Snapshots of warmth, dignity, and community care.</p>
+      <div class="gallery-wrap">
+        <div class="gallery">
+          <figure class="g-item"><img src="70.jpg" alt="Volunteer giving blanket"><figcaption class="g-cap">Volunteer handing a blanket</figcaption></figure>
+          <figure class="g-item"><img src="https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?auto=format&fit=crop&w=1200&q=80" alt="Cold night city"><figcaption class="g-cap">Cold night on city streets</figcaption></figure>
+          <figure class="g-item"><img src="https://images.unsplash.com/photo-1483721310020-03333e577078?auto=format&fit=crop&w=1200&q=80" alt="Hands with wool shawl"><figcaption class="g-cap">A touch of warmth</figcaption></figure>
+          <figure class="g-item"><img src="70.jpg" alt="Community support"><figcaption class="g-cap">Community support in action</figcaption></figure>
+          <figure class="g-item"><img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=1200&q=80" alt="Team of volunteers"><figcaption class="g-cap">Volunteer team</figcaption></figure>
+          <figure class="g-item"><img src="https://images.unsplash.com/photo-1542060748-10c28b62716f?auto=format&fit=crop&w=1200&q=80" alt="Blanket stack"><figcaption class="g-cap">Blankets ready for distribution</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox (EXACT ORIGINAL IDS & CONTROLS PRESERVED) -->
+    <div class="lightbox" id="lightbox">
+      <img src="" alt="Expanded view" />
+      <div class="controls">
+        <button class="ctrl" id="prev">⟨ Prev</button>
+        <button class="ctrl" id="next">Next ⟩</button>
+        <button class="ctrl" id="pause">⏸ Pause</button>
+        <button class="ctrl" id="play" style="display:none">▶ Play</button>
+        <button class="ctrl" id="close">✖ Close</button>
       </div>
     </div>
-  </section>
 
-  <!-- Timeline -->
-  <section>
-    <h2>📅 Project Timeline</h2>
-    <table class="timeline">
-      <thead>
-        <tr><th>Phase</th><th>Status</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Planning</td><td>Ongoing</td></tr>
-        <tr><td>Launch Date</td><td>Winter 2025 (Exact Date TBA)</td></tr>
-        <tr><td>Distribution</td><td>To begin as cold intensifies</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <!-- How to Help -->
-  <section>
-    <h2>🤝 How Can You Help?</h2>
-    <div class="card">
-      <p>Whether you're an individual, a company, or an NGO partner — your support can make a direct difference.</p>
-      <ul class="list">
-        <li>✅ <b>Donate:</b> ₹250 = 1 blanket = 1 life made warmer</li>
-        <li>✅ <b>In-kind Contribution:</b> New woolen blankets or shawls</li>
-        <li>✅ <b>Sponsor a Batch:</b> Fund 50/100/200 blankets</li>
-        <li>✅ <b>Volunteer:</b> Join us in ground distribution</li>
-        <li>✅ <b>Corporate CSR:</b> Partner with us for visibility and impact</li>
-        <li>✅ <b>Spread the Word:</b> Share our campaign on social media</li>
-      </ul>
-      <div class="cta">
-        <button class="btn btn-primary">Donate a Blanket</button>
-        <button class="btn" style="background:#fff;border:2px solid var(--brand);color:var(--brand)">Volunteer</button>
+    <!-- Contact -->
+    <section class="contact-card-split">
+      <div>
+        <h2>📞 Contact Us</h2>
+        <p><b>Shyamashree Sitala Maa Charitable Trust</b><br/>
+        Email: <i>[Your Email]</i> &nbsp;|&nbsp; Phone: <i>[Your Phone]</i><br/>
+        Location: Burdwan, West Bengal</p>
+        <p style="font-size:13px; color:#bfd4c7;">Registered under Indian Registration Act, 1908 | 80G | 12A | NITI Aayog Registered</p>
       </div>
-    </div>
-  </section>
-
-  <!-- Why it matters -->
-  <section>
-    <h2>💬 Why It Matters</h2>
-    <blockquote>
-      “We can’t solve winter, but we can save lives from it.” A simple blanket can prevent hypothermia, reduce illness, and offer emotional reassurance to someone surviving on the streets.
-    </blockquote>
-  </section>
-
-  <!-- Transparency -->
-  <section>
-    <h2>📸 Transparency & Reporting</h2>
-    <div class="grid cols-3">
-      <div class="card"><p>All donations are acknowledged</p></div>
-      <div class="card"><p>Distribution will be documented with photos & reports</p></div>
-      <div class="card"><p>80G tax benefits available for financial donations</p></div>
-    </div>
-    <div class="card" style="margin-top:1rem">
-      <p>Full impact report shared with major donors and CSR partners.</p>
-    </div>
-  </section>
-
-  <!-- Gallery -->
-  <section>
-    <h2>🖼 Photo Gallery</h2>
-    <p class="lead" style="text-align:center">Snapshots of warmth, dignity, and community care.</p>
-    <div class="gallery-wrap">
-      <div class="gallery">
-        <figure class="g-item"><img src="70.jpg" alt="Volunteer giving blanket"><figcaption class="g-cap">Volunteer handing a blanket</figcaption></figure>
-        <figure class="g-item"><img src="https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?auto=format&fit=crop&w=1200&q=80" alt="Cold night city"><figcaption class="g-cap">Cold night on city streets</figcaption></figure>
-        <figure class="g-item"><img src="https://images.unsplash.com/photo-1483721310020-03333e577078?auto=format&fit=crop&w=1200&q=80" alt="Hands with wool shawl"><figcaption class="g-cap">A touch of warmth</figcaption></figure>
-        <figure class="g-item"><img src="70.jpg" alt="Community support"><figcaption class="g-cap">Community support in action</figcaption></figure>
-        <figure class="g-item"><img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=1200&q=80" alt="Team of volunteers"><figcaption class="g-cap">Volunteer team</figcaption></figure>
-        <figure class="g-item"><img src="https://images.unsplash.com/photo-1542060748-10c28b62716f?auto=format&fit=crop&w=1200&q=80" alt="Blanket stack"><figcaption class="g-cap">Blankets ready for distribution</figcaption></figure>
+      <div>
+        <button class="btn" style="background-color:var(--gold-accent); color:var(--forest-dark); border:none;">💛 Support Project Sparsh</button>
       </div>
-    </div>
-  </section>
-
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <img src="" alt="Expanded view" />
-    <div class="controls">
-      <button class="ctrl" id="prev">⟨ Prev</button>
-      <button class="ctrl" id="next">Next ⟩</button>
-      <button class="ctrl" id="pause">⏸ Pause</button>
-      <button class="ctrl" id="play" style="display:none">▶ Play</button>
-      <button class="ctrl" id="close">✖ Close</button>
-    </div>
-  </div>
-
-  <!-- Contact -->
-  <section>
-    <h2>📞 Contact Us</h2>
-    <div class="card">
-      <p><b>Shyamashree Sitala Maa Charitable Trust</b><br/>
-      Email: <i>[Your Email]</i> &nbsp;|&nbsp; Phone: <i>[Your Phone]</i><br/>
-      Location: Burdwan, West Bengal</p>
-      <p>Registered under Indian Registration Act, 1908 | 80G | 12A | NITI Aayog Registered</p>
-      <div class="cta">
-        <button class="btn btn-primary">Support Project Sparsh</button>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer>
     <h3>Spread warmth. Share Sparsh.</h3>
     <p>Together, we can help our neighbors survive the winter with dignity.</p>
   </footer>
 
+  <!-- EXACT ORIGINAL SCRIPT PRESERVED -->
   <script>
     // Lightbox + slideshow
     const galleryImgs = document.querySelectorAll('.g-item img');
@@ -311,7 +796,6 @@
       if(e.key==='ArrowLeft'){ show(idx-1); start(); }
       if(e.key==='Escape'){ lightbox.classList.remove('active'); stop(); }
     });
-
   </script>
 </body>
 </html>
