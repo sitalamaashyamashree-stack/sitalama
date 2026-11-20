@@ -3,114 +3,591 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Feed India — Shitala Canteen | Learn More</title>
+  <title>Feed India — Shitala Canteen | Learn More | Shyamashree Shitala Maa Charitable Trust</title>
   <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
 
- <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-149NCZ03L5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-149NCZ03L5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-149NCZ03L5');
+  </script>
 
-  gtag('config', 'G-149NCZ03L5');
-</script>
   <style>
-    :root{
-      --brand:#7b1f2b;      /* deep maroon */
-      --brand-dark:#5a1320;
-      --accent:#d4a017;     /* golden */
-      --bg:#fff7f5;         /* warm cream */
-      --card:#ffffff;
-      --ink:#2b2b2b;
-      --muted:#666;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: "Inter","Segoe UI",Roboto,Arial,Helvetica,sans-serif;
-      background:var(--bg);
-      color:var(--ink);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.5;
+    :root {
+      --forest-dark: #133b26;
+      --forest-mid: #1d5236;
+      --forest-light: #2b734d;
+      --cream-bg: #fbf9f3;
+      --cream-card: #f3efe4;
+      --gold-accent: #eab308;
+      --gold-hover: #ca8a04;
+      --text-dark: #1a2e22;
+      --text-muted: #4b5e53;
     }
 
-    /* Hero */
-    header{
-      height:58vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      color:#fff;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', Roboto, Arial, Helvetica, sans-serif;
+      background-color: var(--cream-bg);
+      color: var(--text-dark);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3.serif-title {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    /* TOP COMPACT NAVIGATION BAR */
+    .top-nav-strip {
+      background-color: #ffffff;
+      padding: 12px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e5e0d3;
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      box-shadow: 0 3px 14px rgba(19, 59, 38, 0.06);
+    }
+
+    .brand-mini {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--forest-dark);
+    }
+
+    .brand-mini img {
+      height: 44px;
+      width: auto;
+    }
+
+    .brand-mini strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 15.5px;
+      line-height: 1.2;
+    }
+
+    .back-home-btn {
+      background-color: var(--forest-dark);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 1.5px solid var(--gold-accent);
+      transition: all 0.25s ease;
+    }
+
+    .back-home-btn:hover {
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
+    }
+
+    /* HERO HEADER */
+    header {
+      height: 54vh;
+      min-height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
       background:
-        linear-gradient(180deg, rgba(123,31,43,0.45), rgba(90,19,32,0.25)),
+        linear-gradient(135deg, rgba(19, 59, 38, 0.8), rgba(13, 43, 27, 0.64)),
         url("67.jpg") center/cover no-repeat;
-      position:relative;
+      position: relative;
+      border-bottom: 5px solid var(--forest-dark);
     }
-    .hero{padding:1rem;max-width:1100px}
-    .pill{display:inline-block;background:#fff3e6;color:var(--brand);padding:6px 12px;border-radius:999px;font-weight:700;margin-bottom:12px}
-    .hero h1{margin:0;font-size:clamp(1.6rem,3.6vw,2.6rem);letter-spacing:0.2px}
-    .hero p{margin:.6rem 0 0;color:rgba(255,255,255,0.95)}
 
-    main{max-width:1100px;margin:1.75rem auto;padding:0 1rem;}
+    .hero {
+      padding: 1.2rem;
+      max-width: 960px;
+      position: relative;
+      z-index: 2;
+    }
 
-/* Sections */
-    h2{color:var(--brand);font-size:clamp(1.1rem,2.2vw,1.6rem);margin:0 0 .7rem;text-align:center}
-    .card{background:var(--card);border-radius:14px;padding:18px;box-shadow:0 8px 26px rgba(0,0,0,0.06)}
-    .lead{color:var(--muted);font-size:1.02rem}
-    .two{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-    .three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    @media (max-width:880px){ .two{grid-template-columns:1fr} .three{grid-template-columns:repeat(2,1fr)} }
-    @media (max-width:560px){ .three{grid-template-columns:1fr} }
+    .pill {
+      display: inline-block;
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
+      padding: 5px 16px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
 
-/* Buttons */
-    .cta{display:flex;gap:12px;justify-content:center;margin-top:12px}
-    .btn{border:none;padding:11px 18px;border-radius:28px;font-weight:700;cursor:pointer}
-    .btn-primary{background:var(--brand);color:#fff}
-    .btn-outline{background:#fff;border:2px solid var(--brand);color:var(--brand)}
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(1.85rem, 4vw, 2.85rem);
+      line-height: 1.2;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+    }
 
-/* small components */
-    ul{padding-left:1.05rem;margin:8px 0}
-    li{margin:6px 0}
-    blockquote{background:#fff6eb;border-left:6px solid var(--accent);padding:12px 14px;border-radius:8px;color:var(--muted)}
+    .hero p {
+      margin: 0.65rem 0 0;
+      color: #e2ede6;
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      font-style: italic;
+    }
 
-/* Timeline table */
-    .timeline{width:100%;border-collapse:collapse;margin-top:6px}
-    .timeline th{background:#fff3e6;color:var(--brand);padding:10px;border-bottom:1px solid #f0e6df;text-align:left}
-    .timeline td{padding:10px;border-bottom:1px solid #f3ece8}
+    /* MAIN COMPACT WRAPPER */
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 40px 20px 24px;
+    }
 
-/* Gallery */
-    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px}
-    .g-item{position:relative;border-radius:12px;overflow:hidden;background:#f3ebe8;box-shadow:0 8px 24px rgba(0,0,0,0.08)}
-    .g-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
-    .g-item:hover img{transform:scale(1.06)}
-    .g-cap{position:absolute;left:0;right:0;bottom:0;padding:10px 12px;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.48));color:#fff;font-weight:600;opacity:0;transition:opacity .25s}
-    .g-item:hover .g-cap{opacity:1}
+    section {
+      margin-bottom: 24px;
+    }
 
-/* Lightbox */
-    .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;background:rgba(0,0,0,0.78);z-index:9999;padding:16px}
-    .lightbox.active{display:flex}
-    .lightbox img{max-width:92%;max-height:78%;border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,0.7)}
-    .controls{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;justify-content:center}
-    .ctrl{background:var(--accent);border:none;color:var(--brand-dark);padding:10px 14px;border-radius:10px;font-weight:800;cursor:pointer}
-    .ctrl.alt{background:var(--brand);color:#fff}
+    h2 {
+      color: var(--forest-dark);
+      font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+      margin: 0 0 12px;
+      text-align: center;
+    }
 
-/* Footer */
-    footer{background:linear-gradient(90deg,var(--brand),var(--brand-dark));color:#fff;padding:18px;margin-top:24px;text-align:center;border-top-left-radius:8px;border-top-right-radius:8px}
-    footer p{margin:6px 0 0}
+    .card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 22px 24px;
+      border: 1px solid #e5e0d3;
+      border-top: 4px solid var(--forest-dark);
+      box-shadow: 0 6px 18px rgba(19, 59, 38, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
 
-/* small responsive tweaks */
-    @media (max-width:500px){
-      .hero p{font-size:0.95rem}
-      .pill{font-size:0.85rem;padding:5px 10px}
-      .controls{gap:8px}
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 26px rgba(19, 59, 38, 0.11);
+      border-color: var(--forest-mid);
+    }
+
+    .card h2 {
+      text-align: left;
+      font-size: 1.32rem;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--forest-dark);
+      margin: 0 0 8px;
+    }
+
+    .card p {
+      font-size: 14.5px;
+      color: #36493e;
+      margin-bottom: 10px;
+    }
+
+    .lead {
+      color: #2c3e33;
+      font-size: 15px;
+    }
+
+    .two {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .three {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    /* MISSION BANNER QUOTE */
+    .mission-banner {
+      background: linear-gradient(135deg, var(--forest-dark), #0e2e1d);
+      color: #ffffff;
+      border-radius: 16px;
+      padding: 26px 28px;
+      border-left: 6px solid var(--gold-accent);
+      box-shadow: 0 10px 24px rgba(19, 59, 38, 0.14);
+    }
+
+    .mission-banner h2 {
+      color: var(--gold-accent);
+      text-align: left;
+      font-size: 1.45rem;
+      margin-bottom: 8px;
+    }
+
+    .mission-banner p {
+      color: #e6f2eb;
+      font-size: 15.5px;
+      margin: 0;
+    }
+
+    /* BUTTONS */
+    .cta {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-start;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border-radius: 30px;
+      padding: 11px 22px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--forest-dark);
+      border: 2px solid var(--gold-accent);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: #ffffff;
+      border: 2px solid var(--forest-dark);
+      color: var(--forest-dark);
+    }
+
+    .btn-outline:hover {
+      background: var(--forest-dark);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* LISTS & BADGES */
+    ul {
+      padding-left: 0;
+      margin: 8px 0;
+    }
+
+    li {
+      margin: 7px 0;
+      list-style: none;
+      font-size: 14px;
+      color: #2c3e33;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    li::before {
+      content: "✓";
+      background-color: #eaf3ed;
+      color: var(--forest-dark);
+      font-weight: 800;
+      font-size: 11px;
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .highlight-chip {
+      display: inline-block;
+      background-color: #fef9c3;
+      color: var(--forest-dark);
+      font-weight: 800;
+      font-size: 14.5px;
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--gold-accent);
+      margin-top: 4px;
+    }
+
+    .account-note {
+      background-color: var(--cream-bg);
+      border: 1px dashed #9db5a7;
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 13px !important;
+      color: var(--forest-mid) !important;
+      margin-top: 10px;
+      margin-bottom: 0 !important;
+    }
+
+    blockquote {
+      background-color: var(--cream-bg);
+      border-left: 4px solid var(--gold-accent);
+      padding: 12px 14px;
+      border-radius: 8px;
+      color: var(--forest-dark);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    /* DECORATED SECTION HEADERS */
+    .section-head-leaf {
+      text-align: center;
+      margin: 32px 0 16px;
+    }
+
+    .leaf-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+
+    .leaf-line::before,
+    .leaf-line::after {
+      content: "";
+      width: 65px;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, #8ca897, transparent);
+    }
+
+    /* GALLERY */
+    .gallery-section {
+      background: #ffffff;
+      padding: 28px 24px;
+      border-radius: 16px;
+      border: 1px solid #e5e0d3;
+      box-shadow: 0 8px 22px rgba(19, 59, 38, 0.05);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .g-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #e5e0d3;
+      aspect-ratio: 4 / 3;
+      border: 2px solid #ffffff;
+      box-shadow: 0 6px 18px rgba(19, 59, 38, 0.1);
+      cursor: pointer;
+    }
+
+    .g-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.55s ease;
+    }
+
+    .g-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .g-cap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 10px 12px;
+      background: linear-gradient(180deg, transparent, rgba(19, 59, 38, 0.88));
+      color: #fff;
+      font-size: 13.5px;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .g-item:hover .g-cap {
+      opacity: 1;
+    }
+
+    /* LIGHTBOX (EXACT ORIGINAL IDS & CONTROLS PRESERVED) */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.88);
+      z-index: 9999;
+      padding: 16px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 92%;
+      max-height: 76%;
+      border-radius: 12px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    .controls {
+      margin-top: 16px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .ctrl {
+      background: var(--forest-dark);
+      border: 1.5px solid var(--gold-accent);
+      color: #ffffff;
+      padding: 9px 16px;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 13.5px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .ctrl:hover {
+      background: var(--gold-accent);
+      color: var(--forest-dark);
+    }
+
+    .ctrl.alt {
+      background: #991b1b;
+      border-color: #fca5a5;
+      color: #fff;
+    }
+
+    .ctrl.alt:hover {
+      background: #dc2626;
+    }
+
+    /* CONTACT BANNER */
+    .contact-banner {
+      background: linear-gradient(135deg, var(--forest-dark) 0%, #0e2e1d 100%);
+      color: #ffffff;
+      border-radius: 16px;
+      padding: 30px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      box-shadow: 0 12px 28px rgba(19, 59, 38, 0.16);
+    }
+
+    .contact-banner h2 {
+      color: var(--gold-accent);
+      text-align: left;
+      margin-bottom: 8px;
+    }
+
+    .contact-banner p {
+      color: #e6f2eb;
+      margin-bottom: 6px;
+      font-size: 14.5px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--forest-dark);
+      color: #e6efe9;
+      padding: 28px 20px;
+      margin-top: 32px;
+      text-align: center;
+      border-top: 4px solid var(--gold-accent);
+    }
+
+    footer h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: #ffffff;
+      margin: 0 0 6px;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 14px;
+      color: #bfd4c7;
+    }
+
+    @media (max-width: 880px) {
+      .two {
+        grid-template-columns: 1fr;
+      }
+
+      .three {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .top-nav-strip {
+        padding: 10px 16px;
+      }
+
+      .brand-mini strong {
+        display: none;
+      }
+
+      header {
+        height: 44vh;
+      }
+
+      .three {
+        grid-template-columns: 1fr;
+      }
+
+      .controls {
+        gap: 8px;
+      }
     }
   </style>
 </head>
 <body>
 
+  <!-- Compact Top Navigation Bar -->
+  <div class="top-nav-strip">
+    <a href="index.html" class="brand-mini">
+      <img src="SSMCT Logo1.png" alt="SSMCT Logo">
+      <strong>Shyamashree Shitala Maa Charitable Trust</strong>
+    </a>
+    <a href="index.html" class="back-home-btn">← Back to Home</a>
+  </div>
+
+  <!-- Hero Header -->
   <header>
     <div class="hero">
       <div class="pill">🌙 Shitala Canteen — Feed with Dignity, Every Night</div>
@@ -120,59 +597,64 @@
   </header>
 
   <main>
-    <!-- Mission -->
-    <section>
+    <!-- Mission Banner -->
+    <section class="mission-banner">
       <h2>🤝 Our Mission</h2>
-      <div class="card">
-        <p class="lead">To serve one hot, dignified meal every evening to the most neglected people of our society—daily wage workers, beggars, elderly, the homeless, and street-dwelling poor.</p>
-      </div>
+      <p>To serve one hot, dignified meal every evening to the most neglected people of our society—daily wage workers, beggars, elderly, the homeless, and street-dwelling poor.</p>
     </section>
 
-    <!-- Locations -->
+    <!-- Locations (Compact 2-Column) -->
     <section>
-      <h2>📍 No Fixed Place — Because Hunger Moves</h2>
-      <div class="two" style="margin-top:10px">
+      <div class="section-head-leaf">
+        <div class="leaf-line">
+          <svg viewBox="0 0 44 36" width="32" height="26" fill="#1d5236">
+            <path d="M22 33V11M22 22c-7-8-16-7-16-7s2 10 16 7zm0-6c7-8 16-7 16-7s-2 10-16 7zm0-5c-3-6 0-10 0-10s3 4 0 10z"/>
+          </svg>
+        </div>
+        <h2>📍 No Fixed Place — Because Hunger Moves</h2>
+      </div>
+      <div class="two">
         <div class="card">
+          <h3>Mobile Evening Kitchen</h3>
           <p>Shitala Canteen is mobile: we go where hunger is found — footpaths, railway platforms, bus stops, local markets, temple premises, slums, and under flyovers. Each evening volunteers serve in a new area where help is needed most.</p>
         </div>
         <div class="card">
-          <h3 style="margin-top:0;color:var(--brand)">Typical spots</h3>
+          <h3>Typical Spots</h3>
           <ul>
-            <li>Footpaths & roadside dwellings</li>
-            <li>Railway platforms & bus stops</li>
-            <li>Local markets & temple premises</li>
-            <li>Slums & road-side shelters</li>
+            <li>Footpaths &amp; roadside dwellings</li>
+            <li>Railway platforms &amp; bus stops</li>
+            <li>Local markets &amp; temple premises</li>
+            <li>Slums &amp; road-side shelters</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- How it works -->
-    <section>
-      <h2>💰 How It Works</h2>
-      <div class="card">
-        <p><b>₹49</b> is raised via public donation (80G eligible). The beneficiary contributes a symbolic <b>₹1</b>. Each ₹50 serves one dinner with dignity and care.</p>
-        <p class="lead">Beneficiary contributions are recorded under “Beneficiary Contribution – Symbolic – Non-80G” in our accounts.</p>
+    <!-- How It Works & Sponsor a Day (Compact 2-Column) -->
+    <section class="two">
+      <div class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <h2>💰 How It Works</h2>
+          <p><b>₹49</b> is raised via public donation (80G eligible). The beneficiary contributes a symbolic <b>₹1</b>. Each ₹50 serves one dinner with dignity and care.</p>
+        </div>
+        <p class="account-note">Beneficiary contributions are recorded under “Beneficiary Contribution – Symbolic – Non-80G” in our accounts.</p>
       </div>
-    </section>
 
-    <!-- Sponsor a day -->
-    <section>
-      <h2>🙏 Sponsor a Day — Feed with Name</h2>
       <div class="card">
+        <h2>🙏 Sponsor a Day — Feed with Name</h2>
         <p>Sponsor a full evening to serve meals in the name of a donor — birthdays, anniversaries, memorials, or CSR campaigns. Donors can also join distribution.</p>
-        <p><b>Rs 2,500 ≈ 50 dinners</b></p>
-        <div class="cta" style="margin-top:12px">
-          <button class="btn btn-primary">Sponsor a Day</button>
+        <div class="highlight-chip">Rs 2,500 ≈ 50 dinners</div>
+        <div class="cta">
+          <button class="btn btn-primary">💛 Sponsor a Day</button>
           <button class="btn btn-outline">Donate ₹49</button>
         </div>
       </div>
     </section>
 
-    <!-- Who we serve -->
-    <section>
-      <h2>👥 Who We Serve</h2>
+    <!-- Who We Serve & Join Us (Compact 2-Column) -->
+    <section class="two">
       <div class="card">
+        <h2>👥 Who We Serve</h2>
         <ul>
           <li>Old, abandoned individuals</li>
           <li>Daily labourers who sleep hungry</li>
@@ -181,23 +663,10 @@
           <li>Anyone who cannot afford a meal</li>
         </ul>
       </div>
-    </section>
 
-    <!-- Transparency -->
-    <section>
-      <h2>📸 Visibility & Transparency</h2>
-      <div class="three" style="margin-top:10px">
-        <div class="card"><p>Daily photos & activity updates</p></div>
-        <div class="card"><p>Donors tagged (with consent) & receipts issued</p></div>
-        <div class="card"><p>Accounts maintained in Manager.io — 80G receipts available</p></div>
-      </div>
-    </section>
-
-    <!-- Join -->
-    <section>
-      <h2>🔗 Join Us</h2>
       <div class="card">
-        <p class="lead">“You can’t feed everyone. But you can feed someone, today.”</p>
+        <h2>🔗 Join Us</h2>
+        <blockquote>“You can’t feed everyone. But you can feed someone, today.”</blockquote>
         <ul>
           <li>Donate ₹49 or more</li>
           <li>Sponsor a full evening</li>
@@ -207,9 +676,33 @@
       </div>
     </section>
 
-    <!-- Gallery -->
+    <!-- Transparency -->
     <section>
-      <h2>🖼 Photo Gallery — Shitala Canteen</h2>
+      <div class="section-head-leaf">
+        <div class="leaf-line">
+          <svg viewBox="0 0 44 36" width="32" height="26" fill="#1d5236">
+            <path d="M22 33V11M22 22c-7-8-16-7-16-7s2 10 16 7zm0-6c7-8 16-7 16-7s-2 10-16 7zm0-5c-3-6 0-10 0-10s3 4 0 10z"/>
+          </svg>
+        </div>
+        <h2>📸 Visibility &amp; Transparency</h2>
+      </div>
+      <div class="three">
+        <div class="card"><p style="margin:0; font-weight:600; text-align:center;">📷 Daily photos &amp; activity updates</p></div>
+        <div class="card"><p style="margin:0; font-weight:600; text-align:center;">🏷️ Donors tagged (with consent) &amp; receipts issued</p></div>
+        <div class="card"><p style="margin:0; font-weight:600; text-align:center;">📊 Accounts maintained in Manager.io — 80G receipts available</p></div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery-section">
+      <div class="section-head-leaf" style="margin-top:0;">
+        <div class="leaf-line">
+          <svg viewBox="0 0 44 36" width="32" height="26" fill="#1d5236">
+            <path d="M22 33V11M22 22c-7-8-16-7-16-7s2 10 16 7zm0-6c7-8 16-7 16-7s-2 10-16 7zm0-5c-3-6 0-10 0-10s3 4 0 10z"/>
+          </svg>
+        </div>
+        <h2>🖼 Photo Gallery — Shitala Canteen</h2>
+      </div>
       <p class="lead" style="text-align:center">Open-source photos showing food distribution, volunteers, and community meals.</p>
 
       <div class="gallery" aria-label="Feed India gallery">
@@ -225,13 +718,13 @@
 
         <figure class="g-item"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80" alt="Organized meal packs"><figcaption class="g-cap">Organized meal packs</figcaption></figure>
 
-         <figure class="g-item"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80" alt="Organized meal packs"><figcaption class="g-cap">Organized meal packs</figcaption></figure>
+        <figure class="g-item"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80" alt="Organized meal packs"><figcaption class="g-cap">Organized meal packs</figcaption></figure>
 
-          <figure class="g-item"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80" alt="Organized meal packs"><figcaption class="g-cap">Organized meal packs</figcaption></figure>
+        <figure class="g-item"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80" alt="Organized meal packs"><figcaption class="g-cap">Organized meal packs</figcaption></figure>
       </div>
     </section>
 
-    <!-- Lightbox -->
+    <!-- Lightbox (EXACT ORIGINAL IDS & CONTROLS PRESERVED) -->
     <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Image viewer">
       <img src="" alt="Expanded gallery image" id="lbImage" />
       <div class="controls" role="group" aria-label="Lightbox controls">
@@ -244,16 +737,16 @@
     </div>
 
     <!-- Contact -->
-    <section style="margin-top:16px;">
-      <h2>📞 Contact Us</h2>
-      <div class="card">
+    <section class="contact-banner">
+      <div>
+        <h2>📞 Contact Us</h2>
         <p><b>Shyamashree Shitala Maa Charitable Trust</b><br>
         📍 [Your location] &nbsp;|&nbsp; 📧 [Email ID] &nbsp;|&nbsp; 📱 [Phone number] &nbsp;|&nbsp; 🌐 [Website]</p>
-        <p>PAN, 80G, 12A, and CSR Compliant</p>
-        <div class="cta">
-          <button class="btn btn-primary">Support Shitala Canteen</button>
-          <button class="btn btn-outline">Volunteer</button>
-        </div>
+        <p style="font-size:13px; color:#bfd4c7; margin-bottom:0;">PAN, 80G, 12A, and CSR Compliant</p>
+      </div>
+      <div class="cta" style="margin-top:0;">
+        <button class="btn" style="background-color:var(--gold-accent); color:var(--forest-dark); border:2px solid var(--gold-accent);">💛 Support Shitala Canteen</button>
+        <button class="btn" style="background:transparent; border:2px solid #ffffff; color:#ffffff;">🌿 Volunteer</button>
       </div>
     </section>
 
@@ -264,6 +757,7 @@
     <p>Serve a meal. Share dignity. Change a life.</p>
   </footer>
 
+  <!-- EXACT ORIGINAL SCRIPT PRESERVED -->
   <script>
     // Gallery lightbox + slideshow + keyboard controls
     (function(){
