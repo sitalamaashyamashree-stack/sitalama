@@ -3,310 +3,1158 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Livelihood & Social Welfare</title>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <title>Livelihood & Social Welfare | Shyamashree Shitala Maa Charitable Trust</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
 
-  gtag('config', 'G-149NCZ03L5');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-149NCZ03L5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-149NCZ03L5');
+  </script>
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-      transition: background 0.3s, color 0.3s;
+    :root {
+      --forest-dark: #133b26;
+      --forest-mid: #1d5236;
+      --emerald-soft: #eaf3ed;
+      --cream-bg: #fbf9f3;
+      --cream-card: #f3efe4;
+      --gold-accent: #eab308;
+      --gold-hover: #ca8a04;
+      --text-dark: #1a2e22;
+      --text-muted: #4b5e53;
     }
 
-    body {
-      background: #f8f9fa;
-      color: #333;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
       scroll-behavior: smooth;
     }
 
-    body.dark {
-      background: #121212;
-      color: #e5e5e5;
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--cream-bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    header {
-     /* background: linear-gradient(135deg, #0f2027, #2c5364);*/
-      background: url('https://images.pexels.com/photos/691668/pexels-photo-691668.jpeg') center/cover no-repeat;
-      color: #fff;
-      text-align: center;
-      padding: 60px 20px;
+    h1, h2, h3.serif-title {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    /* TOP COMPACT NAVIGATION BAR */
+    .top-nav-strip {
+      background-color: #ffffff;
+      padding: 12px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e5e0d3;
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      box-shadow: 0 3px 14px rgba(19, 59, 38, 0.06);
+    }
+
+    .brand-mini {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--forest-dark);
+    }
+
+    .brand-mini img {
+      height: 44px;
+      width: auto;
+    }
+
+    .brand-mini strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 15.5px;
+      line-height: 1.2;
+    }
+
+    .back-home-btn {
+      background-color: var(--forest-dark);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 1.5px solid var(--gold-accent);
+      transition: all 0.25s ease;
+    }
+
+    .back-home-btn:hover {
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
+    }
+
+    /* LARGE HERO BANNER WITH DESCRIPTION & DONATE BUTTON */
+    .hero {
       position: relative;
+      min-height: 62vh;
+      background: url('BG2.png') center/cover no-repeat, url('https://images.unsplash.com/photo-1581093588401-16e068ba84dc?auto=format&fit=crop&w=1600&q=85') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #ffffff;
+      padding: 70px 20px;
+      border-bottom: 5px solid var(--forest-dark);
     }
 
-    header h1 {
-      font-size: 2.8rem;
-      font-weight: bold;
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(19, 59, 38, 0.85) 0%, rgba(11, 38, 24, 0.72) 100%);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+    }
+
+    .hero-pill {
+      display: inline-block;
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
+      font-size: 12.5px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4.4vw, 3.1rem);
+      line-height: 1.18;
+      margin-bottom: 14px;
+      text-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      color: #e6f2eb;
+      max-width: 730px;
+      margin: 0 auto 26px;
+      line-height: 1.65;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-donate-btn {
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
+      border: 2px solid var(--gold-accent);
+      padding: 13px 30px;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3);
+      transition: all 0.28s ease;
+    }
+
+    .hero-donate-btn:hover {
+      background-color: #facc15;
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    .hero-secondary-btn {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 2px solid #ffffff;
+      padding: 13px 26px;
+      border-radius: 30px;
+      font-size: 14.5px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .hero-secondary-btn:hover {
+      background: #ffffff;
+      color: var(--forest-dark);
+    }
+
+    /* MAIN CONTAINER */
+    .main-container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 48px 20px 30px;
+    }
+
+    /* SECTION HEADERS WITH LEAF DIVIDER */
+    .section-head-leaf {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .leaf-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 5px;
+    }
+
+    .leaf-line::before,
+    .leaf-line::after {
+      content: "";
+      width: 70px;
+      height: 1.8px;
+      background: linear-gradient(90deg, transparent, #8ca897, transparent);
+    }
+
+    .section-head-leaf h2 {
+      font-size: clamp(1.65rem, 3.2vw, 2.25rem);
+      color: var(--forest-dark);
+      margin-bottom: 4px;
+    }
+
+    .section-head-leaf p {
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    /* FEATURED FIRST-CARD FOCUS: VOCATIONAL SKILL TRAINING & LIVELIHOODS */
+    .featured-livelihood-showcase {
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid #e5e0d3;
+      border-top: 5px solid var(--forest-dark);
+      box-shadow: 0 10px 28px rgba(19, 59, 38, 0.07);
+      display: grid;
+      grid-template-columns: 1.05fr 1.15fr;
+      overflow: hidden;
+      margin-bottom: 34px;
+    }
+
+    .featured-livelihood-photo {
+      position: relative;
+      min-height: 330px;
+      background-color: #dce6df;
+    }
+
+    .featured-livelihood-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .featured-livelihood-tag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background-color: var(--forest-dark);
+      color: var(--gold-accent);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--gold-accent);
+    }
+
+    .featured-livelihood-details {
+      padding: 30px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .featured-livelihood-details h2 {
+      font-size: 1.65rem;
+      color: var(--forest-dark);
       margin-bottom: 10px;
     }
 
-    header p {
-      font-size: 1.2rem;
-      opacity: 0.95;
+    .featured-livelihood-details p {
+      font-size: 14.8px;
+      color: #36493e;
+      margin-bottom: 14px;
     }
 
-    .theme-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: #fff;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 20px;
+    .check-list {
+      list-style: none;
+      margin-bottom: 18px;
+    }
+
+    .check-list li {
+      font-size: 14px;
+      color: #2c3e33;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+    }
+
+    .check-list li::before {
+      content: "✓";
+      background-color: var(--emerald-soft);
+      color: var(--forest-dark);
+      font-weight: 800;
+      font-size: 11px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .inline-donate-btn {
+      background-color: var(--forest-dark);
+      color: #ffffff;
+      border: 2px solid var(--gold-accent);
+      padding: 10px 22px;
+      border-radius: 25px;
+      font-size: 13.5px;
+      font-weight: 700;
       cursor: pointer;
-      font-weight: bold;
-      color: #2c5364;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      width: fit-content;
+      transition: all 0.25s ease;
     }
 
-    body.dark .theme-toggle {
-      background: #333;
-      color: #fff;
+    .inline-donate-btn:hover {
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
     }
 
-    section.gallery {
-      padding: 60px 20px;
-      max-width: 1200px;
-      margin: auto;
+    /* 3-COLUMN CORE LIVELIHOOD & SOCIAL WELFARE PROGRAMS */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-bottom: 44px;
     }
 
-    section.gallery h2 {
-      font-size: 2.2rem;
-      text-align: center;
-      margin-bottom: 20px;
+    .pillar-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 24px 20px;
+      border: 1px solid #e5e0d3;
+      border-top: 4px solid var(--forest-dark);
+      box-shadow: 0 6px 18px rgba(19, 59, 38, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .filters {
-      text-align: center;
-      margin-bottom: 40px;
+    .pillar-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 28px rgba(19, 59, 38, 0.12);
+    }
+
+    .pillar-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background-color: var(--emerald-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .pillar-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.22rem;
+      color: var(--forest-dark);
+      margin-bottom: 8px;
+    }
+
+    .pillar-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* AUTOMATIC PHOTO & VIDEO GALLERY SECTION */
+    .gallery-section {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 34px 26px;
+      border: 1px solid #e5e0d3;
+      box-shadow: 0 8px 24px rgba(19, 59, 38, 0.06);
+      margin-bottom: 36px;
+    }
+
+    .filter-controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
     }
 
     .filter-btn {
-      padding: 10px 20px;
-      margin: 5px;
-      border: none;
-      border-radius: 20px;
-      background: #2c5364;
-      color: #fff;
+      background-color: var(--cream-bg);
+      color: var(--forest-dark);
+      border: 1.5px solid #cbd5ce;
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-size: 13.5px;
+      font-weight: 700;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: all 0.25s ease;
     }
 
-    .filter-btn.active, .filter-btn:hover {
-      background: #0f2027;
+    .filter-btn.active,
+    .filter-btn:hover {
+      background-color: var(--forest-dark);
+      color: #ffffff;
+      border-color: var(--forest-dark);
     }
 
-    body.dark .filter-btn {
-      background: #555;
-      color: #fff;
+    /* Auto-Scrolling Horizontal Carousel */
+    .auto-media-track {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 8px 4px 16px;
+      scroll-snap-type: x mandatory;
     }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
+    .auto-media-track::-webkit-scrollbar {
+      height: 8px;
     }
 
-    .card {
-      background: #fff;
-      border-radius: 15px;
+    .auto-media-track::-webkit-scrollbar-track {
+      background: var(--cream-bg);
+      border-radius: 10px;
+    }
+
+    .auto-media-track::-webkit-scrollbar-thumb {
+      background: var(--forest-mid);
+      border-radius: 10px;
+    }
+
+    .media-card {
+      flex: 0 0 310px;
+      background: var(--cream-bg);
+      border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s, color 0.3s;
-      opacity: 0;
-      transform: translateY(30px);
+      border: 1px solid #e2dccb;
+      box-shadow: 0 6px 16px rgba(19, 59, 38, 0.08);
+      scroll-snap-align: start;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
     }
 
-    body.dark .card {
-      background: #1e1e1e;
-      color: #ddd;
-    }
-
-    .card:hover {
+    .media-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 12px 24px rgba(19, 59, 38, 0.16);
     }
 
-    .card img, .card video {
+    .media-thumb {
       width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-
-    .card-content {
-      padding: 20px;
-    }
-
-    .card-content h3 {
-      font-size: 1.5rem;
-      color: #2c5364;
-      margin-bottom: 10px;
-    }
-
-    body.dark .card-content h3 {
-      color: #ffcc70;
-    }
-
-    .card-content p {
-      font-size: 1rem;
-      line-height: 1.6;
-      max-height: 70px;
+      height: 205px;
+      position: relative;
+      background: #1a2e22;
       overflow: hidden;
-      transition: max-height 0.5s ease;
     }
 
-    .read-more {
-      display: inline-block;
-      margin-top: 10px;
-      color: #2c5364;
-      font-weight: bold;
-      cursor: pointer;
-      text-decoration: underline;
+    .media-thumb img,
+    .media-thumb video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
     }
 
-    body.dark .read-more {
-      color: #ffcc70;
+    .media-card:hover .media-thumb img {
+      transform: scale(1.07);
     }
 
-    footer {
-      background: #0f2027;
-      color: #fff;
+    .media-type-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: rgba(19, 59, 38, 0.88);
+      color: var(--gold-accent);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .media-caption-box {
+      padding: 12px 14px;
+    }
+
+    .media-caption-box h4 {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--forest-dark);
+      margin-bottom: 2px;
+    }
+
+    .media-caption-box span {
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    /* DONATE CALL-TO-ACTION STRIP */
+    .bottom-donate-banner {
+      background: linear-gradient(135deg, var(--forest-dark) 0%, #0e2e1d 100%);
+      border-radius: 16px;
+      padding: 32px 28px;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      box-shadow: 0 12px 28px rgba(19, 59, 38, 0.16);
+    }
+
+    .bottom-donate-banner h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--gold-accent);
+      margin-bottom: 6px;
+    }
+
+    .bottom-donate-banner p {
+      font-size: 14.5px;
+      color: #e6f2eb;
+      max-width: 620px;
+    }
+
+    /* FULLSCREEN LIGHTBOX MODAL (AUTO SLIDESHOW + SWIPE + KEYBOARD) */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 22, 14, 0.93);
+      backdrop-filter: blur(5px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      flex-direction: column;
+      color: white;
       text-align: center;
-      padding: 20px 10px;
+      padding: 16px;
+    }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 75vh;
+    }
+
+    .modal img,
+    .modal video {
+      max-width: 100%;
+      max-height: 74vh;
+      border-radius: 14px;
+      border: 2px solid var(--gold-accent);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65);
+    }
+
+    .modal-caption {
+      margin-top: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fef9c3;
+    }
+
+    .modal-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      color: #ffffff;
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--forest-dark);
+      border: 1.5px solid var(--gold-accent);
+      border-radius: 50%;
+      transition: all 0.25s ease;
+    }
+
+    .modal-btn:hover {
+      background: var(--gold-accent);
+      color: var(--forest-dark);
+    }
+
+    .prev { left: 20px; }
+    .next { right: 20px; }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      font-size: 1.2rem;
+      font-weight: 800;
+      cursor: pointer;
+      background: #991b1b;
+      color: #ffffff;
+      border: 1px solid #fca5a5;
+      padding: 7px 15px;
+      border-radius: 20px;
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .dot.active {
+      width: 24px;
+      border-radius: 10px;
+      background: var(--gold-accent);
+    }
+
+    /* DIRECT RAZORPAY DONATION MODAL */
+    .donate-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .donate-modal.active {
+      display: flex;
+    }
+
+    .donate-modal-box {
+      background: #ffffff;
+      width: 100%;
+      max-width: 460px;
+      border-radius: 14px;
+      padding: 26px 28px;
+      border-top: 6px solid var(--forest-dark);
+      position: relative;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.4);
+    }
+
+    .donate-modal-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 23px;
+      color: var(--forest-dark);
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .donate-modal-box label {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 600;
+      margin-top: 10px;
+      color: var(--text-dark);
+    }
+
+    .donate-modal-box input {
+      width: 100%;
+      padding: 9px 12px;
+      margin-top: 4px;
+      border: 1px solid #cbd5ce;
+      border-radius: 8px;
+      font-size: 14.5px;
+      background: var(--cream-bg);
+    }
+
+    .donate-submit-btn {
+      width: 100%;
+      margin-top: 18px;
+      padding: 12px;
+      background: var(--forest-dark);
+      color: #ffffff;
+      border: 2px solid var(--gold-accent);
+      border-radius: 25px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .donate-submit-btn:hover {
+      background: var(--gold-accent);
+      color: var(--forest-dark);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--forest-dark);
+      color: #e6efe9;
+      text-align: center;
+      padding: 26px 16px;
       margin-top: 40px;
+      border-top: 4px solid var(--gold-accent);
+      font-size: 14px;
     }
 
     footer p {
-      margin: 0;
-      font-size: 0.9rem;
+      color: #bfd4c7;
+      font-size: 13px;
+      margin-top: 4px;
+      font-style: italic;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 920px) {
+      .featured-livelihood-showcase {
+        grid-template-columns: 1fr;
+      }
+
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .top-nav-strip {
+        padding: 10px 16px;
+      }
+
+      .brand-mini strong {
+        display: none;
+      }
+
+      .hero {
+        padding: 55px 16px;
+      }
+
+      .media-card {
+        flex: 0 0 265px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Livelihood & Social Welfare</h1>
-    <p>Empowering people, uplifting communities, spreading hope.</p>
-    <button class="theme-toggle">🌙 Dark Mode</button>
-  </header>
+  <!-- Compact Top Navigation Bar -->
+  <div class="top-nav-strip">
+    <a href="index.html" class="brand-mini">
+      <img src="SSMCT Logo1.png" alt="SSMCT Logo">
+      <strong>Shyamashree Shitala Maa Charitable Trust</strong>
+    </a>
+    <a href="index.html" class="back-home-btn">← Back to Home</a>
+  </div>
 
-  <section class="gallery">
-    <h2>Our Programs</h2>
-
-    <!-- Filter Buttons -->
-    <div class="filters">
-      <button class="filter-btn active" data-category="all">All</button>
-      <button class="filter-btn" data-category="skills">Skills</button>
-      <button class="filter-btn" data-category="farming">Farming</button>
-      <button class="filter-btn" data-category="welfare">Welfare</button>
-    </div>
-
-    <!-- Cards -->
-    <div class="cards">
-      <div class="card" data-category="skills">
-        <img src="https://images.unsplash.com/photo-1581093588401-16e068ba84dc?auto=format&fit=crop&w=800&q=80" alt="Skill Training">
-        <div class="card-content">
-          <h3>Skill Development</h3>
-          <p>Providing vocational and technical training to help people secure better job opportunities and create sustainable livelihoods for themselves and their families.</p>
-          <span class="read-more">Read More</span>
-        </div>
-      </div>
-
-      <div class="card" data-category="farming">
-        <video autoplay muted loop>
-          <source src="https://cdn.pixabay.com/video/2020/04/06/35160-408307955_large.mp4" type="video/mp4">
-        </video>
-        <div class="card-content">
-          <h3>Community Farming</h3>
-          <p>Supporting sustainable farming and micro-business initiatives to uplift rural communities by teaching self-reliance and eco-friendly agricultural practices.</p>
-          <span class="read-more">Read More</span>
-        </div>
-      </div>
-
-      <div class="card" data-category="welfare">
-        <img src="https://images.unsplash.com/photo-1544776193-352d25ca82cd?auto=format&fit=crop&w=800&q=80" alt="Social Welfare">
-        <div class="card-content">
-          <h3>Social Welfare Programs</h3>
-          <p>Assisting vulnerable groups through education, food security, and medical support, creating a stronger and more connected society for all.</p>
-          <span class="read-more">Read More</span>
-        </div>
-      </div>
-
-      <div class="card" data-category="welfare">
-        <img src="https://images.unsplash.com/photo-1556767576-cfba5cbd36c1?auto=format&fit=crop&w=800&q=80" alt="Community Engagement">
-        <div class="card-content">
-          <h3>Community Engagement</h3>
-          <p>Empowering communities through awareness drives, capacity-building, and collective action to create lasting change for generations to come.</p>
-          <span class="read-more">Read More</span>
-        </div>
+  <!-- Large Hero Image with Description & Donate Button -->
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="hero-pill">🌱 Self-Reliance, Hunger Relief &amp; Community Welfare</span>
+      <h1>Livelihood &amp; Social Welfare</h1>
+      <p>Empowering people, uplifting underprivileged communities, and spreading hope through vocational training, sustainable rural farming, Shitala Canteen hunger relief, and seasonal welfare drives across West Bengal.</p>
+      <div class="hero-cta-row">
+        <button type="button" class="hero-donate-btn" onclick="openLivelihoodDonateModal()">
+          💛 Donate Now
+        </button>
+        <a href="#mediaGallery" class="hero-secondary-btn">📸 View Photo &amp; Video Gallery</a>
       </div>
     </div>
   </section>
 
+  <!-- Main Content -->
+  <div class="main-container">
+
+    <!-- Featured First-Card Section: Vocational Skill Training & Livelihoods -->
+    <div class="featured-livelihood-showcase">
+      <div class="featured-livelihood-photo">
+        <img src="https://images.unsplash.com/photo-1581093588401-16e068ba84dc?auto=format&fit=crop&w=1000&q=85" alt="Vocational Skill Training and Livelihood Support">
+        <span class="featured-livelihood-tag">🛠️ Featured Livelihood Initiative</span>
+      </div>
+      <div class="featured-livelihood-details">
+        <h2>Vocational Skill Training &amp; Sustainable Livelihoods</h2>
+        <p>Providing practical vocational and technical training to unemployed youth and low-income families so they can secure dignified employment or launch sustainable micro-enterprises.</p>
+        <ul class="check-list">
+          <li><strong>Job-Oriented Technical &amp; Craft Training:</strong> Practical workshops designed around local market demand and self-employment.</li>
+          <li><strong>Micro-Business &amp; Self-Help Support:</strong> Mentorship and starter toolkits helping rural families earn steady income.</li>
+          <li><strong>Daily Hunger Relief (Shitala Canteen):</strong> Serving nutritious ₹1 evening dinners to daily wage labourers and the homeless.</li>
+          <li><strong>Seasonal Relief (Project Sparsh &amp; Chhaya):</strong> Winter blankets, umbrellas, and essential welfare kits for vulnerable households.</li>
+        </ul>
+        <button type="button" class="inline-donate-btn" onclick="openLivelihoodDonateModal()">
+          💛 Support a Family’s Livelihood →
+        </button>
+      </div>
+    </div>
+
+    <!-- 3 Core Pillars of Livelihood & Social Welfare -->
+    <div class="section-head-leaf">
+      <div class="leaf-line">
+        <svg viewBox="0 0 44 36" width="32" height="26" fill="#1d5236">
+          <path d="M22 33V11M22 22c-7-8-16-7-16-7s2 10 16 7zm0-6c7-8 16-7 16-7s-2 10-16 7zm0-5c-3-6 0-10 0-10s3 4 0 10z"/>
+        </svg>
+      </div>
+      <h2>Our Livelihood &amp; Welfare Programs</h2>
+      <p>Creating lasting economic stability and compassionate social support across Bengal</p>
+    </div>
+
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon">🌾</div>
+        <h3>Community Farming &amp; Eco-Drives</h3>
+        <p>Supporting sustainable rural agriculture, tree plantation campaigns, and eco-friendly micro-business initiatives for self-reliant villages.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-icon">🍲</div>
+        <h3>Social Welfare &amp; Food Security</h3>
+        <p>Assisting elderly, homeless, and daily-wage families through Shitala Canteen meals, winter blankets, and emergency relief drives.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-icon">🤝</div>
+        <h3>Community Engagement &amp; Awareness</h3>
+        <p>Grassroots awareness drives, capacity-building workshops, and volunteer-led community action creating lasting generational change.</p>
+      </div>
+    </div>
+
+    <!-- Automatic Photo & Video Gallery -->
+    <section class="gallery-section" id="mediaGallery">
+      <div class="section-head-leaf" style="margin-bottom:18px;">
+        <div class="leaf-line">
+          <svg viewBox="0 0 44 36" width="32" height="26" fill="#1d5236">
+            <path d="M22 33V11M22 22c-7-8-16-7-16-7s2 10 16 7zm0-6c7-8 16-7 16-7s-2 10-16 7zm0-5c-3-6 0-10 0-10s3 4 0 10z"/>
+          </svg>
+        </div>
+        <h2>📸 Community Impact: Photo &amp; Video Gallery</h2>
+        <p>Click any photo or video to view in fullscreen automatic slideshow</p>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="filter-controls">
+        <button type="button" class="filter-btn active" onclick="filterMedia(this, 'all')">All Media</button>
+        <button type="button" class="filter-btn" onclick="filterMedia(this, 'image')">📷 Photos</button>
+        <button type="button" class="filter-btn" onclick="filterMedia(this, 'video')">🎥 Videos</button>
+      </div>
+
+      <!-- Auto-Scrolling Media Track -->
+      <div class="auto-media-track" id="autoMediaTrack">
+        <!-- Item 1: Skill Training Photo -->
+        <div class="media-card image" data-index="0" onclick="openLightboxAt(0)">
+          <div class="media-thumb">
+            <img src="https://images.unsplash.com/photo-1581093588401-16e068ba84dc?auto=format&fit=crop&w=900&q=80" alt="Skill Development Training">
+            <span class="media-type-badge">Photo</span>
+          </div>
+          <div class="media-caption-box">
+            <h4>Vocational Skill Development</h4>
+            <span>Technical training for sustainable livelihoods</span>
+          </div>
+        </div>
+
+        <!-- Item 2: Community Farming Video -->
+        <div class="media-card video" data-index="1" onclick="openLightboxAt(1)">
+          <div class="media-thumb">
+            <video muted loop playsinline preload="metadata" src="https://cdn.pixabay.com/video/2020/04/06/35160-408307955_large.mp4"></video>
+            <span class="media-type-badge">▶ Video</span>
+          </div>
+          <div class="media-caption-box">
+            <h4>Community Farming &amp; Greenery</h4>
+            <span>Eco-friendly agriculture &amp; tree plantation</span>
+          </div>
+        </div>
+
+        <!-- Item 3: Social Welfare Photo -->
+        <div class="media-card image" data-index="2" onclick="openLightboxAt(2)">
+          <div class="media-thumb">
+            <img src="https://images.unsplash.com/photo-1544776193-352d25ca82cd?auto=format&fit=crop&w=900&q=80" alt="Social Welfare Programs">
+            <span class="media-type-badge">Photo</span>
+          </div>
+          <div class="media-caption-box">
+            <h4>Social Welfare &amp; Food Security</h4>
+            <span>Supporting vulnerable families with care</span>
+          </div>
+        </div>
+
+        <!-- Item 4: Community Engagement Photo -->
+        <div class="media-card image" data-index="3" onclick="openLightboxAt(3)">
+          <div class="media-thumb">
+            <img src="https://images.unsplash.com/photo-1556767576-cfba5cbd36c1?auto=format&fit=crop&w=900&q=80" alt="Community Engagement">
+            <span class="media-type-badge">Photo</span>
+          </div>
+          <div class="media-caption-box">
+            <h4>Community Engagement &amp; Outreach</h4>
+            <span>Collective action &amp; capacity building</span>
+          </div>
+        </div>
+
+        <!-- Item 5: Rural Livelihood Photo -->
+        <div class="media-card image" data-index="4" onclick="openLightboxAt(4)">
+          <div class="media-thumb">
+            <img src="BG2.png" onerror="this.src='https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=900&q=80'" alt="Grassroots Welfare Drive">
+            <span class="media-type-badge">Photo</span>
+          </div>
+          <div class="media-caption-box">
+            <h4>Grassroots Welfare Distribution</h4>
+            <span>Reaching remote communities across Bengal</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Donate Banner -->
+    <div class="bottom-donate-banner">
+      <div>
+        <h3>Uplift a Family. Strengthen a Community.</h3>
+        <p>Your contribution supports vocational training, evening meals at Shitala Canteen, and rural welfare drives. All financial donations are eligible for 80G tax exemption.</p>
+      </div>
+      <button type="button" class="hero-donate-btn" onclick="openLivelihoodDonateModal()">
+        💛 Donate for Social Welfare →
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Fullscreen Auto-Slideshow Modal -->
+  <div class="modal" id="modal">
+    <span class="close-btn" onclick="closeModal()">✖ Close</span>
+    <span class="modal-btn prev" onclick="prevMedia()">❮</span>
+    <div class="modal-content" id="modalContent"></div>
+    <div class="modal-caption" id="modalCaption"></div>
+    <div class="dots" id="dotsContainer"></div>
+    <span class="modal-btn next" onclick="nextMedia()">❯</span>
+  </div>
+
+  <!-- Direct Razorpay Donation Modal -->
+  <div class="donate-modal" id="livelihoodDonateModal">
+    <div class="donate-modal-box">
+      <span style="position:absolute; top:12px; right:16px; font-size:24px; cursor:pointer; color:#666;" onclick="closeLivelihoodDonateModal()">&times;</span>
+      <h3>Support Livelihood &amp; Social Welfare 💛</h3>
+      <form id="livelihoodDonationForm">
+        <label>Name *</label>
+        <input type="text" id="donorName" required>
+
+        <label>Mobile No *</label>
+        <input type="tel" id="donorMobile" required>
+
+        <label>Email *</label>
+        <input type="email" id="donorEmail" required>
+
+        <label>Address *</label>
+        <input type="text" id="donorAddress" required>
+
+        <label>PAN (Optional for 80G)</label>
+        <input type="text" id="donorPan">
+
+        <label>Donation Amount (₹) *</label>
+        <input type="number" id="donorAmount" value="501" required min="1">
+
+        <button type="submit" class="donate-submit-btn">Proceed to Donate ✅</button>
+      </form>
+    </div>
+  </div>
+
   <footer>
-    <p>© 2025 Shyamashree Shitala Maa Charitable Trust. All rights reserved.</p>
+    © 2025 Shyamashree Shitala Maa Charitable Trust. All rights reserved.
+    <p>Serving Humanity with Love, Compassion &amp; Kindness</p>
   </footer>
 
+  <!-- Razorpay Checkout Script -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
   <script>
-    // Dark/Light Mode
-    const themeToggle = document.querySelector('.theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      themeToggle.textContent = document.body.classList.contains('dark') ? '☀️ Light Mode' : '🌙 Dark Mode';
+    const mediaList = [
+      { type: 'image', src: 'https://images.unsplash.com/photo-1581093588401-16e068ba84dc?auto=format&fit=crop&w=1200&q=85', caption: 'Vocational Skill Development — Technical training for sustainable livelihoods' },
+      { type: 'video', src: 'https://cdn.pixabay.com/video/2020/04/06/35160-408307955_large.mp4', caption: 'Community Farming & Greenery — Eco-friendly agriculture & tree plantation' },
+      { type: 'image', src: 'https://images.unsplash.com/photo-1544776193-352d25ca82cd?auto=format&fit=crop&w=1200&q=85', caption: 'Social Welfare & Food Security — Supporting vulnerable families with care' },
+      { type: 'image', src: 'https://images.unsplash.com/photo-1556767576-cfba5cbd36c1?auto=format&fit=crop&w=1200&q=85', caption: 'Community Engagement & Outreach — Collective action & capacity building' },
+      { type: 'image', src: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=1200&q=85', caption: 'Grassroots Welfare Distribution — Reaching remote communities across Bengal' }
+    ];
+
+    let currentIndex = 0;
+    let lightboxTimer = null;
+
+    // Filter Photos / Videos / All
+    function filterMedia(btn, type) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.media-card').forEach(card => {
+        card.style.display = (type === 'all' || card.classList.contains(type)) ? 'block' : 'none';
+      });
+    }
+
+    // Automatic Horizontal Carousel Scroll (Pauses on hover)
+    const track = document.getElementById('autoMediaTrack');
+    let autoScrollPaused = false;
+    track.addEventListener('mouseenter', () => autoScrollPaused = true);
+    track.addEventListener('mouseleave', () => autoScrollPaused = false);
+
+    setInterval(() => {
+      if (autoScrollPaused) return;
+      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: 328, behavior: 'smooth' });
+      }
+    }, 3200);
+
+    // Lightbox Functions with Automatic Slideshow
+    function openLightboxAt(index) {
+      currentIndex = index;
+      renderLightboxMedia();
+      document.getElementById('modal').style.display = 'flex';
+      startLightboxSlideshow();
+    }
+
+    function renderLightboxMedia() {
+      const modalContent = document.getElementById('modalContent');
+      const modalCaption = document.getElementById('modalCaption');
+      const dotsContainer = document.getElementById('dotsContainer');
+      const item = mediaList[currentIndex];
+
+      modalContent.innerHTML = item.type === 'video'
+        ? `<video src="${item.src}" controls autoplay></video>`
+        : `<img src="${item.src}" alt="${item.caption}">`;
+
+      modalCaption.textContent = item.caption;
+
+      dotsContainer.innerHTML = mediaList.map((_, i) =>
+        `<div class="dot ${i === currentIndex ? 'active' : ''}" onclick="goToMedia(${i})"></div>`
+      ).join('');
+    }
+
+    function startLightboxSlideshow() {
+      clearInterval(lightboxTimer);
+      lightboxTimer = setInterval(() => {
+        currentIndex = (currentIndex + 1) % mediaList.length;
+        renderLightboxMedia();
+      }, 4500);
+    }
+
+    function goToMedia(index) {
+      currentIndex = index;
+      renderLightboxMedia();
+      startLightboxSlideshow();
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+      document.getElementById('modalContent').innerHTML = '';
+      clearInterval(lightboxTimer);
+    }
+
+    function nextMedia() {
+      currentIndex = (currentIndex + 1) % mediaList.length;
+      renderLightboxMedia();
+      startLightboxSlideshow();
+    }
+
+    function prevMedia() {
+      currentIndex = (currentIndex - 1 + mediaList.length) % mediaList.length;
+      renderLightboxMedia();
+      startLightboxSlideshow();
+    }
+
+    document.addEventListener('keydown', e => {
+      if (document.getElementById('modal').style.display === 'flex') {
+        if (e.key === 'ArrowRight') nextMedia();
+        if (e.key === 'ArrowLeft') prevMedia();
+        if (e.key === 'Escape') closeModal();
+      }
     });
 
-    // Read More toggle
-    document.querySelectorAll('.read-more').forEach(button => {
-      button.addEventListener('click', () => {
-        const paragraph = button.previousElementSibling;
-        if (paragraph.style.maxHeight === 'none') {
-          paragraph.style.maxHeight = '70px';
-          button.textContent = 'Read More';
-        } else {
-          paragraph.style.maxHeight = 'none';
-          button.textContent = 'Show Less';
+    // Touch Swipe Support for Mobile
+    let startX = 0;
+    const modalEl = document.getElementById('modal');
+    modalEl.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+    modalEl.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 50) {
+        if (dx < 0) nextMedia(); else prevMedia();
+      }
+    });
+
+    // Donation Modal + Razorpay Integration
+    function openLivelihoodDonateModal() {
+      document.getElementById('livelihoodDonateModal').classList.add('active');
+    }
+
+    function closeLivelihoodDonateModal() {
+      document.getElementById('livelihoodDonateModal').classList.remove('active');
+    }
+
+    const razorpayKey = "rzp_live_RyvBMwV4crOZwu";
+    const workerAPI = "https://trust.sitalamaashyamashree.workers.dev/";
+
+    document.getElementById("livelihoodDonationForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      let donation = {
+        name: document.getElementById("donorName").value,
+        mobile: document.getElementById("donorMobile").value,
+        email: document.getElementById("donorEmail").value,
+        address: document.getElementById("donorAddress").value,
+        pan: document.getElementById("donorPan").value,
+        amount: document.getElementById("donorAmount").value
+      };
+
+      let options = {
+        key: razorpayKey,
+        amount: donation.amount * 100,
+        currency: "INR",
+        name: "Shyamashree Shitala Maa Charitable Trust",
+        description: "Livelihood & Social Welfare Donation",
+        handler: function (response) {
+          donation.paymentId = response.razorpay_payment_id;
+          fetch(workerAPI, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(donation)
+          })
+          .then(res => res.text())
+          .then(data => console.log("Worker Response:", data))
+          .catch(err => console.error("Worker Error:", err));
+
+          alert("Thank you! Your donation for Livelihood & Social Welfare was successful.");
+          closeLivelihoodDonateModal();
         }
-      });
-    });
+      };
 
-    // Scroll Animation
-    const cards = document.querySelectorAll('.card');
-    window.addEventListener('scroll', () => {
-      cards.forEach(card => {
-        const rect = card.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-          card.style.opacity = '1';
-          card.style.transform = 'translateY(0)';
-        }
-      });
-    });
-
-    // Filter Functionality
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const allCards = document.querySelectorAll('.card');
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelector('.filter-btn.active').classList.remove('active');
-        btn.classList.add('active');
-        const category = btn.getAttribute('data-category');
-
-        allCards.forEach(card => {
-          if (category === 'all' || card.getAttribute('data-category') === category) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
+      new Razorpay(options).open();
     });
   </script>
-
 </body>
 </html>
