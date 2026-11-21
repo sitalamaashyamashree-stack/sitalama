@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Shyamashree Shitala Maa Charitable Trust | NGO in West Bengal</title>
   <meta name="description" content="Shyamashree Sitala Maa Charitable Trust (SSMCT) is a registered NGO in West Bengal working on women’s safety, education, health and hunger relief — including Shitala Canteen, Nirbhoyini and Antardrishti.">
   <link rel="canonical" href="https://www.ssmctrust.org/">
@@ -47,7 +47,7 @@
 
     html {
       scroll-behavior: smooth;
-      max-width: 100%;
+      width: 100%;
       overflow-x: hidden;
     }
 
@@ -57,7 +57,7 @@
       line-height: 1.6;
       color: var(--text-dark);
       background-color: var(--cream-bg);
-      max-width: 100%;
+      width: 100%;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
@@ -150,7 +150,7 @@
 
     /* HEADER & NAVIGATION */
     header {
-      background: rgba(255, 255, 255, 0.97);
+      background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(10px);
       padding: 12px 40px;
       display: flex;
@@ -189,7 +189,7 @@
     .logo-text-wrap strong {
       display: block;
       font-family: 'Playfair Display', serif;
-      font-size: 17px;
+      font-size: clamp(14px, 1.4vw, 17.5px);
       color: var(--forest-dark);
       line-height: 1.2;
     }
@@ -204,7 +204,7 @@
     .desktop-nav {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 20px;
       flex-wrap: wrap;
       justify-content: center;
     }
@@ -212,7 +212,7 @@
     .desktop-nav a {
       text-decoration: none;
       color: var(--text-dark);
-      font-size: 13.5px;
+      font-size: 14px;
       font-weight: 600;
       position: relative;
       padding: 5px 0;
@@ -276,13 +276,13 @@
       display: none;
     }
 
-    /* HERO SECTION (BRIGHT & CLEAR WITH EXACT SLIDESHOW & REDIRECT PRESERVED) */
+    /* HERO SECTION (FULLY RESPONSIVE ACROSS ALL SCREENS) */
     .hero {
       position: relative;
       width: 100%;
       height: 85vh;
       min-height: 440px;
-      max-height: 840px;
+      max-height: 860px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -342,7 +342,7 @@
       z-index: 3;
       color: #ffffff;
       font-family: 'Caveat', cursive;
-      font-size: 32px;
+      font-size: clamp(20px, 2.5vw, 34px);
       line-height: 1.05;
       text-align: center;
       animation: floatSlow 4s ease-in-out infinite;
@@ -351,8 +351,8 @@
     }
 
     .hero-badge-right .hand-heart-svg {
-      width: 44px;
-      height: 44px;
+      width: clamp(28px, 3.2vw, 44px);
+      height: clamp(28px, 3.2vw, 44px);
       margin: 0 auto 2px;
       display: block;
       animation: pulseHeart 2s infinite;
@@ -412,13 +412,13 @@
       transform: translateY(-3px) scale(1.03);
     }
 
-    /* CLEAN SECTION HEADER (COMPACT MARGIN) */
+    /* CLEAN SECTION HEADER */
     .section-header-decorated {
       text-align: center;
       margin-bottom: 30px;
       position: relative;
       z-index: 2;
-      padding: 0 10px;
+      padding: 0 12px;
     }
 
     .title-accent-line {
@@ -430,21 +430,21 @@
     }
 
     .section-header-decorated h2 {
-      font-size: clamp(26px, 4vw, 38px);
+      font-size: clamp(25px, 3.8vw, 38px);
       color: var(--forest-dark);
       font-weight: 700;
       margin-bottom: 4px;
     }
 
     .section-header-decorated p {
-      font-size: clamp(14px, 2vw, 16.5px);
+      font-size: clamp(14px, 1.8vw, 16.5px);
       color: var(--text-muted);
       font-weight: 500;
     }
 
     /* OUR INITIATIVES SECTION (10 WIDER CARDS IN 5x2 GRID) */
     .programmes-section {
-      padding: 50px 20px;
+      padding: 50px 24px;
       background-color: var(--cream-bg);
       position: relative;
       overflow: hidden;
@@ -454,7 +454,7 @@
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 18px;
-      max-width: 1420px;
+      max-width: 1440px;
       width: 100%;
       margin: 0 auto;
       position: relative;
@@ -1335,6 +1335,7 @@
       overflow: hidden;
       width: 100%;
       padding: 10px 4px 14px;
+      touch-action: pan-y;
     }
 
     .team-track {
@@ -1652,6 +1653,7 @@
       overflow: hidden;
       width: 100%;
       padding: 8px 4px 14px;
+      touch-action: pan-y;
     }
 
     .testimonial-track {
@@ -2121,6 +2123,28 @@
       color: #bfd4c7;
     }
 
+    /* ========== LARGE DESKTOP / 2K+ MONITORS (min-width: 1500px) ========== */
+    @media (min-width: 1500px) {
+      .programme-grid {
+        max-width: 1560px;
+        gap: 22px;
+      }
+
+      .card-thumb {
+        height: 185px;
+      }
+
+      .team-carousel-container,
+      .testimonial-carousel-wrapper,
+      .about-container,
+      .founder-container,
+      .resources-container,
+      .footer-grid,
+      .footer-bottom-bar {
+        max-width: 1400px;
+      }
+    }
+
     /* ========== SMALL LAPTOP & TABLET LANDSCAPE (max-width: 1200px) ========== */
     @media (max-width: 1200px) {
       header {
@@ -2140,11 +2164,11 @@
       }
 
       .desktop-nav {
-        gap: 13px;
+        gap: 14px;
       }
 
       .desktop-nav a {
-        font-size: 13px;
+        font-size: 13.5px;
       }
 
       .programme-grid {
@@ -2347,20 +2371,20 @@
       }
 
       .hero {
-        height: 54vh;
-        min-height: 300px;
-        max-height: 460px;
+        height: 58vh;
+        min-height: 320px;
+        max-height: 480px;
       }
 
       .hero-badge-right {
-        font-size: 21px;
+        font-size: 20px;
         top: 14px;
         right: 14px;
       }
 
       .hero-badge-right .hand-heart-svg {
-        width: 32px;
-        height: 32px;
+        width: 30px;
+        height: 30px;
       }
 
       .donate-btn {
@@ -2394,7 +2418,7 @@
       .hero-slide:nth-child(6) { background-image: url('heromo.png'); }
 
       .section-header-decorated {
-        margin-bottom: 24px;
+        margin-bottom: 22px;
       }
 
       .programmes-section,
@@ -2404,7 +2428,7 @@
       .testimonials-section,
       .resources-section,
       .contribution-strip {
-        padding: 38px 14px 48px;
+        padding: 36px 14px 46px;
       }
 
       .programme-grid {
@@ -2440,7 +2464,7 @@
       .donor-title-line::after,
       .team-eyebrow-line::before,
       .team-eyebrow-line::after {
-        width: 28px;
+        width: 26px;
       }
 
       .thank-you-divider {
@@ -2452,7 +2476,7 @@
       }
 
       .card-thumb {
-        height: 128px;
+        height: 126px;
       }
 
       .card-bottom-bar {
@@ -2482,7 +2506,7 @@
 
       .why-donate-panel,
       .our-impact-panel {
-        padding: 34px 18px;
+        padding: 32px 18px;
       }
 
       .reason-item {
@@ -2563,7 +2587,7 @@
       }
 
       .founder-message-column {
-        padding: 24px 18px;
+        padding: 22px 18px;
       }
 
       .founder-subheading {
@@ -2612,8 +2636,8 @@
       }
 
       .hero {
-        height: 46vh;
-        min-height: 250px;
+        height: 50vh;
+        min-height: 270px;
       }
 
       .hero-badge-right {
@@ -2836,7 +2860,7 @@
     </div>
 
     <div class="programme-grid" id="initiativesGrid">
-      <!-- 1. Eye Check-up Camp (Redirects to empowerment.html) -->
+      <!-- 1. Eye Check-up Camp (Redirects to Eye Check-up Camp.html) -->
       <a href=" Eye Check-up Camp.html" class="programme-card">
         <div class="card-thumb">
           <img class="cover-photo" src="card01.jpeg" alt="Eye Check-up Camp" />
@@ -3157,7 +3181,7 @@
     </div>
   </section>
 
-  <!-- FOUNDER'S MESSAGE SECTION (EQUAL HEIGHT, WIDE COMPACT CARD, founder.png) -->
+  <!-- FOUNDER'S MESSAGE SECTION -->
   <section class="founder-section reveal" id="founder">
     <div class="founder-container">
       <!-- Founder Portrait Column -->
@@ -3220,7 +3244,7 @@
     </div>
   </section>
 
-  <!-- MEET OUR TEAM SECTION (DEBAYAN MUKHOPADHYAY AT #5 & TIRTHANU AT #6 WITH OPEN-SOURCE PORTRAITS) -->
+  <!-- MEET OUR TEAM SECTION -->
   <section class="team-section reveal" id="team">
     <div class="team-header">
       <div class="team-eyebrow-line">
@@ -3236,7 +3260,7 @@
     <div class="team-carousel-container">
       <button type="button" class="circle-arrow-btn prev-btn" onclick="moveTeamCarousel(-1)" aria-label="Previous Team Member">‹</button>
 
-      <div class="team-viewport">
+      <div class="team-viewport" id="teamViewport">
         <div class="team-track" id="teamTrack">
           <!-- Member 1 -->
           <div class="team-card" onclick="openTeamLightbox(this, 'Satyajit Nandy', 'Founder & President', 'Leading our mission with dedication and grassroots commitment across West Bengal.')">
@@ -3337,7 +3361,7 @@
     </div>
   </div>
 
-  <!-- TESTIMONIALS FROM DONORS SECTION (FOREST GREEN & GOLD PALETTE, AUTO-SCROLLING LEFT) -->
+  <!-- TESTIMONIALS FROM DONORS SECTION -->
   <section class="testimonials-section reveal" id="testimonials">
     <div class="donor-testi-header">
       <div class="donor-title-line">
@@ -3349,7 +3373,7 @@
     <div class="testimonial-carousel-wrapper" id="testimonialCarousel">
       <button type="button" class="circle-arrow-btn prev-btn" onclick="moveTestimonial(-1)" aria-label="Previous Testimonial">‹</button>
 
-      <div class="testimonial-viewport">
+      <div class="testimonial-viewport" id="testimonialViewport">
         <div class="testimonial-track" id="testimonialTrack">
           <!-- Donor Testimonial 1 -->
           <div class="testimonial-card">
@@ -3553,7 +3577,7 @@
     </div>
   </footer>
 
-  <!-- ORIGINAL SCRIPTS PRESERVED + TEAM & TESTIMONIALS SLIDERS -->
+  <!-- ORIGINAL SCRIPTS PRESERVED + TEAM & TESTIMONIALS TOUCH SWIPE SLIDERS -->
   <script>
     let slides = document.querySelectorAll('.hero-slide');
     let dots = document.querySelectorAll('.hero-dot');
@@ -3645,14 +3669,16 @@
       }
     }
 
-    /* Meet Our Team Carousel */
+    /* Meet Our Team Carousel (with Mobile Touch Swipe) */
     (function initTeamCarousel() {
       const track = document.getElementById('teamTrack');
       const dotsContainer = document.getElementById('teamDots');
+      const viewport = document.getElementById('teamViewport');
       if (!track || !dotsContainer) return;
 
       const cards = track.querySelectorAll('.team-card');
       let teamIdx = 0;
+      let startX = 0;
 
       function getVisible() {
         if (window.innerWidth <= 768) return 1;
@@ -3704,6 +3730,16 @@
         updateTeam();
       };
 
+      if (viewport) {
+        viewport.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+        viewport.addEventListener('touchend', (e) => {
+          const diff = startX - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 40) {
+            window.moveTeamCarousel(diff > 0 ? 1 : -1);
+          }
+        }, { passive: true });
+      }
+
       window.addEventListener('resize', () => {
         renderTeamDots();
         updateTeam();
@@ -3713,16 +3749,18 @@
       updateTeam();
     })();
 
-    /* Working Auto-Scrolling Donor Testimonials Carousel */
+    /* Working Auto-Scrolling Donor Testimonials Carousel (with Mobile Touch Swipe) */
     (function initTestimonials() {
       const track = document.getElementById('testimonialTrack');
       const dotsContainer = document.getElementById('testiDots');
       const wrapper = document.getElementById('testimonialCarousel');
+      const viewport = document.getElementById('testimonialViewport');
       if (!track || !dotsContainer) return;
 
       const cards = track.querySelectorAll('.testimonial-card');
       let testiIndex = 0;
       let autoTimer = null;
+      let startX = 0;
 
       function getVisibleCount() {
         if (window.innerWidth <= 768) return 1;
@@ -3774,6 +3812,21 @@
         updateCarousel();
         restartAuto();
       };
+
+      if (viewport) {
+        viewport.addEventListener('touchstart', (e) => {
+          startX = e.touches[0].clientX;
+          clearInterval(autoTimer);
+        }, { passive: true });
+        viewport.addEventListener('touchend', (e) => {
+          const diff = startX - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 40) {
+            window.moveTestimonial(diff > 0 ? 1 : -1);
+          } else {
+            startAuto();
+          }
+        }, { passive: true });
+      }
 
       function startAuto() {
         autoTimer = setInterval(() => {
