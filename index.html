@@ -2133,6 +2133,331 @@
       color: #bfd4c7;
     }
 
+    /* ========== DEBU VOICE & CHAT GUIDE ASSISTANT WIDGET ========== */
+    @keyframes debuPulseRing {
+      0% { box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.65); }
+      70% { box-shadow: 0 0 0 14px rgba(234, 179, 8, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(234, 179, 8, 0); }
+    }
+
+    @keyframes micWave {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.18); }
+    }
+
+    .debu-launcher {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9998;
+      background: linear-gradient(135deg, var(--forest-dark) 0%, #1d5236 100%);
+      color: #ffffff;
+      border: 2.5px solid var(--gold-accent);
+      border-radius: 50px;
+      padding: 11px 20px 11px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: 0 10px 28px rgba(19, 59, 38, 0.35);
+      animation: debuPulseRing 2.6s infinite;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .debu-launcher:hover {
+      transform: translateY(-3px) scale(1.03);
+    }
+
+    .debu-avatar-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--gold-accent);
+      color: var(--forest-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .debu-launcher-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      line-height: 1.15;
+    }
+
+    .debu-launcher-text small {
+      font-size: 10.5px;
+      font-weight: 500;
+      color: #fde047;
+    }
+
+    .debu-widget {
+      position: fixed;
+      bottom: 88px;
+      right: 24px;
+      width: 370px;
+      max-width: calc(100vw - 28px);
+      height: 510px;
+      max-height: calc(100vh - 115px);
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1.5px solid #dcd5c2;
+      box-shadow: 0 20px 50px rgba(19, 59, 38, 0.28);
+      z-index: 9998;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      animation: riseFade 0.3s ease;
+    }
+
+    .debu-widget.open {
+      display: flex;
+    }
+
+    .debu-header {
+      background: linear-gradient(135deg, var(--forest-dark) 0%, #1d5236 100%);
+      color: #ffffff;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px solid var(--gold-accent);
+    }
+
+    .debu-header-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .debu-header-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--gold-accent);
+      color: var(--forest-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .debu-header-title strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .debu-header-title span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11.5px;
+      color: #c5ded0;
+    }
+
+    .debu-online-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4ade80;
+      display: inline-block;
+    }
+
+    .debu-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .debu-icon-btn {
+      background: rgba(255, 255, 255, 0.14);
+      border: none;
+      color: #ffffff;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+
+    .debu-icon-btn:hover {
+      background: var(--gold-accent);
+      color: var(--forest-dark);
+    }
+
+    .debu-messages {
+      flex: 1;
+      padding: 14px;
+      overflow-y: auto;
+      background: #fbf9f3;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .debu-msg {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 13.5px;
+      line-height: 1.48;
+      word-wrap: break-word;
+    }
+
+    .debu-msg.bot {
+      align-self: flex-start;
+      background: #ffffff;
+      color: var(--text-dark);
+      border: 1px solid #e5e0d3;
+      border-bottom-left-radius: 4px;
+      box-shadow: 0 2px 8px rgba(19, 59, 38, 0.05);
+    }
+
+    .debu-msg.user {
+      align-self: flex-end;
+      background: var(--forest-dark);
+      color: #ffffff;
+      border-bottom-right-radius: 4px;
+    }
+
+    .debu-action-link {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 6px 12px;
+      background: var(--gold-accent);
+      color: var(--forest-dark);
+      font-weight: 700;
+      font-size: 12px;
+      border-radius: 20px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+    }
+
+    .debu-quick-chips {
+      padding: 8px 12px;
+      background: #f3efe4;
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      border-top: 1px solid #e5e0d3;
+      scrollbar-width: none;
+    }
+
+    .debu-quick-chips::-webkit-scrollbar {
+      display: none;
+    }
+
+    .debu-chip {
+      background: #ffffff;
+      border: 1px solid #cbd5ce;
+      color: var(--forest-dark);
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 5px 11px;
+      border-radius: 16px;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .debu-chip:hover {
+      background: var(--forest-dark);
+      color: #ffffff;
+    }
+
+    .debu-voice-status {
+      background: #fef9c3;
+      color: #854d0e;
+      font-size: 12px;
+      font-weight: 600;
+      text-align: center;
+      padding: 5px 10px;
+      display: none;
+      border-top: 1px solid #fde047;
+    }
+
+    .debu-voice-status.active {
+      display: block;
+    }
+
+    .debu-input-bar {
+      padding: 10px 12px;
+      background: #ffffff;
+      border-top: 1px solid #e5e0d3;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .debu-input-bar input {
+      flex: 1;
+      border: 1px solid #cbd5ce;
+      background: #fbf9f3;
+      border-radius: 22px;
+      padding: 9px 14px;
+      font-size: 13.5px;
+      outline: none;
+      color: var(--text-dark);
+    }
+
+    .debu-input-bar input:focus {
+      border-color: var(--forest-mid);
+      background: #ffffff;
+    }
+
+    .debu-mic-btn,
+    .debu-send-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .debu-mic-btn {
+      background: #eaf3ed;
+      color: var(--forest-dark);
+      border: 1.5px solid var(--forest-mid);
+    }
+
+    .debu-mic-btn.listening {
+      background: #dc2626;
+      color: #ffffff;
+      border-color: #dc2626;
+      animation: micWave 1s infinite;
+    }
+
+    .debu-send-btn {
+      background: var(--forest-dark);
+      color: #ffffff;
+    }
+
+    .debu-send-btn:hover {
+      background: var(--gold-accent);
+      color: var(--forest-dark);
+    }
+
     /* ========== LARGE DESKTOP / 2K+ MONITORS (min-width: 1500px) ========== */
     @media (min-width: 1500px) {
       .programme-grid {
@@ -2636,6 +2961,19 @@
         flex-direction: column;
         text-align: center;
         gap: 6px;
+      }
+
+      .debu-launcher {
+        bottom: 16px;
+        right: 16px;
+        padding: 9px 15px 9px 11px;
+      }
+
+      .debu-widget {
+        bottom: 76px;
+        right: 14px;
+        width: calc(100vw - 28px);
+        height: 460px;
       }
     }
 
@@ -3588,6 +3926,55 @@
     </div>
   </footer>
 
+  <!-- DEBU VOICE & CHAT GUIDE ASSISTANT WIDGET -->
+  <button type="button" class="debu-launcher" id="debuLauncher" onclick="toggleDebuWidget()" aria-label="Open Debu Assistant">
+    <div class="debu-avatar-badge">🎙️</div>
+    <div class="debu-launcher-text">
+      <span>Ask Debu</span>
+      <small>Voice &amp; Site Guide</small>
+    </div>
+  </button>
+
+  <div class="debu-widget" id="debuWidget" role="dialog" aria-label="Debu Website Assistant">
+    <div class="debu-header">
+      <div class="debu-header-info">
+        <div class="debu-header-avatar">🌿</div>
+        <div class="debu-header-title">
+          <strong>Debu • SSMCT Guide</strong>
+          <span><i class="debu-online-dot"></i> Voice &amp; Chat Assistant</span>
+        </div>
+      </div>
+      <div class="debu-header-actions">
+        <button type="button" class="debu-icon-btn" id="debuMuteBtn" onclick="toggleDebuVoiceOutput()" title="Mute / Unmute Voice">🔊</button>
+        <button type="button" class="debu-icon-btn" onclick="toggleDebuWidget()" title="Close">✕</button>
+      </div>
+    </div>
+
+    <div class="debu-messages" id="debuMessages">
+      <div class="debu-msg bot">
+        Namaskar! I am <strong>Debu</strong>, your personal guide for <strong>Shyamashree Shitala Maa Charitable Trust</strong>. 🙏<br><br>
+        Tap the <strong>mic</strong> to speak or ask me anything—about our Founder, Initiatives, Certificates, Annual Report, Donations, or any general question!
+      </div>
+    </div>
+
+    <div class="debu-quick-chips">
+      <button type="button" class="debu-chip" onclick="sendDebuPreset('Who is the founder?')">👤 Founder</button>
+      <button type="button" class="debu-chip" onclick="sendDebuPreset('Tell me about SSMCT')">🏛️ About SSMCT</button>
+      <button type="button" class="debu-chip" onclick="sendDebuPreset('Show me your initiatives')">🌱 Initiatives</button>
+      <button type="button" class="debu-chip" onclick="sendDebuPreset('Show certificates')">📜 Certificates</button>
+      <button type="button" class="debu-chip" onclick="sendDebuPreset('I want to donate')">💛 Donate</button>
+      <button type="button" class="debu-chip" onclick="sendDebuPreset('Meet the team')">🤝 Our Team</button>
+    </div>
+
+    <div class="debu-voice-status" id="debuVoiceStatus">🎙️ Listening... Speak now</div>
+
+    <form class="debu-input-bar" onsubmit="handleDebuTextSubmit(event)">
+      <button type="button" class="debu-mic-btn" id="debuMicBtn" onclick="toggleDebuListening()" title="Speak to Debu">🎙️</button>
+      <input type="text" id="debuInput" placeholder="Ask Debu or tap mic..." autocomplete="off" />
+      <button type="submit" class="debu-send-btn" title="Send">➤</button>
+    </form>
+  </div>
+
   <!-- ORIGINAL SCRIPTS PRESERVED + TEAM & TESTIMONIALS TOUCH SWIPE SLIDERS -->
   <script>
     let slides = document.querySelectorAll('.hero-slide');
@@ -3957,6 +4344,367 @@
         closeMenu();
       }
     });
+
+    /* ================= DEBU VOICE & CHAT GUIDE ASSISTANT ================= */
+    let debuVoiceEnabled = true;
+    let debuRecognition = null;
+    let debuIsListening = false;
+
+    function toggleDebuWidget() {
+      const widget = document.getElementById('debuWidget');
+      widget.classList.toggle('open');
+      if (widget.classList.contains('open')) {
+        document.getElementById('debuInput').focus();
+      }
+    }
+
+    function toggleDebuVoiceOutput() {
+      debuVoiceEnabled = !debuVoiceEnabled;
+      const btn = document.getElementById('debuMuteBtn');
+      btn.textContent = debuVoiceEnabled ? '🔊' : '🔇';
+      if (!debuVoiceEnabled && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    function debuSpeak(text) {
+      if (!debuVoiceEnabled || !('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const cleanText = text.replace(/<[^>]*>/g, '').replace(/[🙏🌱💛📜👤🏛️🤝✨✅]/g, '');
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.lang = 'en-IN';
+      utterance.rate = 1.02;
+      utterance.pitch = 1.0;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function appendDebuMessage(sender, htmlText, actionLabel, actionCallback) {
+      const box = document.getElementById('debuMessages');
+      const msgDiv = document.createElement('div');
+      msgDiv.className = 'debu-msg ' + sender;
+      msgDiv.innerHTML = htmlText;
+
+      if (actionLabel && typeof actionCallback === 'function') {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'debu-action-link';
+        btn.textContent = actionLabel;
+        btn.onclick = actionCallback;
+        msgDiv.appendChild(document.createElement('br'));
+        msgDiv.appendChild(btn);
+      }
+
+      box.appendChild(msgDiv);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function scrollToSectionSmooth(selector) {
+      const el = document.querySelector(selector);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function getDebuResponse(rawQuery) {
+      const q = rawQuery.toLowerCase().trim();
+
+      // 1. Founder Queries
+      if (q.includes('founder') || q.includes('shambhu') || q.includes('who started') || q.includes('established')) {
+        setTimeout(() => scrollToSectionSmooth('#founder'), 600);
+        return {
+          text: 'The Founder of <strong>Shyamashree Shitala Maa Charitable Trust</strong> is <strong>Mr. Shambhu Chakraborty</strong>. I am taking you to the Founder’s Message section now.',
+          actionLabel: 'Read Founder’s Message →',
+          action: () => scrollToSectionSmooth('#founder')
+        };
+      }
+
+      // 2. Certificates & Compliance
+      if (q.includes('certificate') || q.includes('certification') || q.includes('12ab') || q.includes('80g') || q.includes('darpan') || q.includes('registration') || q.includes('legal')) {
+        return {
+          text: 'SSMCT is registered under the Indian Registration Act, 1909, certified for <strong>12AB &amp; 80G Tax Exemption</strong>, and listed on <strong>NITI Aayog Darpan</strong>. Opening the Certificates page for you!',
+          actionLabel: 'Open Certificates Page →',
+          action: () => { window.location.href = 'Certificates.html'; },
+          autoRedirect: () => { setTimeout(() => { window.location.href = 'Certificates.html'; }, 1800); }
+        };
+      }
+
+      // 3. Annual Report
+      if (q.includes('annual report') || q.includes('report') || q.includes('financial') || q.includes('audit')) {
+        return {
+          text: 'You can view our comprehensive <strong>Annual Report 2025-26</strong> detailing our initiatives, financials, and grassroots outcomes. Redirecting you now!',
+          actionLabel: 'Open Annual Report →',
+          action: () => { window.location.href = 'report.html'; },
+          autoRedirect: () => { setTimeout(() => { window.location.href = 'report.html'; }, 1800); }
+        };
+      }
+
+      // 4. Donation / Razorpay
+      if (q.includes('donate') || q.includes('donation') || q.includes('contribute') || q.includes('money') || q.includes('fund') || q.includes('razorpay')) {
+        setTimeout(() => openGeneralDonateForm(), 800);
+        return {
+          text: 'Thank you for your generosity! Every rupee supports meals, education, and healthcare. I am opening the secure donation form for you now.',
+          actionLabel: 'Open Donation Form 💛',
+          action: () => openGeneralDonateForm()
+        };
+      }
+
+      // 5. About SSMCT / Status
+      if (q.includes('about') || q.includes('ssmct') || q.includes('shitala maa') || q.includes('status') || q.includes('trust') || q.includes('who are you') || q.includes('ngo')) {
+        setTimeout(() => scrollToSectionSmooth('#about'), 600);
+        return {
+          text: '<strong>Shyamashree Shitala Maa Charitable Trust (SSMCT)</strong> is a registered NGO based in Howrah, West Bengal, dedicated to women’s safety, education, health, and hunger relief. Taking you to our About Us section.',
+          actionLabel: 'View About Us →',
+          action: () => scrollToSectionSmooth('#about')
+        };
+      }
+
+      // 6. Specific Initiatives
+      if (q.includes('eye')) {
+        return {
+          text: 'Our <strong>Eye Check-up Camp</strong> provides free vision screening and eye care for underprivileged communities. Opening the Eye Check-up Camp page.',
+          actionLabel: 'Go to Eye Check-up Camp →',
+          action: () => { window.location.href = ' Eye Check-up Camp.html'; },
+          autoRedirect: () => { setTimeout(() => { window.location.href = ' Eye Check-up Camp.html'; }, 1800); }
+        };
+      }
+      if (q.includes('book')) {
+        return {
+          text: 'Through <strong>Books Distribution</strong>, we provide textbooks and study materials to students in need. Redirecting you to the Books Distribution page.',
+          actionLabel: 'Go to Books Distribution →',
+          action: () => { window.location.href = ' Books Distribution.html'; },
+          autoRedirect: () => { setTimeout(() => { window.location.href = ' Books Distribution.html'; }, 1800); }
+        };
+      }
+      if (q.includes('child') || q.includes('education') || q.includes('school')) {
+        return {
+          text: 'Our <strong>Child Education</strong> initiative empowers children with quality learning and academic support. Taking you there now.',
+          actionLabel: 'Go to Child Education →',
+          action: () => { window.location.href = 'Child Education.html'; },
+          autoRedirect: () => { setTimeout(() => { window.location.href = 'Child Education.html'; }, 1800); }
+        };
+      }
+      if (q.includes('women') || q.includes('woman') || q.includes('nirbhoyini') || q.includes('girl')) {
+        return {
+          text: 'Our <strong>Women Empowerment</strong> program (including Project Nirbhoyini) promotes women’s safety, skills, and equality. Opening the page now.',
+          actionLabel: 'Go to Women Empowerment →',
+          action: () => { window.location.href = 'Women Empowerment.html'; },
+          autoRedirect: () => { setTimeout(() => { window.location.href = 'Women Empowerment.html'; }, 1800); }
+        };
+      }
+      if (q.includes('health')) {
+        return {
+          text: 'Our <strong>Health Check-up Camp</strong> offers free medical consultations and primary healthcare. Redirecting you now.',
+          actionLabel: 'Go to Health Check-up Camp →',
+          action: () => { window.location.href = 'Health Check-up Camp.html'; },
+          autoRedirect: () => { setTimeout(() => { window.location.href = 'Health Check-up Camp.html'; }, 1800); }
+        };
+      }
+      if (q.includes('medicine')) {
+        return {
+          text: 'Through <strong>Free Medicine Distribution</strong>, essential medicines are supplied free of cost to families in need. Taking you to the page.',
+          actionLabel: 'Go to Free Medicine →',
+          action: () => { window.location.href = 'Free Medicine Distribution.html'; },
+          autoRedirect: () => { setTimeout(() => { window.location.href = 'Free Medicine Distribution.html'; }, 1800); }
+        };
+      }
+      if (q.includes('food') || q.includes('canteen') || q.includes('shitala canteen') || q.includes('meal') || q.includes('hunger')) {
+        return {
+          text: '<strong>Shitala Canteen &amp; Free Food Distribution</strong> serves nutritious meals (including ₹1 meals) to fight hunger with dignity. Opening the page now.',
+          actionLabel: 'Go to Free Food Distribution →',
+          action: () => { window.location.href = 'Free Food Distribution.html'; },
+          autoRedirect: () => { setTimeout(() => { window.location.href = 'Free Food Distribution.html'; }, 1800); }
+        };
+      }
+      if (q.includes('tree') || q.includes('plant') || q.includes('environment')) {
+        return {
+          text: 'Our <strong>Tree Plantation</strong> initiative nurtures greenery and environmental sustainability across communities. Redirecting you now.',
+          actionLabel: 'Go to Tree Plantation →',
+          action: () => { window.location.href = 'Tree Plantation.html'; },
+          autoRedirect: () => { setTimeout(() => { window.location.href = 'Tree Plantation.html'; }, 1800); }
+        };
+      }
+      if (q.includes('talent') || q.includes('scholarship')) {
+        return {
+          text: '<strong>Talent Hunt Scholarship</strong> identifies and supports bright young students with scholarships. Opening the page now.',
+          actionLabel: 'Go to Talent Hunt →',
+          action: () => { window.location.href = 'Talent Hunt Scholarship.html'; },
+          autoRedirect: () => { setTimeout(() => { window.location.href = 'Talent Hunt Scholarship.html'; }, 1800); }
+        };
+      }
+      if (q.includes('garment') || q.includes('cloth') || q.includes('dress')) {
+        return {
+          text: '<strong>Old Garments Distribution</strong> provides clean clothing to underprivileged families. Redirecting you now.',
+          actionLabel: 'Go to Garments Distribution →',
+          action: () => { window.location.href = 'Old Garments Distribution.html'; },
+          autoRedirect: () => { setTimeout(() => { window.location.href = 'Old Garments Distribution.html'; }, 1800); }
+        };
+      }
+      if (q.includes('antardrishti') || q.includes('braille') || q.includes('blind')) {
+        return {
+          text: '<strong>Project Antardrishti</strong> provides braille kits and white canes to empower visually impaired individuals. Opening Antardrishti page.',
+          actionLabel: 'Open Antardrishti →',
+          action: () => { window.location.href = 'Antardrishtilearn.html'; },
+          autoRedirect: () => { setTimeout(() => { window.location.href = 'Antardrishtilearn.html'; }, 1800); }
+        };
+      }
+
+      // 7. All Projects / Initiatives overview
+      if (q.includes('project') || q.includes('initiative') || q.includes('work') || q.includes('program')) {
+        setTimeout(() => scrollToSectionSmooth('#projects'), 600);
+        return {
+          text: 'We run <strong>10 core initiatives</strong>: Eye Check-up Camp, Books Distribution, Child Education, Women Empowerment, Health Check-up Camp, Free Medicine, Free Food Distribution, Tree Plantation, Talent Hunt Scholarship, and Old Garments Distribution. Taking you to Our Initiatives!',
+          actionLabel: 'Explore All Initiatives →',
+          action: () => scrollToSectionSmooth('#projects')
+        };
+      }
+
+      // 8. Impact & Stats
+      if (q.includes('impact') || q.includes('people helped') || q.includes('stat') || q.includes('achievement')) {
+        setTimeout(() => scrollToSectionSmooth('#impact'), 600);
+        return {
+          text: 'So far, SSMCT has helped <strong>10,000+ people</strong>, distributed <strong>5,000+ books &amp; meals</strong>, and planted <strong>1,000+ trees</strong> across West Bengal. Scrolling to Our Impact.',
+          actionLabel: 'View Our Impact →',
+          action: () => scrollToSectionSmooth('#impact')
+        };
+      }
+
+      // 9. Team & Software Engineer
+      if (q.includes('team') || q.includes('member') || q.includes('debayan') || q.includes('satyajit') || q.includes('mousumi') || q.includes('arindam') || q.includes('soma') || q.includes('tirthanu') || q.includes('software engineer')) {
+        setTimeout(() => scrollToSectionSmooth('#team'), 600);
+        return {
+          text: 'Our dedicated team includes <strong>Satyajit Nandy</strong> (President), <strong>Mousumi Nandy</strong> (Secretary), <strong>Arindam Das</strong> (Treasurer), <strong>Soma Ghosh</strong> (VP), <strong>Debayan Mukhopadhyay</strong> (Software Engineer), and <strong>Tirthanu</strong> (Executive Member). Taking you to Meet Our Team.',
+          actionLabel: 'Meet Our Team →',
+          action: () => scrollToSectionSmooth('#team')
+        };
+      }
+
+      // 10. Testimonials / Reviews
+      if (q.includes('testimonial') || q.includes('review') || q.includes('donor say') || q.includes('feedback')) {
+        setTimeout(() => scrollToSectionSmooth('#testimonials'), 600);
+        return {
+          text: 'Read inspiring stories and feedback from our donors across Kolkata, Howrah, Durgapur, and Hooghly. Taking you to Testimonials.',
+          actionLabel: 'Read Testimonials →',
+          action: () => scrollToSectionSmooth('#testimonials')
+        };
+      }
+
+      // 11. Contact / Location / Volunteer
+      if (q.includes('contact') || q.includes('location') || q.includes('address') || q.includes('where') || q.includes('email') || q.includes('volunteer') || q.includes('join')) {
+        return {
+          text: 'We are located in <strong>Howrah District, West Bengal</strong>. You can email us at <strong>info@ssmctrust.org</strong> or visit our Contact Us page to volunteer or partner with us.',
+          actionLabel: 'Open Contact Us →',
+          action: () => { window.location.href = 'ContactUs.html'; },
+          autoRedirect: () => { setTimeout(() => { window.location.href = 'ContactUs.html'; }, 1800); }
+        };
+      }
+
+      // 12. Open-ended General & Conversational Queries
+      if (q.includes('hello') || q.includes('hi') || q.includes('namaskar') || q.includes('hey')) {
+        return {
+          text: 'Namaskar! I am <strong>Debu</strong>. How can I guide you today? You can ask me about our Founder, Projects, Certificates, Annual Report, or say "I want to donate".'
+        };
+      }
+      if (q.includes('your name') || q.includes('who is debu')) {
+        return {
+          text: 'My name is <strong>Debu</strong>! I am the interactive voice and chat guide for Shyamashree Shitala Maa Charitable Trust.'
+        };
+      }
+      if (q.includes('time') || q.includes('date') || q.includes('today')) {
+        const now = new Date();
+        return {
+          text: 'Today is <strong>' + now.toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) + '</strong>, and the current time is <strong>' + now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) + '</strong>.'
+        };
+      }
+      if (q.includes('tax') || q.includes('exemption')) {
+        return {
+          text: 'Under <strong>Section 80G</strong> of the Indian Income Tax Act, donations made to 12AB &amp; 80G certified trusts like SSMCT qualify for tax deductions for Indian taxpayers. You can enter your optional PAN in our donation form!'
+        };
+      }
+      if (q.includes('thank')) {
+        return {
+          text: 'You are most welcome! Together, we can build a kinder, healthier, and happier society. 💛'
+        };
+      }
+
+      // Fallback Open-Ended Helpful Guidance
+      return {
+        text: 'I am <strong>Debu</strong>, here to help! While I specialize in guiding you through <strong>Shyamashree Shitala Maa Charitable Trust</strong>—our Founder (Mr. Shambhu Chakraborty), 10 Initiatives, Certificates, Impact, and Donations—you can also click any quick topic below or ask me to open a specific page!'
+      };
+    }
+
+    function processDebuQuery(text) {
+      if (!text || !text.trim()) return;
+      appendDebuMessage('user', text);
+      const reply = getDebuResponse(text);
+      setTimeout(() => {
+        appendDebuMessage('bot', reply.text, reply.actionLabel, reply.action);
+        debuSpeak(reply.text);
+        if (typeof reply.autoRedirect === 'function') {
+          reply.autoRedirect();
+        }
+      }, 300);
+    }
+
+    function handleDebuTextSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('debuInput');
+      const val = input.value;
+      input.value = '';
+      processDebuQuery(val);
+    }
+
+    function sendDebuPreset(promptText) {
+      processDebuQuery(promptText);
+    }
+
+    function toggleDebuListening() {
+      const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const statusEl = document.getElementById('debuVoiceStatus');
+      const micBtn = document.getElementById('debuMicBtn');
+
+      if (!SpeechRec) {
+        appendDebuMessage('bot', 'Voice recognition is not supported in this browser. Please use Google Chrome or type your question below.');
+        return;
+      }
+
+      if (debuIsListening && debuRecognition) {
+        debuRecognition.stop();
+        return;
+      }
+
+      debuRecognition = new SpeechRec();
+      debuRecognition.lang = 'en-IN';
+      debuRecognition.interimResults = false;
+      debuRecognition.maxAlternatives = 1;
+
+      debuRecognition.onstart = function () {
+        debuIsListening = true;
+        micBtn.classList.add('listening');
+        statusEl.classList.add('active');
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      };
+
+      debuRecognition.onresult = function (event) {
+        const transcript = event.results[0][0].transcript;
+        processDebuQuery(transcript);
+      };
+
+      debuRecognition.onerror = function () {
+        statusEl.textContent = '⚠️ Could not hear clearly. Tap mic to try again.';
+        setTimeout(() => {
+          statusEl.classList.remove('active');
+          statusEl.textContent = '🎙️ Listening... Speak now';
+        }, 2000);
+      };
+
+      debuRecognition.onend = function () {
+        debuIsListening = false;
+        micBtn.classList.remove('listening');
+        statusEl.classList.remove('active');
+      };
+
+      debuRecognition.start();
+    }
   </script>
 
   <!-- Razorpay Script (only ONE time) -->
