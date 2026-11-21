@@ -3986,7 +3986,7 @@
     <div class="debu-messages" id="debuMessages">
       <div class="debu-msg bot">
         Hi! I am <strong>Debu</strong>, your personal guide for <strong>Shyamashree Shitala Maa Charitable Trust</strong>. 🌿<br><br>
-        Type your question below or tap the <strong>mic</strong> to talk—I can take you to our Founder’s Message, Initiatives, Certificates, Annual Report, Donation form, or answer general queries!
+        Type your question below or tap the <strong>mic</strong> to talk—I will answer completely first and then take you to the right section or page!
       </div>
     </div>
 
@@ -4378,12 +4378,55 @@
       }
     });
 
-    /* ================= DEBU ROUND VOICE & CHAT GUIDE ASSISTANT ================= */
+    /* ================= DEBU ROUND MALE VOICE & CHAT GUIDE ASSISTANT ================= */
     let debuVoiceEnabled = true;
     let debuRecognition = null;
     let debuIsListening = false;
     let debuLastReplyKey = '';
     let debuTurnCount = 0;
+    let debuSelectedMaleVoice = null;
+
+    function loadDebuMaleVoice() {
+      if (!('speechSynthesis' in window)) return;
+      const voices = window.speechSynthesis.getVoices();
+      if (!voices.length) return;
+
+      const maleKeywords = [
+        'ravi', 'prabhat', 'hemant', 'rishi', 'daniel', 'david',
+        'mark', 'george', 'alex', 'james', 'guy', 'male', 'arthur', 'oliver'
+      ];
+      const femaleKeywords = [
+        'female', 'zira', 'hazel', 'heera', 'kalpana', 'swara',
+        'neerja', 'samantha', 'victoria', 'susan', 'linda', 'aria', 'jenny'
+      ];
+
+      // 1. Prefer Indian English Male Voice
+      debuSelectedMaleVoice = voices.find(v =>
+        v.lang.toLowerCase().includes('en-in') &&
+        maleKeywords.some(k => v.name.toLowerCase().includes(k))
+      );
+
+      // 2. Fallback to any English Male Voice
+      if (!debuSelectedMaleVoice) {
+        debuSelectedMaleVoice = voices.find(v =>
+          v.lang.toLowerCase().startsWith('en') &&
+          maleKeywords.some(k => v.name.toLowerCase().includes(k))
+        );
+      }
+
+      // 3. Fallback to any voice without female keywords
+      if (!debuSelectedMaleVoice) {
+        debuSelectedMaleVoice = voices.find(v =>
+          v.lang.toLowerCase().startsWith('en') &&
+          !femaleKeywords.some(k => v.name.toLowerCase().includes(k))
+        );
+      }
+    }
+
+    if ('speechSynthesis' in window) {
+      loadDebuMaleVoice();
+      window.speechSynthesis.onvoiceschanged = loadDebuMaleVoice;
+    }
 
     function toggleDebuWidget() {
       const widget = document.getElementById('debuWidget');
@@ -4409,14 +4452,44 @@
       }
     }
 
-    function debuSpeak(text) {
-      if (!debuVoiceEnabled || !('speechSynthesis' in window)) return;
+    /* Speaks the FULL answer first, then executes redirect/scroll callback only AFTER speaking completes */
+    function debuSpeakAndThen(text, onCompleteCallback) {
+      const cleanText = text.replace(/<[^>]*>/g, '').replace(/[🙏🌱💛📜👤🏛️🤝✨✅🌿]/g, '').trim();
+
+      if (!debuVoiceEnabled || !('speechSynthesis' in window)) {
+        if (typeof onCompleteCallback === 'function') {
+          setTimeout(onCompleteCallback, 1600);
+        }
+        return;
+      }
+
       window.speechSynthesis.cancel();
-      const cleanText = text.replace(/<[^>]*>/g, '').replace(/[🙏🌱💛📜👤🏛️🤝✨✅🌿]/g, '');
+      loadDebuMaleVoice();
+
       const utterance = new SpeechSynthesisUtterance(cleanText);
+      if (debuSelectedMaleVoice) {
+        utterance.voice = debuSelectedMaleVoice;
+      }
       utterance.lang = 'en-IN';
-      utterance.rate = 1.03;
-      utterance.pitch = 1.0;
+      utterance.rate = 1.0;
+      utterance.pitch = 0.9; // Deeper male voice tone
+
+      let executed = false;
+      const finishOnce = () => {
+        if (executed) return;
+        executed = true;
+        if (typeof onCompleteCallback === 'function') {
+          setTimeout(onCompleteCallback, 450);
+        }
+      };
+
+      utterance.onend = finishOnce;
+      utterance.onerror = finishOnce;
+
+      // Safety fallback timeout based on text length in case browser blocks onend
+      const estimatedMs = Math.max(2500, cleanText.length * 68);
+      setTimeout(finishOnce, estimatedMs);
+
       window.speechSynthesis.speak(utterance);
     }
 
@@ -4476,197 +4549,197 @@
 
       // 1. Founder Queries
       if (q.includes('founder') || q.includes('shambhu') || q.includes('who started') || q.includes('established') || q.includes('ফাউন্ডার') || q.includes('প্রতিষ্ঠাতা')) {
-        setTimeout(() => scrollToSectionSmooth('#founder'), 650);
         return {
           text: pickVariant('founder', [
-            'The Founder of <strong>Shyamashree Shitala Maa Charitable Trust</strong> is <strong>Mr. Shambhu Chakraborty</strong>. I have scrolled to the Founder’s Message section so you can read his inspiring words.',
-            '<strong>Mr. Shambhu Chakraborty</strong> founded SSMCT with the vision that humanity is the greatest service. You can read his complete message right on your screen!'
+            'The Founder of <strong>Shyamashree Shitala Maa Charitable Trust</strong> is <strong>Mr. Shambhu Chakraborty</strong>. Now taking you to the Founder’s Message section.',
+            '<strong>Mr. Shambhu Chakraborty</strong> founded SSMCT with the belief that humanity is the greatest service. Scrolling to his message now.'
           ]),
           actionLabel: 'Read Founder’s Message →',
-          action: () => scrollToSectionSmooth('#founder')
+          action: () => scrollToSectionSmooth('#founder'),
+          onAfterAnswer: () => scrollToSectionSmooth('#founder')
         };
       }
 
       // 2. Certificates & Compliance
       if (q.includes('certificate') || q.includes('certification') || q.includes('12ab') || q.includes('80g') || q.includes('darpan') || q.includes('registration') || q.includes('legal') || q.includes('সার্টিফিকেট')) {
         return {
-          text: 'SSMCT is registered under the Indian Registration Act, 1909, certified for <strong>12AB &amp; 80G Tax Exemption</strong>, and listed on <strong>NITI Aayog Darpan</strong>. Taking you to the Certificates page!',
+          text: 'SSMCT is registered under the Indian Registration Act, 1909, certified for <strong>12AB &amp; 80G Tax Exemption</strong>, and listed on <strong>NITI Aayog Darpan</strong>. Now redirecting you to our Certificates page.',
           actionLabel: 'Open Certificates Page →',
           action: () => { window.location.href = 'Certificates.html'; },
-          autoRedirect: () => { setTimeout(() => { window.location.href = 'Certificates.html'; }, 1800); }
+          onAfterAnswer: () => { window.location.href = 'Certificates.html'; }
         };
       }
 
       // 3. Annual Report
       if (q.includes('annual report') || q.includes('report') || q.includes('financial') || q.includes('audit') || q.includes('রিপোর্ট')) {
         return {
-          text: 'Our <strong>Annual Report 2025-26</strong> covers our social initiatives, financial transparency, and community outcomes. Opening the Annual Report page for you.',
+          text: 'Our <strong>Annual Report 2025-26</strong> covers our social initiatives, financial transparency, and community outcomes. Now redirecting you to the Annual Report page.',
           actionLabel: 'Open Annual Report →',
           action: () => { window.location.href = 'report.html'; },
-          autoRedirect: () => { setTimeout(() => { window.location.href = 'report.html'; }, 1800); }
+          onAfterAnswer: () => { window.location.href = 'report.html'; }
         };
       }
 
       // 4. Donation / Razorpay
       if (q.includes('donate') || q.includes('donation') || q.includes('contribute') || q.includes('money') || q.includes('fund') || q.includes('razorpay') || q.includes('ডোনেট') || q.includes('সাহায্য')) {
-        setTimeout(() => openGeneralDonateForm(), 800);
         return {
-          text: 'Your kindness creates real change! Every contribution directly supports meals, education, and medical aid. I am opening our secure donation form for you now.',
+          text: 'Your kindness creates real change! Every contribution directly supports meals, education, and medical aid. Opening our secure donation form now.',
           actionLabel: 'Open Donation Form 💛',
-          action: () => openGeneralDonateForm()
+          action: () => openGeneralDonateForm(),
+          onAfterAnswer: () => openGeneralDonateForm()
         };
       }
 
       // 5. About SSMCT / Status
       if (q.includes('about') || q.includes('ssmct') || q.includes('shitala maa') || q.includes('status') || q.includes('trust') || q.includes('who are you') || q.includes('ngo') || q.includes('সম্পর্কে')) {
-        setTimeout(() => scrollToSectionSmooth('#about'), 650);
         return {
           text: pickVariant('about', [
-            '<strong>Shyamashree Shitala Maa Charitable Trust (SSMCT)</strong> is a registered public charitable trust in Howrah, West Bengal, working on women’s safety, education, health, and hunger relief.',
-            'SSMCT is 12AB &amp; 80G certified and listed on NITI Aayog Darpan, driving grassroots welfare across West Bengal with 100% transparency.'
+            '<strong>Shyamashree Shitala Maa Charitable Trust (SSMCT)</strong> is a registered public charitable trust in Howrah, West Bengal, working on women’s safety, education, health, and hunger relief. Taking you to our About Us section.',
+            'SSMCT is 12AB &amp; 80G certified and listed on NITI Aayog Darpan, driving grassroots welfare across West Bengal with 100% transparency. Scrolling to About Us now.'
           ]),
           actionLabel: 'View About Us →',
-          action: () => scrollToSectionSmooth('#about')
+          action: () => scrollToSectionSmooth('#about'),
+          onAfterAnswer: () => scrollToSectionSmooth('#about')
         };
       }
 
       // 6. Specific Initiatives
       if (q.includes('eye') || q.includes('চোখ')) {
         return {
-          text: 'Our <strong>Eye Check-up Camp</strong> offers free vision screening and eye care for underprivileged communities. Opening the Eye Check-up Camp page.',
+          text: 'Our <strong>Eye Check-up Camp</strong> offers free vision screening and eye care for underprivileged communities. Now redirecting you to the Eye Check-up Camp page.',
           actionLabel: 'Go to Eye Check-up Camp →',
           action: () => { window.location.href = ' Eye Check-up Camp.html'; },
-          autoRedirect: () => { setTimeout(() => { window.location.href = ' Eye Check-up Camp.html'; }, 1800); }
+          onAfterAnswer: () => { window.location.href = ' Eye Check-up Camp.html'; }
         };
       }
       if (q.includes('book') || q.includes('বই')) {
         return {
-          text: 'Through <strong>Books Distribution</strong>, we provide textbooks and study materials to students in need. Redirecting you now.',
+          text: 'Through <strong>Books Distribution</strong>, we provide textbooks and study materials to students in need. Now redirecting you to the Books Distribution page.',
           actionLabel: 'Go to Books Distribution →',
           action: () => { window.location.href = ' Books Distribution.html'; },
-          autoRedirect: () => { setTimeout(() => { window.location.href = ' Books Distribution.html'; }, 1800); }
+          onAfterAnswer: () => { window.location.href = ' Books Distribution.html'; }
         };
       }
       if (q.includes('child') || q.includes('education') || q.includes('school') || q.includes('শিক্ষা')) {
         return {
-          text: 'Our <strong>Child Education</strong> initiative empowers children with quality learning and academic support. Taking you there now.',
+          text: 'Our <strong>Child Education</strong> initiative empowers children with quality learning and academic support. Now redirecting you to the Child Education page.',
           actionLabel: 'Go to Child Education →',
           action: () => { window.location.href = 'Child Education.html'; },
-          autoRedirect: () => { setTimeout(() => { window.location.href = 'Child Education.html'; }, 1800); }
+          onAfterAnswer: () => { window.location.href = 'Child Education.html'; }
         };
       }
       if (q.includes('women') || q.includes('woman') || q.includes('nirbhoyini') || q.includes('girl') || q.includes('মহিলা')) {
         return {
-          text: 'Our <strong>Women Empowerment</strong> program (including Project Nirbhoyini) promotes women’s safety, skills, and equality. Opening the page now.',
+          text: 'Our <strong>Women Empowerment</strong> program (including Project Nirbhoyini) promotes women’s safety, skills, and equality. Now redirecting you to the Women Empowerment page.',
           actionLabel: 'Go to Women Empowerment →',
           action: () => { window.location.href = 'Women Empowerment.html'; },
-          autoRedirect: () => { setTimeout(() => { window.location.href = 'Women Empowerment.html'; }, 1800); }
+          onAfterAnswer: () => { window.location.href = 'Women Empowerment.html'; }
         };
       }
       if (q.includes('health') || q.includes('স্বাস্থ্য')) {
         return {
-          text: 'Our <strong>Health Check-up Camp</strong> offers free medical consultations and primary healthcare. Redirecting you now.',
+          text: 'Our <strong>Health Check-up Camp</strong> offers free medical consultations and primary healthcare. Now redirecting you to the Health Check-up Camp page.',
           actionLabel: 'Go to Health Check-up Camp →',
           action: () => { window.location.href = 'Health Check-up Camp.html'; },
-          autoRedirect: () => { setTimeout(() => { window.location.href = 'Health Check-up Camp.html'; }, 1800); }
+          onAfterAnswer: () => { window.location.href = 'Health Check-up Camp.html'; }
         };
       }
       if (q.includes('medicine') || q.includes('ওষুধ')) {
         return {
-          text: 'Through <strong>Free Medicine Distribution</strong>, essential medicines are supplied free of cost to families in need. Taking you to the page.',
+          text: 'Through <strong>Free Medicine Distribution</strong>, essential medicines are supplied free of cost to families in need. Now redirecting you to that page.',
           actionLabel: 'Go to Free Medicine →',
           action: () => { window.location.href = 'Free Medicine Distribution.html'; },
-          autoRedirect: () => { setTimeout(() => { window.location.href = 'Free Medicine Distribution.html'; }, 1800); }
+          onAfterAnswer: () => { window.location.href = 'Free Medicine Distribution.html'; }
         };
       }
       if (q.includes('food') || q.includes('canteen') || q.includes('shitala canteen') || q.includes('meal') || q.includes('hunger') || q.includes('খাবার')) {
         return {
-          text: '<strong>Shitala Canteen &amp; Free Food Distribution</strong> serves nutritious meals (including ₹1 meals) to fight hunger with dignity. Opening the page now.',
+          text: '<strong>Shitala Canteen &amp; Free Food Distribution</strong> serves nutritious meals (including ₹1 meals) to fight hunger with dignity. Now redirecting you to the Free Food Distribution page.',
           actionLabel: 'Go to Free Food Distribution →',
           action: () => { window.location.href = 'Free Food Distribution.html'; },
-          autoRedirect: () => { setTimeout(() => { window.location.href = 'Free Food Distribution.html'; }, 1800); }
+          onAfterAnswer: () => { window.location.href = 'Free Food Distribution.html'; }
         };
       }
       if (q.includes('tree') || q.includes('plant') || q.includes('environment') || q.includes('গাছ')) {
         return {
-          text: 'Our <strong>Tree Plantation</strong> initiative nurtures greenery and environmental sustainability across communities. Redirecting you now.',
+          text: 'Our <strong>Tree Plantation</strong> initiative nurtures greenery and environmental sustainability across communities. Now redirecting you to the Tree Plantation page.',
           actionLabel: 'Go to Tree Plantation →',
           action: () => { window.location.href = 'Tree Plantation.html'; },
-          autoRedirect: () => { setTimeout(() => { window.location.href = 'Tree Plantation.html'; }, 1800); }
+          onAfterAnswer: () => { window.location.href = 'Tree Plantation.html'; }
         };
       }
       if (q.includes('talent') || q.includes('scholarship') || q.includes('বৃত্তি')) {
         return {
-          text: '<strong>Talent Hunt Scholarship</strong> identifies and supports bright young students with scholarships. Opening the page now.',
+          text: '<strong>Talent Hunt Scholarship</strong> identifies and supports bright young students with scholarships. Now redirecting you to the Talent Hunt Scholarship page.',
           actionLabel: 'Go to Talent Hunt →',
           action: () => { window.location.href = 'Talent Hunt Scholarship.html'; },
-          autoRedirect: () => { setTimeout(() => { window.location.href = 'Talent Hunt Scholarship.html'; }, 1800); }
+          onAfterAnswer: () => { window.location.href = 'Talent Hunt Scholarship.html'; }
         };
       }
       if (q.includes('garment') || q.includes('cloth') || q.includes('dress') || q.includes('জামা')) {
         return {
-          text: '<strong>Old Garments Distribution</strong> provides clean clothing to underprivileged families. Redirecting you now.',
+          text: '<strong>Old Garments Distribution</strong> provides clean clothing to underprivileged families. Now redirecting you to the Old Garments Distribution page.',
           actionLabel: 'Go to Garments Distribution →',
           action: () => { window.location.href = 'Old Garments Distribution.html'; },
-          autoRedirect: () => { setTimeout(() => { window.location.href = 'Old Garments Distribution.html'; }, 1800); }
+          onAfterAnswer: () => { window.location.href = 'Old Garments Distribution.html'; }
         };
       }
       if (q.includes('antardrishti') || q.includes('braille') || q.includes('blind')) {
         return {
-          text: '<strong>Project Antardrishti</strong> provides braille kits and white canes to empower visually impaired individuals. Opening Antardrishti page.',
+          text: '<strong>Project Antardrishti</strong> provides braille kits and white canes to empower visually impaired individuals. Now redirecting you to Antardrishti.',
           actionLabel: 'Open Antardrishti →',
           action: () => { window.location.href = 'Antardrishtilearn.html'; },
-          autoRedirect: () => { setTimeout(() => { window.location.href = 'Antardrishtilearn.html'; }, 1800); }
+          onAfterAnswer: () => { window.location.href = 'Antardrishtilearn.html'; }
         };
       }
 
       // 7. All Projects / Initiatives overview
       if (q.includes('project') || q.includes('initiative') || q.includes('work') || q.includes('program') || q.includes('প্রজেক্ট')) {
-        setTimeout(() => scrollToSectionSmooth('#projects'), 650);
         return {
           text: 'We run <strong>10 core initiatives</strong>: Eye Check-up Camp, Books Distribution, Child Education, Women Empowerment, Health Check-up Camp, Free Medicine, Free Food Distribution, Tree Plantation, Talent Hunt Scholarship, and Old Garments Distribution. Taking you to Our Initiatives!',
           actionLabel: 'Explore All Initiatives →',
-          action: () => scrollToSectionSmooth('#projects')
+          action: () => scrollToSectionSmooth('#projects'),
+          onAfterAnswer: () => scrollToSectionSmooth('#projects')
         };
       }
 
       // 8. Impact & Stats
       if (q.includes('impact') || q.includes('people helped') || q.includes('stat') || q.includes('achievement')) {
-        setTimeout(() => scrollToSectionSmooth('#impact'), 650);
         return {
           text: 'So far, SSMCT has helped <strong>10,000+ people</strong>, distributed <strong>5,000+ books &amp; meals</strong>, and planted <strong>1,000+ trees</strong> across West Bengal. Scrolling to Our Impact.',
           actionLabel: 'View Our Impact →',
-          action: () => scrollToSectionSmooth('#impact')
+          action: () => scrollToSectionSmooth('#impact'),
+          onAfterAnswer: () => scrollToSectionSmooth('#impact')
         };
       }
 
       // 9. Team & Software Engineer
       if (q.includes('team') || q.includes('member') || q.includes('debayan') || q.includes('satyajit') || q.includes('mousumi') || q.includes('arindam') || q.includes('soma') || q.includes('tirthanu') || q.includes('software engineer') || q.includes('টিম')) {
-        setTimeout(() => scrollToSectionSmooth('#team'), 650);
         return {
           text: 'Our dedicated team includes <strong>Satyajit Nandy</strong> (President), <strong>Mousumi Nandy</strong> (Secretary), <strong>Arindam Das</strong> (Treasurer), <strong>Soma Ghosh</strong> (VP), <strong>Debayan Mukhopadhyay</strong> (Software Engineer), and <strong>Tirthanu</strong> (Executive Member). Taking you to Meet Our Team.',
           actionLabel: 'Meet Our Team →',
-          action: () => scrollToSectionSmooth('#team')
+          action: () => scrollToSectionSmooth('#team'),
+          onAfterAnswer: () => scrollToSectionSmooth('#team')
         };
       }
 
       // 10. Testimonials / Reviews
       if (q.includes('testimonial') || q.includes('review') || q.includes('donor say') || q.includes('feedback')) {
-        setTimeout(() => scrollToSectionSmooth('#testimonials'), 650);
         return {
           text: 'Read inspiring stories and feedback from our donors across Kolkata, Howrah, Durgapur, and Hooghly. Taking you to Testimonials.',
           actionLabel: 'Read Testimonials →',
-          action: () => scrollToSectionSmooth('#testimonials')
+          action: () => scrollToSectionSmooth('#testimonials'),
+          onAfterAnswer: () => scrollToSectionSmooth('#testimonials')
         };
       }
 
       // 11. Contact / Location / Volunteer
       if (q.includes('contact') || q.includes('location') || q.includes('address') || q.includes('where') || q.includes('email') || q.includes('volunteer') || q.includes('join') || q.includes('যোগাযোগ')) {
         return {
-          text: 'We are located in <strong>Howrah District, West Bengal</strong>. Email us at <strong>info@ssmctrust.org</strong> or visit our Contact Us page to volunteer or partner with us.',
+          text: 'We are located in <strong>Howrah District, West Bengal</strong>. You can email us at <strong>info@ssmctrust.org</strong> or visit our Contact Us page to volunteer or partner with us. Now redirecting you to Contact Us.',
           actionLabel: 'Open Contact Us →',
           action: () => { window.location.href = 'ContactUs.html'; },
-          autoRedirect: () => { setTimeout(() => { window.location.href = 'ContactUs.html'; }, 1800); }
+          onAfterAnswer: () => { window.location.href = 'ContactUs.html'; }
         };
       }
 
@@ -4674,7 +4747,7 @@
       if (/^(hi|hello|hey|namaskar|namaste|হ্যালো|নমস্কার)\b/i.test(q)) {
         return {
           text: pickVariant('greeting', [
-            'Hello! Glad to see you here. Ask me anything about our initiatives, Founder, Certificates, or how you can support the Trust!',
+            'Hello! Glad to see you here. Ask me anything about our initiatives, Founder Mr. Shambhu Chakraborty, Certificates, or how you can support the Trust!',
             'Hi there! What would you like to explore today—our 10 community projects, donor stories, or making a donation?'
           ])
         };
@@ -4686,7 +4759,7 @@
       }
       if (q.includes('your name') || q.includes('who are you') || q.includes('তোমার নাম')) {
         return {
-          text: 'I am <strong>Debu</strong>, your interactive voice and chat assistant for Shyamashree Shitala Maa Charitable Trust!'
+          text: 'I am <strong>Debu</strong>, your interactive voice and chat guide for Shyamashree Shitala Maa Charitable Trust!'
         };
       }
       if (q.includes('time') || q.includes('date') || q.includes('today') || q.includes('সময়') || q.includes('তারিখ')) {
@@ -4706,7 +4779,7 @@
         };
       }
 
-      // 13. Smart Dynamic Open-Ended Fallback (Echoes user's specific query without repeating Namaskar)
+      // 13. Smart Dynamic Open-Ended Fallback
       return {
         text: pickVariant('fallback', [
           'Got your message about <em>"' + rawQuery.replace(/</g, '&lt;') + '"</em>. I can guide you to our <strong>Initiatives</strong>, <strong>Founder’s Message</strong>, <strong>Certificates</strong>, <strong>Annual Report</strong>, or open the <strong>Donation Form</strong>—just let me know which one you prefer!',
@@ -4724,11 +4797,9 @@
       setTimeout(() => {
         removeDebuTyping();
         appendDebuMessage('bot', reply.text, reply.actionLabel, reply.action);
-        debuSpeak(reply.text);
-        if (typeof reply.autoRedirect === 'function') {
-          reply.autoRedirect();
-        }
-      }, 450);
+        // Speaks the full answer FIRST, and triggers redirect/scroll ONLY AFTER speech finishes
+        debuSpeakAndThen(reply.text, reply.onAfterAnswer);
+      }, 420);
     }
 
     function submitDebuMessage() {
