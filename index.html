@@ -39,7 +39,7 @@
       --text-muted: #4b5e53;
     }
 
-    * {
+- {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -294,6 +294,7 @@
     .hero-slide:nth-child(3) { background-image: url('totest.png'); }
     .hero-slide:nth-child(4) { background-image: url('totest.png'); }
     .hero-slide:nth-child(5) { background-image: url('totest.png'); }
+    .hero-slide:nth-child(6) { background-image: url('totest.png'); }
 
     /* Removed dark tint so hero image stays bright and vivid */
     .hero-overlay {
@@ -1670,6 +1671,7 @@
       .hero-slide:nth-child(3) { background-image: url('totest.png'); }
       .hero-slide:nth-child(4) { background-image: url('totest.png'); }
       .hero-slide:nth-child(5) { background-image: url('totest.png'); }
+      .hero-slide:nth-child(6) { background-image: url('totest.png'); }
 
       .programmes-section,
       .about-section,
@@ -1858,6 +1860,7 @@
   <!-- HERO SECTION (BRIGHT & CLEAR WITH EXACT SLIDESHOW & CLICK REDIRECTION PRESERVED) -->
   <section class="hero" id="heroClick">
     <!-- Background slides -->
+    <div class="hero-slide" data-link="#"></div>
     <div class="hero-slide" data-link="Shelearn.html"></div>
     <div class="hero-slide" data-link="ShitalaCanteen.html"></div>
     <div class="hero-slide" data-link="Antardrishtilearn.html"></div>
@@ -1892,6 +1895,7 @@
       <span class="hero-dot" onclick="manualSlide(event, 2)"></span>
       <span class="hero-dot" onclick="manualSlide(event, 3)"></span>
       <span class="hero-dot" onclick="manualSlide(event, 4)"></span>
+      <span class="hero-dot" onclick="manualSlide(event, 5)"></span>
     </div>
   </section>
 
