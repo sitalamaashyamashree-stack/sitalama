@@ -276,7 +276,7 @@
       display: none;
     }
 
-    /* HERO SECTION (FULLY RESPONSIVE ACROSS ALL SCREENS) */
+    /* HERO SECTION */
     .hero {
       position: relative;
       width: 100%;
@@ -442,7 +442,7 @@
       font-weight: 500;
     }
 
-    /* OUR INITIATIVES SECTION (10 WIDER CARDS IN 5x2 GRID) */
+    /* OUR INITIATIVES SECTION */
     .programmes-section {
       padding: 50px 24px;
       background-color: var(--cream-bg);
@@ -1257,7 +1257,7 @@
       box-shadow: 0 6px 18px rgba(19, 59, 38, 0.14);
     }
 
-    /* ========== MEET OUR TEAM SECTION (WEBSITE FOREST GREEN & GOLD PALETTE) ========== */
+    /* ========== MEET OUR TEAM SECTION ========== */
     .team-section {
       background: linear-gradient(180deg, #fbf9f3 0%, #f2eee2 100%);
       padding: 52px 36px 64px;
@@ -1441,7 +1441,6 @@
       padding: 0 4px;
     }
 
-    /* Circular Forest-Green Arrow Buttons */
     .circle-arrow-btn {
       position: absolute;
       top: 46%;
@@ -1495,7 +1494,6 @@
       transform: scale(1.18);
     }
 
-    /* Bottom Forest Green & Gold Wave Divider */
     .wave-bottom-bar {
       position: absolute;
       bottom: 0;
@@ -1600,7 +1598,7 @@
       color: var(--text-muted);
     }
 
-    /* ========== TESTIMONIALS FROM DONORS SECTION (FOREST GREEN & GOLD PALETTE) ========== */
+    /* ========== TESTIMONIALS FROM DONORS SECTION ========== */
     .testimonials-section {
       background: linear-gradient(180deg, #ffffff 0%, #fbf9f3 100%);
       padding: 52px 36px 56px;
@@ -1780,7 +1778,6 @@
       margin-top: 2px;
     }
 
-    /* Thank You Bottom Strip inside Testimonials Section */
     .thank-you-banner {
       max-width: 920px;
       margin: 22px auto 8px;
@@ -1986,7 +1983,7 @@
       background-color: var(--forest-mid);
     }
 
-    /* FOOTER (FOREST GREEN MULTI-COLUMN WITH FOLLOW US ON FAR RIGHT) */
+    /* FOOTER */
     .site-footer {
       background: var(--forest-dark);
       color: #e6efe9;
@@ -2133,7 +2130,7 @@
       color: #bfd4c7;
     }
 
-    /* ========== DEBU ROUND VOICE & CHAT GUIDE ASSISTANT WIDGET ========== */
+    /* ========== DEBU ROUND MALE VOICE & SELF-LEARNING CHAT WIDGET ========== */
     @keyframes debuOrbPulse {
       0% { box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.75), 0 10px 26px rgba(19, 59, 38, 0.4); }
       70% { box-shadow: 0 0 0 15px rgba(234, 179, 8, 0), 0 10px 26px rgba(19, 59, 38, 0.4); }
@@ -2150,7 +2147,6 @@
       40% { transform: translateY(-4px); opacity: 1; }
     }
 
-    /* Pure Round Floating Orb Button */
     .debu-launcher {
       position: fixed;
       bottom: 24px;
@@ -2197,9 +2193,9 @@
       position: fixed;
       bottom: 100px;
       right: 24px;
-      width: 375px;
+      width: 385px;
       max-width: calc(100vw - 28px);
-      height: 510px;
+      height: 525px;
       max-height: calc(100vh - 125px);
       background: #ffffff;
       border-radius: 22px;
@@ -2220,7 +2216,7 @@
     .debu-header {
       background: linear-gradient(135deg, var(--forest-dark) 0%, #1d5236 100%);
       color: #ffffff;
-      padding: 14px 16px;
+      padding: 13px 15px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -2235,8 +2231,8 @@
     }
 
     .debu-header-avatar {
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       background: var(--gold-accent);
       color: var(--forest-dark);
@@ -2244,14 +2240,14 @@
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      font-size: 19px;
+      font-size: 18px;
       flex-shrink: 0;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     }
 
     .debu-header-title strong {
       display: block;
-      font-size: 15.5px;
+      font-size: 15px;
       font-weight: 700;
     }
 
@@ -2259,7 +2255,7 @@
       display: flex;
       align-items: center;
       gap: 5px;
-      font-size: 11.5px;
+      font-size: 11px;
       color: #d6e7dd;
     }
 
@@ -2274,21 +2270,38 @@
     .debu-header-actions {
       display: flex;
       align-items: center;
-      gap: 7px;
+      gap: 5px;
+    }
+
+    .debu-lang-select {
+      background: rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 14px;
+      padding: 4px 7px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .debu-lang-select option {
+      background: var(--forest-dark);
+      color: #ffffff;
     }
 
     .debu-icon-btn {
       background: rgba(255, 255, 255, 0.16);
       border: none;
       color: #ffffff;
-      width: 32px;
-      height: 32px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
+      font-size: 13px;
       transition: background 0.2s;
     }
 
@@ -2308,7 +2321,7 @@
     }
 
     .debu-msg {
-      max-width: 85%;
+      max-width: 86%;
       padding: 10px 14px;
       border-radius: 15px;
       font-size: 13.5px;
@@ -2330,6 +2343,18 @@
       background: var(--forest-dark);
       color: #ffffff;
       border-bottom-right-radius: 4px;
+    }
+
+    .debu-learned-badge {
+      display: inline-block;
+      background: #eaf3ed;
+      color: var(--forest-dark);
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-bottom: 5px;
+      border: 1px solid #cbe0d3;
     }
 
     .debu-typing-dots {
@@ -2493,7 +2518,7 @@
       color: var(--forest-dark);
     }
 
-    /* ========== LARGE DESKTOP / 2K+ MONITORS (min-width: 1500px) ========== */
+    /* ========== RESPONSIVE QUERIES ========== */
     @media (min-width: 1500px) {
       .programme-grid {
         max-width: 1560px;
@@ -2515,7 +2540,6 @@
       }
     }
 
-    /* ========== SMALL LAPTOP & TABLET LANDSCAPE (max-width: 1200px) ========== */
     @media (max-width: 1200px) {
       header {
         padding: 12px 20px;
@@ -2605,7 +2629,6 @@
       }
     }
 
-    /* ========== TABLET PORTRAIT (max-width: 960px) ========== */
     @media (max-width: 960px) {
       .top-bar {
         padding: 7px 20px;
@@ -2700,7 +2723,6 @@
       }
     }
 
-    /* ========== MOBILE DEVICES (max-width: 768px) ========== */
     @media (max-width: 768px) {
       .top-bar {
         display: none;
@@ -3009,11 +3031,10 @@
         bottom: 84px;
         right: 14px;
         width: calc(100vw - 28px);
-        height: 460px;
+        height: 465px;
       }
     }
 
-    /* ========== SMALL PHONES (max-width: 420px) ========== */
     @media (max-width: 420px) {
       .logo-text-wrap {
         display: none;
@@ -3079,7 +3100,6 @@
       }
     }
 
-    /* ========== ULTRA SMALL PHONES (max-width: 340px) ========== */
     @media (max-width: 340px) {
       .programme-grid {
         grid-template-columns: 1fr;
@@ -3193,9 +3213,8 @@
     </div>
   </div>
 
-  <!-- HERO SECTION (BRIGHT & CLEAR WITH EXACT SLIDESHOW & CLICK REDIRECTION PRESERVED) -->
+  <!-- HERO SECTION -->
   <section class="hero" id="heroClick">
-    <!-- Background slides -->
     <div class="hero-slide" data-link="#"></div>
     <div class="hero-slide" data-link="Shelearn.html"></div>
     <div class="hero-slide" data-link="ShitalaCanteen.html"></div>
@@ -3203,10 +3222,8 @@
     <div class="hero-slide" data-link="Sparshlearn.html"></div>
     <div class="hero-slide" data-link="Chhayalearn.html"></div>
 
-    <!-- Transparent Overlay -->
     <div class="hero-overlay"></div>
 
-    <!-- Floating Kindness Heart Badge -->
     <div class="hero-badge-right">
       <svg class="hand-heart-svg" viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M32 36C32 36 18 27 18 18C18 13.5 21.5 10 26 10C28.8 10 31.1 11.5 32 13.5C32.9 11.5 35.2 10 38 10C42.5 10 46 13.5 46 18C46 27 32 36 32 36Z"/>
@@ -3215,16 +3232,13 @@
       Kindness<br>Changes<br>Lives
     </div>
 
-    <!-- Content -->
     <div class="hero-content"></div>
 
-    <!-- Donate Button (bottom-left) -->
     <a class="donate-btn" onclick="openGeneralDonateForm()">
       <img src="https://img.icons8.com/fluency/48/like.png" alt="Heart" style="width:20px; height:20px;" />
       DONATE NOW →
     </a>
 
-    <!-- Slide Dots -->
     <div class="hero-dots" id="heroDots">
       <span class="hero-dot active" onclick="manualSlide(event, 0)"></span>
       <span class="hero-dot" onclick="manualSlide(event, 1)"></span>
@@ -3235,7 +3249,7 @@
     </div>
   </section>
 
-  <!-- OUR INITIATIVES SECTION (10 WIDER CARDS IN 5x2 GRID WITH ORIGINAL REDIRECTS) -->
+  <!-- OUR INITIATIVES SECTION -->
   <section class="programmes-section reveal" id="projects">
     <div class="section-header-decorated">
       <div class="title-accent-line"></div>
@@ -3414,12 +3428,10 @@
         </div>
       </div>
 
-      <!-- Interactive Dropdown Trigger Button -->
       <button type="button" class="learn-more-pill" id="learnMoreToggle" onclick="toggleLearnMoreDropdown()">
         LEARN MORE <span class="arrow-icon">→</span>
       </button>
 
-      <!-- Smooth Expandable Dropdown Panel -->
       <div class="learn-more-dropdown" id="learnMoreDropdown">
         <div class="dropdown-tabs">
           <button type="button" class="dropdown-tab-btn active" onclick="switchDropdownTab(this, 'tab-legal')">Legal &amp; 80G</button>
@@ -3439,7 +3451,7 @@
       </div>
     </div>
 
-    <!-- Center Column: Rural Bengali/Indian Elderly Grandmother Hugging Child Photo -->
+    <!-- Center Column -->
     <div class="center-hug-photo">
       <img 
         src="whysupport.jpeg" 
@@ -3449,7 +3461,7 @@
       <div class="center-photo-caption">Care, Dignity &amp; Love for Every Generation</div>
     </div>
 
-    <!-- Right Column: Our Impact (Auto-Animated Counters + Auto-Synced Project Count) -->
+    <!-- Right Column: Our Impact -->
     <div class="our-impact-panel">
       <h2>Our Impact</h2>
 
@@ -3483,7 +3495,6 @@
         </div>
       </div>
 
-      <!-- Automatically updates whenever a new project card is added in #initiativesGrid -->
       <div class="impact-stat-row">
         <div class="impact-stat-icon">
           <img src="https://img.icons8.com/ios-filled/100/133b26/trust.png" alt="Active Initiatives" />
@@ -3568,7 +3579,6 @@
   <!-- FOUNDER'S MESSAGE SECTION -->
   <section class="founder-section reveal" id="founder">
     <div class="founder-container">
-      <!-- Founder Portrait Column -->
       <div class="founder-photo-column">
         <div class="founder-frame">
           <div class="founder-frame-inner">
@@ -3584,7 +3594,6 @@
         </div>
       </div>
 
-      <!-- Founder Message Column -->
       <div class="founder-message-column">
         <div>
           <div class="founder-header-row">
@@ -3726,7 +3735,6 @@
 
     <div class="carousel-dots-row" id="teamDots"></div>
 
-    <!-- Bottom Forest Green & Gold Wave Border -->
     <div class="wave-bottom-bar">
       <svg viewBox="0 0 1440 40" preserveAspectRatio="none">
         <path d="M0,18 C360,38 720,0 1080,20 C1260,30 1380,24 1440,18 L1440,40 L0,40 Z" fill="#eab308"/>
@@ -3851,7 +3859,6 @@
 
     <div class="carousel-dots-row" id="testiDots"></div>
 
-    <!-- Thank You Bottom Banner -->
     <div class="thank-you-banner">
       <div class="thank-you-script">Thank You!</div>
       <div class="thank-you-divider"></div>
@@ -3860,7 +3867,6 @@
       </div>
     </div>
 
-    <!-- Bottom Forest Green & Gold Wave Border -->
     <div class="wave-bottom-bar">
       <svg viewBox="0 0 1440 40" preserveAspectRatio="none">
         <path d="M0,18 C360,38 720,0 1080,20 C1260,30 1380,24 1440,18 L1440,40 L0,40 Z" fill="#eab308"/>
@@ -3869,7 +3875,7 @@
     </div>
   </section>
 
-  <!-- RESOURCES SECTION (ALL ORIGINAL LINKS PRESERVED) -->
+  <!-- RESOURCES SECTION -->
   <section class="resources-section reveal" id="resources">
     <div class="resources-container">
       <div class="section-header-decorated">
@@ -3899,7 +3905,7 @@
     </div>
   </section>
 
-  <!-- FOOTER (FOREST GREEN MULTI-COLUMN WITH FOLLOW US ON FAR RIGHT) -->
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="footer-grid">
       <div class="footer-brand">
@@ -3936,7 +3942,6 @@
         </form>
       </div>
 
-      <!-- Follow Us Social Section on the Far Right -->
       <div>
         <h4>Follow Us</h4>
         <div class="social-icons-row">
@@ -3962,7 +3967,7 @@
     </div>
   </footer>
 
-  <!-- ROUND DEBU VOICE & CHAT GUIDE ASSISTANT WIDGET -->
+  <!-- ROUND DEBU MALE VOICE & SELF-LEARNING CHAT GUIDE ASSISTANT WIDGET -->
   <button type="button" class="debu-launcher" id="debuLauncher" onclick="toggleDebuWidget()" aria-label="Chat with Debu">
     <span class="debu-orb-icon" id="debuOrbIcon">🎙️</span>
     <span class="debu-orb-label" id="debuOrbLabel">Debu</span>
@@ -3971,14 +3976,19 @@
   <div class="debu-widget" id="debuWidget" role="dialog" aria-label="Debu Website Assistant">
     <div class="debu-header">
       <div class="debu-header-info">
-        <div class="debu-header-avatar">🌿</div>
+        <div class="debu-header-avatar">👨🏻‍💼</div>
         <div class="debu-header-title">
-          <strong>Debu • AI Voice &amp; Chat Guide</strong>
-          <span><i class="debu-online-dot"></i> Ready to help you explore</span>
+          <strong>Debu • Smart Guide</strong>
+          <span><i class="debu-online-dot"></i> Male Voice &amp; Self-Learning</span>
         </div>
       </div>
       <div class="debu-header-actions">
-        <button type="button" class="debu-icon-btn" id="debuMuteBtn" onclick="toggleDebuVoiceOutput()" title="Mute / Unmute Voice">🔊</button>
+        <select id="debuLangSelect" class="debu-lang-select" onchange="changeDebuRecognitionLang()" title="Select Voice Input Language">
+          <option value="en-IN">EN</option>
+          <option value="bn-IN">বাং</option>
+          <option value="hi-IN">हिं</option>
+        </select>
+        <button type="button" class="debu-icon-btn" id="debuMuteBtn" onclick="toggleDebuVoiceOutput()" title="Mute / Unmute Male Voice">🔊</button>
         <button type="button" class="debu-icon-btn" onclick="toggleDebuWidget()" title="Close">✕</button>
       </div>
     </div>
@@ -3986,7 +3996,7 @@
     <div class="debu-messages" id="debuMessages">
       <div class="debu-msg bot">
         Hi! I am <strong>Debu</strong>, your personal guide for <strong>Shyamashree Shitala Maa Charitable Trust</strong>. 🌿<br><br>
-        Type your question below or tap the <strong>mic</strong> to talk—I will answer completely first and then take you to the right section or page!
+        Ask me in <strong>English, বাংলা, or हिन्दी</strong>—by typing or tapping the mic! If I don't know something yet, just teach me the answer and I will remember it automatically.
       </div>
     </div>
 
@@ -4003,7 +4013,7 @@
 
     <div class="debu-input-bar">
       <button type="button" class="debu-mic-btn" id="debuMicBtn" onclick="toggleDebuListening()" title="Speak to Debu">🎙️</button>
-      <input type="text" id="debuInput" placeholder="Type a message to Debu..." autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault(); submitDebuMessage();}" />
+      <input type="text" id="debuInput" placeholder="Ask in English, বাংলা, हिन्दी or teach me..." autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault(); submitDebuMessage();}" />
       <button type="button" class="debu-send-btn" onclick="submitDebuMessage()" title="Send Message">➤</button>
     </div>
   </div>
@@ -4036,11 +4046,9 @@
       showSlide(current);
     }
 
-    // Start slideshow
     showSlide(current);
-    setInterval(nextSlide, 5000); // change every 5 seconds
+    setInterval(nextSlide, 5000);
 
-    // Open link when hero background clicked
     document.getElementById('heroClick').addEventListener('click', function(e) {
       if (e.target.closest('.donate-btn') || e.target.closest('.hero-dots')) return;
 
@@ -4100,7 +4108,7 @@
       }
     }
 
-    /* Meet Our Team Carousel (with Mobile Touch Swipe) */
+    /* Meet Our Team Carousel */
     (function initTeamCarousel() {
       const track = document.getElementById('teamTrack');
       const dotsContainer = document.getElementById('teamDots');
@@ -4180,7 +4188,7 @@
       updateTeam();
     })();
 
-    /* Working Auto-Scrolling Donor Testimonials Carousel (with Mobile Touch Swipe) */
+    /* Working Auto-Scrolling Donor Testimonials Carousel */
     (function initTestimonials() {
       const track = document.getElementById('testimonialTrack');
       const dotsContainer = document.getElementById('testiDots');
@@ -4378,54 +4386,134 @@
       }
     });
 
-    /* ================= DEBU ROUND MALE VOICE & CHAT GUIDE ASSISTANT ================= */
+    /* ================= DEBU DEEP MALE VOICE, MULTILINGUAL & SELF-LEARNING ASSISTANT ================= */
     let debuVoiceEnabled = true;
     let debuRecognition = null;
     let debuIsListening = false;
     let debuLastReplyKey = '';
     let debuTurnCount = 0;
-    let debuSelectedMaleVoice = null;
+    let debuPendingTeachQuestion = null;
 
-    function loadDebuMaleVoice() {
-      if (!('speechSynthesis' in window)) return;
-      const voices = window.speechSynthesis.getVoices();
-      if (!voices.length) return;
+    const DEBU_STORAGE_KEY = 'ssmct_debu_learned_knowledge_v1';
 
-      const maleKeywords = [
-        'ravi', 'prabhat', 'hemant', 'rishi', 'daniel', 'david',
-        'mark', 'george', 'alex', 'james', 'guy', 'male', 'arthur', 'oliver'
-      ];
-      const femaleKeywords = [
-        'female', 'zira', 'hazel', 'heera', 'kalpana', 'swara',
-        'neerja', 'samantha', 'victoria', 'susan', 'linda', 'aria', 'jenny'
-      ];
-
-      // 1. Prefer Indian English Male Voice
-      debuSelectedMaleVoice = voices.find(v =>
-        v.lang.toLowerCase().includes('en-in') &&
-        maleKeywords.some(k => v.name.toLowerCase().includes(k))
-      );
-
-      // 2. Fallback to any English Male Voice
-      if (!debuSelectedMaleVoice) {
-        debuSelectedMaleVoice = voices.find(v =>
-          v.lang.toLowerCase().startsWith('en') &&
-          maleKeywords.some(k => v.name.toLowerCase().includes(k))
-        );
-      }
-
-      // 3. Fallback to any voice without female keywords
-      if (!debuSelectedMaleVoice) {
-        debuSelectedMaleVoice = voices.find(v =>
-          v.lang.toLowerCase().startsWith('en') &&
-          !femaleKeywords.some(k => v.name.toLowerCase().includes(k))
-        );
+    function getDebuLearnedMemory() {
+      try {
+        return JSON.parse(localStorage.getItem(DEBU_STORAGE_KEY) || '[]');
+      } catch (e) {
+        return [];
       }
     }
 
+    function saveDebuLearnedMemory(question, answer) {
+      const list = getDebuLearnedMemory();
+      const normQ = question.toLowerCase().trim();
+      const existingIndex = list.findIndex(item => item.q === normQ);
+      if (existingIndex >= 0) {
+        list[existingIndex].a = answer.trim();
+      } else {
+        list.push({ q: normQ, a: answer.trim(), originalQ: question.trim() });
+      }
+      try {
+        localStorage.setItem(DEBU_STORAGE_KEY, JSON.stringify(list));
+      } catch (e) {
+        console.warn('Could not persist learned memory:', e);
+      }
+    }
+
+    function findLearnedMatch(query) {
+      const list = getDebuLearnedMemory();
+      if (!list.length) return null;
+      const cleanQ = query.toLowerCase().replace(/[?।!.,]/g, '').trim();
+      if (!cleanQ) return null;
+
+      // Exact or substring match first
+      for (const item of list) {
+        const stored = item.q.replace(/[?।!.,]/g, '').trim();
+        if (stored === cleanQ || (stored.length > 3 && (cleanQ.includes(stored) || stored.includes(cleanQ)))) {
+          return item;
+        }
+      }
+
+      // Word overlap similarity match
+      const queryWords = cleanQ.split(/\s+/).filter(w => w.length > 2);
+      if (!queryWords.length) return null;
+
+      let bestMatch = null;
+      let bestScore = 0;
+      for (const item of list) {
+        const storedWords = item.q.replace(/[?।!.,]/g, '').split(/\s+/).filter(w => w.length > 2);
+        if (!storedWords.length) continue;
+        const overlap = queryWords.filter(w => storedWords.includes(w)).length;
+        const score = overlap / Math.max(queryWords.length, storedWords.length);
+        if (score >= 0.6 && score > bestScore) {
+          bestScore = score;
+          bestMatch = item;
+        }
+      }
+      return bestMatch;
+    }
+
+    /* Strict Deep Male Voice Selection */
+    function selectStrictMaleVoice(langCode) {
+      if (!('speechSynthesis' in window)) return null;
+      const voices = window.speechSynthesis.getVoices();
+      if (!voices.length) return null;
+
+      const maleNames = [
+        'male', 'ravi', 'prabhat', 'hemant', 'rishi', 'daniel', 'david',
+        'mark', 'george', 'alex', 'james', 'guy', 'arthur', 'oliver',
+        'ryan', 'william', 'liam', 'noah', 'aaron', 'fred', 'tom', 'bashkar', 'tanishq'
+      ];
+      const femaleNames = [
+        'female', 'zira', 'hazel', 'heera', 'kalpana', 'swara',
+        'neerja', 'samantha', 'victoria', 'susan', 'linda', 'aria',
+        'jenny', 'veena', 'lekha', 'karen', 'moira', 'tessa', 'fiona'
+      ];
+
+      const shortLang = (langCode || 'en').slice(0, 2).toLowerCase();
+
+      // 1. Explicit male voice matching requested language (bn, hi, en)
+      let match = voices.find(v =>
+        v.lang.toLowerCase().startsWith(shortLang) &&
+        maleNames.some(m => v.name.toLowerCase().includes(m))
+      );
+
+      // 2. Any voice in requested language that is NOT female
+      if (!match) {
+        match = voices.find(v =>
+          v.lang.toLowerCase().startsWith(shortLang) &&
+          !femaleNames.some(f => v.name.toLowerCase().includes(f))
+        );
+      }
+
+      // 3. Explicit Indian English or UK/US Male voice
+      if (!match) {
+        match = voices.find(v =>
+          v.lang.toLowerCase().startsWith('en') &&
+          maleNames.some(m => v.name.toLowerCase().includes(m))
+        );
+      }
+
+      // 4. Any non-female English voice
+      if (!match) {
+        match = voices.find(v =>
+          v.lang.toLowerCase().startsWith('en') &&
+          !femaleNames.some(f => v.name.toLowerCase().includes(f))
+        );
+      }
+
+      return match || voices[0];
+    }
+
     if ('speechSynthesis' in window) {
-      loadDebuMaleVoice();
-      window.speechSynthesis.onvoiceschanged = loadDebuMaleVoice;
+      window.speechSynthesis.getVoices();
+      window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+    }
+
+    function detectScriptLanguage(text) {
+      if (/[\u0980-\u09FF]/.test(text)) return 'bn-IN'; // Bengali script
+      if (/[\u0900-\u097F]/.test(text)) return 'hi-IN'; // Devanagari (Hindi) script
+      return 'en-IN';
     }
 
     function toggleDebuWidget() {
@@ -4452,9 +4540,9 @@
       }
     }
 
-    /* Speaks the FULL answer first, then executes redirect/scroll callback only AFTER speaking completes */
+    /* Speaks FULL answer in a deep MALE voice, then executes redirect/scroll ONLY AFTER speech completes */
     function debuSpeakAndThen(text, onCompleteCallback) {
-      const cleanText = text.replace(/<[^>]*>/g, '').replace(/[🙏🌱💛📜👤🏛️🤝✨✅🌿]/g, '').trim();
+      const cleanText = text.replace(/<[^>]*>/g, '').replace(/[🙏🌱💛📜👤🏛️🤝✨✅🌿🧠👨🏻‍💼]/g, '').trim();
 
       if (!debuVoiceEnabled || !('speechSynthesis' in window)) {
         if (typeof onCompleteCallback === 'function') {
@@ -4464,15 +4552,18 @@
       }
 
       window.speechSynthesis.cancel();
-      loadDebuMaleVoice();
+      const detectedLang = detectScriptLanguage(cleanText);
+      const maleVoice = selectStrictMaleVoice(detectedLang);
 
       const utterance = new SpeechSynthesisUtterance(cleanText);
-      if (debuSelectedMaleVoice) {
-        utterance.voice = debuSelectedMaleVoice;
+      if (maleVoice) {
+        utterance.voice = maleVoice;
+        utterance.lang = maleVoice.lang;
+      } else {
+        utterance.lang = detectedLang;
       }
-      utterance.lang = 'en-IN';
-      utterance.rate = 1.0;
-      utterance.pitch = 0.9; // Deeper male voice tone
+      utterance.rate = 0.98;
+      utterance.pitch = 0.78; // Deep male baritone pitch
 
       let executed = false;
       const finishOnce = () => {
@@ -4486,8 +4577,7 @@
       utterance.onend = finishOnce;
       utterance.onerror = finishOnce;
 
-      // Safety fallback timeout based on text length in case browser blocks onend
-      const estimatedMs = Math.max(2500, cleanText.length * 68);
+      const estimatedMs = Math.max(2600, cleanText.length * 72);
       setTimeout(finishOnce, estimatedMs);
 
       window.speechSynthesis.speak(utterance);
@@ -4545,25 +4635,63 @@
 
     function getDebuResponse(rawQuery) {
       const q = rawQuery.toLowerCase().trim();
+      const isBengali = /[\u0980-\u09FF]/.test(rawQuery);
+      const isHindi = /[\u0900-\u097F]/.test(rawQuery);
       debuTurnCount++;
 
-      // 1. Founder Queries
-      if (q.includes('founder') || q.includes('shambhu') || q.includes('who started') || q.includes('established') || q.includes('ফাউন্ডার') || q.includes('প্রতিষ্ঠাতা')) {
+      // A. Explicit Teach Command: "teach: question = answer" or "শেখো: প্রশ্ন = উত্তর"
+      const teachMatch = rawQuery.match(/^(?:teach|learn|remember|শেখো|মনে রাখো)\s*:\s*(.+?)\s*=\s*(.+)$/i);
+      if (teachMatch) {
+        const newQ = teachMatch[1].trim();
+        const newA = teachMatch[2].trim();
+        saveDebuLearnedMemory(newQ, newA);
+        debuPendingTeachQuestion = null;
         return {
-          text: pickVariant('founder', [
-            'The Founder of <strong>Shyamashree Shitala Maa Charitable Trust</strong> is <strong>Mr. Shambhu Chakraborty</strong>. Now taking you to the Founder’s Message section.',
-            '<strong>Mr. Shambhu Chakraborty</strong> founded SSMCT with the belief that humanity is the greatest service. Scrolling to his message now.'
-          ]),
-          actionLabel: 'Read Founder’s Message →',
+          text: '<span class="debu-learned-badge">🧠 Self-Trained &amp; Saved</span><br>Thank you! I have learned that for <strong>"' + newQ.replace(/</g, '&lt;') + '"</strong>, the answer is: <strong>' + newA.replace(/</g, '&lt;') + '</strong>. I will remember this permanently!'
+        };
+      }
+
+      // B. If Debu previously asked the user to teach an unknown question, learn from this reply!
+      if (debuPendingTeachQuestion) {
+        if (q === 'skip' || q === 'cancel' || q === 'no' || q === 'থাক' || q === 'বাদ দাও') {
+          debuPendingTeachQuestion = null;
+          return {
+            text: isBengali ? 'ঠিক আছে! অন্য কী জানতে চাও বলো?' : 'No problem! What else would you like to ask me?'
+          };
+        }
+        const learnedQ = debuPendingTeachQuestion;
+        debuPendingTeachQuestion = null;
+        saveDebuLearnedMemory(learnedQ, rawQuery.trim());
+        return {
+          text: isBengali
+            ? '<span class="debu-learned-badge">🧠 নতুন তথ্য শিখে নিলাম</span><br>ধন্যবাদ! আমি মনে রাখলাম যে <strong>"' + learnedQ.replace(/</g, '&lt;') + '"</strong>-এর উত্তর হলো: <strong>' + rawQuery.replace(/</g, '&lt;') + '</strong>।'
+            : '<span class="debu-learned-badge">🧠 New Knowledge Learned</span><br>Got it! I have trained myself that for <strong>"' + learnedQ.replace(/</g, '&lt;') + '"</strong>, the answer is: <strong>' + rawQuery.replace(/</g, '&lt;') + '</strong>.'
+        };
+      }
+
+      // 1. Founder Queries (English, Bengali, Hindi, Banglish)
+      if (q.includes('founder') || q.includes('shambhu') || q.includes('who started') || q.includes('established') || q.includes('ফাউন্ডার') || q.includes('প্রতিষ্ঠাতা') || q.includes('শম্ভু') || q.includes('संस्थापक')) {
+        return {
+          text: isBengali
+            ? '<strong>শ্যামাশ্রী শীতলা মা চ্যারিটেবল ট্রাস্ট</strong>-এর প্রতিষ্ঠাতা হলেন <strong>মিস্টার শম্ভু চক্রবর্তী (Mr. Shambhu Chakraborty)</strong>। আমি তোমাকে ফাউন্ডারের বার্তা সেকশনে নিয়ে যাচ্ছি।'
+            : isHindi
+            ? '<strong>श्यामश्री शीतला मां चैरिटेबल ट्रस्ट</strong> के संस्थापक <strong>श्री शंभू चक्रवर्ती (Mr. Shambhu Chakraborty)</strong> हैं। मैं आपको संस्थापक के संदेश अनुभाग में ले जा रहा हूं।'
+            : pickVariant('founder', [
+                'The Founder of <strong>Shyamashree Shitala Maa Charitable Trust</strong> is <strong>Mr. Shambhu Chakraborty</strong>. Now taking you to the Founder’s Message section.',
+                '<strong>Mr. Shambhu Chakraborty</strong> founded SSMCT with the belief that humanity is the greatest service. Scrolling to his message now.'
+              ]),
+          actionLabel: isBengali ? 'ফাউন্ডারের বার্তা দেখুন →' : 'Read Founder’s Message →',
           action: () => scrollToSectionSmooth('#founder'),
           onAfterAnswer: () => scrollToSectionSmooth('#founder')
         };
       }
 
       // 2. Certificates & Compliance
-      if (q.includes('certificate') || q.includes('certification') || q.includes('12ab') || q.includes('80g') || q.includes('darpan') || q.includes('registration') || q.includes('legal') || q.includes('সার্টিফিকেট')) {
+      if (q.includes('certificate') || q.includes('certification') || q.includes('12ab') || q.includes('80g') || q.includes('darpan') || q.includes('registration') || q.includes('legal') || q.includes('সার্টিফিকেট') || q.includes('प्रमाणपत्र')) {
         return {
-          text: 'SSMCT is registered under the Indian Registration Act, 1909, certified for <strong>12AB &amp; 80G Tax Exemption</strong>, and listed on <strong>NITI Aayog Darpan</strong>. Now redirecting you to our Certificates page.',
+          text: isBengali
+            ? 'আমাদের ট্রাস্ট ১৮০৯ সালের ভারতীয় রেজিস্ট্রেশন অ্যাক্টে নিবন্ধিত, <strong>12AB ও 80G ট্যাক্স ছাড়</strong> প্রাপ্ত এবং <strong>NITI Aayog Darpan</strong>-এ তালিকাভুক্ত। এখন সার্টিফিকেট পেজে নিয়ে যাচ্ছি।'
+            : 'SSMCT is registered under the Indian Registration Act, 1909, certified for <strong>12AB &amp; 80G Tax Exemption</strong>, and listed on <strong>NITI Aayog Darpan</strong>. Now redirecting you to our Certificates page.',
           actionLabel: 'Open Certificates Page →',
           action: () => { window.location.href = 'Certificates.html'; },
           onAfterAnswer: () => { window.location.href = 'Certificates.html'; }
@@ -4571,9 +4699,11 @@
       }
 
       // 3. Annual Report
-      if (q.includes('annual report') || q.includes('report') || q.includes('financial') || q.includes('audit') || q.includes('রিপোর্ট')) {
+      if (q.includes('annual report') || q.includes('report') || q.includes('financial') || q.includes('audit') || q.includes('রিপোর্ট') || q.includes('रिपोर्ट')) {
         return {
-          text: 'Our <strong>Annual Report 2025-26</strong> covers our social initiatives, financial transparency, and community outcomes. Now redirecting you to the Annual Report page.',
+          text: isBengali
+            ? 'আমাদের <strong>২০২৫-২৬ বার্ষিক রিপোর্ট (Annual Report)</strong>-এ ট্রাস্টের সমস্ত কাজ ও আর্থিক স্বচ্ছতার বিবরণ রয়েছে। এখন রিপোর্ট পেজে নিয়ে যাচ্ছি।'
+            : 'Our <strong>Annual Report 2025-26</strong> covers our social initiatives, financial transparency, and community outcomes. Now redirecting you to the Annual Report page.',
           actionLabel: 'Open Annual Report →',
           action: () => { window.location.href = 'report.html'; },
           onAfterAnswer: () => { window.location.href = 'report.html'; }
@@ -4581,9 +4711,11 @@
       }
 
       // 4. Donation / Razorpay
-      if (q.includes('donate') || q.includes('donation') || q.includes('contribute') || q.includes('money') || q.includes('fund') || q.includes('razorpay') || q.includes('ডোনেট') || q.includes('সাহায্য')) {
+      if (q.includes('donate') || q.includes('donation') || q.includes('contribute') || q.includes('money') || q.includes('fund') || q.includes('razorpay') || q.includes('ডোনেট') || q.includes('দান') || q.includes('সাহায্য') || q.includes('दान')) {
         return {
-          text: 'Your kindness creates real change! Every contribution directly supports meals, education, and medical aid. Opening our secure donation form now.',
+          text: isBengali
+            ? 'আপনার প্রতিটি অনুদান অসহায় মানুষদের খাবার, শিক্ষা ও চিকিৎসায় সরাসরি কাজে লাগে। আমি এখন ডোনেশন ফর্মটি খুলে দিচ্ছি।'
+            : 'Your kindness creates real change! Every contribution directly supports meals, education, and medical aid. Opening our secure donation form now.',
           actionLabel: 'Open Donation Form 💛',
           action: () => openGeneralDonateForm(),
           onAfterAnswer: () => openGeneralDonateForm()
@@ -4591,12 +4723,14 @@
       }
 
       // 5. About SSMCT / Status
-      if (q.includes('about') || q.includes('ssmct') || q.includes('shitala maa') || q.includes('status') || q.includes('trust') || q.includes('who are you') || q.includes('ngo') || q.includes('সম্পর্কে')) {
+      if (q.includes('about') || q.includes('ssmct') || q.includes('shitala maa') || q.includes('status') || q.includes('trust') || q.includes('ngo') || q.includes('সম্পর্কে') || q.includes('ট্রাস্ট')) {
         return {
-          text: pickVariant('about', [
-            '<strong>Shyamashree Shitala Maa Charitable Trust (SSMCT)</strong> is a registered public charitable trust in Howrah, West Bengal, working on women’s safety, education, health, and hunger relief. Taking you to our About Us section.',
-            'SSMCT is 12AB &amp; 80G certified and listed on NITI Aayog Darpan, driving grassroots welfare across West Bengal with 100% transparency. Scrolling to About Us now.'
-          ]),
+          text: isBengali
+            ? '<strong>শ্যামাশ্রী শীতলা মা চ্যারিটেবল ট্রাস্ট (SSMCT)</strong> পশ্চিমবঙ্গের হাওড়া জেলার একটি নিবন্ধিত সমাজসেবামূলক সংস্থা, যা নারী সুরক্ষা, শিক্ষা, স্বাস্থ্য ও ক্ষুধা নিবারণে কাজ করে। About Us সেকশনে নিয়ে যাচ্ছি।'
+            : pickVariant('about', [
+                '<strong>Shyamashree Shitala Maa Charitable Trust (SSMCT)</strong> is a registered public charitable trust in Howrah, West Bengal, working on women’s safety, education, health, and hunger relief. Taking you to our About Us section.',
+                'SSMCT is 12AB &amp; 80G certified and listed on NITI Aayog Darpan, driving grassroots welfare across West Bengal with 100% transparency. Scrolling to About Us now.'
+              ]),
           actionLabel: 'View About Us →',
           action: () => scrollToSectionSmooth('#about'),
           onAfterAnswer: () => scrollToSectionSmooth('#about')
@@ -4604,9 +4738,11 @@
       }
 
       // 6. Specific Initiatives
-      if (q.includes('eye') || q.includes('চোখ')) {
+      if (q.includes('eye') || q.includes('চোখ') || q.includes('চক্ষু')) {
         return {
-          text: 'Our <strong>Eye Check-up Camp</strong> offers free vision screening and eye care for underprivileged communities. Now redirecting you to the Eye Check-up Camp page.',
+          text: isBengali
+            ? 'আমাদের <strong>Eye Check-up Camp</strong> বিনামূল্যে চক্ষু পরীক্ষা ও চিকিৎসা প্রদান করে। এখন ওই পেজে নিয়ে যাচ্ছি।'
+            : 'Our <strong>Eye Check-up Camp</strong> offers free vision screening and eye care for underprivileged communities. Now redirecting you to the Eye Check-up Camp page.',
           actionLabel: 'Go to Eye Check-up Camp →',
           action: () => { window.location.href = ' Eye Check-up Camp.html'; },
           onAfterAnswer: () => { window.location.href = ' Eye Check-up Camp.html'; }
@@ -4614,23 +4750,29 @@
       }
       if (q.includes('book') || q.includes('বই')) {
         return {
-          text: 'Through <strong>Books Distribution</strong>, we provide textbooks and study materials to students in need. Now redirecting you to the Books Distribution page.',
+          text: isBengali
+            ? '<strong>Books Distribution</strong> প্রকল্পের মাধ্যমে দুঃস্থ ছাত্রছাত্রীদের বিনামূল্যে বই ও শিক্ষাসামগ্রী দেওয়া হয়। পেজটি খুলছি।'
+            : 'Through <strong>Books Distribution</strong>, we provide textbooks and study materials to students in need. Now redirecting you to the Books Distribution page.',
           actionLabel: 'Go to Books Distribution →',
           action: () => { window.location.href = ' Books Distribution.html'; },
           onAfterAnswer: () => { window.location.href = ' Books Distribution.html'; }
         };
       }
-      if (q.includes('child') || q.includes('education') || q.includes('school') || q.includes('শিক্ষা')) {
+      if (q.includes('child') || q.includes('education') || q.includes('school') || q.includes('শিক্ষা') || q.includes('শিশু')) {
         return {
-          text: 'Our <strong>Child Education</strong> initiative empowers children with quality learning and academic support. Now redirecting you to the Child Education page.',
+          text: isBengali
+            ? '<strong>Child Education</strong> প্রকল্পের মাধ্যমে শিশুদের পড়াশোনা ও ভবিষ্যৎ গড়তে সাহায্য করা হয়। এখন পেজটি খুলছি।'
+            : 'Our <strong>Child Education</strong> initiative empowers children with quality learning and academic support. Now redirecting you to the Child Education page.',
           actionLabel: 'Go to Child Education →',
           action: () => { window.location.href = 'Child Education.html'; },
           onAfterAnswer: () => { window.location.href = 'Child Education.html'; }
         };
       }
-      if (q.includes('women') || q.includes('woman') || q.includes('nirbhoyini') || q.includes('girl') || q.includes('মহিলা')) {
+      if (q.includes('women') || q.includes('woman') || q.includes('nirbhoyini') || q.includes('girl') || q.includes('মহিলা') || q.includes('নারী')) {
         return {
-          text: 'Our <strong>Women Empowerment</strong> program (including Project Nirbhoyini) promotes women’s safety, skills, and equality. Now redirecting you to the Women Empowerment page.',
+          text: isBengali
+            ? '<strong>Women Empowerment</strong> ও প্রজেক্ট নির্ভয়িনীর মাধ্যমে মহিলাদের সুরক্ষা ও স্বনির্ভরতার প্রশিক্ষণ দেওয়া হয়। পেজটি খুলছি।'
+            : 'Our <strong>Women Empowerment</strong> program (including Project Nirbhoyini) promotes women’s safety, skills, and equality. Now redirecting you to the Women Empowerment page.',
           actionLabel: 'Go to Women Empowerment →',
           action: () => { window.location.href = 'Women Empowerment.html'; },
           onAfterAnswer: () => { window.location.href = 'Women Empowerment.html'; }
@@ -4652,9 +4794,11 @@
           onAfterAnswer: () => { window.location.href = 'Free Medicine Distribution.html'; }
         };
       }
-      if (q.includes('food') || q.includes('canteen') || q.includes('shitala canteen') || q.includes('meal') || q.includes('hunger') || q.includes('খাবার')) {
+      if (q.includes('food') || q.includes('canteen') || q.includes('shitala canteen') || q.includes('meal') || q.includes('hunger') || q.includes('খাবার') || q.includes('ক্যান্টিন')) {
         return {
-          text: '<strong>Shitala Canteen &amp; Free Food Distribution</strong> serves nutritious meals (including ₹1 meals) to fight hunger with dignity. Now redirecting you to the Free Food Distribution page.',
+          text: isBengali
+            ? '<strong>শীতলা ক্যান্টিন ও Free Food Distribution</strong>-এর মাধ্যমে মাত্র ১ টাকায় ও বিনামূল্যে পুষ্টিকর খাবার পরিবেশন করা হয়। এখন পেজটি খুলছি।'
+            : '<strong>Shitala Canteen &amp; Free Food Distribution</strong> serves nutritious meals (including ₹1 meals) to fight hunger with dignity. Now redirecting you to the Free Food Distribution page.',
           actionLabel: 'Go to Free Food Distribution →',
           action: () => { window.location.href = 'Free Food Distribution.html'; },
           onAfterAnswer: () => { window.location.href = 'Free Food Distribution.html'; }
@@ -4676,7 +4820,7 @@
           onAfterAnswer: () => { window.location.href = 'Talent Hunt Scholarship.html'; }
         };
       }
-      if (q.includes('garment') || q.includes('cloth') || q.includes('dress') || q.includes('জামা')) {
+      if (q.includes('garment') || q.includes('cloth') || q.includes('dress') || q.includes('জামা') || q.includes('বস্ত্র')) {
         return {
           text: '<strong>Old Garments Distribution</strong> provides clean clothing to underprivileged families. Now redirecting you to the Old Garments Distribution page.',
           actionLabel: 'Go to Garments Distribution →',
@@ -4684,7 +4828,7 @@
           onAfterAnswer: () => { window.location.href = 'Old Garments Distribution.html'; }
         };
       }
-      if (q.includes('antardrishti') || q.includes('braille') || q.includes('blind')) {
+      if (q.includes('antardrishti') || q.includes('braille') || q.includes('blind') || q.includes('অন্তর্দৃষ্টি')) {
         return {
           text: '<strong>Project Antardrishti</strong> provides braille kits and white canes to empower visually impaired individuals. Now redirecting you to Antardrishti.',
           actionLabel: 'Open Antardrishti →',
@@ -4694,9 +4838,11 @@
       }
 
       // 7. All Projects / Initiatives overview
-      if (q.includes('project') || q.includes('initiative') || q.includes('work') || q.includes('program') || q.includes('প্রজেক্ট')) {
+      if (q.includes('project') || q.includes('initiative') || q.includes('work') || q.includes('program') || q.includes('প্রজেক্ট') || q.includes('কাজ')) {
         return {
-          text: 'We run <strong>10 core initiatives</strong>: Eye Check-up Camp, Books Distribution, Child Education, Women Empowerment, Health Check-up Camp, Free Medicine, Free Food Distribution, Tree Plantation, Talent Hunt Scholarship, and Old Garments Distribution. Taking you to Our Initiatives!',
+          text: isBengali
+            ? 'আমাদের ১০টি প্রধান উদ্যোগ রয়েছে—চক্ষু পরীক্ষা শিবির, বই বিতরণ, শিশু শিক্ষা, নারী ক্ষমতায়ন, স্বাস্থ্য শিবির, বিনামূল্যে ওষুধ, খাদ্য বিতরণ, বৃক্ষরোপণ, ট্যালেন্ট হান্ট স্কলারশিপ এবং বস্ত্র বিতরণ। আমি ইনিশিয়েটিভ সেকশনে নিয়ে যাচ্ছি।'
+            : 'We run <strong>10 core initiatives</strong>: Eye Check-up Camp, Books Distribution, Child Education, Women Empowerment, Health Check-up Camp, Free Medicine, Free Food Distribution, Tree Plantation, Talent Hunt Scholarship, and Old Garments Distribution. Taking you to Our Initiatives!',
           actionLabel: 'Explore All Initiatives →',
           action: () => scrollToSectionSmooth('#projects'),
           onAfterAnswer: () => scrollToSectionSmooth('#projects')
@@ -4704,7 +4850,7 @@
       }
 
       // 8. Impact & Stats
-      if (q.includes('impact') || q.includes('people helped') || q.includes('stat') || q.includes('achievement')) {
+      if (q.includes('impact') || q.includes('people helped') || q.includes('stat') || q.includes('achievement') || q.includes('প্রভাব')) {
         return {
           text: 'So far, SSMCT has helped <strong>10,000+ people</strong>, distributed <strong>5,000+ books &amp; meals</strong>, and planted <strong>1,000+ trees</strong> across West Bengal. Scrolling to Our Impact.',
           actionLabel: 'View Our Impact →',
@@ -4714,9 +4860,11 @@
       }
 
       // 9. Team & Software Engineer
-      if (q.includes('team') || q.includes('member') || q.includes('debayan') || q.includes('satyajit') || q.includes('mousumi') || q.includes('arindam') || q.includes('soma') || q.includes('tirthanu') || q.includes('software engineer') || q.includes('টিম')) {
+      if (q.includes('team') || q.includes('member') || q.includes('debayan') || q.includes('satyajit') || q.includes('mousumi') || q.includes('arindam') || q.includes('soma') || q.includes('tirthanu') || q.includes('software engineer') || q.includes('টিম') || q.includes('সদস্য')) {
         return {
-          text: 'Our dedicated team includes <strong>Satyajit Nandy</strong> (President), <strong>Mousumi Nandy</strong> (Secretary), <strong>Arindam Das</strong> (Treasurer), <strong>Soma Ghosh</strong> (VP), <strong>Debayan Mukhopadhyay</strong> (Software Engineer), and <strong>Tirthanu</strong> (Executive Member). Taking you to Meet Our Team.',
+          text: isBengali
+            ? 'আমাদের টিমে আছেন <strong>সত্যজিৎ নন্দী</strong> (প্রেসিডেন্ট), <strong>মৌসুমী নন্দী</strong> (সেক্রেটারি), <strong>অরিন্দম দাস</strong> (ট্রেজারার), <strong>সোমা ঘোষ</strong> (ভাইস প্রেসিডেন্ট), <strong>দেবায়ন মুখোপাধ্যায়</strong> (সফটওয়্যার ইঞ্জিনিয়ার) এবং <strong>তীর্থনু</strong> (এক্সিকিউটিভ মেম্বার)। টিম সেকশনে নিয়ে যাচ্ছি।'
+            : 'Our dedicated team includes <strong>Satyajit Nandy</strong> (President), <strong>Mousumi Nandy</strong> (Secretary), <strong>Arindam Das</strong> (Treasurer), <strong>Soma Ghosh</strong> (VP), <strong>Debayan Mukhopadhyay</strong> (Software Engineer), and <strong>Tirthanu</strong> (Executive Member). Taking you to Meet Our Team.',
           actionLabel: 'Meet Our Team →',
           action: () => scrollToSectionSmooth('#team'),
           onAfterAnswer: () => scrollToSectionSmooth('#team')
@@ -4724,7 +4872,7 @@
       }
 
       // 10. Testimonials / Reviews
-      if (q.includes('testimonial') || q.includes('review') || q.includes('donor say') || q.includes('feedback')) {
+      if (q.includes('testimonial') || q.includes('review') || q.includes('donor say') || q.includes('feedback') || q.includes('মতামত')) {
         return {
           text: 'Read inspiring stories and feedback from our donors across Kolkata, Howrah, Durgapur, and Hooghly. Taking you to Testimonials.',
           actionLabel: 'Read Testimonials →',
@@ -4734,32 +4882,33 @@
       }
 
       // 11. Contact / Location / Volunteer
-      if (q.includes('contact') || q.includes('location') || q.includes('address') || q.includes('where') || q.includes('email') || q.includes('volunteer') || q.includes('join') || q.includes('যোগাযোগ')) {
+      if (q.includes('contact') || q.includes('location') || q.includes('address') || q.includes('where') || q.includes('email') || q.includes('volunteer') || q.includes('join') || q.includes('যোগাযোগ') || q.includes('ঠিকানা')) {
         return {
-          text: 'We are located in <strong>Howrah District, West Bengal</strong>. You can email us at <strong>info@ssmctrust.org</strong> or visit our Contact Us page to volunteer or partner with us. Now redirecting you to Contact Us.',
+          text: isBengali
+            ? 'আমাদের ঠিকানা <strong>হাওড়া জেলা, পশ্চিমবঙ্গ</strong>। ইমেইল: <strong>info@ssmctrust.org</strong>। এখন Contact Us পেজে নিয়ে যাচ্ছি।'
+            : 'We are located in <strong>Howrah District, West Bengal</strong>. You can email us at <strong>info@ssmctrust.org</strong> or visit our Contact Us page to volunteer or partner with us. Now redirecting you to Contact Us.',
           actionLabel: 'Open Contact Us →',
           action: () => { window.location.href = 'ContactUs.html'; },
           onAfterAnswer: () => { window.location.href = 'ContactUs.html'; }
         };
       }
 
-      // 12. Greetings & General Open-Ended Chat (Dynamic, non-repetitive)
-      if (/^(hi|hello|hey|namaskar|namaste|হ্যালো|নমস্কার)\b/i.test(q)) {
+      // 12. Greetings & General Open-Ended Chat
+      if (/^(hi|hello|hey|namaskar|namaste|হ্যালো|নমস্কার|কেমন আছ|नमस्ते)\b/i.test(q)) {
         return {
-          text: pickVariant('greeting', [
-            'Hello! Glad to see you here. Ask me anything about our initiatives, Founder Mr. Shambhu Chakraborty, Certificates, or how you can support the Trust!',
-            'Hi there! What would you like to explore today—our 10 community projects, donor stories, or making a donation?'
-          ])
+          text: isBengali
+            ? 'নমস্কার! আমি <strong>দেবু</strong>। আমাদের ট্রাস্টের ফাউন্ডার, ১০টি প্রজেক্ট, সার্টিফিকেট, বা ডোনেশন—যে কোনো বিষয়ে আমাকে জিজ্ঞেস করতে পারো!'
+            : pickVariant('greeting', [
+                'Hello! I am Debu. Ask me anything about our initiatives, Founder Mr. Shambhu Chakraborty, Certificates, or how you can support the Trust!',
+                'Hi there! What would you like to explore today—our 10 community projects, donor stories, or making a donation?'
+              ])
         };
       }
-      if (q.includes('how are you') || q.includes('কেমন আছ')) {
+      if (q.includes('your name') || q.includes('who are you') || q.includes('তোমার নাম') || q.includes('তুমি কে')) {
         return {
-          text: 'I am doing great and always ready to help! How can I assist you with Shyamashree Shitala Maa Charitable Trust today?'
-        };
-      }
-      if (q.includes('your name') || q.includes('who are you') || q.includes('তোমার নাম')) {
-        return {
-          text: 'I am <strong>Debu</strong>, your interactive voice and chat guide for Shyamashree Shitala Maa Charitable Trust!'
+          text: isBengali
+            ? 'আমার নাম <strong>দেবু (Debu)</strong>! আমি শ্যামাশ্রী শীতলা মা চ্যারিটেবল ট্রাস্টের ভয়েস ও চ্যাট গাইড অ্যাসিস্ট্যান্ট।'
+            : 'My name is <strong>Debu</strong>! I am the interactive male voice and self-learning chat guide for Shyamashree Shitala Maa Charitable Trust.'
         };
       }
       if (q.includes('time') || q.includes('date') || q.includes('today') || q.includes('সময়') || q.includes('তারিখ')) {
@@ -4768,23 +4917,28 @@
           text: 'Today is <strong>' + now.toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) + '</strong>, and the time is <strong>' + now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) + '</strong>.'
         };
       }
-      if (q.includes('tax') || q.includes('exemption')) {
-        return {
-          text: 'Under <strong>Section 80G</strong> of the Indian Income Tax Act, donations to 12AB &amp; 80G certified trusts like SSMCT qualify for tax deductions. You can add your optional PAN in our donation form!'
-        };
-      }
       if (q.includes('thank') || q.includes('ধন্যবাদ')) {
         return {
-          text: 'You are most welcome! Together, we can build a kinder, healthier, and happier society. 💛'
+          text: isBengali
+            ? 'তোমাকেও অসংখ্য ধন্যবাদ! একসাথে আমরা আরও সুন্দর ও মানবিক সমাজ গড়ে তুলব। 💛'
+            : 'You are most welcome! Together, we can build a kinder, healthier, and happier society. 💛'
         };
       }
 
-      // 13. Smart Dynamic Open-Ended Fallback
+      // 13. Check Self-Learned Knowledge Base
+      const learned = findLearnedMatch(rawQuery);
+      if (learned) {
+        return {
+          text: '<span class="debu-learned-badge">🧠 Learned Memory</span><br>' + learned.a.replace(/</g, '&lt;')
+        };
+      }
+
+      // 14. Self-Training Prompt when encountering unknown information
+      debuPendingTeachQuestion = rawQuery.trim();
       return {
-        text: pickVariant('fallback', [
-          'Got your message about <em>"' + rawQuery.replace(/</g, '&lt;') + '"</em>. I can guide you to our <strong>Initiatives</strong>, <strong>Founder’s Message</strong>, <strong>Certificates</strong>, <strong>Annual Report</strong>, or open the <strong>Donation Form</strong>—just let me know which one you prefer!',
-          'I would love to help with <em>"' + rawQuery.replace(/</g, '&lt;') + '"</em>! Try asking about specific programs like <strong>Shitala Canteen</strong>, <strong>Eye Check-up Camp</strong>, <strong>Women Empowerment</strong>, or tap one of the quick buttons above.'
-        ])
+        text: isBengali
+          ? 'আমি এখনো <strong>"' + rawQuery.replace(/</g, '&lt;') + '"</strong> সম্পর্কে জানি না। তুমি আমাকে সঠিক উত্তরটা লিখে দাও—আমি নিজে থেকে শিখে মনে রাখব! (অথবা বাতিল করতে <em>skip</em> লেখো)'
+          : 'I don’t have information about <strong>"' + rawQuery.replace(/</g, '&lt;') + '"</strong> yet. Please reply with the answer so I can train myself and remember it for the future! (Or type <em>skip</em>)'
       };
     }
 
@@ -4797,7 +4951,7 @@
       setTimeout(() => {
         removeDebuTyping();
         appendDebuMessage('bot', reply.text, reply.actionLabel, reply.action);
-        // Speaks the full answer FIRST, and triggers redirect/scroll ONLY AFTER speech finishes
+        // Speaks the full answer in MALE voice FIRST, and triggers redirect/scroll ONLY AFTER speech finishes
         debuSpeakAndThen(reply.text, reply.onAfterAnswer);
       }, 420);
     }
@@ -4813,16 +4967,24 @@
     }
 
     function sendDebuPreset(promptText) {
+      debuPendingTeachQuestion = null;
       processDebuQuery(promptText);
+    }
+
+    function changeDebuRecognitionLang() {
+      if (debuIsListening && debuRecognition) {
+        debuRecognition.stop();
+      }
     }
 
     function toggleDebuListening() {
       const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
       const statusEl = document.getElementById('debuVoiceStatus');
       const micBtn = document.getElementById('debuMicBtn');
+      const langSelect = document.getElementById('debuLangSelect');
 
       if (!SpeechRec) {
-        appendDebuMessage('bot', 'Voice recognition is not supported in this browser. Please use Google Chrome or type your message in the box below.');
+        appendDebuMessage('bot', 'Voice recognition is not supported in this browser. Please use Google Chrome or type your message below.');
         return;
       }
 
@@ -4832,7 +4994,7 @@
       }
 
       debuRecognition = new SpeechRec();
-      debuRecognition.lang = 'en-IN';
+      debuRecognition.lang = langSelect ? langSelect.value : 'en-IN';
       debuRecognition.interimResults = false;
       debuRecognition.maxAlternatives = 1;
 
