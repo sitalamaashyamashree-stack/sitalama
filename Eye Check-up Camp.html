@@ -7,7 +7,6 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
 
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-149NCZ03L5"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -20,7 +19,7 @@
     :root {
       --forest-dark: #133b26;
       --forest-mid: #1d5236;
-      --forest-light: #2b734d;
+      --forest-light: #3b8c61;
       --emerald-soft: #eaf3ed;
       --cream-bg: #fbf9f3;
       --cream-card: #f3efe4;
@@ -44,7 +43,7 @@
       font-family: 'Inter', sans-serif;
       background-color: var(--cream-bg);
       color: var(--text-dark);
-      line-height: 1.55;
+      line-height: 1.5;
       overflow-x: hidden;
     }
 
@@ -52,10 +51,9 @@
       font-family: 'Playfair Display', Georgia, serif;
     }
 
-    /* TOP COMPACT NAVIGATION BAR WITH BACK TO HOME BUTTON */
     .top-nav-strip {
       background-color: #ffffff;
-      padding: 12px 32px;
+      padding: 10px 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -69,7 +67,7 @@
     .brand-group {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
     }
 
     .brand-mini {
@@ -81,22 +79,22 @@
     }
 
     .brand-mini img {
-      height: 46px;
+      height: 42px;
       width: auto;
     }
 
     .brand-mini strong {
       font-family: 'Playfair Display', serif;
-      font-size: 16px;
+      font-size: 15.5px;
       line-height: 1.2;
     }
 
     .brand-tagline {
       font-family: 'Caveat', cursive;
-      font-size: 21px;
+      font-size: 20px;
       font-weight: 700;
       color: var(--forest-mid);
-      padding-left: 16px;
+      padding-left: 14px;
       border-left: 2px solid #d5e0d9;
     }
 
@@ -106,7 +104,7 @@
       text-decoration: none;
       font-size: 13px;
       font-weight: 700;
-      padding: 9px 18px;
+      padding: 8px 16px;
       border-radius: 25px;
       border: 1.5px solid var(--gold-accent);
       transition: all 0.25s ease;
@@ -118,74 +116,69 @@
       color: var(--forest-dark);
     }
 
-    /* MAIN INFOGRAPHIC CONTAINER */
     .page-wrapper {
-      max-width: 1120px;
-      margin: 26px auto 40px;
-      padding: 0 18px;
+      max-width: 1100px;
+      margin: 20px auto 34px;
+      padding: 0 16px;
     }
 
-    /* 1. HERO BANNER (MATCHING INFOGRAPHIC SPLIT LAYOUT) */
     .project-hero {
       background: linear-gradient(135deg, #ffffff 0%, #f1f7f3 55%, #e4efe8 100%);
-      border-radius: 20px;
+      border-radius: 18px;
       border: 1px solid #dce6df;
-      border-top: 5px solid var(--forest-dark);
-      box-shadow: 0 10px 28px rgba(19, 59, 38, 0.08);
+      border-top: 4px solid var(--forest-dark);
+      box-shadow: 0 8px 24px rgba(19, 59, 38, 0.07);
       display: grid;
       grid-template-columns: 1.05fr 1fr;
       overflow: hidden;
-      margin-bottom: 24px;
-      position: relative;
+      margin-bottom: 18px;
     }
 
     .hero-left {
-      padding: 36px 34px;
+      padding: 28px 30px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      position: relative;
-      z-index: 2;
     }
 
     .initiative-pill {
       display: inline-block;
       background: linear-gradient(90deg, var(--forest-dark), var(--forest-mid));
       color: var(--gold-accent);
-      font-size: 12.5px;
+      font-size: 11.5px;
       font-weight: 800;
       letter-spacing: 0.4px;
-      padding: 6px 16px;
+      padding: 5px 14px;
       border-radius: 999px;
       width: fit-content;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
       border: 1px solid var(--gold-accent);
     }
 
     .hero-left h1 {
-      font-size: clamp(2.1rem, 4vw, 3.1rem);
+      font-size: clamp(1.95rem, 3.8vw, 2.85rem);
       color: var(--forest-dark);
       line-height: 1.12;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .hero-script-sub {
       font-family: 'Caveat', cursive;
-      font-size: clamp(1.55rem, 2.8vw, 2.05rem);
+      font-size: clamp(1.45rem, 2.5vw, 1.9rem);
       font-weight: 700;
       color: var(--forest-mid);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .hero-left p {
-      font-size: 15px;
+      font-size: 14.5px;
       color: #36493e;
-      max-width: 460px;
+      max-width: 450px;
     }
 
     .hero-right {
       position: relative;
-      min-height: 310px;
+      min-height: 265px;
       overflow: hidden;
     }
 
@@ -204,112 +197,102 @@
       z-index: 1;
     }
 
-    /* 2. THREE-COLUMN BUDGET & VISION INFOGRAPHIC ROW */
     .three-info-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-bottom: 24px;
+      gap: 16px;
+      margin-bottom: 18px;
     }
 
     .info-box {
       background: #ffffff;
-      border-radius: 16px;
+      border-radius: 14px;
       border: 1px solid #e5e0d3;
-      box-shadow: 0 6px 18px rgba(19, 59, 38, 0.06);
+      box-shadow: 0 5px 16px rgba(19, 59, 38, 0.05);
       overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .info-box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 22px rgba(19, 59, 38, 0.1);
     }
 
     .info-box-header {
       background: linear-gradient(90deg, var(--forest-dark), var(--forest-mid));
       color: #ffffff;
-      padding: 11px 16px;
-      font-size: 15px;
+      padding: 9px 14px;
+      font-size: 14px;
       font-weight: 700;
       display: flex;
       align-items: center;
-      gap: 9px;
+      gap: 8px;
       border-bottom: 2px solid var(--gold-accent);
     }
 
     .info-box-body {
-      padding: 18px 16px;
+      padding: 14px 14px;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
-    /* Vision Box Content */
     .vision-flex {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
     }
 
     .vision-eye-badge {
-      width: 66px;
-      height: 66px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       background: var(--emerald-soft);
-      border: 2.5px solid var(--forest-dark);
+      border: 2px solid var(--forest-dark);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 30px;
+      font-size: 26px;
       flex-shrink: 0;
     }
 
     .vision-flex p {
-      font-size: 13.8px;
+      font-size: 13.2px;
       color: #2c3e33;
-      line-height: 1.5;
+      line-height: 1.45;
     }
 
-    /* Donut Chart Layout */
     .chart-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
     }
 
     .donut-chart {
-      width: 112px;
-      height: 112px;
+      width: 114px;
+      height: 114px;
       border-radius: 50%;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.12);
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.12);
+      transition: transform 0.35s ease;
     }
 
-    /* FY 25-26: 60% Forest Dark, 25% Forest Light, 15% Gold */
-    .donut-fy25 {
-      background: conic-gradient(
-        var(--forest-dark) 0% 60%,
-        #3b8c61 60% 85%,
-        var(--gold-accent) 85% 100%
-      );
-    }
-
-    /* FY 26-27: 65% Forest Dark, 20% Forest Light, 15% Gold */
-    .donut-fy26 {
-      background: conic-gradient(
-        var(--forest-dark) 0% 65%,
-        #3b8c61 65% 85%,
-        var(--gold-accent) 85% 100%
-      );
+    .donut-chart:hover {
+      transform: scale(1.04);
     }
 
     .donut-hole {
-      width: 74px;
-      height: 74px;
+      width: 78px;
+      height: 78px;
       border-radius: 50%;
       background: #ffffff;
       display: flex;
@@ -322,17 +305,20 @@
     }
 
     .donut-hole strong {
-      font-size: 13.5px;
+      font-size: 11.8px;
       font-weight: 800;
       color: var(--forest-dark);
       line-height: 1.1;
+      white-space: nowrap;
+      letter-spacing: -0.2px;
     }
 
     .donut-hole span {
-      font-size: 9.5px;
+      font-size: 8.8px;
       font-weight: 600;
       color: var(--text-muted);
       margin-top: 2px;
+      line-height: 1.1;
     }
 
     .legend-list {
@@ -341,25 +327,37 @@
     }
 
     .legend-list li {
-      font-size: 12px;
+      font-size: 11.5px;
       color: #2c3e33;
-      margin-bottom: 7px;
+      margin-bottom: 6px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 6px;
+      gap: 5px;
+      cursor: pointer;
+      padding: 2px 4px;
+      border-radius: 5px;
+      transition: background 0.2s;
+    }
+
+    .legend-list li:hover {
+      background-color: var(--cream-bg);
+    }
+
+    .legend-list li:last-child {
+      margin-bottom: 0;
     }
 
     .legend-label {
       display: flex;
       align-items: center;
-      gap: 6px;
-      line-height: 1.25;
+      gap: 5px;
+      line-height: 1.2;
     }
 
     .dot-swatch {
-      width: 9px;
-      height: 9px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       flex-shrink: 0;
     }
@@ -367,63 +365,82 @@
     .legend-pct {
       font-weight: 800;
       color: var(--forest-dark);
+      font-size: 11.5px;
     }
 
     .info-box-footer {
       text-align: center;
-      font-size: 12px;
+      font-size: 11.5px;
       font-style: italic;
       font-weight: 600;
       color: var(--forest-mid);
-      padding: 8px 12px;
+      padding: 6px 10px;
       background-color: var(--cream-bg);
       border-top: 1px solid #ece7d9;
     }
 
-    /* 3. ALREADY BENEFICIARIES BANNER */
     .beneficiaries-card {
       background: #ffffff;
       border-radius: 16px;
       border: 1px solid #e5e0d3;
-      box-shadow: 0 6px 20px rgba(19, 59, 38, 0.06);
+      box-shadow: 0 5px 18px rgba(19, 59, 38, 0.05);
       overflow: hidden;
-      margin-bottom: 26px;
+      margin-bottom: 18px;
+    }
+
+    .beneficiaries-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-right: 18px;
     }
 
     .beneficiaries-header {
       background: linear-gradient(90deg, var(--forest-dark), var(--forest-mid));
       color: #ffffff;
-      padding: 10px 22px;
-      font-size: 16px;
+      padding: 9px 20px;
+      font-size: 15px;
       font-weight: 700;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      border-bottom-right-radius: 16px;
+      gap: 8px;
+      border-bottom-right-radius: 14px;
       border-bottom: 2px solid var(--gold-accent);
     }
 
+    .click-hint-pill {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--forest-mid);
+      background: var(--emerald-soft);
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid #cde0d4;
+    }
+
     .beneficiaries-body {
-      padding: 20px 26px 24px;
+      padding: 16px 22px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 18px;
       flex-wrap: wrap;
     }
 
     .beneficiaries-stat {
-      max-width: 310px;
+      max-width: 290px;
     }
 
     .beneficiaries-stat p {
-      font-size: 15.5px;
+      font-size: 14px;
       color: #2c3e33;
-      line-height: 1.45;
+      line-height: 1.4;
     }
 
     .stat-big-number {
-      font-size: 2.35rem;
+      font-size: 2.1rem;
       font-weight: 800;
       color: var(--forest-dark);
       line-height: 1.1;
@@ -432,7 +449,7 @@
     }
 
     .stat-big-number span {
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 700;
       color: var(--forest-mid);
     }
@@ -445,20 +462,31 @@
       justify-content: center;
     }
 
-    .face-circle {
-      width: 104px;
-      height: 104px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 3.5px solid var(--forest-dark);
-      box-shadow: 0 6px 16px rgba(19, 59, 38, 0.14);
-      background-color: var(--emerald-soft);
-      transition: transform 0.3s ease, border-color 0.3s ease;
+    .face-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
     }
 
-    .face-circle:hover {
-      transform: scale(1.07);
+    .face-circle {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--forest-dark);
+      box-shadow: 0 5px 14px rgba(19, 59, 38, 0.14);
+      background-color: var(--emerald-soft);
+      transition: all 0.28s ease;
+      position: relative;
+    }
+
+    .face-item:hover .face-circle,
+    .face-item.active .face-circle {
+      transform: scale(1.08);
       border-color: var(--gold-accent);
+      box-shadow: 0 8px 20px rgba(234, 179, 8, 0.35);
     }
 
     .face-circle img {
@@ -468,140 +496,227 @@
       display: block;
     }
 
-    /* 4. HOW CAN YOU CONTRIBUTE SECTION */
+    .face-name-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--forest-dark);
+      background: var(--cream-bg);
+      padding: 2px 9px;
+      border-radius: 12px;
+      border: 1px solid #e2dccb;
+      transition: all 0.25s ease;
+    }
+
+    .face-item.active .face-name-tag {
+      background: var(--forest-dark);
+      color: var(--gold-accent);
+      border-color: var(--forest-dark);
+    }
+
+    /* Interactive Beneficiary Dropdown Story Drawer */
+    .beneficiary-dropdown {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      background: linear-gradient(135deg, #f4f9f6 0%, var(--cream-bg) 100%);
+      border-top: 0 solid #dce6df;
+      transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+      padding: 0 24px;
+    }
+
+    .beneficiary-dropdown.open {
+      max-height: 260px;
+      opacity: 1;
+      border-top: 1.5px dashed #b7cfc0;
+      padding: 16px 24px 18px;
+    }
+
+    .ben-dropdown-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .ben-info-content {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .ben-meta-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .ben-meta-badges h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--forest-dark);
+    }
+
+    .ben-tag {
+      background: var(--forest-dark);
+      color: var(--gold-accent);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .ben-story-text {
+      font-size: 13.8px;
+      color: #2c3e33;
+      line-height: 1.5;
+    }
+
+    .close-ben-btn {
+      background: #ffffff;
+      color: var(--forest-dark);
+      border: 1px solid #cbd5ce;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .close-ben-btn:hover {
+      background: var(--forest-dark);
+      color: #ffffff;
+    }
+
     .contribute-section {
       background: #ffffff;
-      border-radius: 18px;
+      border-radius: 16px;
       border: 1px solid #e5e0d3;
-      padding: 26px 24px 30px;
-      box-shadow: 0 8px 22px rgba(19, 59, 38, 0.06);
-      margin-bottom: 24px;
+      padding: 20px 20px 24px;
+      box-shadow: 0 6px 18px rgba(19, 59, 38, 0.05);
+      margin-bottom: 18px;
       text-align: center;
     }
 
     .contribute-pill-title {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       background: linear-gradient(90deg, var(--forest-dark), var(--forest-mid));
       color: #ffffff;
-      padding: 10px 28px;
+      padding: 8px 24px;
       border-radius: 999px;
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       font-weight: 700;
       border: 2px solid var(--gold-accent);
-      margin-bottom: 10px;
+      margin-bottom: 6px;
     }
 
     .contribute-sub {
       font-family: 'Caveat', cursive;
-      font-size: 1.55rem;
+      font-size: 1.45rem;
       font-weight: 700;
       color: var(--forest-mid);
-      margin-bottom: 22px;
+      margin-bottom: 16px;
     }
 
     .contribute-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+      gap: 14px;
     }
 
     .contrib-card {
       background: var(--cream-bg);
       border: 1px solid #e2dccb;
-      border-radius: 14px;
-      padding: 20px 14px;
+      border-radius: 12px;
+      padding: 16px 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
 
     .contrib-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 24px rgba(19, 59, 38, 0.12);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(19, 59, 38, 0.11);
       border-color: var(--gold-accent);
     }
 
     .contrib-icon {
-      width: 64px;
-      height: 64px;
-      border-radius: 16px;
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
       background: #ffffff;
       border: 1.5px solid #d5e2da;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 30px;
-      margin-bottom: 12px;
-      box-shadow: 0 4px 10px rgba(19, 59, 38, 0.06);
+      font-size: 26px;
+      margin-bottom: 10px;
     }
 
     .contrib-badge {
       background-color: var(--forest-dark);
       color: #ffffff;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 700;
-      padding: 6px 14px;
+      padding: 5px 12px;
       border-radius: 20px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       width: 100%;
     }
 
     .contrib-card p {
-      font-size: 13.5px;
+      font-size: 13px;
       color: #36493e;
-      line-height: 1.45;
+      line-height: 1.4;
     }
 
-    /* 5. BOTTOM CTA BAR ("Support Our Eye Care Mission" + Donate Now) */
     .bottom-cta-banner {
       background: linear-gradient(135deg, var(--forest-dark) 0%, #0e2e1d 100%);
-      border-radius: 18px;
-      padding: 24px 32px;
+      border-radius: 16px;
+      padding: 20px 28px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 28px;
+      gap: 24px;
       flex-wrap: wrap;
       border-bottom: 4px solid var(--gold-accent);
-      box-shadow: 0 12px 28px rgba(19, 59, 38, 0.18);
-      position: relative;
-      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(19, 59, 38, 0.16);
     }
 
     .bottom-cta-banner h2 {
       font-family: 'Caveat', cursive;
-      font-size: clamp(1.9rem, 3.6vw, 2.55rem);
+      font-size: clamp(1.8rem, 3.4vw, 2.4rem);
       color: #ffffff;
       margin: 0;
-      letter-spacing: 0.4px;
     }
 
     .cta-donate-btn {
       background: linear-gradient(135deg, #facc15, var(--gold-accent));
       color: var(--forest-dark);
       border: 2px solid #ffffff;
-      padding: 13px 32px;
+      padding: 11px 28px;
       border-radius: 999px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 800;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3);
-      transition: all 0.28s ease;
+      gap: 8px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+      transition: all 0.25s ease;
     }
 
     .cta-donate-btn:hover {
-      transform: translateY(-2px) scale(1.04);
+      transform: translateY(-2px) scale(1.03);
       background: #fde047;
     }
 
-    /* DIRECT RAZORPAY DONATION MODAL */
     .donate-modal {
       display: none;
       position: fixed;
@@ -621,9 +736,9 @@
     .donate-modal-box {
       background: #ffffff;
       width: 100%;
-      max-width: 460px;
+      max-width: 450px;
       border-radius: 14px;
-      padding: 26px 28px;
+      padding: 24px 26px;
       border-top: 6px solid var(--forest-dark);
       position: relative;
       box-shadow: 0 18px 45px rgba(0, 0, 0, 0.4);
@@ -631,39 +746,39 @@
 
     .donate-modal-box h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 23px;
+      font-size: 22px;
       color: var(--forest-dark);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       text-align: center;
     }
 
     .donate-modal-box label {
       display: block;
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 600;
-      margin-top: 10px;
+      margin-top: 9px;
       color: var(--text-dark);
     }
 
     .donate-modal-box input {
       width: 100%;
-      padding: 9px 12px;
-      margin-top: 4px;
+      padding: 8px 11px;
+      margin-top: 3px;
       border: 1px solid #cbd5ce;
       border-radius: 8px;
-      font-size: 14.5px;
+      font-size: 14px;
       background: var(--cream-bg);
     }
 
     .donate-submit-btn {
       width: 100%;
-      margin-top: 18px;
-      padding: 12px;
+      margin-top: 16px;
+      padding: 11px;
       background: var(--forest-dark);
       color: #ffffff;
       border: 2px solid var(--gold-accent);
       border-radius: 25px;
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 700;
       cursor: pointer;
     }
@@ -673,24 +788,22 @@
       color: var(--forest-dark);
     }
 
-    /* FOOTER */
     footer {
       background: var(--forest-dark);
       color: #e6efe9;
       text-align: center;
-      padding: 24px 16px;
+      padding: 20px 16px;
       border-top: 4px solid var(--gold-accent);
-      font-size: 14px;
+      font-size: 13.5px;
     }
 
     footer p {
       color: #bfd4c7;
-      font-size: 13px;
-      margin-top: 4px;
+      font-size: 12.5px;
+      margin-top: 3px;
       font-style: italic;
     }
 
-    /* RESPONSIVE */
     @media (max-width: 960px) {
       .project-hero {
         grid-template-columns: 1fr;
@@ -725,7 +838,7 @@
       }
 
       .hero-left {
-        padding: 26px 20px;
+        padding: 22px 18px;
       }
 
       .contribute-grid {
@@ -733,15 +846,14 @@
       }
 
       .face-circle {
-        width: 82px;
-        height: 82px;
+        width: 76px;
+        height: 76px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Navigation Bar with Back to Home Button -->
   <div class="top-nav-strip">
     <div class="brand-group">
       <a href="index.html" class="brand-mini">
@@ -753,7 +865,6 @@
     <a href="index.html" class="back-home-btn">← Back to Home</a>
   </div>
 
-  <!-- Main Infographic Wrapper -->
   <div class="page-wrapper">
 
     <!-- 1. Hero Section -->
@@ -769,7 +880,7 @@
       </div>
     </section>
 
-    <!-- 2. Three-Column Vision & Budget Infographic Cards -->
+    <!-- 2. Dynamic Three-Column Vision & Budget Infographic Cards -->
     <section class="three-info-grid">
 
       <!-- Card 1: Our Vision -->
@@ -786,77 +897,35 @@
         <div class="info-box-footer">Preventable blindness, curable with care.</div>
       </div>
 
-      <!-- Card 2: Budget Utilisation (FY 25-26) -->
+      <!-- Card 2: Dynamic Budget Utilisation (FY 25-26) -->
       <div class="info-box">
         <div class="info-box-header">
           <span>📊</span> Budget Utilisation (FY 25-26)
         </div>
-        <div class="info-box-body">
-          <div class="chart-row">
-            <div class="donut-chart donut-fy25">
-              <div class="donut-hole">
-                <strong>₹1,60,000</strong>
-                <span>Total Budget</span>
-              </div>
-            </div>
-            <ul class="legend-list">
-              <li>
-                <span class="legend-label"><span class="dot-swatch" style="background:var(--forest-dark);"></span>Medical Camp &amp; Treatment</span>
-                <span class="legend-pct">60%</span>
-              </li>
-              <li>
-                <span class="legend-label"><span class="dot-swatch" style="background:#3b8c61;"></span>Equipment &amp; Logistics</span>
-                <span class="legend-pct">25%</span>
-              </li>
-              <li>
-                <span class="legend-label"><span class="dot-swatch" style="background:var(--gold-accent);"></span>Awareness &amp; Outreach</span>
-                <span class="legend-pct">15%</span>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <div class="info-box-body" id="fy25ChartContainer"></div>
         <div class="info-box-footer">Transparent and efficient use of funds.</div>
       </div>
 
-      <!-- Card 3: FY 26-27 Budget -->
+      <!-- Card 3: Dynamic FY 26-27 Budget -->
       <div class="info-box">
         <div class="info-box-header">
           <span>📅</span> FY 26-27 Budget
         </div>
-        <div class="info-box-body">
-          <div class="chart-row">
-            <div class="donut-chart donut-fy26">
-              <div class="donut-hole">
-                <strong>₹2,00,000</strong>
-                <span>Planned Budget</span>
-              </div>
-            </div>
-            <ul class="legend-list">
-              <li>
-                <span class="legend-label"><span class="dot-swatch" style="background:var(--forest-dark);"></span>Medical Camp &amp; Treatment</span>
-                <span class="legend-pct">65%</span>
-              </li>
-              <li>
-                <span class="legend-label"><span class="dot-swatch" style="background:#3b8c61;"></span>Equipment</span>
-                <span class="legend-pct">20%</span>
-              </li>
-              <li>
-                <span class="legend-label"><span class="dot-swatch" style="background:var(--gold-accent);"></span>Awareness &amp; Outreach</span>
-                <span class="legend-pct">15%</span>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <div class="info-box-body" id="fy26ChartContainer"></div>
         <div class="info-box-footer">Bigger Reach. Greater Impact.</div>
       </div>
 
     </section>
 
-    <!-- 3. Already Beneficiaries Section -->
+    <!-- 3. Interactive Already Beneficiaries Section -->
     <section class="beneficiaries-card">
-      <div class="beneficiaries-header">
-        <span>👥</span> Already Beneficiaries
+      <div class="beneficiaries-top-bar">
+        <div class="beneficiaries-header">
+          <span>👥</span> Already Beneficiaries
+        </div>
+        <span class="click-hint-pill">👆 Click any photo to view beneficiary story</span>
       </div>
+
       <div class="beneficiaries-body">
         <div class="beneficiaries-stat">
           <p>In our previous camps, we have provided free eye care services to over</p>
@@ -864,22 +933,21 @@
           <p>from nearby rural communities.</p>
         </div>
 
-        <div class="faces-row">
-          <div class="face-circle">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Beneficiary 1">
+        <div class="faces-row" id="beneficiaryFacesRow"></div>
+      </div>
+
+      <!-- Expandable Dropdown Drawer for Beneficiary Details -->
+      <div class="beneficiary-dropdown" id="beneficiaryDropdown">
+        <div class="ben-dropdown-inner">
+          <div class="ben-info-content">
+            <div class="ben-meta-badges">
+              <h4 id="benName">Beneficiary Name</h4>
+              <span class="ben-tag" id="benLocation">Location</span>
+              <span class="ben-tag" style="background:#1d5236; color:#fff;" id="benSupport">Support Received</span>
+            </div>
+            <p class="ben-story-text" id="benStory">Story details appear here.</p>
           </div>
-          <div class="face-circle">
-            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80" alt="Beneficiary 2">
-          </div>
-          <div class="face-circle">
-            <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=300&q=80" alt="Beneficiary 3">
-          </div>
-          <div class="face-circle">
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="Beneficiary 4">
-          </div>
-          <div class="face-circle">
-            <img src="https://images.unsplash.com/photo-1566753323558-f4e0952af115?auto=format&fit=crop&w=300&q=80" alt="Beneficiary 5">
-          </div>
+          <button type="button" class="close-ben-btn" onclick="closeBeneficiaryDropdown()">✕ Close</button>
         </div>
       </div>
     </section>
@@ -892,25 +960,25 @@
       <div class="contribute-sub">Be a part of this noble cause and help us bring the gift of clear vision.</div>
 
       <div class="contribute-grid">
-        <div class="contrib-card">
+        <div class="contrib-card" onclick="openEyeDonateModal()">
           <div class="contrib-icon">🤲</div>
           <div class="contrib-badge">Donate Funds</div>
           <p>Support our eye care initiatives.</p>
         </div>
 
-        <div class="contrib-card">
+        <div class="contrib-card" onclick="window.location.href='ContactUs.html'">
           <div class="contrib-icon">👥</div>
           <div class="contrib-badge">Volunteer Your Time</div>
           <p>Join us in organizing camps and awareness drives.</p>
         </div>
 
-        <div class="contrib-card">
+        <div class="contrib-card" onclick="window.location.href='ContactUs.html'">
           <div class="contrib-icon">🤝</div>
           <div class="contrib-badge">CSR Partnership</div>
           <p>Partner with us for larger impact.</p>
         </div>
 
-        <div class="contrib-card">
+        <div class="contrib-card" onclick="openEyeDonateModal()">
           <div class="contrib-icon">🧰</div>
           <div class="contrib-badge">Medical Support</div>
           <p>Contribute spectacles, medicines or equipment.</p>
@@ -962,16 +1030,161 @@
     <p>Serving Humanity with Love, Compassion &amp; Kindness</p>
   </footer>
 
-  <!-- Razorpay Checkout Script -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
   <script>
+    /* =========================================================================
+       1. DYNAMIC BUDGET DATA (Change amounts or percentages here anytime —
+          the pie/donut charts & legends update automatically!)
+    ========================================================================= */
+    const budgetConfig = {
+      fy25: {
+        totalAmount: "₹1,60,000",
+        subtitle: "Total Budget",
+        items: [
+          { label: "Medical Camp & Treatment", percent: 60, color: "#133b26" },
+          { label: "Equipment & Logistics", percent: 25, color: "#3b8c61" },
+          { label: "Awareness & Outreach", percent: 15, color: "#eab308" }
+        ]
+      },
+      fy26: {
+        totalAmount: "₹2,00,000",
+        subtitle: "Planned Budget",
+        items: [
+          { label: "Medical Camp & Treatment", percent: 65, color: "#133b26" },
+          { label: "Equipment", percent: 20, color: "#3b8c61" },
+          { label: "Awareness & Outreach", percent: 15, color: "#eab308" }
+        ]
+      }
+    };
+
+    function renderDynamicDonut(containerId, data) {
+      const container = document.getElementById(containerId);
+      let cumulativePercent = 0;
+      const gradientStops = data.items.map(item => {
+        const start = cumulativePercent;
+        cumulativePercent += item.percent;
+        return `${item.color} ${start}% ${cumulativePercent}%`;
+      }).join(", ");
+
+      const legendHTML = data.items.map(item => `
+        <li title="${item.label}: ${item.percent}%">
+          <span class="legend-label">
+            <span class="dot-swatch" style="background:${item.color};"></span>
+            ${item.label}
+          </span>
+          <span class="legend-pct">${item.percent}%</span>
+        </li>
+      `).join("");
+
+      container.innerHTML = `
+        <div class="chart-row">
+          <div class="donut-chart" style="background: conic-gradient(${gradientStops});">
+            <div class="donut-hole">
+              <strong>${data.totalAmount}</strong>
+              <span>${data.subtitle}</span>
+            </div>
+          </div>
+          <ul class="legend-list">${legendHTML}</ul>
+        </div>
+      `;
+    }
+
+    renderDynamicDonut("fy25ChartContainer", budgetConfig.fy25);
+    renderDynamicDonut("fy26ChartContainer", budgetConfig.fy26);
+
+    /* =========================================================================
+       2. INTERACTIVE BENEFICIARY PROFILES (Click any photo to open dropdown)
+    ========================================================================= */
+    const beneficiariesData = [
+      {
+        name: "Haripada Mondal (68)",
+        location: "Purba Bardhaman",
+        support: "Free Cataract Check-up & Power Glasses",
+        photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80",
+        story: "Due to blurry vision for two years, Haripada babu struggled to walk safely after sunset. Through our free camp, he received a complete eye examination and custom prescription spectacles at zero cost."
+      },
+      {
+        name: "Saraswati Devi (62)",
+        location: "Howrah Rural",
+        support: "Cataract Referral & Eye Drops",
+        photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80",
+        story: "Early cataract was detected during our doorstep vision screening camp. Our volunteers coordinated her treatment and provided free post-care protective glasses and medicines."
+      },
+      {
+        name: "Rohan Das (12)",
+        location: "Shibpur, Howrah",
+        support: "Free Reading Spectacles",
+        photo: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=300&q=80",
+        story: "Rohan faced frequent headaches while reading the blackboard at school. After receiving free corrective eyeglasses from our camp, he can now study comfortably and confidently."
+      },
+      {
+        name: "Mina Chakraborty (45)",
+        location: "Domjur, Howrah",
+        support: "Vision Screening & UV Protection",
+        photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80",
+        story: "Working outdoors daily caused severe eye strain and irritation. Our optometry team provided thorough screening, lubricating eye drops, and protective spectacles."
+      },
+      {
+        name: "Bimalendu Ghosh (71)",
+        location: "Bally, Howrah",
+        support: "Complete Eye Care & Spectacles",
+        photo: "https://images.unsplash.com/photo-1566753323558-f4e0952af115?auto=format&fit=crop&w=300&q=80",
+        story: "Living alone on a modest pension, Bimalendu babu could not afford new glasses. Our camp restored his clear vision so he can read newspapers and manage daily tasks independently."
+      }
+    ];
+
+    const facesRow = document.getElementById("beneficiaryFacesRow");
+    const benDropdown = document.getElementById("beneficiaryDropdown");
+    let activeBeneficiaryIndex = -1;
+
+    beneficiariesData.forEach((person, index) => {
+      const item = document.createElement("div");
+      item.className = "face-item";
+      item.innerHTML = `
+        <div class="face-circle">
+          <img src="${person.photo}" alt="${person.name}">
+        </div>
+        <span class="face-name-tag">${person.name.split(" ")[0]}</span>
+      `;
+      item.addEventListener("click", () => toggleBeneficiaryDropdown(index));
+      facesRow.appendChild(item);
+    });
+
+    function toggleBeneficiaryDropdown(index) {
+      const allFaceItems = document.querySelectorAll(".face-item");
+      if (activeBeneficiaryIndex === index && benDropdown.classList.contains("open")) {
+        closeBeneficiaryDropdown();
+        return;
+      }
+
+      activeBeneficiaryIndex = index;
+      allFaceItems.forEach((el, i) => el.classList.toggle("active", i === index));
+
+      const person = beneficiariesData[index];
+      document.getElementById("benName").textContent = person.name;
+      document.getElementById("benLocation").textContent = "📍 " + person.location;
+      document.getElementById("benSupport").textContent = "✓ " + person.support;
+      document.getElementById("benStory").textContent = person.story;
+
+      benDropdown.classList.add("open");
+    }
+
+    function closeBeneficiaryDropdown() {
+      benDropdown.classList.remove("open");
+      document.querySelectorAll(".face-item").forEach(el => el.classList.remove("active"));
+      activeBeneficiaryIndex = -1;
+    }
+
+    /* =========================================================================
+       3. DIRECT RAZORPAY + CLOUDFLARE WORKER DONATION INTEGRATION
+    ========================================================================= */
     function openEyeDonateModal() {
-      document.getElementById('eyeDonateModal').classList.add('active');
+      document.getElementById("eyeDonateModal").classList.add("active");
     }
 
     function closeEyeDonateModal() {
-      document.getElementById('eyeDonateModal').classList.remove('active');
+      document.getElementById("eyeDonateModal").classList.remove("active");
     }
 
     const razorpayKey = "rzp_live_RyvBMwV4crOZwu";
