@@ -72,11 +72,6 @@
       50% { transform: translateY(-8px) rotate(2deg); }
     }
 
-    @keyframes leafBundleSway {
-      0%, 100% { transform: rotate(-3deg) scale(1); }
-      50% { transform: rotate(4deg) scale(1.03); }
-    }
-
     @keyframes pulseHeart {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.13); }
@@ -94,8 +89,8 @@
     }
 
     @keyframes gentleAura {
-      0%, 100% { box-shadow: 0 18px 42px rgba(19, 59, 38, 0.16); }
-      50% { box-shadow: 0 24px 52px rgba(234, 179, 8, 0.24); }
+      0%, 100% { box-shadow: 0 14px 34px rgba(19, 59, 38, 0.14); }
+      50% { box-shadow: 0 20px 44px rgba(234, 179, 8, 0.22); }
     }
 
     .reveal {
@@ -107,17 +102,6 @@
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
-    }
-
-    /* BOTANICAL LEAF BUNDLE DECORATIONS */
-    .leaf-bundle {
-      position: absolute;
-      width: 115px;
-      height: 115px;
-      pointer-events: none;
-      opacity: 0.9;
-      animation: leafBundleSway 6.5s ease-in-out infinite;
-      z-index: 1;
     }
 
     /* TOP UTILITY BAR */
@@ -270,7 +254,7 @@
       display: none;
     }
 
-    /* HERO SECTION (EXACT SLIDESHOW & REDIRECT FUNCTIONALITY PRESERVED) */
+    /* HERO SECTION (BRIGHT & CLEAR WITH EXACT SLIDESHOW & REDIRECT PRESERVED) */
     .hero {
       position: relative;
       width: 100%;
@@ -296,6 +280,7 @@
       transform: scale(1.04);
       transition: opacity 1.1s ease-in-out, transform 6s ease-out;
       display: block;
+      filter: brightness(1.04) contrast(1.02);
     }
 
     .hero-slide.active {
@@ -310,11 +295,13 @@
     .hero-slide:nth-child(4) { background-image: url('totest.png'); }
     .hero-slide:nth-child(5) { background-image: url('totest.png'); }
 
+    /* Removed dark tint so hero image stays bright and vivid */
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to right, rgba(19, 59, 38, 0.42), rgba(0, 0, 0, 0.22));
+      background: transparent;
       z-index: 2;
+      pointer-events: none;
     }
 
     .hero-content {
@@ -335,7 +322,7 @@
       line-height: 1.05;
       text-align: center;
       animation: floatSlow 4s ease-in-out infinite;
-      text-shadow: 0 3px 14px rgba(0,0,0,0.65);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.45);
       pointer-events: none;
     }
 
@@ -345,7 +332,7 @@
       margin: 0 auto 2px;
       display: block;
       animation: pulseHeart 2s infinite;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
     }
 
     .hero-dots {
@@ -361,8 +348,8 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.45);
-      border: 1px solid rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.9);
       cursor: pointer;
       transition: all 0.3s ease;
     }
@@ -391,7 +378,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
       transition: all 0.3s ease;
     }
 
@@ -401,7 +388,7 @@
       transform: translateY(-3px) scale(1.03);
     }
 
-    /* SECTION TITLE WITH LEAF BUNDLE DIVIDER */
+    /* CLEAN SECTION HEADER */
     .section-header-decorated {
       text-align: center;
       margin-bottom: 42px;
@@ -409,29 +396,12 @@
       z-index: 2;
     }
 
-    .leaf-divider {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      margin-bottom: 6px;
-    }
-
-    .leaf-divider::before,
-    .leaf-divider::after {
-      content: "";
-      width: 85px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #8ca897, transparent);
-    }
-
-    .leaf-svg-badge {
-      width: 38px;
-      height: 32px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      animation: leafBundleSway 4s ease-in-out infinite;
+    .title-accent-line {
+      width: 70px;
+      height: 3.5px;
+      background: linear-gradient(90deg, var(--forest-dark), var(--gold-accent));
+      border-radius: 3px;
+      margin: 0 auto 12px;
     }
 
     .section-header-decorated h2 {
@@ -991,7 +961,7 @@
       transform: scale(1.04);
     }
 
-    /* DEDICATED ABOUT US SECTION BELOW */
+    /* DEDICATED ABOUT US SECTION */
     .about-section {
       background-color: var(--cream-bg);
       padding: 80px 40px;
@@ -1001,7 +971,7 @@
     }
 
     .about-container {
-      max-width: 1140px;
+      max-width: 1180px;
       margin: auto;
       display: grid;
       grid-template-columns: 1.3fr 0.9fr;
@@ -1070,53 +1040,54 @@
       color: var(--forest-dark);
     }
 
-    /* FOUNDER'S MESSAGE SECTION (NEW SECTION ADDED AS REQUESTED) */
+    /* FOUNDER'S MESSAGE SECTION (EQUAL LEVEL, WIDE COMPACT CARD, CLEAN LAYOUT) */
     .founder-section {
       background: linear-gradient(180deg, #ffffff 0%, #f6f2e7 100%);
-      padding: 85px 40px;
+      padding: 80px 40px;
       border-bottom: 1px solid #e6e2d6;
       position: relative;
       overflow: hidden;
     }
 
     .founder-container {
-      max-width: 1180px;
+      max-width: 1260px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 0.85fr 1.25fr;
-      gap: 50px;
-      align-items: center;
+      grid-template-columns: 360px 1fr;
+      gap: 36px;
+      align-items: stretch;
       position: relative;
       z-index: 2;
     }
 
     .founder-photo-column {
-      position: relative;
       display: flex;
       flex-direction: column;
-      align-items: center;
     }
 
     .founder-frame {
       position: relative;
       width: 100%;
-      max-width: 380px;
-      border-radius: 22px;
-      padding: 12px;
-      background: linear-gradient(145deg, var(--forest-dark), var(--forest-light), var(--gold-accent));
+      height: 100%;
+      border-radius: 20px;
+      padding: 10px;
+      background: linear-gradient(155deg, var(--forest-dark), var(--forest-mid), var(--gold-accent));
       animation: gentleAura 5s ease-in-out infinite;
-      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .founder-frame:hover {
-      transform: translateY(-6px) scale(1.015);
+      transform: translateY(-4px);
     }
 
     .founder-frame-inner {
-      border-radius: 15px;
+      border-radius: 13px;
       overflow: hidden;
       background-color: #e9e3d2;
-      aspect-ratio: 4 / 5;
+      flex: 1;
+      min-height: 440px;
       position: relative;
     }
 
@@ -1130,108 +1101,121 @@
     }
 
     .founder-frame:hover .founder-frame-inner img {
-      transform: scale(1.05);
+      transform: scale(1.04);
     }
 
     .founder-floating-tag {
       position: absolute;
-      bottom: -16px;
+      bottom: 16px;
       left: 50%;
       transform: translateX(-50%);
-      background-color: var(--forest-dark);
+      background-color: rgba(19, 59, 38, 0.94);
+      backdrop-filter: blur(6px);
       color: #ffffff;
-      border: 2px solid var(--gold-accent);
-      padding: 8px 22px;
+      border: 1.5px solid var(--gold-accent);
+      padding: 7px 20px;
       border-radius: 30px;
       font-size: 13.5px;
       font-weight: 700;
       white-space: nowrap;
-      box-shadow: 0 8px 20px rgba(19, 59, 38, 0.25);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
       display: inline-flex;
       align-items: center;
       gap: 7px;
+      z-index: 2;
     }
 
     .founder-message-column {
       background: #ffffff;
-      padding: 42px 44px;
+      padding: 32px 38px;
       border-radius: 20px;
       border: 1px solid #e5e0d3;
       box-shadow: 0 12px 34px rgba(19, 59, 38, 0.07);
-      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .founder-header-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #efeade;
     }
 
     .founder-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      display: inline-block;
       background-color: #eaf3ed;
       color: var(--forest-dark);
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 800;
-      letter-spacing: 1.4px;
+      letter-spacing: 1.3px;
       text-transform: uppercase;
-      padding: 6px 14px;
+      padding: 5px 12px;
       border-radius: 20px;
-      margin-bottom: 12px;
+      margin-bottom: 6px;
     }
 
     .founder-message-column h2 {
-      font-size: clamp(28px, 3.4vw, 38px);
+      font-size: clamp(26px, 3vw, 34px);
       color: var(--forest-dark);
-      line-height: 1.2;
-      margin-bottom: 6px;
+      line-height: 1.15;
     }
 
     .founder-subheading {
       font-family: 'Caveat', cursive;
-      font-size: 27px;
+      font-size: 25px;
       font-weight: 700;
       color: var(--forest-mid);
-      margin-bottom: 20px;
     }
 
     .founder-body-text p {
-      font-size: 15.5px;
+      font-size: 14.5px;
       color: #36493e;
-      line-height: 1.75;
-      margin-bottom: 14px;
+      line-height: 1.62;
+      margin-bottom: 10px;
     }
 
-    .founder-signoff {
-      margin-top: 22px;
-      padding-top: 18px;
+    .founder-bottom-row {
+      margin-top: 14px;
+      padding-top: 14px;
       border-top: 1px dashed #d5cfc0;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 20px;
+      align-items: center;
     }
 
     .founder-signoff span {
       display: block;
-      font-size: 14.5px;
+      font-size: 13px;
       font-style: italic;
       color: var(--text-muted);
-      margin-bottom: 3px;
     }
 
     .founder-signoff strong {
       display: block;
       font-family: 'Playfair Display', serif;
-      font-size: 18.5px;
+      font-size: 16.5px;
       color: var(--forest-dark);
+      line-height: 1.25;
     }
 
     .founder-quote-box {
-      margin-top: 22px;
       background: linear-gradient(135deg, var(--forest-dark) 0%, #194d32 100%);
       color: #ffffff;
-      padding: 18px 22px;
-      border-radius: 14px;
-      border-left: 5px solid var(--gold-accent);
+      padding: 13px 18px;
+      border-radius: 12px;
+      border-left: 4px solid var(--gold-accent);
       font-family: 'Playfair Display', Georgia, serif;
       font-style: italic;
-      font-size: 16px;
-      line-height: 1.6;
-      box-shadow: 0 8px 22px rgba(19, 59, 38, 0.16);
-      position: relative;
+      font-size: 14.2px;
+      line-height: 1.5;
+      box-shadow: 0 6px 18px rgba(19, 59, 38, 0.14);
     }
 
     /* RESOURCES SECTION (ALL ORIGINAL LINKS PRESERVED) */
@@ -1574,7 +1558,17 @@
       .about-container,
       .founder-container {
         grid-template-columns: 1fr;
-        gap: 36px;
+        gap: 32px;
+      }
+
+      .founder-frame {
+        max-width: 380px;
+        margin: 0 auto;
+      }
+
+      .founder-bottom-row {
+        grid-template-columns: 1fr;
+        gap: 14px;
       }
 
       .footer-grid {
@@ -1677,11 +1671,6 @@
       .hero-slide:nth-child(4) { background-image: url('mo2.png'); }
       .hero-slide:nth-child(5) { background-image: url('mo3.png'); }
 
-      .leaf-bundle {
-        width: 72px;
-        height: 72px;
-      }
-
       .programmes-section,
       .about-section,
       .founder-section,
@@ -1691,11 +1680,15 @@
       }
 
       .founder-message-column {
-        padding: 28px 20px;
+        padding: 26px 20px;
       }
 
       .founder-frame {
         max-width: 310px;
+      }
+
+      .founder-frame-inner {
+        min-height: 360px;
       }
 
       .programme-grid {
@@ -1862,7 +1855,7 @@
     </div>
   </div>
 
-  <!-- HERO SECTION (EXACT SLIDESHOW & CLICK REDIRECTION PRESERVED) -->
+  <!-- HERO SECTION (BRIGHT & CLEAR WITH EXACT SLIDESHOW & CLICK REDIRECTION PRESERVED) -->
   <section class="hero" id="heroClick">
     <!-- Background slides -->
     <div class="hero-slide" data-link="Shelearn.html"></div>
@@ -1871,10 +1864,10 @@
     <div class="hero-slide" data-link="Sparshlearn.html"></div>
     <div class="hero-slide" data-link="Chhayalearn.html"></div>
 
-    <!-- Overlay -->
+    <!-- Transparent Overlay -->
     <div class="hero-overlay"></div>
 
-    <!-- Floating Kindness Heart Badge matching Reference Image -->
+    <!-- Floating Kindness Heart Badge -->
     <div class="hero-badge-right">
       <svg class="hand-heart-svg" viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M32 36C32 36 18 27 18 18C18 13.5 21.5 10 26 10C28.8 10 31.1 11.5 32 13.5C32.9 11.5 35.2 10 38 10C42.5 10 46 13.5 46 18C46 27 32 36 32 36Z"/>
@@ -1904,31 +1897,8 @@
 
   <!-- OUR INITIATIVES SECTION (10 CARDS IN 5x2 GRID WITH ORIGINAL REDIRECTS) -->
   <section class="programmes-section reveal" id="projects">
-    <!-- Top-Left Leaf Bundle -->
-    <svg class="leaf-bundle" style="top: 8px; left: 10px;" viewBox="0 0 120 120" fill="none">
-      <path d="M14 102C28 66 56 36 96 22C84 62 56 90 14 102Z" fill="#2b734d" opacity="0.32"/>
-      <path d="M10 72C22 44 46 22 76 12C66 44 44 66 10 72Z" fill="#1d5236" opacity="0.45"/>
-      <path d="M36 108C52 80 76 58 108 48C96 80 72 100 36 108Z" fill="#eab308" opacity="0.35"/>
-      <path d="M14 102L82 34" stroke="#133b26" stroke-width="1.8" opacity="0.45"/>
-      <path d="M10 72L62 22" stroke="#133b26" stroke-width="1.5" opacity="0.4"/>
-    </svg>
-
-    <!-- Top-Right Leaf Bundle -->
-    <svg class="leaf-bundle" style="top: 8px; right: 10px; transform: scaleX(-1);" viewBox="0 0 120 120" fill="none">
-      <path d="M14 102C28 66 56 36 96 22C84 62 56 90 14 102Z" fill="#2b734d" opacity="0.32"/>
-      <path d="M10 72C22 44 46 22 76 12C66 44 44 66 10 72Z" fill="#1d5236" opacity="0.45"/>
-      <path d="M36 108C52 80 76 58 108 48C96 80 72 100 36 108Z" fill="#eab308" opacity="0.35"/>
-      <path d="M14 102L82 34" stroke="#133b26" stroke-width="1.8" opacity="0.45"/>
-    </svg>
-
     <div class="section-header-decorated">
-      <div class="leaf-divider">
-        <span class="leaf-svg-badge">
-          <svg viewBox="0 0 44 36" width="36" height="30" fill="#1d5236">
-            <path d="M22 33V11M22 22c-7-8-16-7-16-7s2 10 16 7zm0-6c7-8 16-7 16-7s-2 10-16 7zm0-5c-3-6 0-10 0-10s3 4 0 10z"/>
-          </svg>
-        </span>
-      </div>
+      <div class="title-accent-line"></div>
       <h2>Our Initiatives</h2>
       <p>Together, We Create a Better Tomorrow</p>
     </div>
@@ -2141,13 +2111,6 @@
 
     <!-- Right Column: Our Impact (Auto-Animated Counters + Auto-Synced Project Count) -->
     <div class="our-impact-panel">
-      <!-- Botanical Leaf Bundle in Top-Right -->
-      <svg class="leaf-bundle" style="top: 6px; right: 6px; width: 85px; height: 85px; transform: scaleX(-1);" viewBox="0 0 120 120" fill="none">
-        <path d="M14 102C28 66 56 36 96 22C84 62 56 90 14 102Z" fill="#2b734d" opacity="0.32"/>
-        <path d="M10 72C22 44 46 22 76 12C66 44 44 66 10 72Z" fill="#1d5236" opacity="0.45"/>
-        <path d="M36 108C52 80 76 58 108 48C96 80 72 100 36 108Z" fill="#eab308" opacity="0.35"/>
-      </svg>
-
       <h2>Our Impact</h2>
 
       <div class="impact-stat-row">
@@ -2195,15 +2158,6 @@
 
   <!-- EVERY CONTRIBUTION COUNTS STRIP -->
   <section class="contribution-strip reveal">
-    <svg class="leaf-bundle" style="top: 6px; left: 8px; width: 85px; height: 85px;" viewBox="0 0 120 120" fill="none">
-      <path d="M14 102C28 66 56 36 96 22C84 62 56 90 14 102Z" fill="#2b734d" opacity="0.3"/>
-      <path d="M10 72C22 44 46 22 76 12C66 44 44 66 10 72Z" fill="#1d5236" opacity="0.4"/>
-    </svg>
-    <svg class="leaf-bundle" style="bottom: 6px; right: 8px; width: 85px; height: 85px; transform: scale(-1);" viewBox="0 0 120 120" fill="none">
-      <path d="M14 102C28 66 56 36 96 22C84 62 56 90 14 102Z" fill="#2b734d" opacity="0.3"/>
-      <path d="M36 108C52 80 76 58 108 48C96 80 72 100 36 108Z" fill="#eab308" opacity="0.35"/>
-    </svg>
-
     <div class="contribution-flex-inner">
       <div class="strip-side-left">
         <img 
@@ -2247,12 +2201,6 @@
 
   <!-- DEDICATED ABOUT US SECTION -->
   <section class="about-section reveal" id="about">
-    <svg class="leaf-bundle" style="top: 10px; right: 12px; transform: scaleX(-1);" viewBox="0 0 120 120" fill="none">
-      <path d="M14 102C28 66 56 36 96 22C84 62 56 90 14 102Z" fill="#2b734d" opacity="0.3"/>
-      <path d="M10 72C22 44 46 22 76 12C66 44 44 66 10 72Z" fill="#1d5236" opacity="0.4"/>
-      <path d="M36 108C52 80 76 58 108 48C96 80 72 100 36 108Z" fill="#eab308" opacity="0.35"/>
-    </svg>
-
     <div class="about-container">
       <div class="about-text">
         <h2>About Us</h2>
@@ -2277,19 +2225,8 @@
     </div>
   </section>
 
-  <!-- FOUNDER'S MESSAGE SECTION -->
+  <!-- FOUNDER'S MESSAGE SECTION (EQUAL HEIGHT, WIDE COMPACT CARD, founder.png) -->
   <section class="founder-section reveal" id="founder">
-    <svg class="leaf-bundle" style="top: 12px; left: 12px;" viewBox="0 0 120 120" fill="none">
-      <path d="M14 102C28 66 56 36 96 22C84 62 56 90 14 102Z" fill="#2b734d" opacity="0.3"/>
-      <path d="M10 72C22 44 46 22 76 12C66 44 44 66 10 72Z" fill="#1d5236" opacity="0.4"/>
-      <path d="M36 108C52 80 76 58 108 48C96 80 72 100 36 108Z" fill="#eab308" opacity="0.35"/>
-    </svg>
-
-    <svg class="leaf-bundle" style="bottom: 12px; right: 12px; transform: scale(-1);" viewBox="0 0 120 120" fill="none">
-      <path d="M14 102C28 66 56 36 96 22C84 62 56 90 14 102Z" fill="#2b734d" opacity="0.3"/>
-      <path d="M36 108C52 80 76 58 108 48C96 80 72 100 36 108Z" fill="#eab308" opacity="0.35"/>
-    </svg>
-
     <div class="founder-container">
       <!-- Founder Portrait Column -->
       <div class="founder-photo-column">
@@ -2300,47 +2237,52 @@
               onerror="this.onerror=null; this.src='SSMCT Logo.png';" 
               alt="Founder - Shyamashree Shitala Maa Charitable Trust" 
             />
-          </div>
-          <div class="founder-floating-tag">
-            <span>💛</span> Founder, SSMCT
+            <div class="founder-floating-tag">
+              <span>💛</span> Founder, SSMCT
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Founder Message Column -->
       <div class="founder-message-column">
-        <div class="founder-eyebrow">🌿 A MESSAGE FROM THE FOUNDER</div>
-        <h2>Founder’s Message</h2>
-        <div class="founder-subheading">Together, We Can Make a Difference</div>
+        <div>
+          <div class="founder-header-row">
+            <div>
+              <span class="founder-eyebrow">A MESSAGE FROM THE FOUNDER</span>
+              <h2>Founder’s Message</h2>
+            </div>
+            <div class="founder-subheading">Together, We Can Make a Difference</div>
+          </div>
 
-        <div class="founder-body-text">
-          <p>
-            At <strong>Shyamashree Shitala Maa Charitable Trust</strong>, we believe that humanity is the greatest service. Every individual deserves to live with dignity, respect, equality, and hope, regardless of their social or economic background.
-          </p>
-          <p>
-            The inspiration behind establishing this Trust was a simple belief: a better society can only be built when we care for one another. There are many people around us who need a helping hand, a little encouragement, and an opportunity to move forward in life.
-          </p>
-          <p>
-            Our mission is to bring positive change to society through compassion, kindness, and collective efforts. We aspire to create a platform where people come together to support those in need and make meaningful contributions to humanity.
-          </p>
-          <p>
-            We understand that changing society is not an overnight journey. It requires dedication, honesty, commitment, and the support of people who share the same vision.
-          </p>
-          <p>
-            I firmly believe that even a small contribution can create a big impact when it comes from the heart. Every helping hand, every act of kindness, and every effort towards humanity matters.
-          </p>
-          <p>
-            I warmly invite you to join us in this journey of compassion and social responsibility. Together, let us build a world where no one feels forgotten, where every life matters, and where kindness inspires change.
-          </p>
+          <div class="founder-body-text">
+            <p>
+              At <strong>Shyamashree Shitala Maa Charitable Trust</strong>, we believe that humanity is the greatest service. Every individual deserves to live with dignity, respect, equality, and hope, regardless of their social or economic background.
+            </p>
+            <p>
+              The inspiration behind establishing this Trust was a simple belief: a better society can only be built when we care for one another. There are many people around us who need a helping hand, a little encouragement, and an opportunity to move forward in life.
+            </p>
+            <p>
+              Our mission is to bring positive change to society through compassion, kindness, and collective efforts. We aspire to create a platform where people come together to support those in need and make meaningful contributions to humanity.
+            </p>
+            <p>
+              We understand that changing society is not an overnight journey. It requires dedication, honesty, commitment, and the support of people who share the same vision. I firmly believe that even a small contribution can create a big impact when it comes from the heart. Every helping hand, every act of kindness, and every effort towards humanity matters.
+            </p>
+            <p>
+              I warmly invite you to join us in this journey of compassion and social responsibility. Together, let us build a world where no one feels forgotten, where every life matters, and where kindness inspires change.
+            </p>
+          </div>
         </div>
 
-        <div class="founder-signoff">
-          <span>With heartfelt gratitude,</span>
-          <strong>Founder, Shyamashree Shitala Maa Charitable Trust</strong>
-        </div>
+        <div class="founder-bottom-row">
+          <div class="founder-signoff">
+            <span>With heartfelt gratitude,</span>
+            <strong>Founder, Shyamashree Shitala Maa Charitable Trust</strong>
+          </div>
 
-        <div class="founder-quote-box">
-          “Humanity is not just about helping others; it is about making sure that no one has to face life's challenges alone.”
+          <div class="founder-quote-box">
+            “Humanity is not just about helping others; it is about making sure that no one has to face life's challenges alone.”
+          </div>
         </div>
       </div>
     </div>
@@ -2348,21 +2290,9 @@
 
   <!-- RESOURCES SECTION (ALL ORIGINAL LINKS PRESERVED) -->
   <section class="resources-section reveal" id="resources">
-    <svg class="leaf-bundle" style="top: 10px; left: 12px;" viewBox="0 0 120 120" fill="none">
-      <path d="M14 102C28 66 56 36 96 22C84 62 56 90 14 102Z" fill="#2b734d" opacity="0.3"/>
-      <path d="M10 72C22 44 46 22 76 12C66 44 44 66 10 72Z" fill="#1d5236" opacity="0.4"/>
-      <path d="M36 108C52 80 76 58 108 48C96 80 72 100 36 108Z" fill="#eab308" opacity="0.35"/>
-    </svg>
-
     <div class="resources-container">
       <div class="section-header-decorated">
-        <div class="leaf-divider">
-          <span class="leaf-svg-badge">
-            <svg viewBox="0 0 44 36" width="36" height="30" fill="#1d5236">
-              <path d="M22 33V11M22 22c-7-8-16-7-16-7s2 10 16 7zm0-6c7-8 16-7 16-7s-2 10-16 7zm0-5c-3-6 0-10 0-10s3 4 0 10z"/>
-            </svg>
-          </span>
-        </div>
+        <div class="title-accent-line"></div>
         <h2>Resources</h2>
         <p>Explore our latest updates, reports, and inspiring stories from the field.</p>
       </div>
