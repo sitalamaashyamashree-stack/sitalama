@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Child Education Project | Shyamashree Shitala Maa Charitable Trust</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-149NCZ03L5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-149NCZ03L5');
+  </script>
+
+  <style>
+    :root {
+      --forest-dark: #133b26;
+      --forest-mid: #1d5236;
+      --forest-light: #3b8c61;
+      --emerald-soft: #eaf3ed;
+      --cream-bg: #fbf9f3;
+      --cream-card: #f3efe4;
+      --gold-accent: #eab308;
+      --gold-hover: #ca8a04;
+      --text-dark: #1a2e22;
+      --text-muted: #4b5e53;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--cream-bg);
+      color: var(--text-dark);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3.serif-title {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    .top-nav-strip {
+      background-color: #ffffff;
+      padding: 10px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e5e0d3;
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      box-shadow: 0 3px 14px rgba(19, 59, 38, 0.06);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-mini {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--forest-dark);
+    }
+
+    .brand-mini img {
+      height: 42px;
+      width: auto;
+    }
+
+    .brand-mini strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 15.5px;
+      line-height: 1.2;
+    }
+
+    .brand-tagline {
+      font-family: 'Caveat', cursive;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--forest-mid);
+      padding-left: 14px;
+      border-left: 2px solid #d5e0d9;
+    }
+
+    .back-home-btn {
+      background-color: var(--forest-dark);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 25px;
+      border: 1.5px solid var(--gold-accent);
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .back-home-btn:hover {
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
+    }
+
+    .page-wrapper {
+      max-width: 1100px;
+      margin: 20px auto 34px;
+      padding: 0 16px;
+    }
+
+    .project-hero {
+      background: linear-gradient(135deg, #ffffff 0%, #f1f7f3 55%, #e4efe8 100%);
+      border-radius: 18px;
+      border: 1px solid #dce6df;
+      border-top: 4px solid var(--forest-dark);
+      box-shadow: 0 8px 24px rgba(19, 59, 38, 0.07);
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .hero-left {
+      padding: 28px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .initiative-pill {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--forest-dark), var(--forest-mid));
+      color: var(--gold-accent);
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      width: fit-content;
+      margin-bottom: 10px;
+      border: 1px solid var(--gold-accent);
+    }
+
+    .hero-left h1 {
+      font-size: clamp(1.95rem, 3.8vw, 2.85rem);
+      color: var(--forest-dark);
+      line-height: 1.12;
+      margin-bottom: 8px;
+    }
+
+    .hero-script-sub {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(1.45rem, 2.5vw, 1.9rem);
+      font-weight: 700;
+      color: var(--forest-mid);
+      margin-bottom: 8px;
+    }
+
+    .hero-left p {
+      font-size: 14.5px;
+      color: #36493e;
+      max-width: 450px;
+    }
+
+    .hero-right {
+      position: relative;
+      min-height: 265px;
+      overflow: hidden;
+    }
+
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-right::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, #e7f1eb 0%, rgba(231, 241, 235, 0) 22%);
+      z-index: 1;
+    }
+
+    .three-info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .info-box {
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid #e5e0d3;
+      box-shadow: 0 5px 16px rgba(19, 59, 38, 0.05);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .info-box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 22px rgba(19, 59, 38, 0.1);
+    }
+
+    .info-box-header {
+      background: linear-gradient(90deg, var(--forest-dark), var(--forest-mid));
+      color: #ffffff;
+      padding: 9px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid var(--gold-accent);
+    }
+
+    .info-box-body {
+      padding: 14px 14px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .vision-flex {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .vision-eye-badge {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--emerald-soft);
+      border: 2px solid var(--forest-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+
+    .vision-flex p {
+      font-size: 13.2px;
+      color: #2c3e33;
+      line-height: 1.45;
+    }
+
+    .chart-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .donut-chart {
+      width: 114px;
+      height: 114px;
+      border-radius: 50%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.12);
+      transition: transform 0.35s ease;
+    }
+
+    .donut-chart:hover {
+      transform: scale(1.04);
+    }
+
+    .donut-hole {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    .donut-hole strong {
+      font-size: 11.8px;
+      font-weight: 800;
+      color: var(--forest-dark);
+      line-height: 1.1;
+      white-space: nowrap;
+      letter-spacing: -0.2px;
+    }
+
+    .donut-hole span {
+      font-size: 8.8px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 2px;
+      line-height: 1.1;
+    }
+
+    .legend-list {
+      list-style: none;
+      flex-grow: 1;
+    }
+
+    .legend-list li {
+      font-size: 11.5px;
+      color: #2c3e33;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 5px;
+      cursor: pointer;
+      padding: 2px 4px;
+      border-radius: 5px;
+      transition: background 0.2s;
+    }
+
+    .legend-list li:hover {
+      background-color: var(--cream-bg);
+    }
+
+    .legend-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .legend-label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      line-height: 1.2;
+    }
+
+    .dot-swatch {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .legend-pct {
+      font-weight: 800;
+      color: var(--forest-dark);
+      font-size: 11.5px;
+    }
+
+    .info-box-footer {
+      text-align: center;
+      font-size: 11.5px;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--forest-mid);
+      padding: 6px 10px;
+      background-color: var(--cream-bg);
+      border-top: 1px solid #ece7d9;
+    }
+
+    .beneficiaries-card {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #e5e0d3;
+      box-shadow: 0 5px 18px rgba(19, 59, 38, 0.05);
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .beneficiaries-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-right: 18px;
+    }
+
+    .beneficiaries-header {
+      background: linear-gradient(90deg, var(--forest-dark), var(--forest-mid));
+      color: #ffffff;
+      padding: 9px 20px;
+      font-size: 15px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom-right-radius: 14px;
+      border-bottom: 2px solid var(--gold-accent);
+    }
+
+    .click-hint-pill {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--forest-mid);
+      background: var(--emerald-soft);
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid #cde0d4;
+    }
+
+    .beneficiaries-body {
+      padding: 16px 22px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .beneficiaries-stat {
+      max-width: 290px;
+    }
+
+    .beneficiaries-stat p {
+      font-size: 14px;
+      color: #2c3e33;
+      line-height: 1.4;
+    }
+
+    .stat-big-number {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: var(--forest-dark);
+      line-height: 1.1;
+      display: inline-block;
+      margin: 2px 0;
+    }
+
+    .stat-big-number span {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--forest-mid);
+    }
+
+    .faces-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .face-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .face-circle {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--forest-dark);
+      box-shadow: 0 5px 14px rgba(19, 59, 38, 0.14);
+      background-color: var(--emerald-soft);
+      transition: all 0.28s ease;
+      position: relative;
+    }
+
+    .face-item:hover .face-circle,
+    .face-item.active .face-circle {
+      transform: scale(1.08);
+      border-color: var(--gold-accent);
+      box-shadow: 0 8px 20px rgba(234, 179, 8, 0.35);
+    }
+
+    .face-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .face-name-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--forest-dark);
+      background: var(--cream-bg);
+      padding: 2px 9px;
+      border-radius: 12px;
+      border: 1px solid #e2dccb;
+      transition: all 0.25s ease;
+    }
+
+    .face-item.active .face-name-tag {
+      background: var(--forest-dark);
+      color: var(--gold-accent);
+      border-color: var(--forest-dark);
+    }
+
+    .beneficiary-dropdown {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      background: linear-gradient(135deg, #f4f9f6 0%, var(--cream-bg) 100%);
+      border-top: 0 solid #dce6df;
+      transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+      padding: 0 24px;
+    }
+
+    .beneficiary-dropdown.open {
+      max-height: 260px;
+      opacity: 1;
+      border-top: 1.5px dashed #b7cfc0;
+      padding: 16px 24px 18px;
+    }
+
+    .ben-dropdown-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .ben-info-content {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .ben-meta-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .ben-meta-badges h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--forest-dark);
+    }
+
+    .ben-tag {
+      background: var(--forest-dark);
+      color: var(--gold-accent);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .ben-story-text {
+      font-size: 13.8px;
+      color: #2c3e33;
+      line-height: 1.5;
+    }
+
+    .close-ben-btn {
+      background: #ffffff;
+      color: var(--forest-dark);
+      border: 1px solid #cbd5ce;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .close-ben-btn:hover {
+      background: var(--forest-dark);
+      color: #ffffff;
+    }
+
+    .contribute-section {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #e5e0d3;
+      padding: 20px 20px 24px;
+      box-shadow: 0 6px 18px rgba(19, 59, 38, 0.05);
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    .contribute-pill-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(90deg, var(--forest-dark), var(--forest-mid));
+      color: #ffffff;
+      padding: 8px 24px;
+      border-radius: 999px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      border: 2px solid var(--gold-accent);
+      margin-bottom: 6px;
+    }
+
+    .contribute-sub {
+      font-family: 'Caveat', cursive;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--forest-mid);
+      margin-bottom: 16px;
+    }
+
+    .contribute-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .contrib-card {
+      background: var(--cream-bg);
+      border: 1px solid #e2dccb;
+      border-radius: 12px;
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .contrib-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(19, 59, 38, 0.11);
+      border-color: var(--gold-accent);
+    }
+
+    .contrib-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      background: #ffffff;
+      border: 1.5px solid #d5e2da;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .contrib-badge {
+      background-color: var(--forest-dark);
+      color: #ffffff;
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+      width: 100%;
+    }
+
+    .contrib-card p {
+      font-size: 13px;
+      color: #36493e;
+      line-height: 1.4;
+    }
+
+    .bottom-cta-banner {
+      background: linear-gradient(135deg, var(--forest-dark) 0%, #0e2e1d 100%);
+      border-radius: 16px;
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      border-bottom: 4px solid var(--gold-accent);
+      box-shadow: 0 10px 24px rgba(19, 59, 38, 0.16);
+    }
+
+    .bottom-cta-banner h2 {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+      color: #ffffff;
+      margin: 0;
+    }
+
+    .cta-donate-btn {
+      background: linear-gradient(135deg, #facc15, var(--gold-accent));
+      color: var(--forest-dark);
+      border: 2px solid #ffffff;
+      padding: 11px 28px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+      transition: all 0.25s ease;
+    }
+
+    .cta-donate-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      background: #fde047;
+    }
+
+    .donate-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .donate-modal.active {
+      display: flex;
+    }
+
+    .donate-modal-box {
+      background: #ffffff;
+      width: 100%;
+      max-width: 450px;
+      border-radius: 14px;
+      padding: 24px 26px;
+      border-top: 6px solid var(--forest-dark);
+      position: relative;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.4);
+    }
+
+    .donate-modal-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--forest-dark);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .donate-modal-box label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 9px;
+      color: var(--text-dark);
+    }
+
+    .donate-modal-box input {
+      width: 100%;
+      padding: 8px 11px;
+      margin-top: 3px;
+      border: 1px solid #cbd5ce;
+      border-radius: 8px;
+      font-size: 14px;
+      background: var(--cream-bg);
+    }
+
+    .donate-submit-btn {
+      width: 100%;
+      margin-top: 16px;
+      padding: 11px;
+      background: var(--forest-dark);
+      color: #ffffff;
+      border: 2px solid var(--gold-accent);
+      border-radius: 25px;
+      font-size: 14.5px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .donate-submit-btn:hover {
+      background: var(--gold-accent);
+      color: var(--forest-dark);
+    }
+
+    footer {
+      background: var(--forest-dark);
+      color: #e6efe9;
+      text-align: center;
+      padding: 20px 16px;
+      border-top: 4px solid var(--gold-accent);
+      font-size: 13.5px;
+    }
+
+    footer p {
+      color: #bfd4c7;
+      font-size: 12.5px;
+      margin-top: 3px;
+      font-style: italic;
+    }
+
+    @media (max-width: 960px) {
+      .project-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-right::before {
+        background: linear-gradient(180deg, #e7f1eb 0%, rgba(231, 241, 235, 0) 25%);
+      }
+
+      .three-info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contribute-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .beneficiaries-body {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .top-nav-strip {
+        padding: 10px 16px;
+      }
+
+      .brand-mini strong,
+      .brand-tagline {
+        display: none;
+      }
+
+      .hero-left {
+        padding: 22px 18px;
+      }
+
+      .contribute-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .face-circle {
+        width: 76px;
+        height: 76px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-nav-strip">
+    <div class="brand-group">
+      <a href="index.html" class="brand-mini">
+        <img src="SSMCT Logo1.png" alt="SSMCT Logo">
+        <strong>Shyamashree Shitala Maa Charitable Trust</strong>
+      </a>
+      <span class="brand-tagline">Nurturing Young Minds, Shaping Tomorrow</span>
+    </div>
+    <a href="index.html" class="back-home-btn">← Back to Home</a>
+  </div>
+
+  <div class="page-wrapper">
+
+    <!-- 1. Hero Section -->
+    <section class="project-hero">
+      <div class="hero-left">
+        <span class="initiative-pill">🎒 Our Education Initiative</span>
+        <h1>Child Education Project</h1>
+        <div class="hero-script-sub">Every Child Deserves to Learn...</div>
+        <p>Empowering underprivileged children across rural and semi-urban West Bengal with foundational schooling, remedial classes, school kits, and mentorship.</p>
+      </div>
+      <div class="hero-right">
+        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=85" alt="Child Education Classroom">
+      </div>
+    </section>
+
+    <!-- 2. Dynamic Three-Column Vision & Budget Infographic Cards -->
+    <section class="three-info-grid">
+
+      <!-- Card 1: Our Vision -->
+      <div class="info-box">
+        <div class="info-box-header">
+          <span>🎓</span> Our Vision
+        </div>
+        <div class="info-box-body">
+          <div class="vision-flex">
+            <div class="vision-eye-badge">🎒</div>
+            <p>To eliminate school dropouts and empower every child from low-income families with quality primary education, guidance, and equal opportunity.</p>
+          </div>
+        </div>
+        <div class="info-box-footer">Educating a child transforms a generation.</div>
+      </div>
+
+      <!-- Card 2: Dynamic Budget Utilisation (FY 25-26) -->
+      <div class="info-box">
+        <div class="info-box-header">
+          <span>📊</span> Budget Utilisation (FY 25-26)
+        </div>
+        <div class="info-box-body" id="fy25ChartContainer"></div>
+        <div class="info-box-footer">Transparent and efficient use of funds.</div>
+      </div>
+
+      <!-- Card 3: Dynamic FY 26-27 Budget -->
+      <div class="info-box">
+        <div class="info-box-header">
+          <span>📅</span> FY 26-27 Budget
+        </div>
+        <div class="info-box-body" id="fy26ChartContainer"></div>
+        <div class="info-box-footer">More Classrooms. Brighter Futures.</div>
+      </div>
+
+    </section>
+
+    <!-- 3. Interactive Already Beneficiaries Section -->
+    <section class="beneficiaries-card">
+      <div class="beneficiaries-top-bar">
+        <div class="beneficiaries-header">
+          <span>🧒</span> Already Beneficiaries
+        </div>
+        <span class="click-hint-pill">👆 Click any photo to view student story</span>
+      </div>
+
+      <div class="beneficiaries-body">
+        <div class="beneficiaries-stat">
+          <p>Through our community learning centres and school drives, we have supported over</p>
+          <div class="stat-big-number">400+ <span>children</span></div>
+          <p>from underserved rural communities.</p>
+        </div>
+
+        <div class="faces-row" id="beneficiaryFacesRow"></div>
+      </div>
+
+      <!-- Expandable Dropdown Drawer for Student Details -->
+      <div class="beneficiary-dropdown" id="beneficiaryDropdown">
+        <div class="ben-dropdown-inner">
+          <div class="ben-info-content">
+            <div class="ben-meta-badges">
+              <h4 id="benName">Student Name</h4>
+              <span class="ben-tag" id="benLocation">Location</span>
+              <span class="ben-tag" style="background:#1d5236; color:#fff;" id="benSupport">Support Received</span>
+            </div>
+            <p class="ben-story-text" id="benStory">Story details appear here.</p>
+          </div>
+          <button type="button" class="close-ben-btn" onclick="closeBeneficiaryDropdown()">✕ Close</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. How Can You Contribute Section -->
+    <section class="contribute-section">
+      <div class="contribute-pill-title">
+        <span>🤝</span> How Can You Contribute?
+      </div>
+      <div class="contribute-sub">Be a part of this noble mission and help light the lamp of education.</div>
+
+      <div class="contribute-grid">
+        <div class="contrib-card" onclick="openChildEduDonateModal()">
+          <div class="contrib-icon">🤲</div>
+          <div class="contrib-badge">Donate Funds</div>
+          <p>Fund tuition support and learning centres.</p>
+        </div>
+
+        <div class="contrib-card" onclick="openChildEduDonateModal()">
+          <div class="contrib-icon">🎓</div>
+          <div class="contrib-badge">Sponsor a Child</div>
+          <p>Support a child’s annual schooling &amp; kits.</p>
+        </div>
+
+        <div class="contrib-card" onclick="window.location.href='ContactUs.html'">
+          <div class="contrib-icon">👩‍🏫</div>
+          <div class="contrib-badge">Volunteer &amp; Teach</div>
+          <p>Mentor students in evening study circles.</p>
+        </div>
+
+        <div class="contrib-card" onclick="openChildEduDonateModal()">
+          <div class="contrib-icon">🎒</div>
+          <div class="contrib-badge">School Kit Support</div>
+          <p>Contribute bags, uniforms, books &amp; stationery.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Bottom CTA Banner -->
+    <section class="bottom-cta-banner">
+      <h2>Support Our Child Education Mission</h2>
+      <button type="button" class="cta-donate-btn" onclick="openChildEduDonateModal()">
+        🤍 Donate Now
+      </button>
+    </section>
+
+  </div>
+
+  <!-- Direct Razorpay Donation Modal -->
+  <div class="donate-modal" id="childEduDonateModal">
+    <div class="donate-modal-box">
+      <span style="position:absolute; top:12px; right:16px; font-size:24px; cursor:pointer; color:#666;" onclick="closeChildEduDonateModal()">&times;</span>
+      <h3>Support Child Education Project 💛</h3>
+      <form id="childEduDonationForm">
+        <label>Name *</label>
+        <input type="text" id="donorName" required>
+
+        <label>Mobile No *</label>
+        <input type="tel" id="donorMobile" required>
+
+        <label>Email *</label>
+        <input type="email" id="donorEmail" required>
+
+        <label>Address *</label>
+        <input type="text" id="donorAddress" required>
+
+        <label>PAN (Optional for 80G)</label>
+        <input type="text" id="donorPan">
+
+        <label>Donation Amount (₹) *</label>
+        <input type="number" id="donorAmount" value="501" required min="1">
+
+        <button type="submit" class="donate-submit-btn">Proceed to Donate ✅</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Shyamashree Shitala Maa Charitable Trust. All rights reserved.
+    <p>Serving Humanity with Love, Compassion &amp; Kindness</p>
+  </footer>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <script>
+    /* =========================================================================
+       1. DYNAMIC BUDGET DATA (Change amounts or percentages here anytime —
+          the pie/donut charts & legends update automatically!)
+    ========================================================================= */
+    const budgetConfig = {
+      fy25: {
+        totalAmount: "₹1,10,000",
+        subtitle: "Total Budget",
+        items: [
+          { label: "Learning Centres & Tuition", percent: 60, color: "#133b26" },
+          { label: "School Kits & Uniforms", percent: 25, color: "#3b8c61" },
+          { label: "Workshops & Outreach", percent: 15, color: "#eab308" }
+        ]
+      },
+      fy26: {
+        totalAmount: "₹1,50,000",
+        subtitle: "Planned Budget",
+        items: [
+          { label: "Learning Centres & Tuition", percent: 65, color: "#133b26" },
+          { label: "Digital & School Kits", percent: 20, color: "#3b8c61" },
+          { label: "Workshops & Outreach", percent: 15, color: "#eab308" }
+        ]
+      }
+    };
+
+    function renderDynamicDonut(containerId, data) {
+      const container = document.getElementById(containerId);
+      let cumulativePercent = 0;
+      const gradientStops = data.items.map(item => {
+        const start = cumulativePercent;
+        cumulativePercent += item.percent;
+        return `${item.color} ${start}% ${cumulativePercent}%`;
+      }).join(", ");
+
+      const legendHTML = data.items.map(item => `
+        <li title="${item.label}: ${item.percent}%">
+          <span class="legend-label">
+            <span class="dot-swatch" style="background:${item.color};"></span>
+            ${item.label}
+          </span>
+          <span class="legend-pct">${item.percent}%</span>
+        </li>
+      `).join("");
+
+      container.innerHTML = `
+        <div class="chart-row">
+          <div class="donut-chart" style="background: conic-gradient(${gradientStops});">
+            <div class="donut-hole">
+              <strong>${data.totalAmount}</strong>
+              <span>${data.subtitle}</span>
+            </div>
+          </div>
+          <ul class="legend-list">${legendHTML}</ul>
+        </div>
+      `;
+    }
+
+    renderDynamicDonut("fy25ChartContainer", budgetConfig.fy25);
+    renderDynamicDonut("fy26ChartContainer", budgetConfig.fy26);
+
+    /* =========================================================================
+       2. INTERACTIVE BENEFICIARY PROFILES (Click any photo to open dropdown)
+    ========================================================================= */
+    const beneficiariesData = [
+      {
+        name: "Aarav Mondal (Age 9 • Class IV)",
+        location: "Shibpur, Howrah",
+        support: "Free Evening Tuition & School Kit",
+        photo: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=300&q=80",
+        story: "As a first-generation learner, Aarav struggled with English and mathematics at home. Through our free evening learning centre and school kit support, his grades and classroom confidence have soared."
+      },
+      {
+        name: "Sreya Das (Age 11 • Class VI)",
+        location: "Bally, Howrah",
+        support: "Annual School Fees & Study Material",
+        photo: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=300&q=80",
+        story: "When her family faced financial hardship, Sreya was at risk of discontinuing school. Our Child Education initiative stepped in with full stationery, uniform, and mentorship support."
+      },
+      {
+        name: "Ritam Ghosh (Age 13 • Class VIII)",
+        location: "Purba Bardhaman",
+        support: "Remedial Science & Math Coaching",
+        photo: "https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&w=300&q=80",
+        story: "Ritam dreams of becoming an engineer. Regular remedial classes organized by our volunteer educators helped him build strong fundamentals in science and secure top marks."
+      },
+      {
+        name: "Tania Khatun (Age 8 • Class III)",
+        location: "Domjur, Howrah",
+        support: "Foundational Literacy & Nutrition Kit",
+        photo: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80",
+        story: "Tania joined our community pathshala with basic reading challenges. With joyful interactive lessons, storybooks, and regular guidance, she now reads fluently and loves attending school."
+      },
+      {
+        name: "Soumik Pal (Age 12 • Class VII)",
+        location: "Howrah Rural",
+        support: "Complete Academic & Mentorship Aid",
+        photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80",
+        story: "With both parents working as daily wage labourers, Soumik lacked study guidance at home. Our structured evening study circle keeps him motivated and excelling in school."
+      }
+    ];
+
+    const facesRow = document.getElementById("beneficiaryFacesRow");
+    const benDropdown = document.getElementById("beneficiaryDropdown");
+    let activeBeneficiaryIndex = -1;
+
+    beneficiariesData.forEach((person, index) => {
+      const item = document.createElement("div");
+      item.className = "face-item";
+      item.innerHTML = `
+        <div class="face-circle">
+          <img src="${person.photo}" alt="${person.name}">
+        </div>
+        <span class="face-name-tag">${person.name.split(" ")[0]}</span>
+      `;
+      item.addEventListener("click", () => toggleBeneficiaryDropdown(index));
+      facesRow.appendChild(item);
+    });
+
+    function toggleBeneficiaryDropdown(index) {
+      const allFaceItems = document.querySelectorAll(".face-item");
+      if (activeBeneficiaryIndex === index && benDropdown.classList.contains("open")) {
+        closeBeneficiaryDropdown();
+        return;
+      }
+
+      activeBeneficiaryIndex = index;
+      allFaceItems.forEach((el, i) => el.classList.toggle("active", i === index));
+
+      const person = beneficiariesData[index];
+      document.getElementById("benName").textContent = person.name;
+      document.getElementById("benLocation").textContent = "📍 " + person.location;
+      document.getElementById("benSupport").textContent = "✓ " + person.support;
+      document.getElementById("benStory").textContent = person.story;
+
+      benDropdown.classList.add("open");
+    }
+
+    function closeBeneficiaryDropdown() {
+      benDropdown.classList.remove("open");
+      document.querySelectorAll(".face-item").forEach(el => el.classList.remove("active"));
+      activeBeneficiaryIndex = -1;
+    }
+
+    /* =========================================================================
+       3. DIRECT RAZORPAY + CLOUDFLARE WORKER DONATION INTEGRATION
+    ========================================================================= */
+    function openChildEduDonateModal() {
+      document.getElementById("childEduDonateModal").classList.add("active");
+    }
+
+    function closeChildEduDonateModal() {
+      document.getElementById("childEduDonateModal").classList.remove("active");
+    }
+
+    const razorpayKey = "rzp_live_RyvBMwV4crOZwu";
+    const workerAPI = "https://trust.sitalamaashyamashree.workers.dev/";
+
+    document.getElementById("childEduDonationForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      let donation = {
+        name: document.getElementById("donorName").value,
+        mobile: document.getElementById("donorMobile").value,
+        email: document.getElementById("donorEmail").value,
+        address: document.getElementById("donorAddress").value,
+        pan: document.getElementById("donorPan").value,
+        amount: document.getElementById("donorAmount").value
+      };
+
+      let options = {
+        key: razorpayKey,
+        amount: donation.amount * 100,
+        currency: "INR",
+        name: "Shyamashree Shitala Maa Charitable Trust",
+        description: "Child Education Project Donation",
+        handler: function (response) {
+          donation.paymentId = response.razorpay_payment_id;
+          fetch(workerAPI, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(donation)
+          })
+          .then(res => res.text())
+          .then(data => console.log("Worker Response:", data))
+          .catch(err => console.error("Worker Error:", err));
+
+          alert("Thank you! Your donation for the Child Education Project was successful.");
+          closeChildEduDonateModal();
+        }
+      };
+
+      new Razorpay(options).open();
+    });
+  </script>
+
+</body>
+</html>
