@@ -2130,7 +2130,7 @@
       color: #bfd4c7;
     }
 
-    /* ========== DEBU ROUND MALE VOICE & SELF-LEARNING CHAT WIDGET ========== */
+    /* ========== DEBU ROUND MULTILINGUAL & OPEN-SOURCE SEARCH WIDGET ========== */
     @keyframes debuOrbPulse {
       0% { box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.75), 0 10px 26px rgba(19, 59, 38, 0.4); }
       70% { box-shadow: 0 0 0 15px rgba(234, 179, 8, 0), 0 10px 26px rgba(19, 59, 38, 0.4); }
@@ -3967,7 +3967,7 @@
     </div>
   </footer>
 
-  <!-- ROUND DEBU MALE VOICE & SELF-LEARNING CHAT GUIDE ASSISTANT WIDGET -->
+  <!-- ROUND DEBU MULTILINGUAL & OPEN-SOURCE SEARCH ASSISTANT WIDGET -->
   <button type="button" class="debu-launcher" id="debuLauncher" onclick="toggleDebuWidget()" aria-label="Chat with Debu">
     <span class="debu-orb-icon" id="debuOrbIcon">🎙️</span>
     <span class="debu-orb-label" id="debuOrbLabel">Debu</span>
@@ -3976,44 +3976,43 @@
   <div class="debu-widget" id="debuWidget" role="dialog" aria-label="Debu Website Assistant">
     <div class="debu-header">
       <div class="debu-header-info">
-        <div class="debu-header-avatar">👨🏻‍💼</div>
+        <div class="debu-header-avatar">🌿</div>
         <div class="debu-header-title">
           <strong>Debu • Smart Guide</strong>
-          <span><i class="debu-online-dot"></i> Male Voice &amp; Self-Learning</span>
+          <span><i class="debu-online-dot"></i> Voice, Chat &amp; Open Search</span>
         </div>
       </div>
       <div class="debu-header-actions">
-        <select id="debuLangSelect" class="debu-lang-select" onchange="changeDebuRecognitionLang()" title="Select Voice Input Language">
-          <option value="en-IN">EN</option>
+        <select id="debuLangSelect" class="debu-lang-select" onchange="changeDebuRecognitionLang()" title="Voice Language">
           <option value="bn-IN">বাং</option>
+          <option value="en-IN">EN</option>
           <option value="hi-IN">हिं</option>
         </select>
-        <button type="button" class="debu-icon-btn" id="debuMuteBtn" onclick="toggleDebuVoiceOutput()" title="Mute / Unmute Male Voice">🔊</button>
+        <button type="button" class="debu-icon-btn" id="debuMuteBtn" onclick="toggleDebuVoiceOutput()" title="Mute / Unmute Voice">🔊</button>
         <button type="button" class="debu-icon-btn" onclick="toggleDebuWidget()" title="Close">✕</button>
       </div>
     </div>
 
     <div class="debu-messages" id="debuMessages">
       <div class="debu-msg bot">
-        Hi! I am <strong>Debu</strong>, your personal guide for <strong>Shyamashree Shitala Maa Charitable Trust</strong>. 🌿<br><br>
-        Ask me in <strong>English, বাংলা, or हिन्दी</strong>—by typing or tapping the mic! If I don't know something yet, just teach me the answer and I will remember it automatically.
+        হ্যালো! আমি <strong>দেবু (Debu)</strong>। শ্যামাশ্রী শীতলা মা চ্যারিটেবল ট্রাস্ট সম্পর্কে জানতে পারো, আর সাধারণ যেকোনো প্রশ্নও করলে ওপেন সোর্স থেকে খুঁজে উত্তর দেব! 🌿<br><br>
+        বাংলায় বললে বাংলায়, ইংলিশে বললে ইংলিশে আর হিন্দিতে বললে হিন্দিতেই উত্তর পাবা।
       </div>
     </div>
 
     <div class="debu-quick-chips">
-      <button type="button" class="debu-chip" onclick="sendDebuPreset('Who is the founder?')">👤 Founder</button>
-      <button type="button" class="debu-chip" onclick="sendDebuPreset('Tell me about SSMCT')">🏛️ About SSMCT</button>
-      <button type="button" class="debu-chip" onclick="sendDebuPreset('Show me your initiatives')">🌱 Initiatives</button>
-      <button type="button" class="debu-chip" onclick="sendDebuPreset('Show certificates')">📜 Certificates</button>
-      <button type="button" class="debu-chip" onclick="sendDebuPreset('I want to donate')">💛 Donate</button>
-      <button type="button" class="debu-chip" onclick="sendDebuPreset('Meet the team')">🤝 Our Team</button>
+      <button type="button" class="debu-chip" onclick="sendDebuPreset('ফাউন্ডার কে?')">👤 ফাউন্ডার</button>
+      <button type="button" class="debu-chip" onclick="sendDebuPreset('আমাদের প্রজেক্টগুলো দেখাও')">🌱 প্রজেক্টস</button>
+      <button type="button" class="debu-chip" onclick="sendDebuPreset('সার্টিফিকেট দেখাও')">📜 সার্টিফিকেট</button>
+      <button type="button" class="debu-chip" onclick="sendDebuPreset('ডোনেট করতে চাই')">💛 ডোনেট</button>
+      <button type="button" class="debu-chip" onclick="sendDebuPreset('Who is the President of India?')">🌐 General Q</button>
     </div>
 
-    <div class="debu-voice-status" id="debuVoiceStatus">🎙️ Listening... Speak now</div>
+    <div class="debu-voice-status" id="debuVoiceStatus">🎙️ শুনছি... কথা বলো</div>
 
     <div class="debu-input-bar">
       <button type="button" class="debu-mic-btn" id="debuMicBtn" onclick="toggleDebuListening()" title="Speak to Debu">🎙️</button>
-      <input type="text" id="debuInput" placeholder="Ask in English, বাংলা, हिन्दी or teach me..." autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault(); submitDebuMessage();}" />
+      <input type="text" id="debuInput" placeholder="বাংলা, English বা हिन्दी-তে লেখো..." autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault(); submitDebuMessage();}" />
       <button type="button" class="debu-send-btn" onclick="submitDebuMessage()" title="Send Message">➤</button>
     </div>
   </div>
@@ -4386,7 +4385,7 @@
       }
     });
 
-    /* ================= DEBU DEEP MALE VOICE, MULTILINGUAL & SELF-LEARNING ASSISTANT ================= */
+    /* ================= DEBU MULTILINGUAL, SELF-LEARNING & OPEN-SOURCE SEARCH ASSISTANT ================= */
     let debuVoiceEnabled = true;
     let debuRecognition = null;
     let debuIsListening = false;
@@ -4426,7 +4425,6 @@
       const cleanQ = query.toLowerCase().replace(/[?।!.,]/g, '').trim();
       if (!cleanQ) return null;
 
-      // Exact or substring match first
       for (const item of list) {
         const stored = item.q.replace(/[?।!.,]/g, '').trim();
         if (stored === cleanQ || (stored.length > 3 && (cleanQ.includes(stored) || stored.includes(cleanQ)))) {
@@ -4434,7 +4432,6 @@
         }
       }
 
-      // Word overlap similarity match
       const queryWords = cleanQ.split(/\s+/).filter(w => w.length > 2);
       if (!queryWords.length) return null;
 
@@ -4453,67 +4450,28 @@
       return bestMatch;
     }
 
-    /* Strict Deep Male Voice Selection */
-    function selectStrictMaleVoice(langCode) {
-      if (!('speechSynthesis' in window)) return null;
-      const voices = window.speechSynthesis.getVoices();
-      if (!voices.length) return null;
-
-      const maleNames = [
-        'male', 'ravi', 'prabhat', 'hemant', 'rishi', 'daniel', 'david',
-        'mark', 'george', 'alex', 'james', 'guy', 'arthur', 'oliver',
-        'ryan', 'william', 'liam', 'noah', 'aaron', 'fred', 'tom', 'bashkar', 'tanishq'
-      ];
-      const femaleNames = [
-        'female', 'zira', 'hazel', 'heera', 'kalpana', 'swara',
-        'neerja', 'samantha', 'victoria', 'susan', 'linda', 'aria',
-        'jenny', 'veena', 'lekha', 'karen', 'moira', 'tessa', 'fiona'
-      ];
-
-      const shortLang = (langCode || 'en').slice(0, 2).toLowerCase();
-
-      // 1. Explicit male voice matching requested language (bn, hi, en)
-      let match = voices.find(v =>
-        v.lang.toLowerCase().startsWith(shortLang) &&
-        maleNames.some(m => v.name.toLowerCase().includes(m))
-      );
-
-      // 2. Any voice in requested language that is NOT female
-      if (!match) {
-        match = voices.find(v =>
-          v.lang.toLowerCase().startsWith(shortLang) &&
-          !femaleNames.some(f => v.name.toLowerCase().includes(f))
-        );
-      }
-
-      // 3. Explicit Indian English or UK/US Male voice
-      if (!match) {
-        match = voices.find(v =>
-          v.lang.toLowerCase().startsWith('en') &&
-          maleNames.some(m => v.name.toLowerCase().includes(m))
-        );
-      }
-
-      // 4. Any non-female English voice
-      if (!match) {
-        match = voices.find(v =>
-          v.lang.toLowerCase().startsWith('en') &&
-          !femaleNames.some(f => v.name.toLowerCase().includes(f))
-        );
-      }
-
-      return match || voices[0];
-    }
-
     if ('speechSynthesis' in window) {
       window.speechSynthesis.getVoices();
       window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
     }
 
-    function detectScriptLanguage(text) {
-      if (/[\u0980-\u09FF]/.test(text)) return 'bn-IN'; // Bengali script
-      if (/[\u0900-\u097F]/.test(text)) return 'hi-IN'; // Devanagari (Hindi) script
-      return 'en-IN';
+    function detectLanguageCode(text, fallbackSelectLang) {
+      if (/[\u0980-\u09FF]/.test(text)) return 'bn-IN';
+      if (/[\u0900-\u097F]/.test(text)) return 'hi-IN';
+      if (/[a-zA-Z]/.test(text)) return 'en-IN';
+      return fallbackSelectLang || 'bn-IN';
+    }
+
+    function pickVoiceForLanguage(langCode) {
+      if (!('speechSynthesis' in window)) return null;
+      const voices = window.speechSynthesis.getVoices();
+      if (!voices.length) return null;
+      const prefix = (langCode || 'bn-IN').slice(0, 2).toLowerCase();
+      return (
+        voices.find(v => v.lang.toLowerCase().startsWith(prefix)) ||
+        voices.find(v => v.lang.toLowerCase().startsWith('en')) ||
+        voices[0]
+      );
     }
 
     function toggleDebuWidget() {
@@ -4540,11 +4498,11 @@
       }
     }
 
-    /* Speaks FULL answer in a deep MALE voice, then executes redirect/scroll ONLY AFTER speech completes */
-    function debuSpeakAndThen(text, onCompleteCallback) {
-      const cleanText = text.replace(/<[^>]*>/g, '').replace(/[🙏🌱💛📜👤🏛️🤝✨✅🌿🧠👨🏻‍💼]/g, '').trim();
+    /* Speaks FULL answer in the matched language FIRST, then runs redirect/scroll AFTER speech finishes */
+    function debuSpeakAndThen(htmlOrText, langCode, onCompleteCallback) {
+      const cleanText = htmlOrText.replace(/<[^>]*>/g, '').replace(/[🙏🌱💛📜👤🏛️🤝✨✅🌿🧠🌐]/g, '').trim();
 
-      if (!debuVoiceEnabled || !('speechSynthesis' in window)) {
+      if (!debuVoiceEnabled || !('speechSynthesis' in window) || !cleanText) {
         if (typeof onCompleteCallback === 'function') {
           setTimeout(onCompleteCallback, 1600);
         }
@@ -4552,18 +4510,18 @@
       }
 
       window.speechSynthesis.cancel();
-      const detectedLang = detectScriptLanguage(cleanText);
-      const maleVoice = selectStrictMaleVoice(detectedLang);
+      const targetLang = langCode || detectLanguageCode(cleanText, 'bn-IN');
+      const chosenVoice = pickVoiceForLanguage(targetLang);
 
       const utterance = new SpeechSynthesisUtterance(cleanText);
-      if (maleVoice) {
-        utterance.voice = maleVoice;
-        utterance.lang = maleVoice.lang;
+      if (chosenVoice) {
+        utterance.voice = chosenVoice;
+        utterance.lang = chosenVoice.lang;
       } else {
-        utterance.lang = detectedLang;
+        utterance.lang = targetLang;
       }
-      utterance.rate = 0.98;
-      utterance.pitch = 0.78; // Deep male baritone pitch
+      utterance.rate = 1.0;
+      utterance.pitch = 1.0;
 
       let executed = false;
       const finishOnce = () => {
@@ -4633,49 +4591,104 @@
       return variants[0];
     }
 
-    function getDebuResponse(rawQuery) {
+    /* Open-Source Wikipedia Search for General Knowledge Questions */
+    async function searchOpenSourceKnowledge(rawQuery, langCode) {
+      const cleaned = rawQuery
+        .replace(/^(who is|who was|what is|what are|tell me about|explain)\s+/i, '')
+        .replace(/\?+$/, '')
+        .trim();
+
+      const wikiLang = langCode === 'bn-IN' ? 'bn' : langCode === 'hi-IN' ? 'hi' : 'en';
+
+      async function queryWiki(subdomain, term) {
+        const searchUrl = `https://${subdomain}.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(term)}&utf8=&format=json&origin=*`;
+        const sRes = await fetch(searchUrl);
+        if (!sRes.ok) return null;
+        const sData = await sRes.json();
+        const hits = sData && sData.query && sData.query.search;
+        if (!hits || !hits.length) return null;
+
+        const title = hits[0].title;
+        const summaryUrl = `https://${subdomain}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
+        const pRes = await fetch(summaryUrl);
+        if (!pRes.ok) return null;
+        const pData = await pRes.json();
+        if (!pData || !pData.extract) return null;
+
+        const sentences = pData.extract.match(/[^.!?।]+[.!?।]+/g) || [pData.extract];
+        const shortSummary = sentences.slice(0, 2).join(' ').trim();
+        return { title: pData.title || title, summary: shortSummary };
+      }
+
+      try {
+        let result = await queryWiki(wikiLang, cleaned);
+        if (!result && wikiLang !== 'en') {
+          result = await queryWiki('en', cleaned);
+        }
+        if (result && result.summary) {
+          return '<span class="debu-learned-badge">🌐 Open Source (Wikipedia)</span><br><strong>' +
+            result.title.replace(/</g, '&lt;') + '</strong>: ' +
+            result.summary.replace(/</g, '&lt;');
+        }
+      } catch (err) {
+        console.warn('Open source lookup error:', err);
+      }
+      return null;
+    }
+
+    async function getDebuResponseAsync(rawQuery) {
+      const langSelect = document.getElementById('debuLangSelect');
+      const selectedLang = langSelect ? langSelect.value : 'bn-IN';
+      const langCode = detectLanguageCode(rawQuery, selectedLang);
+      const isBengali = langCode === 'bn-IN';
+      const isHindi = langCode === 'hi-IN';
+
       const q = rawQuery.toLowerCase().trim();
-      const isBengali = /[\u0980-\u09FF]/.test(rawQuery);
-      const isHindi = /[\u0900-\u097F]/.test(rawQuery);
       debuTurnCount++;
 
-      // A. Explicit Teach Command: "teach: question = answer" or "শেখো: প্রশ্ন = উত্তর"
-      const teachMatch = rawQuery.match(/^(?:teach|learn|remember|শেখো|মনে রাখো)\s*:\s*(.+?)\s*=\s*(.+)$/i);
+      // A. Explicit Teach Command
+      const teachMatch = rawQuery.match(/^(?:teach|learn|remember|শেখো|মনে রাখো|सिखाओ)\s*:\s*(.+?)\s*=\s*(.+)$/i);
       if (teachMatch) {
         const newQ = teachMatch[1].trim();
         const newA = teachMatch[2].trim();
         saveDebuLearnedMemory(newQ, newA);
         debuPendingTeachQuestion = null;
         return {
-          text: '<span class="debu-learned-badge">🧠 Self-Trained &amp; Saved</span><br>Thank you! I have learned that for <strong>"' + newQ.replace(/</g, '&lt;') + '"</strong>, the answer is: <strong>' + newA.replace(/</g, '&lt;') + '</strong>. I will remember this permanently!'
+          lang: langCode,
+          text: isBengali
+            ? '<span class="debu-learned-badge">🧠 নিজে থেকে শিখে নিলাম</span><br>ধন্যবাদ! <strong>"' + newQ.replace(/</g, '&lt;') + '"</strong>-এর উত্তর হিসেবে <strong>"' + newA.replace(/</g, '&lt;') + '"</strong> সেভ করে রাখলাম।'
+            : '<span class="debu-learned-badge">🧠 Self-Trained &amp; Saved</span><br>Thank you! I have saved <strong>"' + newA.replace(/</g, '&lt;') + '"</strong> for <strong>"' + newQ.replace(/</g, '&lt;') + '"</strong>.'
         };
       }
 
-      // B. If Debu previously asked the user to teach an unknown question, learn from this reply!
+      // B. If Debu previously asked to teach an unknown question
       if (debuPendingTeachQuestion) {
         if (q === 'skip' || q === 'cancel' || q === 'no' || q === 'থাক' || q === 'বাদ দাও') {
           debuPendingTeachQuestion = null;
           return {
-            text: isBengali ? 'ঠিক আছে! অন্য কী জানতে চাও বলো?' : 'No problem! What else would you like to ask me?'
+            lang: langCode,
+            text: isBengali ? 'ঠিক আছে! আর কী জানতে চাও?' : 'Okay! What else can I help you with?'
           };
         }
         const learnedQ = debuPendingTeachQuestion;
         debuPendingTeachQuestion = null;
         saveDebuLearnedMemory(learnedQ, rawQuery.trim());
         return {
+          lang: langCode,
           text: isBengali
             ? '<span class="debu-learned-badge">🧠 নতুন তথ্য শিখে নিলাম</span><br>ধন্যবাদ! আমি মনে রাখলাম যে <strong>"' + learnedQ.replace(/</g, '&lt;') + '"</strong>-এর উত্তর হলো: <strong>' + rawQuery.replace(/</g, '&lt;') + '</strong>।'
-            : '<span class="debu-learned-badge">🧠 New Knowledge Learned</span><br>Got it! I have trained myself that for <strong>"' + learnedQ.replace(/</g, '&lt;') + '"</strong>, the answer is: <strong>' + rawQuery.replace(/</g, '&lt;') + '</strong>.'
+            : '<span class="debu-learned-badge">🧠 New Knowledge Learned</span><br>Got it! I will remember that for <strong>"' + learnedQ.replace(/</g, '&lt;') + '"</strong>, the answer is: <strong>' + rawQuery.replace(/</g, '&lt;') + '</strong>.'
         };
       }
 
-      // 1. Founder Queries (English, Bengali, Hindi, Banglish)
+      // 1. Founder Queries
       if (q.includes('founder') || q.includes('shambhu') || q.includes('who started') || q.includes('established') || q.includes('ফাউন্ডার') || q.includes('প্রতিষ্ঠাতা') || q.includes('শম্ভু') || q.includes('संस्थापक')) {
         return {
+          lang: langCode,
           text: isBengali
-            ? '<strong>শ্যামাশ্রী শীতলা মা চ্যারিটেবল ট্রাস্ট</strong>-এর প্রতিষ্ঠাতা হলেন <strong>মিস্টার শম্ভু চক্রবর্তী (Mr. Shambhu Chakraborty)</strong>। আমি তোমাকে ফাউন্ডারের বার্তা সেকশনে নিয়ে যাচ্ছি।'
+            ? 'শ্যামাশ্রী শীতলা মা চ্যারিটেবল ট্রাস্ট-এর প্রতিষ্ঠাতা হলেন মিস্টার শম্ভু চক্রবর্তী। আমি তোমাকে ফাউন্ডারের বার্তা সেকশনে নিয়ে যাচ্ছি।'
             : isHindi
-            ? '<strong>श्यामश्री शीतला मां चैरिटेबल ट्रस्ट</strong> के संस्थापक <strong>श्री शंभू चक्रवर्ती (Mr. Shambhu Chakraborty)</strong> हैं। मैं आपको संस्थापक के संदेश अनुभाग में ले जा रहा हूं।'
+            ? 'श्यामश्री शीतला मां चैरिटेबल ट्रस्ट के संस्थापक श्री शंभू चक्रवर्ती हैं। मैं आपको संस्थापक के संदेश अनुभाग में ले जा रहा हूं।'
             : pickVariant('founder', [
                 'The Founder of <strong>Shyamashree Shitala Maa Charitable Trust</strong> is <strong>Mr. Shambhu Chakraborty</strong>. Now taking you to the Founder’s Message section.',
                 '<strong>Mr. Shambhu Chakraborty</strong> founded SSMCT with the belief that humanity is the greatest service. Scrolling to his message now.'
@@ -4689,10 +4702,13 @@
       // 2. Certificates & Compliance
       if (q.includes('certificate') || q.includes('certification') || q.includes('12ab') || q.includes('80g') || q.includes('darpan') || q.includes('registration') || q.includes('legal') || q.includes('সার্টিফিকেট') || q.includes('प्रमाणपत्र')) {
         return {
+          lang: langCode,
           text: isBengali
-            ? 'আমাদের ট্রাস্ট ১৮০৯ সালের ভারতীয় রেজিস্ট্রেশন অ্যাক্টে নিবন্ধিত, <strong>12AB ও 80G ট্যাক্স ছাড়</strong> প্রাপ্ত এবং <strong>NITI Aayog Darpan</strong>-এ তালিকাভুক্ত। এখন সার্টিফিকেট পেজে নিয়ে যাচ্ছি।'
+            ? 'আমাদের ট্রাস্ট ভারতীয় রেজিস্ট্রেশন অ্যাক্টে নিবন্ধিত, 12AB ও 80G ট্যাক্স ছাড় প্রাপ্ত এবং NITI Aayog Darpan-এ তালিকাভুক্ত। এখন সার্টিফিকেট পেজে নিয়ে যাচ্ছি।'
+            : isHindi
+            ? 'हमारा ट्रस्ट पंजीकृत है और 12AB व 80G प्रमाणित है। अब आपको प्रमाणपत्र पृष्ठ पर ले जा रहा हूं।'
             : 'SSMCT is registered under the Indian Registration Act, 1909, certified for <strong>12AB &amp; 80G Tax Exemption</strong>, and listed on <strong>NITI Aayog Darpan</strong>. Now redirecting you to our Certificates page.',
-          actionLabel: 'Open Certificates Page →',
+          actionLabel: isBengali ? 'সার্টিফিকেট পেজ খোলো →' : 'Open Certificates Page →',
           action: () => { window.location.href = 'Certificates.html'; },
           onAfterAnswer: () => { window.location.href = 'Certificates.html'; }
         };
@@ -4701,8 +4717,11 @@
       // 3. Annual Report
       if (q.includes('annual report') || q.includes('report') || q.includes('financial') || q.includes('audit') || q.includes('রিপোর্ট') || q.includes('रिपोर्ट')) {
         return {
+          lang: langCode,
           text: isBengali
-            ? 'আমাদের <strong>২০২৫-২৬ বার্ষিক রিপোর্ট (Annual Report)</strong>-এ ট্রাস্টের সমস্ত কাজ ও আর্থিক স্বচ্ছতার বিবরণ রয়েছে। এখন রিপোর্ট পেজে নিয়ে যাচ্ছি।'
+            ? 'আমাদের ২০২৫-২৬ বার্ষিক রিপোর্টে ট্রাস্টের সমস্ত কাজ ও আর্থিক স্বচ্ছতার বিবরণ রয়েছে। এখন রিপোর্ট পেজে নিয়ে যাচ্ছি।'
+            : isHindi
+            ? 'हमारी वार्षिक रिपोर्ट 2025-26 में सभी परियोजनाओं और वित्तीय विवरण की जानकारी है। रिपोर्ट पृष्ठ खोल रहा हूं।'
             : 'Our <strong>Annual Report 2025-26</strong> covers our social initiatives, financial transparency, and community outcomes. Now redirecting you to the Annual Report page.',
           actionLabel: 'Open Annual Report →',
           action: () => { window.location.href = 'report.html'; },
@@ -4713,24 +4732,25 @@
       // 4. Donation / Razorpay
       if (q.includes('donate') || q.includes('donation') || q.includes('contribute') || q.includes('money') || q.includes('fund') || q.includes('razorpay') || q.includes('ডোনেট') || q.includes('দান') || q.includes('সাহায্য') || q.includes('दान')) {
         return {
+          lang: langCode,
           text: isBengali
             ? 'আপনার প্রতিটি অনুদান অসহায় মানুষদের খাবার, শিক্ষা ও চিকিৎসায় সরাসরি কাজে লাগে। আমি এখন ডোনেশন ফর্মটি খুলে দিচ্ছি।'
+            : isHindi
+            ? 'आपका हर योगदान भोजन, शिक्षा और स्वास्थ्य सेवा में मदद करता है। मैं अब दान फॉर्म खोल रहा हूं।'
             : 'Your kindness creates real change! Every contribution directly supports meals, education, and medical aid. Opening our secure donation form now.',
-          actionLabel: 'Open Donation Form 💛',
+          actionLabel: isBengali ? 'ডোনেশন ফর্ম খোলো 💛' : 'Open Donation Form 💛',
           action: () => openGeneralDonateForm(),
           onAfterAnswer: () => openGeneralDonateForm()
         };
       }
 
-      // 5. About SSMCT / Status
+      // 5. About SSMCT
       if (q.includes('about') || q.includes('ssmct') || q.includes('shitala maa') || q.includes('status') || q.includes('trust') || q.includes('ngo') || q.includes('সম্পর্কে') || q.includes('ট্রাস্ট')) {
         return {
+          lang: langCode,
           text: isBengali
-            ? '<strong>শ্যামাশ্রী শীতলা মা চ্যারিটেবল ট্রাস্ট (SSMCT)</strong> পশ্চিমবঙ্গের হাওড়া জেলার একটি নিবন্ধিত সমাজসেবামূলক সংস্থা, যা নারী সুরক্ষা, শিক্ষা, স্বাস্থ্য ও ক্ষুধা নিবারণে কাজ করে। About Us সেকশনে নিয়ে যাচ্ছি।'
-            : pickVariant('about', [
-                '<strong>Shyamashree Shitala Maa Charitable Trust (SSMCT)</strong> is a registered public charitable trust in Howrah, West Bengal, working on women’s safety, education, health, and hunger relief. Taking you to our About Us section.',
-                'SSMCT is 12AB &amp; 80G certified and listed on NITI Aayog Darpan, driving grassroots welfare across West Bengal with 100% transparency. Scrolling to About Us now.'
-              ]),
+            ? 'শ্যামাশ্রী শীতলা মা চ্যারিটেবল ট্রাস্ট পশ্চিমবঙ্গের হাওড়া জেলার একটি নিবন্ধিত সমাজসেবামূলক সংস্থা, যা নারী সুরক্ষা, শিক্ষা, স্বাস্থ্য ও ক্ষুধা নিবারণে কাজ করে। About Us সেকশনে নিয়ে যাচ্ছি।'
+            : '<strong>Shyamashree Shitala Maa Charitable Trust (SSMCT)</strong> is a registered public charitable trust in Howrah, West Bengal, working on women’s safety, education, health, and hunger relief. Taking you to our About Us section.',
           actionLabel: 'View About Us →',
           action: () => scrollToSectionSmooth('#about'),
           onAfterAnswer: () => scrollToSectionSmooth('#about')
@@ -4740,8 +4760,9 @@
       // 6. Specific Initiatives
       if (q.includes('eye') || q.includes('চোখ') || q.includes('চক্ষু')) {
         return {
+          lang: langCode,
           text: isBengali
-            ? 'আমাদের <strong>Eye Check-up Camp</strong> বিনামূল্যে চক্ষু পরীক্ষা ও চিকিৎসা প্রদান করে। এখন ওই পেজে নিয়ে যাচ্ছি।'
+            ? 'আমাদের Eye Check-up Camp বিনামূল্যে চক্ষু পরীক্ষা ও চিকিৎসা প্রদান করে। এখন ওই পেজে নিয়ে যাচ্ছি।'
             : 'Our <strong>Eye Check-up Camp</strong> offers free vision screening and eye care for underprivileged communities. Now redirecting you to the Eye Check-up Camp page.',
           actionLabel: 'Go to Eye Check-up Camp →',
           action: () => { window.location.href = ' Eye Check-up Camp.html'; },
@@ -4750,8 +4771,9 @@
       }
       if (q.includes('book') || q.includes('বই')) {
         return {
+          lang: langCode,
           text: isBengali
-            ? '<strong>Books Distribution</strong> প্রকল্পের মাধ্যমে দুঃস্থ ছাত্রছাত্রীদের বিনামূল্যে বই ও শিক্ষাসামগ্রী দেওয়া হয়। পেজটি খুলছি।'
+            ? 'Books Distribution প্রকল্পের মাধ্যমে দুঃস্থ ছাত্রছাত্রীদের বিনামূল্যে বই ও শিক্ষাসামগ্রী দেওয়া হয়। পেজটি খুলছি।'
             : 'Through <strong>Books Distribution</strong>, we provide textbooks and study materials to students in need. Now redirecting you to the Books Distribution page.',
           actionLabel: 'Go to Books Distribution →',
           action: () => { window.location.href = ' Books Distribution.html'; },
@@ -4760,8 +4782,9 @@
       }
       if (q.includes('child') || q.includes('education') || q.includes('school') || q.includes('শিক্ষা') || q.includes('শিশু')) {
         return {
+          lang: langCode,
           text: isBengali
-            ? '<strong>Child Education</strong> প্রকল্পের মাধ্যমে শিশুদের পড়াশোনা ও ভবিষ্যৎ গড়তে সাহায্য করা হয়। এখন পেজটি খুলছি।'
+            ? 'Child Education প্রকল্পের মাধ্যমে শিশুদের পড়াশোনা ও ভবিষ্যৎ গড়তে সাহায্য করা হয়। এখন পেজটি খুলছি।'
             : 'Our <strong>Child Education</strong> initiative empowers children with quality learning and academic support. Now redirecting you to the Child Education page.',
           actionLabel: 'Go to Child Education →',
           action: () => { window.location.href = 'Child Education.html'; },
@@ -4770,8 +4793,9 @@
       }
       if (q.includes('women') || q.includes('woman') || q.includes('nirbhoyini') || q.includes('girl') || q.includes('মহিলা') || q.includes('নারী')) {
         return {
+          lang: langCode,
           text: isBengali
-            ? '<strong>Women Empowerment</strong> ও প্রজেক্ট নির্ভয়িনীর মাধ্যমে মহিলাদের সুরক্ষা ও স্বনির্ভরতার প্রশিক্ষণ দেওয়া হয়। পেজটি খুলছি।'
+            ? 'Women Empowerment ও প্রজেক্ট নির্ভয়িনীর মাধ্যমে মহিলাদের সুরক্ষা ও স্বনির্ভরতার প্রশিক্ষণ দেওয়া হয়। পেজটি খুলছি।'
             : 'Our <strong>Women Empowerment</strong> program (including Project Nirbhoyini) promotes women’s safety, skills, and equality. Now redirecting you to the Women Empowerment page.',
           actionLabel: 'Go to Women Empowerment →',
           action: () => { window.location.href = 'Women Empowerment.html'; },
@@ -4780,7 +4804,10 @@
       }
       if (q.includes('health') || q.includes('স্বাস্থ্য')) {
         return {
-          text: 'Our <strong>Health Check-up Camp</strong> offers free medical consultations and primary healthcare. Now redirecting you to the Health Check-up Camp page.',
+          lang: langCode,
+          text: isBengali
+            ? 'আমাদের Health Check-up Camp বিনামূল্যে স্বাস্থ্য পরীক্ষা ও চিকিৎসা সেবা দেয়। এখন পেজটি খুলছি।'
+            : 'Our <strong>Health Check-up Camp</strong> offers free medical consultations and primary healthcare. Now redirecting you to the Health Check-up Camp page.',
           actionLabel: 'Go to Health Check-up Camp →',
           action: () => { window.location.href = 'Health Check-up Camp.html'; },
           onAfterAnswer: () => { window.location.href = 'Health Check-up Camp.html'; }
@@ -4788,7 +4815,10 @@
       }
       if (q.includes('medicine') || q.includes('ওষুধ')) {
         return {
-          text: 'Through <strong>Free Medicine Distribution</strong>, essential medicines are supplied free of cost to families in need. Now redirecting you to that page.',
+          lang: langCode,
+          text: isBengali
+            ? 'Free Medicine Distribution প্রকল্পে অসহায় পরিবারগুলোকে বিনামূল্যে প্রয়োজনীয় ওষুধ দেওয়া হয়। পেজটি খুলছি।'
+            : 'Through <strong>Free Medicine Distribution</strong>, essential medicines are supplied free of cost to families in need. Now redirecting you to that page.',
           actionLabel: 'Go to Free Medicine →',
           action: () => { window.location.href = 'Free Medicine Distribution.html'; },
           onAfterAnswer: () => { window.location.href = 'Free Medicine Distribution.html'; }
@@ -4796,8 +4826,9 @@
       }
       if (q.includes('food') || q.includes('canteen') || q.includes('shitala canteen') || q.includes('meal') || q.includes('hunger') || q.includes('খাবার') || q.includes('ক্যান্টিন')) {
         return {
+          lang: langCode,
           text: isBengali
-            ? '<strong>শীতলা ক্যান্টিন ও Free Food Distribution</strong>-এর মাধ্যমে মাত্র ১ টাকায় ও বিনামূল্যে পুষ্টিকর খাবার পরিবেশন করা হয়। এখন পেজটি খুলছি।'
+            ? 'শীতলা ক্যান্টিন ও Free Food Distribution-এর মাধ্যমে পুষ্টিকর খাবার পরিবেশন করা হয়। এখন পেজটি খুলছি।'
             : '<strong>Shitala Canteen &amp; Free Food Distribution</strong> serves nutritious meals (including ₹1 meals) to fight hunger with dignity. Now redirecting you to the Free Food Distribution page.',
           actionLabel: 'Go to Free Food Distribution →',
           action: () => { window.location.href = 'Free Food Distribution.html'; },
@@ -4806,7 +4837,10 @@
       }
       if (q.includes('tree') || q.includes('plant') || q.includes('environment') || q.includes('গাছ')) {
         return {
-          text: 'Our <strong>Tree Plantation</strong> initiative nurtures greenery and environmental sustainability across communities. Now redirecting you to the Tree Plantation page.',
+          lang: langCode,
+          text: isBengali
+            ? 'আমাদের Tree Plantation উদ্যোগে পরিবেশ ও সবুজায়নের জন্য গাছ লাগানো ও যত্ন নেওয়া হয়। পেজটি খুলছি।'
+            : 'Our <strong>Tree Plantation</strong> initiative nurtures greenery and environmental sustainability across communities. Now redirecting you to the Tree Plantation page.',
           actionLabel: 'Go to Tree Plantation →',
           action: () => { window.location.href = 'Tree Plantation.html'; },
           onAfterAnswer: () => { window.location.href = 'Tree Plantation.html'; }
@@ -4814,7 +4848,10 @@
       }
       if (q.includes('talent') || q.includes('scholarship') || q.includes('বৃত্তি')) {
         return {
-          text: '<strong>Talent Hunt Scholarship</strong> identifies and supports bright young students with scholarships. Now redirecting you to the Talent Hunt Scholarship page.',
+          lang: langCode,
+          text: isBengali
+            ? 'Talent Hunt Scholarship মেধাবী ছাত্রছাত্রীদের স্কলারশিপ সহায়তা দেয়। পেজটি খুলছি।'
+            : '<strong>Talent Hunt Scholarship</strong> identifies and supports bright young students with scholarships. Now redirecting you to the Talent Hunt Scholarship page.',
           actionLabel: 'Go to Talent Hunt →',
           action: () => { window.location.href = 'Talent Hunt Scholarship.html'; },
           onAfterAnswer: () => { window.location.href = 'Talent Hunt Scholarship.html'; }
@@ -4822,7 +4859,10 @@
       }
       if (q.includes('garment') || q.includes('cloth') || q.includes('dress') || q.includes('জামা') || q.includes('বস্ত্র')) {
         return {
-          text: '<strong>Old Garments Distribution</strong> provides clean clothing to underprivileged families. Now redirecting you to the Old Garments Distribution page.',
+          lang: langCode,
+          text: isBengali
+            ? 'Old Garments Distribution-এর মাধ্যমে প্রয়োজনীয় বস্ত্র বিতরণ করা হয়। পেজটি খুলছি।'
+            : '<strong>Old Garments Distribution</strong> provides clean clothing to underprivileged families. Now redirecting you to the Old Garments Distribution page.',
           actionLabel: 'Go to Garments Distribution →',
           action: () => { window.location.href = 'Old Garments Distribution.html'; },
           onAfterAnswer: () => { window.location.href = 'Old Garments Distribution.html'; }
@@ -4830,7 +4870,10 @@
       }
       if (q.includes('antardrishti') || q.includes('braille') || q.includes('blind') || q.includes('অন্তর্দৃষ্টি')) {
         return {
-          text: '<strong>Project Antardrishti</strong> provides braille kits and white canes to empower visually impaired individuals. Now redirecting you to Antardrishti.',
+          lang: langCode,
+          text: isBengali
+            ? 'Project Antardrishti দৃষ্টিপ্রতিবন্ধীদের ব্রেইল ও সাদা ছড়ি দিয়ে সহায়তা করে। পেজটি খুলছি।'
+            : '<strong>Project Antardrishti</strong> provides braille kits and white canes to empower visually impaired individuals. Now redirecting you to Antardrishti.',
           actionLabel: 'Open Antardrishti →',
           action: () => { window.location.href = 'Antardrishtilearn.html'; },
           onAfterAnswer: () => { window.location.href = 'Antardrishtilearn.html'; }
@@ -4840,8 +4883,9 @@
       // 7. All Projects / Initiatives overview
       if (q.includes('project') || q.includes('initiative') || q.includes('work') || q.includes('program') || q.includes('প্রজেক্ট') || q.includes('কাজ')) {
         return {
+          lang: langCode,
           text: isBengali
-            ? 'আমাদের ১০টি প্রধান উদ্যোগ রয়েছে—চক্ষু পরীক্ষা শিবির, বই বিতরণ, শিশু শিক্ষা, নারী ক্ষমতায়ন, স্বাস্থ্য শিবির, বিনামূল্যে ওষুধ, খাদ্য বিতরণ, বৃক্ষরোপণ, ট্যালেন্ট হান্ট স্কলারশিপ এবং বস্ত্র বিতরণ। আমি ইনিশিয়েটিভ সেকশনে নিয়ে যাচ্ছি।'
+            ? 'আমাদের ১০টি প্রধান উদ্যোগ রয়েছে—চক্ষু পরীক্ষা শিবির, বই বিতরণ, শিশু শিক্ষা, নারী ক্ষমতায়ন, স্বাস্থ্য শিবির, বিনামূল্যে ওষুধ, খাদ্য বিতরণ, বৃক্ষরোপণ, ট্যালেন্ট হান্ট স্কলারশিপ এবং বস্ত্র বিতরণ। প্রজেক্ট সেকশনে নিয়ে যাচ্ছি।'
             : 'We run <strong>10 core initiatives</strong>: Eye Check-up Camp, Books Distribution, Child Education, Women Empowerment, Health Check-up Camp, Free Medicine, Free Food Distribution, Tree Plantation, Talent Hunt Scholarship, and Old Garments Distribution. Taking you to Our Initiatives!',
           actionLabel: 'Explore All Initiatives →',
           action: () => scrollToSectionSmooth('#projects'),
@@ -4852,18 +4896,22 @@
       // 8. Impact & Stats
       if (q.includes('impact') || q.includes('people helped') || q.includes('stat') || q.includes('achievement') || q.includes('প্রভাব')) {
         return {
-          text: 'So far, SSMCT has helped <strong>10,000+ people</strong>, distributed <strong>5,000+ books &amp; meals</strong>, and planted <strong>1,000+ trees</strong> across West Bengal. Scrolling to Our Impact.',
+          lang: langCode,
+          text: isBengali
+            ? 'এখন পর্যন্ত ১০,০০০-এর বেশি মানুষকে সহায়তা করা হয়েছে, ৫,০০০-এর বেশি বই ও খাবার বিতরণ করা হয়েছে এবং ১,০০০-এর বেশি গাছ লাগানো হয়েছে। Impact সেকশনে নিয়ে যাচ্ছি।'
+            : 'So far, SSMCT has helped <strong>10,000+ people</strong>, distributed <strong>5,000+ books &amp; meals</strong>, and planted <strong>1,000+ trees</strong> across West Bengal. Scrolling to Our Impact.',
           actionLabel: 'View Our Impact →',
           action: () => scrollToSectionSmooth('#impact'),
           onAfterAnswer: () => scrollToSectionSmooth('#impact')
         };
       }
 
-      // 9. Team & Software Engineer
+      // 9. Team
       if (q.includes('team') || q.includes('member') || q.includes('debayan') || q.includes('satyajit') || q.includes('mousumi') || q.includes('arindam') || q.includes('soma') || q.includes('tirthanu') || q.includes('software engineer') || q.includes('টিম') || q.includes('সদস্য')) {
         return {
+          lang: langCode,
           text: isBengali
-            ? 'আমাদের টিমে আছেন <strong>সত্যজিৎ নন্দী</strong> (প্রেসিডেন্ট), <strong>মৌসুমী নন্দী</strong> (সেক্রেটারি), <strong>অরিন্দম দাস</strong> (ট্রেজারার), <strong>সোমা ঘোষ</strong> (ভাইস প্রেসিডেন্ট), <strong>দেবায়ন মুখোপাধ্যায়</strong> (সফটওয়্যার ইঞ্জিনিয়ার) এবং <strong>তীর্থনু</strong> (এক্সিকিউটিভ মেম্বার)। টিম সেকশনে নিয়ে যাচ্ছি।'
+            ? 'আমাদের টিমে আছেন সত্যজিৎ নন্দী, মৌসুমী নন্দী, অরিন্দম দাস, সোমা ঘোষ, দেবায়ন মুখোপাধ্যায় এবং তীর্থনু। টিম সেকশনে নিয়ে যাচ্ছি।'
             : 'Our dedicated team includes <strong>Satyajit Nandy</strong> (President), <strong>Mousumi Nandy</strong> (Secretary), <strong>Arindam Das</strong> (Treasurer), <strong>Soma Ghosh</strong> (VP), <strong>Debayan Mukhopadhyay</strong> (Software Engineer), and <strong>Tirthanu</strong> (Executive Member). Taking you to Meet Our Team.',
           actionLabel: 'Meet Our Team →',
           action: () => scrollToSectionSmooth('#team'),
@@ -4871,9 +4919,10 @@
         };
       }
 
-      // 10. Testimonials / Reviews
+      // 10. Testimonials
       if (q.includes('testimonial') || q.includes('review') || q.includes('donor say') || q.includes('feedback') || q.includes('মতামত')) {
         return {
+          lang: langCode,
           text: 'Read inspiring stories and feedback from our donors across Kolkata, Howrah, Durgapur, and Hooghly. Taking you to Testimonials.',
           actionLabel: 'Read Testimonials →',
           action: () => scrollToSectionSmooth('#testimonials'),
@@ -4881,11 +4930,12 @@
         };
       }
 
-      // 11. Contact / Location / Volunteer
+      // 11. Contact
       if (q.includes('contact') || q.includes('location') || q.includes('address') || q.includes('where') || q.includes('email') || q.includes('volunteer') || q.includes('join') || q.includes('যোগাযোগ') || q.includes('ঠিকানা')) {
         return {
+          lang: langCode,
           text: isBengali
-            ? 'আমাদের ঠিকানা <strong>হাওড়া জেলা, পশ্চিমবঙ্গ</strong>। ইমেইল: <strong>info@ssmctrust.org</strong>। এখন Contact Us পেজে নিয়ে যাচ্ছি।'
+            ? 'আমাদের ঠিকানা হাওড়া জেলা, পশ্চিমবঙ্গ। ইমেইল: info@ssmctrust.org। এখন Contact Us পেজে নিয়ে যাচ্ছি।'
             : 'We are located in <strong>Howrah District, West Bengal</strong>. You can email us at <strong>info@ssmctrust.org</strong> or visit our Contact Us page to volunteer or partner with us. Now redirecting you to Contact Us.',
           actionLabel: 'Open Contact Us →',
           action: () => { window.location.href = 'ContactUs.html'; },
@@ -4893,67 +4943,83 @@
         };
       }
 
-      // 12. Greetings & General Open-Ended Chat
+      // 12. Greetings & Name
       if (/^(hi|hello|hey|namaskar|namaste|হ্যালো|নমস্কার|কেমন আছ|नमस्ते)\b/i.test(q)) {
         return {
+          lang: langCode,
           text: isBengali
-            ? 'নমস্কার! আমি <strong>দেবু</strong>। আমাদের ট্রাস্টের ফাউন্ডার, ১০টি প্রজেক্ট, সার্টিফিকেট, বা ডোনেশন—যে কোনো বিষয়ে আমাকে জিজ্ঞেস করতে পারো!'
-            : pickVariant('greeting', [
-                'Hello! I am Debu. Ask me anything about our initiatives, Founder Mr. Shambhu Chakraborty, Certificates, or how you can support the Trust!',
-                'Hi there! What would you like to explore today—our 10 community projects, donor stories, or making a donation?'
+            ? pickVariant('bn_greet', [
+                'হ্যালো! আমি দেবু। ট্রাস্টের ফাউন্ডার, প্রজেক্ট, সার্টিফিকেট বা সাধারণ যেকোনো প্রশ্ন করতে পারো!',
+                'নমস্কার! বলো, আজ তোমাকে কীভাবে সাহায্য করতে পারি?'
+              ])
+            : isHindi
+            ? 'नमस्ते! मैं देबू हूं। ट्रस्ट की जानकारी या किसी भी सामान्य सवाल के लिए पूछ सकते हैं।'
+            : pickVariant('en_greet', [
+                'Hello! I am Debu. Ask me anything about SSMCT or any general question!',
+                'Hi there! How can I help you explore today?'
               ])
         };
       }
       if (q.includes('your name') || q.includes('who are you') || q.includes('তোমার নাম') || q.includes('তুমি কে')) {
         return {
+          lang: langCode,
           text: isBengali
-            ? 'আমার নাম <strong>দেবু (Debu)</strong>! আমি শ্যামাশ্রী শীতলা মা চ্যারিটেবল ট্রাস্টের ভয়েস ও চ্যাট গাইড অ্যাসিস্ট্যান্ট।'
-            : 'My name is <strong>Debu</strong>! I am the interactive male voice and self-learning chat guide for Shyamashree Shitala Maa Charitable Trust.'
+            ? 'আমার নাম দেবু। আমি শ্যামাশ্রী শীতলা মা চ্যারিটেবল ট্রাস্টের ভয়েস ও চ্যাট গাইড।'
+            : isHindi
+            ? 'मेरा नाम देबू है। मैं श्यामश्री शीतला मां चैरिटेबल ट्रस्ट का गाइड असिस्टेंट हूं।'
+            : 'My name is <strong>Debu</strong>! I am your guide assistant for Shyamashree Shitala Maa Charitable Trust.'
         };
       }
-      if (q.includes('time') || q.includes('date') || q.includes('today') || q.includes('সময়') || q.includes('তারিখ')) {
-        const now = new Date();
+      if (q.includes('thank') || q.includes('ধন্যবাদ') || q.includes('धन्यवाद')) {
         return {
-          text: 'Today is <strong>' + now.toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) + '</strong>, and the time is <strong>' + now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) + '</strong>.'
-        };
-      }
-      if (q.includes('thank') || q.includes('ধন্যবাদ')) {
-        return {
+          lang: langCode,
           text: isBengali
-            ? 'তোমাকেও অসংখ্য ধন্যবাদ! একসাথে আমরা আরও সুন্দর ও মানবিক সমাজ গড়ে তুলব। 💛'
-            : 'You are most welcome! Together, we can build a kinder, healthier, and happier society. 💛'
+            ? 'তোমাকেও অনেক ধন্যবাদ! একসাথে আমরা আরও সুন্দর সমাজ গড়ে তুলব।'
+            : isHindi
+            ? 'बहुत-बहुत धन्यवाद! मिलकर एक बेहतर समाज बनाते हैं।'
+            : 'You are most welcome! Together, we can build a kinder and healthier society. 💛'
         };
       }
 
-      // 13. Check Self-Learned Knowledge Base
+      // 13. Check Self-Learned Memory
       const learned = findLearnedMatch(rawQuery);
       if (learned) {
         return {
+          lang: langCode,
           text: '<span class="debu-learned-badge">🧠 Learned Memory</span><br>' + learned.a.replace(/</g, '&lt;')
         };
       }
 
-      // 14. Self-Training Prompt when encountering unknown information
+      // 14. Open-Source Search (Wikipedia) for General Knowledge Questions
+      const wikiAnswer = await searchOpenSourceKnowledge(rawQuery, langCode);
+      if (wikiAnswer) {
+        return {
+          lang: langCode,
+          text: wikiAnswer
+        };
+      }
+
+      // 15. Self-Training Prompt when unknown
       debuPendingTeachQuestion = rawQuery.trim();
       return {
+        lang: langCode,
         text: isBengali
-          ? 'আমি এখনো <strong>"' + rawQuery.replace(/</g, '&lt;') + '"</strong> সম্পর্কে জানি না। তুমি আমাকে সঠিক উত্তরটা লিখে দাও—আমি নিজে থেকে শিখে মনে রাখব! (অথবা বাতিল করতে <em>skip</em> লেখো)'
-          : 'I don’t have information about <strong>"' + rawQuery.replace(/</g, '&lt;') + '"</strong> yet. Please reply with the answer so I can train myself and remember it for the future! (Or type <em>skip</em>)'
+          ? 'আমি এখনো "' + rawQuery.replace(/</g, '&lt;') + '" সম্পর্কে সঠিক তথ্য পাইনি। তুমি সঠিক উত্তরটা লিখে দিলে আমি শিখে মনে রাখব! (বা skip লেখো)'
+          : isHindi
+          ? 'मुझे "' + rawQuery.replace(/</g, '&lt;') + '" के बारे में अभी जानकारी नहीं मिली। आप सही उत्तर लिख दें, मैं याद रख लूंगा! (या skip लिखें)'
+          : 'I could not find information on <strong>"' + rawQuery.replace(/</g, '&lt;') + '"</strong> yet. Please type the answer so I can learn and remember it! (Or type <em>skip</em>)'
       };
     }
 
-    function processDebuQuery(text) {
+    async function processDebuQuery(text) {
       if (!text || !text.trim()) return;
       appendDebuMessage('user', text.replace(/</g, '&lt;'));
       showDebuTyping();
 
-      const reply = getDebuResponse(text);
-      setTimeout(() => {
-        removeDebuTyping();
-        appendDebuMessage('bot', reply.text, reply.actionLabel, reply.action);
-        // Speaks the full answer in MALE voice FIRST, and triggers redirect/scroll ONLY AFTER speech finishes
-        debuSpeakAndThen(reply.text, reply.onAfterAnswer);
-      }, 420);
+      const reply = await getDebuResponseAsync(text);
+      removeDebuTyping();
+      appendDebuMessage('bot', reply.text, reply.actionLabel, reply.action);
+      debuSpeakAndThen(reply.text, reply.lang, reply.onAfterAnswer);
     }
 
     function submitDebuMessage() {
@@ -4984,7 +5050,7 @@
       const langSelect = document.getElementById('debuLangSelect');
 
       if (!SpeechRec) {
-        appendDebuMessage('bot', 'Voice recognition is not supported in this browser. Please use Google Chrome or type your message below.');
+        appendDebuMessage('bot', 'এই ব্রাউজারে ভয়েস ইনপুট সাপোর্ট নেই। অনুগ্রহ করে নিচে লিখে প্রশ্ন করো।');
         return;
       }
 
@@ -4994,7 +5060,7 @@
       }
 
       debuRecognition = new SpeechRec();
-      debuRecognition.lang = langSelect ? langSelect.value : 'en-IN';
+      debuRecognition.lang = langSelect ? langSelect.value : 'bn-IN';
       debuRecognition.interimResults = false;
       debuRecognition.maxAlternatives = 1;
 
@@ -5011,10 +5077,10 @@
       };
 
       debuRecognition.onerror = function () {
-        statusEl.textContent = '⚠️ Could not hear clearly. Tap mic to try again.';
+        statusEl.textContent = '⚠️ ঠিকমতো শোনা যায়নি, আবার মাইকে চাপো।';
         setTimeout(() => {
           statusEl.classList.remove('active');
-          statusEl.textContent = '🎙️ Listening... Speak now';
+          statusEl.textContent = '🎙️ শুনছি... কথা বলো';
         }, 2000);
       };
 
