@@ -1245,6 +1245,370 @@
       box-shadow: 0 6px 18px rgba(19, 59, 38, 0.14);
     }
 
+    /* ========== OUR PARTNERS SECTION (CLICKABLE EXPANDABLE CARDS) ========== */
+    .partners-section {
+      background-color: var(--cream-bg);
+      padding: 75px 40px;
+      border-bottom: 1px solid #e6e2d6;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .partners-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .partner-card {
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1.5px solid #e5e0d3;
+      padding: 20px 14px 16px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 5px 16px rgba(19, 59, 38, 0.05);
+      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .partner-card::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3.5px;
+      background: linear-gradient(90deg, var(--forest-dark), var(--gold-accent));
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .partner-card:hover {
+      transform: translateY(-7px);
+      border-color: var(--forest-mid);
+      box-shadow: 0 14px 28px rgba(19, 59, 38, 0.14);
+    }
+
+    .partner-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .partner-img-wrap {
+      width: 100%;
+      height: 105px;
+      border-radius: 10px;
+      background-color: #fbf9f3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .partner-img-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: transform 0.4s ease;
+    }
+
+    .partner-card:hover .partner-img-wrap img {
+      transform: scale(1.08);
+    }
+
+    .partner-zoom-hint {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      background: rgba(19, 59, 38, 0.85);
+      color: #ffffff;
+      font-size: 11px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .partner-card:hover .partner-zoom-hint {
+      opacity: 1;
+    }
+
+    .partner-card h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--forest-dark);
+      line-height: 1.3;
+    }
+
+    .partner-card span {
+      display: block;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    /* Partner Lightbox Modal */
+    .partner-lightbox {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      inset: 0;
+      background: rgba(10, 28, 18, 0.85);
+      backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .partner-lightbox.open {
+      display: flex;
+    }
+
+    .partner-lightbox-box {
+      background: #ffffff;
+      border-radius: 20px;
+      max-width: 540px;
+      width: 100%;
+      padding: 28px;
+      text-align: center;
+      position: relative;
+      border-top: 6px solid var(--gold-accent);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      animation: riseFade 0.3s ease;
+    }
+
+    .partner-lightbox-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: none;
+      background: #f3efe4;
+      color: var(--forest-dark);
+      font-size: 22px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .partner-lightbox-close:hover {
+      background: var(--gold-accent);
+    }
+
+    .partner-lightbox-img {
+      width: 100%;
+      max-height: 340px;
+      object-fit: contain;
+      border-radius: 12px;
+      background: #fbf9f3;
+      padding: 16px;
+      margin-bottom: 18px;
+      border: 1px solid #e6e2d6;
+    }
+
+    .partner-lightbox-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: var(--forest-dark);
+      margin-bottom: 6px;
+    }
+
+    .partner-lightbox-box p {
+      font-size: 14.5px;
+      color: var(--text-muted);
+    }
+
+    /* ========== WORKING AUTO-SCROLLING TESTIMONIALS SECTION ========== */
+    .testimonials-section {
+      background: linear-gradient(145deg, var(--forest-dark) 0%, #0d2b1b 100%);
+      color: #ffffff;
+      padding: 80px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonials-section .section-header-decorated h2 {
+      color: #ffffff;
+    }
+
+    .testimonials-section .section-header-decorated p {
+      color: #c5ded0;
+    }
+
+    .testimonial-carousel-wrapper {
+      max-width: 1220px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .testimonial-viewport {
+      overflow: hidden;
+      width: 100%;
+      padding: 8px 0 16px;
+    }
+
+    .testimonial-track {
+      display: flex;
+      gap: 24px;
+      transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    .testimonial-card {
+      flex: 0 0 calc((100% - 48px) / 3);
+      background: #ffffff;
+      color: var(--text-dark);
+      border-radius: 18px;
+      padding: 28px 26px;
+      border-top: 4px solid var(--gold-accent);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .testimonial-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .testimonial-stars {
+      color: var(--gold-accent);
+      font-size: 16px;
+      letter-spacing: 2px;
+    }
+
+    .testimonial-quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      line-height: 0.6;
+      color: #dce8e0;
+      font-weight: 700;
+    }
+
+    .testimonial-text {
+      font-size: 14.5px;
+      color: #36493e;
+      line-height: 1.65;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid #efeade;
+    }
+
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--forest-dark), var(--forest-light));
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 2px solid var(--gold-accent);
+    }
+
+    .testimonial-author-info strong {
+      display: block;
+      font-size: 15px;
+      color: var(--forest-dark);
+      line-height: 1.2;
+    }
+
+    .testimonial-author-info span {
+      display: block;
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .testimonial-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .testi-nav-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
+      font-size: 18px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+    }
+
+    .testi-nav-btn:hover {
+      background: var(--gold-accent);
+      color: var(--forest-dark);
+      border-color: var(--gold-accent);
+    }
+
+    .testi-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .testi-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.35);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .testi-dot.active {
+      width: 26px;
+      border-radius: 10px;
+      background: var(--gold-accent);
+    }
+
     /* RESOURCES SECTION (ALL ORIGINAL LINKS PRESERVED) */
     .resources-section {
       padding: 80px 40px;
@@ -1568,7 +1932,7 @@
       }
 
       .desktop-nav {
-        gap: 14px;
+        gap: 13px;
       }
 
       .desktop-nav a {
@@ -1578,6 +1942,10 @@
       .programme-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 18px;
+      }
+
+      .partners-grid {
+        grid-template-columns: repeat(3, 1fr);
       }
 
       .resources-grid {
@@ -1624,6 +1992,10 @@
       .founder-bottom-row {
         grid-template-columns: 1fr;
         gap: 14px;
+      }
+
+      .testimonial-card {
+        flex: 0 0 calc((100% - 24px) / 2);
       }
 
       .footer-grid {
@@ -1802,12 +2174,12 @@
       }
 
       /* Mobile hero slides (PRESERVED) */
-      .hero-slide:nth-child(1) { background-image: url('heromo.png'); }
-      .hero-slide:nth-child(2) { background-image: url('heromo.png'); }
-      .hero-slide:nth-child(3) { background-image: url('heromo.png'); }
-      .hero-slide:nth-child(4) { background-image: url('heromo.png'); }
-      .hero-slide:nth-child(5) { background-image: url('heromo.png'); }
-      .hero-slide:nth-child(6) { background-image: url('heromo.png'); }
+      .hero-slide:nth-child(1) { background-image: url('totest.png'); }
+      .hero-slide:nth-child(2) { background-image: url('totest.png'); }
+      .hero-slide:nth-child(3) { background-image: url('totest.png'); }
+      .hero-slide:nth-child(4) { background-image: url('totest.png'); }
+      .hero-slide:nth-child(5) { background-image: url('totest.png'); }
+      .hero-slide:nth-child(6) { background-image: url('totest.png'); }
 
       .section-header-decorated {
         margin-bottom: 28px;
@@ -1816,6 +2188,8 @@
       .programmes-section,
       .about-section,
       .founder-section,
+      .partners-section,
+      .testimonials-section,
       .resources-section,
       .contribution-strip {
         padding: 48px 16px;
@@ -1824,6 +2198,20 @@
       .programme-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
+      }
+
+      .partners-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .partner-img-wrap {
+        height: 85px;
+      }
+
+      .testimonial-card {
+        flex: 0 0 100%;
+        padding: 24px 20px;
       }
 
       .card-thumb {
@@ -2048,7 +2436,8 @@
 
     /* ========== ULTRA SMALL PHONES (max-width: 340px) ========== */
     @media (max-width: 340px) {
-      .programme-grid {
+      .programme-grid,
+      .partners-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -2082,8 +2471,10 @@
     <nav class="desktop-nav">
       <a href="#about">About Us</a>
       <a href="#founder">Founder’s Message</a>
+      <a href="#partners">Partners</a>
       <a href="#projects">Projects</a>
       <a href="#impact">Our Impact</a>
+      <a href="#testimonials">Testimonials</a>
       <a href="#resources">Resources</a>
       <a href="ShitalaCanteen.html">Shitala Canteen</a>
       <a href="ContactUs.html">Contact Us</a>
@@ -2110,8 +2501,10 @@
     <nav class="mobile-nav" id="mobileMenu">
       <a href="#about" onclick="closeMenu()">About Us</a>
       <a href="#founder" onclick="closeMenu()">Founder’s Message</a>
+      <a href="#partners" onclick="closeMenu()">Partners</a>
       <a href="#projects" onclick="closeMenu()">Projects</a>
       <a href="#impact" onclick="closeMenu()">Our Impact</a>
+      <a href="#testimonials" onclick="closeMenu()">Testimonials</a>
       <a href="#resources" onclick="closeMenu()">Resources</a>
       <a href="ShitalaCanteen.html" onclick="closeMenu()">Shitala Canteen</a>
       <a href="ContactUs.html" onclick="closeMenu()">Contact Us</a>
@@ -2464,7 +2857,7 @@
     <div class="contribution-flex-inner">
       <div class="strip-side-left">
         <img 
-          src="Hands Holding Radiant Heart.png" 
+          src="https://images.pexels.com/photos/6994982/pexels-photo-6994982.jpeg?auto=compress&cs=tinysrgb&w=500" 
           onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=500&q=80';"
           alt="Two hands holding a red heart" 
         />
@@ -2591,6 +2984,202 @@
     </div>
   </section>
 
+  <!-- OUR PARTNERS SECTION (CLICK ANY CARD TO VIEW LARGE IMAGE IN LIGHTBOX) -->
+  <section class="partners-section reveal" id="partners">
+    <div class="section-header-decorated">
+      <div class="title-accent-line"></div>
+      <h2>Our Partners</h2>
+      <p>Organizations &amp; Community Allies Standing With Us (Click to View)</p>
+    </div>
+
+    <div class="partners-grid">
+      <div class="partner-card" onclick="openPartnerLightbox(this, 'Healthcare & Eye Care Partner', 'Supporting free eye check-ups, cataract screening, and primary medical camps across West Bengal.')">
+        <div class="partner-img-wrap">
+          <span class="partner-zoom-hint">⤢</span>
+          <img src="partner1.png" onerror="this.onerror=null; this.src='SSMCT Logo.png';" alt="Partner 1" />
+        </div>
+        <h3>Healthcare Partner</h3>
+        <span>Medical &amp; Eye Care</span>
+      </div>
+
+      <div class="partner-card" onclick="openPartnerLightbox(this, 'Education & Literacy Partner', 'Providing notebooks, textbooks, and digital learning resources for underprivileged children.')">
+        <div class="partner-img-wrap">
+          <span class="partner-zoom-hint">⤢</span>
+          <img src="partner2.png" onerror="this.onerror=null; this.src='SSMCT Logo.png';" alt="Partner 2" />
+        </div>
+        <h3>Education Partner</h3>
+        <span>Books &amp; Scholarships</span>
+      </div>
+
+      <div class="partner-card" onclick="openPartnerLightbox(this, 'Shitala Canteen Nutrition Partner', 'Helping serve affordable, hygienic, and nutritious meals to daily wage earners and families.')">
+        <div class="partner-img-wrap">
+          <span class="partner-zoom-hint">⤢</span>
+          <img src="partner3.png" onerror="this.onerror=null; this.src='SSMCT Logo.png';" alt="Partner 3" />
+        </div>
+        <h3>Nutrition Partner</h3>
+        <span>Shitala Canteen Support</span>
+      </div>
+
+      <div class="partner-card" onclick="openPartnerLightbox(this, 'Women Empowerment Partner', 'Collaborating on vocational training, self-defense workshops, and Project Nirbhoyini.')">
+        <div class="partner-img-wrap">
+          <span class="partner-zoom-hint">⤢</span>
+          <img src="partner4.png" onerror="this.onerror=null; this.src='SSMCT Logo.png';" alt="Partner 4" />
+        </div>
+        <h3>Women Welfare Partner</h3>
+        <span>Skill &amp; Safety Programs</span>
+      </div>
+
+      <div class="partner-card" onclick="openPartnerLightbox(this, 'Antardrishti Accessibility Partner', 'Distributing white canes, braille kits, and assistive devices for visually impaired individuals.')">
+        <div class="partner-img-wrap">
+          <span class="partner-zoom-hint">⤢</span>
+          <img src="partner5.png" onerror="this.onerror=null; this.src='SSMCT Logo.png';" alt="Partner 5" />
+        </div>
+        <h3>Accessibility Partner</h3>
+        <span>Project Antardrishti</span>
+      </div>
+
+      <div class="partner-card" onclick="openPartnerLightbox(this, 'Green Earth & Community Partner', 'Working together on rural tree plantation drives, garment distribution, and disaster relief.')">
+        <div class="partner-img-wrap">
+          <span class="partner-zoom-hint">⤢</span>
+          <img src="partner6.png" onerror="this.onerror=null; this.src='SSMCT Logo.png';" alt="Partner 6" />
+        </div>
+        <h3>Community Partner</h3>
+        <span>Environment &amp; Relief</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partner Image Lightbox Modal -->
+  <div id="partnerLightbox" class="partner-lightbox" onclick="closePartnerLightbox(event)">
+    <div class="partner-lightbox-box">
+      <button type="button" class="partner-lightbox-close" onclick="closePartnerLightbox(event, true)">&times;</button>
+      <img id="partnerLightboxImg" class="partner-lightbox-img" src="" alt="Partner Preview" />
+      <h3 id="partnerLightboxTitle"></h3>
+      <p id="partnerLightboxDesc"></p>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS SECTION (3 CARDS VISIBLE, AUTO-SCROLLING LEFT ONE BY ONE) -->
+  <section class="testimonials-section reveal" id="testimonials">
+    <div class="section-header-decorated">
+      <div class="title-accent-line"></div>
+      <h2>Voices of Kindness</h2>
+      <p>Stories from Donors, Volunteers &amp; Families Whose Lives Were Touched</p>
+    </div>
+
+    <div class="testimonial-carousel-wrapper" id="testimonialCarousel">
+      <div class="testimonial-viewport">
+        <div class="testimonial-track" id="testimonialTrack">
+          <!-- Testimonial 1 -->
+          <div class="testimonial-card">
+            <div>
+              <div class="testimonial-top-row">
+                <span class="testimonial-stars">★★★★★</span>
+                <span class="testimonial-quote-mark">”</span>
+              </div>
+              <p class="testimonial-text">
+                “Seeing Shitala Canteen serve fresh, dignified meals every day in Howrah restored my faith in grassroots charity. Every rupee donated is accounted for with complete honesty.”
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">SB</div>
+              <div class="testimonial-author-info">
+                <strong>Subrata Banerjee</strong>
+                <span>Regular Donor, Kolkata</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="testimonial-card">
+            <div>
+              <div class="testimonial-top-row">
+                <span class="testimonial-stars">★★★★★</span>
+                <span class="testimonial-quote-mark">”</span>
+              </div>
+              <p class="testimonial-text">
+                “My daughter received books and scholarship support through the Talent Hunt program. Today she studies with confidence and dreams of becoming a teacher.”
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">MD</div>
+              <div class="testimonial-author-info">
+                <strong>Mitali Das</strong>
+                <span>Parent &amp; Beneficiary, Howrah</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="testimonial-card">
+            <div>
+              <div class="testimonial-top-row">
+                <span class="testimonial-stars">★★★★★</span>
+                <span class="testimonial-quote-mark">”</span>
+              </div>
+              <p class="testimonial-text">
+                “Volunteering at the free eye check-up and medicine camps has been life-changing. The dedication of the Trust team reaches the remotest families who need care most.”
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">AC</div>
+              <div class="testimonial-author-info">
+                <strong>Dr. Ananya Chatterjee</strong>
+                <span>Medical Camp Volunteer</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 4 -->
+          <div class="testimonial-card">
+            <div>
+              <div class="testimonial-top-row">
+                <span class="testimonial-stars">★★★★★</span>
+                <span class="testimonial-quote-mark">”</span>
+              </div>
+              <p class="testimonial-text">
+                “Through Project Antardrishti, visually impaired members of our community received white canes and braille support with genuine warmth and respect.”
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">RM</div>
+              <div class="testimonial-author-info">
+                <strong>Ranjit Mondal</strong>
+                <span>Community Coordinator, West Bengal</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 5 -->
+          <div class="testimonial-card">
+            <div>
+              <div class="testimonial-top-row">
+                <span class="testimonial-stars">★★★★★</span>
+                <span class="testimonial-quote-mark">”</span>
+              </div>
+              <p class="testimonial-text">
+                “Their 80G tax compliance, prompt receipts, and regular field updates give complete peace of mind. Proud to stand with Shyamashree Shitala Maa Charitable Trust.”
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">PS</div>
+              <div class="testimonial-author-info">
+                <strong>Priyanka Sen</strong>
+                <span>Supporter &amp; Well-Wisher</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-controls">
+        <button type="button" class="testi-nav-btn" onclick="moveTestimonial(-1)" aria-label="Previous Testimonial">‹</button>
+        <div class="testi-dots" id="testiDots"></div>
+        <button type="button" class="testi-nav-btn" onclick="moveTestimonial(1)" aria-label="Next Testimonial">›</button>
+      </div>
+    </div>
+  </section>
+
   <!-- RESOURCES SECTION (ALL ORIGINAL LINKS PRESERVED) -->
   <section class="resources-section reveal" id="resources">
     <div class="resources-container">
@@ -2634,8 +3223,10 @@
         <ul class="footer-links">
           <li><a href="#about">About Us</a></li>
           <li><a href="#founder">Founder’s Message</a></li>
+          <li><a href="#partners">Our Partners</a></li>
           <li><a href="#projects">Our Initiatives</a></li>
           <li><a href="#impact">Our Impact</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
           <li><a href="#resources">Resources</a></li>
           <li><a href="ShitalaCanteen.html">Shitala Canteen</a></li>
           <li><a href="ContactUs.html">Contact Us</a></li>
@@ -2682,7 +3273,7 @@
     </div>
   </footer>
 
-  <!-- ORIGINAL SCRIPTS PRESERVED + AUTO-COUNTING IMPACT & INTERACTIVE UI -->
+  <!-- ORIGINAL SCRIPTS PRESERVED + AUTO-COUNTING IMPACT, PARTNER LIGHTBOX & TESTIMONIAL SLIDER -->
   <script>
     let slides = document.querySelectorAll('.hero-slide');
     let dots = document.querySelectorAll('.hero-dot');
@@ -2754,6 +3345,111 @@
         closeGeneralModal();
       }
     }
+
+    /* Partner Lightbox Expand Functions */
+    function openPartnerLightbox(cardEl, title, desc) {
+      const imgEl = cardEl.querySelector('img');
+      document.getElementById('partnerLightboxImg').src = imgEl ? imgEl.src : 'SSMCT Logo.png';
+      document.getElementById('partnerLightboxTitle').textContent = title;
+      document.getElementById('partnerLightboxDesc').textContent = desc;
+      document.getElementById('partnerLightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePartnerLightbox(event, forceClose) {
+      const lightbox = document.getElementById('partnerLightbox');
+      if (forceClose || event.target === lightbox) {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+
+    /* Working Auto-Scrolling Testimonials Carousel */
+    (function initTestimonials() {
+      const track = document.getElementById('testimonialTrack');
+      const dotsContainer = document.getElementById('testiDots');
+      const wrapper = document.getElementById('testimonialCarousel');
+      if (!track || !dotsContainer) return;
+
+      const cards = track.querySelectorAll('.testimonial-card');
+      let testiIndex = 0;
+      let autoTimer = null;
+
+      function getVisibleCount() {
+        if (window.innerWidth <= 768) return 1;
+        if (window.innerWidth <= 1200) return 2;
+        return 3;
+      }
+
+      function getMaxIndex() {
+        return Math.max(0, cards.length - getVisibleCount());
+      }
+
+      function renderDots() {
+        dotsContainer.innerHTML = '';
+        const maxIdx = getMaxIndex();
+        for (let i = 0; i <= maxIdx; i++) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'testi-dot' + (i === testiIndex ? ' active' : '');
+          btn.setAttribute('aria-label', 'Go to testimonial ' + (i + 1));
+          btn.onclick = function () {
+            testiIndex = i;
+            updateCarousel();
+            restartAuto();
+          };
+          dotsContainer.appendChild(btn);
+        }
+      }
+
+      function updateCarousel() {
+        const maxIdx = getMaxIndex();
+        if (testiIndex > maxIdx) testiIndex = 0;
+        if (testiIndex < 0) testiIndex = maxIdx;
+
+        const cardWidth = cards[0].getBoundingClientRect().width;
+        const gap = 24;
+        track.style.transform = `translateX(-${testiIndex * (cardWidth + gap)}px)`;
+
+        dotsContainer.querySelectorAll('.testi-dot').forEach((d, idx) => {
+          d.classList.toggle('active', idx === testiIndex);
+        });
+      }
+
+      window.moveTestimonial = function (step) {
+        const maxIdx = getMaxIndex();
+        testiIndex += step;
+        if (testiIndex > maxIdx) testiIndex = 0;
+        if (testiIndex < 0) testiIndex = maxIdx;
+        updateCarousel();
+        restartAuto();
+      };
+
+      function startAuto() {
+        autoTimer = setInterval(() => {
+          const maxIdx = getMaxIndex();
+          testiIndex = testiIndex >= maxIdx ? 0 : testiIndex + 1;
+          updateCarousel();
+        }, 4000);
+      }
+
+      function restartAuto() {
+        clearInterval(autoTimer);
+        startAuto();
+      }
+
+      wrapper.addEventListener('mouseenter', () => clearInterval(autoTimer));
+      wrapper.addEventListener('mouseleave', startAuto);
+
+      window.addEventListener('resize', () => {
+        renderDots();
+        updateCarousel();
+      });
+
+      renderDots();
+      updateCarousel();
+      startAuto();
+    })();
 
     /* Interactive Learn More Dropdown & Tabs */
     function toggleLearnMoreDropdown() {
