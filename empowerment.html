@@ -3,284 +3,1178 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Health & Disability Support</title>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-149NCZ03L5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <title>Health & Disability Support | Shyamashree Shitala Maa Charitable Trust</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
 
-  gtag('config', 'G-149NCZ03L5');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-149NCZ03L5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-149NCZ03L5');
+  </script>
 
   <style>
-    body {
+    :root {
+      --forest-dark: #133b26;
+      --forest-mid: #1d5236;
+      --emerald-soft: #eaf3ed;
+      --cream-bg: #fbf9f3;
+      --cream-card: #f3efe4;
+      --gold-accent: #eab308;
+      --gold-hover: #ca8a04;
+      --text-dark: #1a2e22;
+      --text-muted: #4b5e53;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
       font-family: 'Inter', sans-serif;
-      background: #f5f7fa;
-      color: #333;
-      transition: background 0.3s, color 0.3s;
+      background-color: var(--cream-bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
-    body.dark { background: #1e1e1e; color: #f5f5f5; }
 
-    /* Hero */
+    h1, h2, h3.serif-title {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    /* TOP COMPACT NAVIGATION BAR */
+    .top-nav-strip {
+      background-color: #ffffff;
+      padding: 12px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e5e0d3;
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      box-shadow: 0 3px 14px rgba(19, 59, 38, 0.06);
+    }
+
+    .brand-mini {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--forest-dark);
+    }
+
+    .brand-mini img {
+      height: 44px;
+      width: auto;
+    }
+
+    .brand-mini strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 15.5px;
+      line-height: 1.2;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .back-home-btn {
+      background-color: var(--forest-dark);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 1.5px solid var(--gold-accent);
+      transition: all 0.25s ease;
+    }
+
+    .back-home-btn:hover {
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
+    }
+
+    /* LARGE HERO BANNER WITH DESCRIPTION & DONATE BUTTON */
     .hero {
-      background: url('https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg') center/cover no-repeat;
-      color: white; text-align: center; padding: 120px 20px; background-attachment: fixed;
-    }
-    .hero h1 { font-size: 3rem; margin-bottom: 10px; font-weight: bold; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-    .hero p { font-size: 1.4rem; max-width: 700px; margin: auto; text-shadow: 1px 1px 6px rgba(0,0,0,0.5); }
-
-    /* Controls */
-    .controls { text-align: center; margin: 20px; }
-    .controls input {
-      padding: 10px; border-radius: 25px; border: 1px solid #ccc; width: 250px; margin-right: 10px;
-    }
-    .controls button {
-      background: linear-gradient(90deg, #007BFF, #00C6FF);
-      border: none; color: white; padding: 10px 20px; border-radius: 25px; cursor: pointer; font-weight: bold; margin: 5px;
-      transition: transform 0.2s;
-    }
-    .controls button:hover { transform: scale(1.05); }
-
-    /* Grid */
-    .grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px;
-      padding: 20px; max-width: 1300px; margin: auto;
+      position: relative;
+      min-height: 62vh;
+      background: url('https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1600&q=85') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #ffffff;
+      padding: 70px 20px;
+      border-bottom: 5px solid var(--forest-dark);
     }
 
-    /* Cards */
-    .card {
-      background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease-in-out, background 0.3s;
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(19, 59, 38, 0.84) 0%, rgba(11, 38, 24, 0.72) 100%);
     }
-    body.dark .card { background: #2c2c2c; }
-    .card:hover { transform: translateY(-10px); }
 
-    /* Media Container */
-    .media-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; padding: 10px; }
-    .media-container img, .media-container video {
-      flex: 0 0 auto; width: 300px; height: 200px; object-fit: cover; border-radius: 12px; scroll-snap-align: start;
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
     }
-    .media-container::-webkit-scrollbar { height: 8px; }
-    .media-container::-webkit-scrollbar-thumb { background: #007BFF; border-radius: 10px; }
 
-    .card-content { padding: 15px; }
-    .card-content h3 { margin: 10px 0; font-size: 1.5rem; color: #007BFF; }
-    .buttons { margin-top: 15px; display: flex; justify-content: space-between; }
-    .buttons a {
-      text-decoration: none; background: linear-gradient(90deg, #007BFF, #00C6FF);
-      color: white; padding: 8px 15px; border-radius: 25px; font-weight: bold; transition: opacity 0.3s;
+    .hero-pill {
+      display: inline-block;
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
+      font-size: 12.5px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     }
-    .buttons a:hover { opacity: 0.85; }
 
-    /* Modal */
+    .hero h1 {
+      font-size: clamp(2rem, 4.4vw, 3.1rem);
+      line-height: 1.18;
+      margin-bottom: 14px;
+      text-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      color: #e6f2eb;
+      max-width: 720px;
+      margin: 0 auto 26px;
+      line-height: 1.65;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-donate-btn {
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
+      border: 2px solid var(--gold-accent);
+      padding: 13px 30px;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3);
+      transition: all 0.28s ease;
+    }
+
+    .hero-donate-btn:hover {
+      background-color: #facc15;
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    .hero-secondary-btn {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 2px solid #ffffff;
+      padding: 13px 26px;
+      border-radius: 30px;
+      font-size: 14.5px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .hero-secondary-btn:hover {
+      background: #ffffff;
+      color: var(--forest-dark);
+    }
+
+    /* MAIN CONTAINER */
+    .main-container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 48px 20px 30px;
+    }
+
+    /* SECTION HEADERS WITH LEAF DIVIDER */
+    .section-head-leaf {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .leaf-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 5px;
+    }
+
+    .leaf-line::before,
+    .leaf-line::after {
+      content: "";
+      width: 70px;
+      height: 1.8px;
+      background: linear-gradient(90deg, transparent, #8ca897, transparent);
+    }
+
+    .section-head-leaf h2 {
+      font-size: clamp(1.65rem, 3.2vw, 2.25rem);
+      color: var(--forest-dark);
+      margin-bottom: 4px;
+    }
+
+    .section-head-leaf p {
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    /* FEATURED FIRST-CARD FOCUS: EYE PROTECTION & HEALTH CAMP */
+    .eye-camp-showcase {
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid #e5e0d3;
+      border-top: 5px solid var(--forest-dark);
+      box-shadow: 0 10px 28px rgba(19, 59, 38, 0.07);
+      display: grid;
+      grid-template-columns: 1.05fr 1.15fr;
+      overflow: hidden;
+      margin-bottom: 34px;
+    }
+
+    .eye-camp-photo {
+      position: relative;
+      min-height: 330px;
+      background-color: #dce6df;
+    }
+
+    .eye-camp-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .eye-camp-tag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background-color: var(--forest-dark);
+      color: var(--gold-accent);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--gold-accent);
+    }
+
+    .eye-camp-details {
+      padding: 30px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .eye-camp-details h2 {
+      font-size: 1.65rem;
+      color: var(--forest-dark);
+      margin-bottom: 10px;
+    }
+
+    .eye-camp-details p {
+      font-size: 14.8px;
+      color: #36493e;
+      margin-bottom: 14px;
+    }
+
+    .check-list {
+      list-style: none;
+      margin-bottom: 18px;
+    }
+
+    .check-list li {
+      font-size: 14px;
+      color: #2c3e33;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+    }
+
+    .check-list li::before {
+      content: "✓";
+      background-color: var(--emerald-soft);
+      color: var(--forest-dark);
+      font-weight: 800;
+      font-size: 11px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .inline-donate-btn {
+      background-color: var(--forest-dark);
+      color: #ffffff;
+      border: 2px solid var(--gold-accent);
+      padding: 10px 22px;
+      border-radius: 25px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      width: fit-content;
+      transition: all 0.25s ease;
+    }
+
+    .inline-donate-btn:hover {
+      background-color: var(--gold-accent);
+      color: var(--forest-dark);
+    }
+
+    /* 3-COLUMN CORE HEALTH & DISABILITY PILLARS */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-bottom: 44px;
+    }
+
+    .pillar-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 24px 20px;
+      border: 1px solid #e5e0d3;
+      border-top: 4px solid var(--forest-dark);
+      box-shadow: 0 6px 18px rgba(19, 59, 38, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 28px rgba(19, 59, 38, 0.12);
+    }
+
+    .pillar-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background-color: var(--emerald-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .pillar-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.22rem;
+      color: var(--forest-dark);
+      margin-bottom: 8px;
+    }
+
+    .pillar-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* AUTOMATIC PHOTO & VIDEO GALLERY SECTION */
+    .gallery-section {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 34px 26px;
+      border: 1px solid #e5e0d3;
+      box-shadow: 0 8px 24px rgba(19, 59, 38, 0.06);
+      margin-bottom: 36px;
+    }
+
+    .filter-controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .filter-btn {
+      background-color: var(--cream-bg);
+      color: var(--forest-dark);
+      border: 1.5px solid #cbd5ce;
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background-color: var(--forest-dark);
+      color: #ffffff;
+      border-color: var(--forest-dark);
+    }
+
+    /* Auto-Scrolling Horizontal Carousel + Grid Feel */
+    .auto-media-track {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 8px 4px 16px;
+      scroll-snap-type: x mandatory;
+    }
+
+    .auto-media-track::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .auto-media-track::-webkit-scrollbar-track {
+      background: var(--cream-bg);
+      border-radius: 10px;
+    }
+
+    .auto-media-track::-webkit-scrollbar-thumb {
+      background: var(--forest-mid);
+      border-radius: 10px;
+    }
+
+    .media-card {
+      flex: 0 0 310px;
+      background: var(--cream-bg);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #e2dccb;
+      box-shadow: 0 6px 16px rgba(19, 59, 38, 0.08);
+      scroll-snap-align: start;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .media-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(19, 59, 38, 0.16);
+    }
+
+    .media-thumb {
+      width: 100%;
+      height: 205px;
+      position: relative;
+      background: #1a2e22;
+      overflow: hidden;
+    }
+
+    .media-thumb img,
+    .media-thumb video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .media-card:hover .media-thumb img {
+      transform: scale(1.07);
+    }
+
+    .media-type-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: rgba(19, 59, 38, 0.88);
+      color: var(--gold-accent);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .media-caption-box {
+      padding: 12px 14px;
+    }
+
+    .media-caption-box h4 {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--forest-dark);
+      margin-bottom: 2px;
+    }
+
+    .media-caption-box span {
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    /* DONATE CALL-TO-ACTION STRIP */
+    .bottom-donate-banner {
+      background: linear-gradient(135deg, var(--forest-dark) 0%, #0e2e1d 100%);
+      border-radius: 16px;
+      padding: 32px 28px;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      box-shadow: 0 12px 28px rgba(19, 59, 38, 0.16);
+    }
+
+    .bottom-donate-banner h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--gold-accent);
+      margin-bottom: 6px;
+    }
+
+    .bottom-donate-banner p {
+      font-size: 14.5px;
+      color: #e6f2eb;
+      max-width: 620px;
+    }
+
+    /* FULLSCREEN LIGHTBOX MODAL (AUTO SLIDESHOW + SWIPE + KEYBOARD) */
     .modal {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000;
-      flex-direction: column; color: white; text-align: center;
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 22, 14, 0.93);
+      backdrop-filter: blur(5px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      flex-direction: column;
+      color: white;
+      text-align: center;
+      padding: 16px;
     }
-    .modal-content { max-width: 90%; max-height: 80%; }
-    .modal img, .modal video { max-width: 100%; max-height: 80vh; border-radius: 12px; }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 75vh;
+    }
+
+    .modal img,
+    .modal video {
+      max-width: 100%;
+      max-height: 74vh;
+      border-radius: 14px;
+      border: 2px solid var(--gold-accent);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65);
+    }
+
+    .modal-caption {
+      margin-top: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fef9c3;
+    }
+
     .modal-btn {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      font-size: 2rem; color: white; cursor: pointer; padding: 10px; background: rgba(0,0,0,0.5); border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      color: #ffffff;
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--forest-dark);
+      border: 1.5px solid var(--gold-accent);
+      border-radius: 50%;
+      transition: all 0.25s ease;
     }
+
+    .modal-btn:hover {
+      background: var(--gold-accent);
+      color: var(--forest-dark);
+    }
+
     .prev { left: 20px; }
     .next { right: 20px; }
+
     .close-btn {
-      position: absolute; top: 20px; right: 20px; font-size: 2rem; cursor: pointer; background: rgba(0,0,0,0.5); border-radius: 50%;
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      font-size: 1.2rem;
+      font-weight: 800;
+      cursor: pointer;
+      background: #991b1b;
+      color: #ffffff;
+      border: 1px solid #fca5a5;
+      padding: 7px 15px;
+      border-radius: 20px;
     }
 
     .dots {
-      display: flex; justify-content: center; gap: 8px; margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
     }
-    .dot { width: 12px; height: 12px; border-radius: 50%; background: #aaa; cursor: pointer; transition: background 0.3s; }
-    .dot.active { background: #007BFF; }
 
-    footer { background: black; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
 
-    @media(max-width: 768px){
-      .hero h1 { font-size: 2.2rem; }
-      .hero p { font-size: 1rem; }
+    .dot.active {
+      width: 24px;
+      border-radius: 10px;
+      background: var(--gold-accent);
+    }
+
+    /* QUICK DONATION MODAL (CONNECTS TO YOUR RAZORPAY WORKER) */
+    .donate-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .donate-modal.active {
+      display: flex;
+    }
+
+    .donate-modal-box {
+      background: #ffffff;
+      width: 100%;
+      max-width: 460px;
+      border-radius: 14px;
+      padding: 26px 28px;
+      border-top: 6px solid var(--forest-dark);
+      position: relative;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.4);
+    }
+
+    .donate-modal-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 23px;
+      color: var(--forest-dark);
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .donate-modal-box label {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 600;
+      margin-top: 10px;
+      color: var(--text-dark);
+    }
+
+    .donate-modal-box input {
+      width: 100%;
+      padding: 9px 12px;
+      margin-top: 4px;
+      border: 1px solid #cbd5ce;
+      border-radius: 8px;
+      font-size: 14.5px;
+      background: var(--cream-bg);
+    }
+
+    .donate-submit-btn {
+      width: 100%;
+      margin-top: 18px;
+      padding: 12px;
+      background: var(--forest-dark);
+      color: #ffffff;
+      border: 2px solid var(--gold-accent);
+      border-radius: 25px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .donate-submit-btn:hover {
+      background: var(--gold-accent);
+      color: var(--forest-dark);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--forest-dark);
+      color: #e6efe9;
+      text-align: center;
+      padding: 26px 16px;
+      margin-top: 40px;
+      border-top: 4px solid var(--gold-accent);
+      font-size: 14px;
+    }
+
+    footer p {
+      color: #bfd4c7;
+      font-size: 13px;
+      margin-top: 4px;
+      font-style: italic;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 920px) {
+      .eye-camp-showcase {
+        grid-template-columns: 1fr;
+      }
+
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .top-nav-strip {
+        padding: 10px 16px;
+      }
+
+      .brand-mini strong {
+        display: none;
+      }
+
+      .hero {
+        padding: 55px 16px;
+      }
+
+      .media-card {
+        flex: 0 0 265px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Hero -->
+  <!-- Compact Top Navigation Bar -->
+  <div class="top-nav-strip">
+    <a href="index.html" class="brand-mini">
+      <img src="SSMCT Logo1.png" alt="SSMCT Logo">
+      <strong>Shyamashree Shitala Maa Charitable Trust</strong>
+    </a>
+    <div class="nav-actions">
+      <a href="index.html" class="back-home-btn">← Back to Home</a>
+    </div>
+  </div>
+
+  <!-- Large Hero Image with Description & Donate Button -->
   <section class="hero">
-    <h1>Health & Disability Support</h1>
-    <p>Empowering lives through compassionate health care and disability support programs.</p>
+    <div class="hero-inner">
+      <span class="hero-pill">🩺 Healthcare, Vision &amp; Accessibility Initiative</span>
+      <h1>Health &amp; Disability Support</h1>
+      <p>Empowering underprivileged families, senior citizens, and differently-abled individuals with free eye protection camps, mobile primary healthcare, and assistive mobility devices across West Bengal.</p>
+      <div class="hero-cta-row">
+        <button type="button" class="hero-donate-btn" onclick="openHealthDonateModal()">
+          💛 Donate Now
+        </button>
+        <a href="#mediaGallery" class="hero-secondary-btn">📸 View Photo &amp; Video Gallery</a>
+      </div>
+    </div>
   </section>
 
-  <!-- Search & Dark Mode -->
-  <div class="controls">
-    <input type="text" id="searchBox" placeholder="Search programs..." onkeyup="searchProjects()">
-    <button onclick="toggleTheme()">Toggle Dark Mode</button>
-  </div>
+  <!-- Main Content -->
+  <div class="main-container">
 
-  <!-- Filters -->
-  <div class="controls">
-    <button onclick="filterCards('all')">All</button>
-    <button onclick="filterCards('video')">Videos</button>
-    <button onclick="filterCards('image')">Images</button>
-  </div>
-
-  <!-- Cards -->
-  <div class="grid" id="cardGrid">
-    <div class="card video" data-full="Mobile health clinics offering primary care in remote communities." data-media='["https://samplelib.com/lib/preview/mp4/sample-5s.mp4","https://images.unsplash.com/photo-1584515933487-779824d29309"]'>
-      <div class="media-container">
-        <video controls src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4"></video>
-        <img src="https://images.unsplash.com/photo-1584515933487-779824d29309">
+    <!-- Featured First-Card Section: Eye Protection & Vision Care Camp -->
+    <div class="eye-camp-showcase">
+      <div class="eye-camp-photo">
+        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1000&q=85" alt="Eye Protection and Vision Screening Camp">
+        <span class="eye-camp-tag">👁️ Featured Health Initiative</span>
       </div>
-      <div class="card-content">
-        <h3>Mobile Health Clinics</h3>
-        <p>Bringing healthcare to underserved areas.</p>
-        <div class="buttons">
-          <a href="#" onclick="toggleDescription(this)">Learn More</a>
-          <a href="#" onclick="openModal(this)">View Details</a>
-        </div>
+      <div class="eye-camp-details">
+        <h2>Eye Protection &amp; Vision Care Camps</h2>
+        <p>Preventable blindness and untreated refractive errors severely affect elderly villagers, daily wage earners, and school children. Our regular community camps ensure accessible eye protection and clear vision for all.</p>
+        <ul class="check-list">
+          <li><strong>Free Comprehensive Eye Check-up:</strong> Vision testing &amp; early cataract detection by qualified optometrists.</li>
+          <li><strong>UV-Protective &amp; Prescription Spectacles:</strong> Free eyeglasses distributed on-site to restore daily independence.</li>
+          <li><strong>Cataract Surgery Referral Support:</strong> Guided hospital coordination for senior citizens needing critical eye care.</li>
+          <li><strong>Eye Hygiene &amp; Protection Awareness:</strong> Preventive care workshops for outdoor workers and students.</li>
+        </ul>
+        <button type="button" class="inline-donate-btn" onclick="openHealthDonateModal()">
+          💛 Sponsor an Eye Check-up &amp; Spectacles →
+        </button>
       </div>
     </div>
 
-    <div class="card image" data-full="Wheelchair and assistive devices program to improve mobility." data-media='["https://images.unsplash.com/photo-1505751172876-fa1923c5c528","https://images.unsplash.com/photo-1576765607924-b6f4d24f70b0"]'>
-      <div class="media-container">
-        <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528">
-        <img src="https://images.unsplash.com/photo-1576765607924-b6f4d24f70b0">
+    <!-- 3 Core Pillars of Health & Disability Support -->
+    <div class="section-head-leaf">
+      <div class="leaf-line">
+        <svg viewBox="0 0 44 36" width="32" height="26" fill="#1d5236">
+          <path d="M22 33V11M22 22c-7-8-16-7-16-7s2 10 16 7zm0-6c7-8 16-7 16-7s-2 10-16 7zm0-5c-3-6 0-10 0-10s3 4 0 10z"/>
+        </svg>
       </div>
-      <div class="card-content">
-        <h3>Assistive Devices</h3>
-        <p>Providing mobility solutions to those in need.</p>
-        <div class="buttons">
-          <a href="#" onclick="toggleDescription(this)">Learn More</a>
-          <a href="#" onclick="openModal(this)">View Details</a>
-        </div>
+      <h2>Our Health &amp; Accessibility Programs</h2>
+      <p>Comprehensive medical outreach and dignity-focused support for vulnerable communities</p>
+    </div>
+
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon">🚑</div>
+        <h3>Mobile Health &amp; Eye Clinics</h3>
+        <p>Doorstep primary medical check-ups, eye protection screenings, blood pressure &amp; diabetes monitoring, and free essential medicines in underserved rural pockets.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-icon">♿</div>
+        <h3>Assistive Devices &amp; Mobility</h3>
+        <p>Providing wheelchairs, white canes (Project Antardrishti), hearing aids, and walking supports to help differently-abled individuals move safely and independently.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-icon">🧠</div>
+        <h3>Counseling &amp; Wellness Care</h3>
+        <p>Community mental health awareness, maternal &amp; adolescent nutrition guidance, and empathetic rehabilitation support for families.</p>
       </div>
     </div>
 
-    <div class="card video" data-full="Mental health awareness and counseling sessions for communities." data-media='["https://samplelib.com/lib/preview/mp4/sample-10s.mp4","https://images.unsplash.com/photo-1526256262350-7da7584cf5eb"]'>
-      <div class="media-container">
-        <video controls src="https://samplelib.com/lib/preview/mp4/sample-10s.mp4"></video>
-        <img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb">
+    <!-- Automatic Photo & Video Gallery -->
+    <section class="gallery-section" id="mediaGallery">
+      <div class="section-head-leaf" style="margin-bottom:18px;">
+        <div class="leaf-line">
+          <svg viewBox="0 0 44 36" width="32" height="26" fill="#1d5236">
+            <path d="M22 33V11M22 22c-7-8-16-7-16-7s2 10 16 7zm0-6c7-8 16-7 16-7s-2 10-16 7zm0-5c-3-6 0-10 0-10s3 4 0 10z"/>
+          </svg>
+        </div>
+        <h2>📸 Field Moments: Photo &amp; Video Gallery</h2>
+        <p>Click any photo or video to view in fullscreen automatic slideshow</p>
       </div>
-      <div class="card-content">
-        <h3>Mental Health Support</h3>
-        <p>Spreading awareness and offering counseling services.</p>
-        <div class="buttons">
-          <a href="#" onclick="toggleDescription(this)">Learn More</a>
-          <a href="#" onclick="openModal(this)">View Details</a>
+
+      <!-- Filter Buttons -->
+      <div class="filter-controls">
+        <button type="button" class="filter-btn active" onclick="filterMedia(this, 'all')">All Media</button>
+        <button type="button" class="filter-btn" onclick="filterMedia(this, 'image')">📷 Photos</button>
+        <button type="button" class="filter-btn" onclick="filterMedia(this, 'video')">🎥 Videos</button>
+      </div>
+
+      <!-- Auto-Scrolling Media Track -->
+      <div class="auto-media-track" id="autoMediaTrack">
+        <!-- Item 1: Eye Protection Camp Photo -->
+        <div class="media-card image" data-index="0" onclick="openLightboxAt(0)">
+          <div class="media-thumb">
+            <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=900&q=80" alt="Eye Protection Camp">
+            <span class="media-type-badge">Photo</span>
+          </div>
+          <div class="media-caption-box">
+            <h4>Eye Check-up &amp; Protection Camp</h4>
+            <span>Free vision screening for senior citizens</span>
+          </div>
+        </div>
+
+        <!-- Item 2: Mobile Health Video -->
+        <div class="media-card video" data-index="1" onclick="openLightboxAt(1)">
+          <div class="media-thumb">
+            <video muted loop playsinline preload="metadata" src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4"></video>
+            <span class="media-type-badge">▶ Video</span>
+          </div>
+          <div class="media-caption-box">
+            <h4>Mobile Health Clinic Outreach</h4>
+            <span>Primary medical care in rural communities</span>
+          </div>
+        </div>
+
+        <!-- Item 3: Assistive Devices Photo -->
+        <div class="media-card image" data-index="2" onclick="openLightboxAt(2)">
+          <div class="media-thumb">
+            <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=900&q=80" alt="Assistive Mobility Support">
+            <span class="media-type-badge">Photo</span>
+          </div>
+          <div class="media-caption-box">
+            <h4>Mobility &amp; Assistive Aid</h4>
+            <span>Empowering independent movement</span>
+          </div>
+        </div>
+
+        <!-- Item 4: Free Medicine & Care Photo -->
+        <div class="media-card image" data-index="3" onclick="openLightboxAt(3)">
+          <div class="media-thumb">
+            <img src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80" alt="Free Medicine Distribution">
+            <span class="media-type-badge">Photo</span>
+          </div>
+          <div class="media-caption-box">
+            <h4>Free Medicine &amp; Health Check</h4>
+            <span>Compassionate care for every family</span>
+          </div>
+        </div>
+
+        <!-- Item 5: Wellness Session Video -->
+        <div class="media-card video" data-index="4" onclick="openLightboxAt(4)">
+          <div class="media-thumb">
+            <video muted loop playsinline preload="metadata" src="https://samplelib.com/lib/preview/mp4/sample-10s.mp4"></video>
+            <span class="media-type-badge">▶ Video</span>
+          </div>
+          <div class="media-caption-box">
+            <h4>Community Health Awareness</h4>
+            <span>Preventive hygiene &amp; wellness drive</span>
+          </div>
+        </div>
+
+        <!-- Item 6: Counseling & Care Photo -->
+        <div class="media-card image" data-index="5" onclick="openLightboxAt(5)">
+          <div class="media-thumb">
+            <img src="https://images.unsplash.com/photo-1576765607924-b6f4d24f70b0?auto=format&fit=crop&w=900&q=80" alt="Disability Care Support">
+            <span class="media-type-badge">Photo</span>
+          </div>
+          <div class="media-caption-box">
+            <h4>Disability Rehabilitation Care</h4>
+            <span>Supporting dignity &amp; equal opportunity</span>
+          </div>
         </div>
       </div>
+    </section>
+
+    <!-- Bottom Donate Banner -->
+    <div class="bottom-donate-banner">
+      <div>
+        <h3>Help Us Protect Vision &amp; Restore Health</h3>
+        <p>Your contribution funds free eye protection spectacles, essential medicines, and mobility aids for those who need them most. Eligible for 80G tax exemption.</p>
+      </div>
+      <button type="button" class="hero-donate-btn" onclick="openHealthDonateModal()">
+        💛 Donate for Healthcare →
+      </button>
     </div>
+
   </div>
 
-  <!-- Modal -->
+  <!-- Fullscreen Auto-Slideshow Modal -->
   <div class="modal" id="modal">
-    <span class="close-btn" onclick="closeModal()">✕</span>
+    <span class="close-btn" onclick="closeModal()">✖ Close</span>
     <span class="modal-btn prev" onclick="prevMedia()">❮</span>
     <div class="modal-content" id="modalContent"></div>
+    <div class="modal-caption" id="modalCaption"></div>
     <div class="dots" id="dotsContainer"></div>
     <span class="modal-btn next" onclick="nextMedia()">❯</span>
   </div>
 
+  <!-- Direct Razorpay Donation Modal (Same Live Gateway as Homepage) -->
+  <div class="donate-modal" id="healthDonateModal">
+    <div class="donate-modal-box">
+      <span style="position:absolute; top:12px; right:16px; font-size:24px; cursor:pointer; color:#666;" onclick="closeHealthDonateModal()">&times;</span>
+      <h3>Support Health &amp; Eye Care 💛</h3>
+      <form id="healthDonationForm">
+        <label>Name *</label>
+        <input type="text" id="donorName" required>
+
+        <label>Mobile No *</label>
+        <input type="tel" id="donorMobile" required>
+
+        <label>Email *</label>
+        <input type="email" id="donorEmail" required>
+
+        <label>Address *</label>
+        <input type="text" id="donorAddress" required>
+
+        <label>PAN (Optional for 80G)</label>
+        <input type="text" id="donorPan">
+
+        <label>Donation Amount (₹) *</label>
+        <input type="number" id="donorAmount" value="501" required min="1">
+
+        <button type="submit" class="donate-submit-btn">Proceed to Donate ✅</button>
+      </form>
+    </div>
+  </div>
+
   <footer>
     © 2025 Shyamashree Shitala Maa Charitable Trust. All rights reserved.
+    <p>Serving Humanity with Love, Compassion &amp; Kindness</p>
   </footer>
 
-  <script>
-    let currentIndex = 0, mediaArray = [];
+  <!-- Razorpay Checkout Script -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-    function filterCards(type) {
-      document.querySelectorAll('.card').forEach(card => {
+  <script>
+    const mediaList = [
+      { type: 'image', src: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=85', caption: 'Eye Check-up & Protection Camp — Free vision screening for senior citizens' },
+      { type: 'video', src: 'https://samplelib.com/lib/preview/mp4/sample-5s.mp4', caption: 'Mobile Health Clinic Outreach — Primary medical care in rural communities' },
+      { type: 'image', src: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=85', caption: 'Mobility & Assistive Aid — Empowering independent movement' },
+      { type: 'image', src: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=85', caption: 'Free Medicine & Health Check — Compassionate care for every family' },
+      { type: 'video', src: 'https://samplelib.com/lib/preview/mp4/sample-10s.mp4', caption: 'Community Health Awareness — Preventive hygiene & wellness drive' },
+      { type: 'image', src: 'https://images.unsplash.com/photo-1576765607924-b6f4d24f70b0?auto=format&fit=crop&w=1200&q=85', caption: 'Disability Rehabilitation Care — Supporting dignity & equal opportunity' }
+    ];
+
+    let currentIndex = 0;
+    let lightboxTimer = null;
+
+    // Filter Photos / Videos / All
+    function filterMedia(btn, type) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.media-card').forEach(card => {
         card.style.display = (type === 'all' || card.classList.contains(type)) ? 'block' : 'none';
       });
     }
-    function searchProjects() {
-      const search = document.getElementById("searchBox").value.toLowerCase();
-      document.querySelectorAll('.card').forEach(card => {
-        const title = card.querySelector("h3").innerText.toLowerCase();
-        card.style.display = title.includes(search) ? 'block' : 'none';
-      });
-    }
-    function toggleTheme() { document.body.classList.toggle("dark"); }
 
-    function toggleDescription(btn) {
-      const p = btn.closest('.card-content').querySelector('p');
-      const card = btn.closest('.card');
-      if (btn.innerText === "Learn More") {
-        p.innerText = card.dataset.full;
-        btn.innerText = "Show Less";
+    // Automatic Horizontal Carousel Scroll (Pauses when user hovers)
+    const track = document.getElementById('autoMediaTrack');
+    let autoScrollPaused = false;
+    track.addEventListener('mouseenter', () => autoScrollPaused = true);
+    track.addEventListener('mouseleave', () => autoScrollPaused = false);
+
+    setInterval(() => {
+      if (autoScrollPaused) return;
+      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
       } else {
-        p.innerText = p.innerText.split(".")[0] + ".";
-        btn.innerText = "Learn More";
+        track.scrollBy({ left: 328, behavior: 'smooth' });
       }
+    }, 3200);
+
+    // Lightbox Functions with Automatic Slideshow
+    function openLightboxAt(index) {
+      currentIndex = index;
+      renderLightboxMedia();
+      document.getElementById('modal').style.display = 'flex';
+      startLightboxSlideshow();
     }
 
-    function openModal(btn) {
-      const card = btn.closest('.card');
-      mediaArray = JSON.parse(card.dataset.media);
-      currentIndex = 0;
-      showMedia();
-      document.getElementById("modal").style.display = "flex";
-    }
+    function renderLightboxMedia() {
+      const modalContent = document.getElementById('modalContent');
+      const modalCaption = document.getElementById('modalCaption');
+      const dotsContainer = document.getElementById('dotsContainer');
+      const item = mediaList[currentIndex];
 
-    function showMedia() {
-      const modalContent = document.getElementById("modalContent");
-      const dotsContainer = document.getElementById("dotsContainer");
-      const media = mediaArray[currentIndex];
+      modalContent.innerHTML = item.type === 'video'
+        ? `<video src="${item.src}" controls autoplay></video>`
+        : `<img src="${item.src}" alt="${item.caption}">`;
 
-      modalContent.innerHTML = media.endsWith(".mp4")
-        ? `<video src="${media}" controls autoplay></video>`
-        : `<img src="${media}" alt="Media">`;
+      modalCaption.textContent = item.caption;
 
-      dotsContainer.innerHTML = mediaArray.map((_, i) =>
+      dotsContainer.innerHTML = mediaList.map((_, i) =>
         `<div class="dot ${i === currentIndex ? 'active' : ''}" onclick="goToMedia(${i})"></div>`
       ).join('');
     }
 
-    function goToMedia(index) { currentIndex = index; showMedia(); }
-    function closeModal() { document.getElementById("modal").style.display = "none"; }
-    function nextMedia() { currentIndex = (currentIndex + 1) % mediaArray.length; showMedia(); }
-    function prevMedia() { currentIndex = (currentIndex - 1 + mediaArray.length) % mediaArray.length; showMedia(); }
+    function startLightboxSlideshow() {
+      clearInterval(lightboxTimer);
+      lightboxTimer = setInterval(() => {
+        currentIndex = (currentIndex + 1) % mediaList.length;
+        renderLightboxMedia();
+      }, 4500);
+    }
+
+    function goToMedia(index) {
+      currentIndex = index;
+      renderLightboxMedia();
+      startLightboxSlideshow();
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+      document.getElementById('modalContent').innerHTML = '';
+      clearInterval(lightboxTimer);
+    }
+
+    function nextMedia() {
+      currentIndex = (currentIndex + 1) % mediaList.length;
+      renderLightboxMedia();
+      startLightboxSlideshow();
+    }
+
+    function prevMedia() {
+      currentIndex = (currentIndex - 1 + mediaList.length) % mediaList.length;
+      renderLightboxMedia();
+      startLightboxSlideshow();
+    }
 
     document.addEventListener('keydown', e => {
-      if (document.getElementById("modal").style.display === "flex") {
-        if (e.key === "ArrowRight") nextMedia();
-        if (e.key === "ArrowLeft") prevMedia();
-        if (e.key === "Escape") closeModal();
+      if (document.getElementById('modal').style.display === 'flex') {
+        if (e.key === 'ArrowRight') nextMedia();
+        if (e.key === 'ArrowLeft') prevMedia();
+        if (e.key === 'Escape') closeModal();
       }
     });
 
-    document.querySelectorAll('.media-container').forEach(container => {
-      setInterval(() => {
-        container.scrollBy({ left: 310, behavior: 'smooth' });
-        if (container.scrollLeft + container.clientWidth >= container.scrollWidth)
-          container.scrollTo({ left: 0, behavior: 'smooth' });
-      }, 3000);
+    // Touch Swipe Support for Mobile
+    let startX = 0;
+    const modalEl = document.getElementById('modal');
+    modalEl.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+    modalEl.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 50) {
+        if (dx < 0) nextMedia(); else prevMedia();
+      }
     });
 
-    function addSwipeSupport(element, onSwipeLeft, onSwipeRight) {
-      let startX = 0, startY = 0;
-      element.addEventListener('touchstart', e => {
-        const touch = e.touches[0];
-        startX = touch.clientX; startY = touch.clientY;
-      });
-      element.addEventListener('touchend', e => {
-        const touch = e.changedTouches[0];
-        const dx = touch.clientX - startX; const dy = touch.clientY - startY;
-        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
-          if (dx < 0) onSwipeLeft(); else onSwipeRight();
-        }
-      });
+    // Donation Modal + Razorpay Integration
+    function openHealthDonateModal() {
+      document.getElementById('healthDonateModal').classList.add('active');
     }
 
-    addSwipeSupport(document.getElementById("modal"), nextMedia, prevMedia);
-    document.querySelectorAll('.media-container').forEach(container => {
-      addSwipeSupport(container,
-        () => container.scrollBy({ left: 300, behavior: 'smooth' }),
-        () => container.scrollBy({ left: -300, behavior: 'smooth' })
-      );
+    function closeHealthDonateModal() {
+      document.getElementById('healthDonateModal').classList.remove('active');
+    }
+
+    const razorpayKey = "rzp_live_RyvBMwV4crOZwu";
+    const workerAPI = "https://trust.sitalamaashyamashree.workers.dev/";
+
+    document.getElementById("healthDonationForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      let donation = {
+        name: document.getElementById("donorName").value,
+        mobile: document.getElementById("donorMobile").value,
+        email: document.getElementById("donorEmail").value,
+        address: document.getElementById("donorAddress").value,
+        pan: document.getElementById("donorPan").value,
+        amount: document.getElementById("donorAmount").value
+      };
+
+      let options = {
+        key: razorpayKey,
+        amount: donation.amount * 100,
+        currency: "INR",
+        name: "Shyamashree Shitala Maa Charitable Trust",
+        description: "Health & Eye Care Support Donation",
+        handler: function (response) {
+          donation.paymentId = response.razorpay_payment_id;
+          fetch(workerAPI, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(donation)
+          })
+          .then(res => res.text())
+          .then(data => console.log("Worker Response:", data))
+          .catch(err => console.error("Worker Error:", err));
+
+          alert("Thank you! Your donation for Health & Disability Support was successful.");
+          closeHealthDonateModal();
+        }
+      };
+
+      new Razorpay(options).open();
     });
   </script>
 </body>
