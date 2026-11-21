@@ -16,7 +16,7 @@
     gtag('config', 'G-149NCZ03L5');
   </script>
 
-  <!-- PDF.js Library for Secure Canvas-Only Rendering (Blocks Save As & Download Toolbar) -->
+  <!-- PDF.js Library for Secure Canvas-Only Rendering -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
   <style>
@@ -26,7 +26,6 @@
       --emerald-soft: #e6f4ec;
       --cream-bg: #fcfaf2;
       --gold-primary: #eab308;
-      --gold-rich: #d97706;
       --gold-light: #fef9c3;
       --text-dark: #14261c;
       --text-muted: #4a5d52;
@@ -206,7 +205,7 @@
       border-radius: 20px;
     }
 
-    /* 4-COLUMN ATTRACTIVE CERTIFICATE GRID */
+    /* 4-COLUMN CERTIFICATE GRID */
     .cert-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -334,7 +333,7 @@
       box-shadow: 0 6px 18px rgba(234, 179, 8, 0.35);
     }
 
-    /* SECURE CANVAS-ONLY PDF MODAL VIEWER */
+    /* SECURE VIEW-ONLY DOCUMENT MODAL */
     .pdf-modal {
       display: none;
       position: fixed;
@@ -342,10 +341,9 @@
       z-index: 9999;
       background-color: rgba(8, 22, 14, 0.92);
       backdrop-filter: blur(6px);
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 14px;
+      padding: 16px;
     }
 
     .pdf-modal.active {
@@ -354,26 +352,26 @@
 
     .pdf-modal-box {
       width: 100%;
-      max-width: 980px;
+      max-width: 920px;
       height: 92vh;
-      background-color: #1c2420;
+      background-color: #1f2823;
       border-radius: 16px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       border: 2px solid var(--gold-primary);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
     }
 
     .pdf-modal-header {
       background: linear-gradient(90deg, #0b2b1b, var(--forest-deep));
       color: #ffffff;
-      padding: 12px 20px;
+      padding: 14px 22px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
+      flex-shrink: 0;
       border-bottom: 1px solid rgba(234, 179, 8, 0.35);
     }
 
@@ -381,6 +379,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
     }
 
     .pdf-modal-title-wrap h4 {
@@ -400,38 +399,16 @@
       text-transform: uppercase;
     }
 
-    .viewer-controls {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .zoom-btn {
-      background: rgba(255, 255, 255, 0.14);
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      padding: 6px 12px;
-      border-radius: 18px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .zoom-btn:hover {
-      background: var(--gold-primary);
-      color: var(--forest-deep);
-    }
-
     .close-viewer-btn {
       background-color: #b91c1c;
       color: #ffffff;
       border: 1px solid #fca5a5;
-      padding: 6px 15px;
+      padding: 7px 16px;
       border-radius: 20px;
       font-size: 13px;
       font-weight: 700;
       cursor: pointer;
+      flex-shrink: 0;
       transition: background 0.2s;
     }
 
@@ -439,37 +416,40 @@
       background-color: #dc2626;
     }
 
-    /* Scrollable Canvas Container (No Browser Save-As Menu) */
+    /* FIXED SCROLL AREA: Block layout so full pages render properly without squishing */
     .canvas-scroll-area {
-      position: relative;
-      flex-grow: 1;
+      flex: 1;
       width: 100%;
       overflow-y: auto;
-      overflow-x: auto;
-      background-color: #242d28;
-      padding: 24px 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
+      overflow-x: hidden;
+      background-color: #26302b;
+      padding: 24px 20px;
+      display: block;
     }
 
     .pdf-page-wrapper {
       position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 24px auto;
       background: #ffffff;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      border-radius: 6px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+      border-radius: 8px;
       overflow: hidden;
+    }
+
+    .pdf-page-wrapper:last-child {
+      margin-bottom: 0;
     }
 
     .pdf-page-wrapper canvas {
       display: block;
-      max-width: 100%;
-      height: auto;
+      width: 100% !important;
+      height: auto !important;
       pointer-events: none;
     }
 
-    /* Protective Transparent Overlay + Watermark over every rendered page */
+    /* Protective Transparent Shield + Subtle Watermark */
     .page-shield-watermark {
       position: absolute;
       inset: 0;
@@ -482,9 +462,9 @@
 
     .page-shield-watermark span {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(16px, 3vw, 30px);
+      font-size: clamp(14px, 2.6vw, 26px);
       font-weight: 700;
-      color: rgba(13, 51, 32, 0.13);
+      color: rgba(13, 51, 32, 0.11);
       transform: rotate(-28deg);
       text-align: center;
       pointer-events: none;
@@ -494,7 +474,8 @@
       color: #fef9c3;
       font-size: 15px;
       font-weight: 600;
-      margin-top: 60px;
+      text-align: center;
+      padding: 60px 20px;
     }
 
     /* FOOTER */
@@ -535,8 +516,16 @@
         grid-template-columns: 1fr;
       }
 
+      .pdf-modal {
+        padding: 8px;
+      }
+
       .pdf-modal-box {
-        height: 88vh;
+        height: 90vh;
+      }
+
+      .canvas-scroll-area {
+        padding: 14px 10px;
       }
 
       .view-only-pill {
@@ -717,7 +706,7 @@
     </div>
   </div>
 
-  <!-- SECURE CANVAS-BASED VIEW-ONLY MODAL (NO RIGHT-CLICK SAVE AS) -->
+  <!-- SECURE VIEW-ONLY MODAL (NO ZOOM BUTTONS, CLEAN SCROLLABLE PAGES) -->
   <div class="pdf-modal" id="pdfModal" oncontextmenu="return false;">
     <div class="pdf-modal-box" oncontextmenu="return false;">
       <div class="pdf-modal-header">
@@ -725,15 +714,11 @@
           <h4 id="pdfModalTitle">Certificate Preview</h4>
           <span class="view-only-pill">🔒 Protected View</span>
         </div>
-        <div class="viewer-controls">
-          <button type="button" class="zoom-btn" onclick="changeZoom(-0.2)" title="Zoom Out">➖</button>
-          <button type="button" class="zoom-btn" onclick="changeZoom(0.2)" title="Zoom In">➕</button>
-          <button type="button" class="close-viewer-btn" onclick="closeCertViewer()">✖ Close</button>
-        </div>
+        <button type="button" class="close-viewer-btn" onclick="closeCertViewer()">✖ Close</button>
       </div>
 
       <div class="canvas-scroll-area" id="canvasScrollArea" oncontextmenu="return false;">
-        <div class="loader-msg" id="pdfLoader">Loading certificate securely...</div>
+        <div class="loader-msg">Loading certificate securely...</div>
       </div>
     </div>
   </div>
@@ -745,21 +730,18 @@
   </footer>
 
   <script>
-    // Configure PDF.js Worker
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
     const pdfModal = document.getElementById('pdfModal');
     const pdfModalTitle = document.getElementById('pdfModalTitle');
     const canvasScrollArea = document.getElementById('canvasScrollArea');
 
-    let currentPdfDoc = null;
-    let currentScale = 1.25;
-
-    async function renderAllPages(pdfDoc, scale) {
+    async function renderAllPages(pdfDoc) {
       canvasScrollArea.innerHTML = '';
       for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
         const page = await pdfDoc.getPage(pageNum);
-        const viewport = page.getViewport({ scale: scale });
+        // Render at high crisp resolution (scale 1.6) and let CSS fit 100% width cleanly
+        const viewport = page.getViewport({ scale: 1.6 });
 
         const wrapper = document.createElement('div');
         wrapper.className = 'pdf-page-wrapper';
@@ -788,33 +770,23 @@
 
     async function openCertViewer(fileName, title) {
       pdfModalTitle.textContent = title;
-      currentScale = window.innerWidth < 650 ? 0.85 : 1.25;
       canvasScrollArea.innerHTML = '<div class="loader-msg">Loading certificate securely...</div>';
       pdfModal.classList.add('active');
       document.body.style.overflow = 'hidden';
 
       try {
         const loadingTask = pdfjsLib.getDocument(encodeURI(fileName));
-        currentPdfDoc = await loadingTask.promise;
-        await renderAllPages(currentPdfDoc, currentScale);
+        const pdfDoc = await loadingTask.promise;
+        await renderAllPages(pdfDoc);
       } catch (err) {
-        canvasScrollArea.innerHTML = '<div class="loader-msg">Unable to preview document. Please ensure "' + fileName + '" is in the same folder.</div>';
+        canvasScrollArea.innerHTML = '<div class="loader-msg">Unable to preview document. Please check "' + fileName + '".</div>';
         console.error(err);
       }
-    }
-
-    async function changeZoom(delta) {
-      if (!currentPdfDoc) return;
-      const nextScale = Math.min(Math.max(currentScale + delta, 0.6), 2.4);
-      if (nextScale === currentScale) return;
-      currentScale = nextScale;
-      await renderAllPages(currentPdfDoc, currentScale);
     }
 
     function closeCertViewer() {
       pdfModal.classList.remove('active');
       canvasScrollArea.innerHTML = '';
-      currentPdfDoc = null;
       document.body.style.overflow = 'auto';
     }
 
@@ -831,7 +803,7 @@
       return false;
     }, true);
 
-    // Block Save (Ctrl+S), Print (Ctrl+P), View Source (Ctrl+U), Copy (Ctrl+C), DevTools shortcuts
+    // Block Save (Ctrl+S), Print (Ctrl+P), View Source (Ctrl+U), Copy (Ctrl+C)
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && pdfModal.classList.contains('active')) {
         closeCertViewer();
