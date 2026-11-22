@@ -39,7 +39,7 @@
       --text-muted: #4b5e53;
     }
 
-    * {
+- {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -316,9 +316,11 @@
     .hero-slide:nth-child(1) { background-image: url('totest.png'); }
     .hero-slide:nth-child(2) { background-image: url('totest.png'); }
     .hero-slide:nth-child(3) { background-image: url('totest.png'); }
+    /* Commented Out Hero Slides 4, 5, 6 (Desktop)
     .hero-slide:nth-child(4) { background-image: url('totest.png'); }
     .hero-slide:nth-child(5) { background-image: url('totest.png'); }
     .hero-slide:nth-child(6) { background-image: url('totest.png'); }
+    */
 
     .hero-overlay {
       position: absolute;
@@ -2801,13 +2803,15 @@
         width: 20px;
       }
 
-      /* Mobile hero slides (PRESERVED) */
+      /* Mobile hero slides (1st 3 active, 4-6 commented out) */
       .hero-slide:nth-child(1) { background-image: url('heromo.png'); }
       .hero-slide:nth-child(2) { background-image: url('heromo.png'); }
       .hero-slide:nth-child(3) { background-image: url('heromo.png'); }
+      /*
       .hero-slide:nth-child(4) { background-image: url('heromo.png'); }
       .hero-slide:nth-child(5) { background-image: url('heromo.png'); }
       .hero-slide:nth-child(6) { background-image: url('heromo.png'); }
+      */
 
       .section-header-decorated {
         margin-bottom: 22px;
@@ -3218,9 +3222,11 @@
     <div class="hero-slide" data-link="#"></div>
     <div class="hero-slide" data-link="Shelearn.html"></div>
     <div class="hero-slide" data-link="ShitalaCanteen.html"></div>
+    <!-- Commented Out Hero Slides 4, 5, 6
     <div class="hero-slide" data-link="Antardrishtilearn.html"></div>
     <div class="hero-slide" data-link="Sparshlearn.html"></div>
     <div class="hero-slide" data-link="Chhayalearn.html"></div>
+    -->
 
     <div class="hero-overlay"></div>
 
@@ -3243,9 +3249,11 @@
       <span class="hero-dot active" onclick="manualSlide(event, 0)"></span>
       <span class="hero-dot" onclick="manualSlide(event, 1)"></span>
       <span class="hero-dot" onclick="manualSlide(event, 2)"></span>
+      <!-- Commented Out Dots 4, 5, 6
       <span class="hero-dot" onclick="manualSlide(event, 3)"></span>
       <span class="hero-dot" onclick="manualSlide(event, 4)"></span>
       <span class="hero-dot" onclick="manualSlide(event, 5)"></span>
+      -->
     </div>
   </section>
 
@@ -3988,7 +3996,7 @@
           <option value="en-IN">EN</option>
           <option value="hi-IN">हिं</option>
         </select>
-        <button type="button" class="debu-icon-btn" id="debuMuteBtn" onclick="toggleDebuVoiceOutput()" title="Mute / Unmute Voice">🔊</button>
+        <button type="button" class="debu-icon-btn" id="debuMuteBtn" onclick="toggleDebuVoiceOutput()" title="Mute / Unmute Male Voice">🔊</button>
         <button type="button" class="debu-icon-btn" onclick="toggleDebuWidget()" title="Close">✕</button>
       </div>
     </div>
@@ -3996,7 +4004,7 @@
     <div class="debu-messages" id="debuMessages">
       <div class="debu-msg bot">
         হ্যালো! আমি <strong>দেবু (Debu)</strong>। শ্যামাশ্রী শীতলা মা চ্যারিটেবল ট্রাস্ট সম্পর্কে জানতে পারো, আর সাধারণ যেকোনো প্রশ্নও করলে ওপেন সোর্স থেকে খুঁজে উত্তর দেব! 🌿<br><br>
-        বাংলায় বললে বাংলায়, ইংলিশে বললে ইংলিশে আর হিন্দিতে বললে হিন্দিতেই উত্তর পাবা।
+        বাংলায় বললে বাংলায়, ইংলিশে বললে ইংলিশে আর হিন্দিতে বললে হিন্দিতেই উত্তর পাবা।
       </div>
     </div>
 
@@ -4686,7 +4694,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'শ্যামাশ্রী শীতলা মা চ্যারিটেবল ট্রাস্ট-এর প্রতিষ্ঠাতা হলেন মিস্টার শম্ভু চক্রবর্তী। আমি তোমাকে ফাউন্ডারের বার্তা সেকশনে নিয়ে যাচ্ছি।'
+            ? 'শ্যামাশ্রী শীতলা মা চ্যারিটেবল ট্রাস্ট-এর প্রতিষ্ঠাতা হলেন মিস্টার শম্ভু চক্রবর্তী। আমি তোমাকে ফাউন্ডারের বার্তা সেকশনে নিয়ে যাচ্ছি।'
             : isHindi
             ? 'श्यामश्री शीतला मां चैरिटेबल ट्रस्ट के संस्थापक श्री शंभू चक्रवर्ती हैं। मैं आपको संस्थापक के संदेश अनुभाग में ले जा रहा हूं।'
             : pickVariant('founder', [
@@ -4704,7 +4712,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'আমাদের ট্রাস্ট ভারতীয় রেজিস্ট্রেশন অ্যাক্টে নিবন্ধিত, 12AB ও 80G ট্যাক্স ছাড় প্রাপ্ত এবং NITI Aayog Darpan-এ তালিকাভুক্ত। এখন সার্টিফিকেট পেজে নিয়ে যাচ্ছি।'
+            ? 'আমাদের ট্রাস্ট ভারতীয় রেজিস্ট্রেশন অ্যাক্টে নিবন্ধিত, 12AB ও 80G ট্যাক্স ছাড় প্রাপ্ত এবং NITI Aayog Darpan-এ তালিকাভুক্ত। এখন সার্টিফিকেট পেজে নিয়ে যাচ্ছি।'
             : isHindi
             ? 'हमारा ट्रस्ट पंजीकृत है और 12AB व 80G प्रमाणित है। अब आपको प्रमाणपत्र पृष्ठ पर ले जा रहा हूं।'
             : 'SSMCT is registered under the Indian Registration Act, 1909, certified for <strong>12AB &amp; 80G Tax Exemption</strong>, and listed on <strong>NITI Aayog Darpan</strong>. Now redirecting you to our Certificates page.',
@@ -4719,7 +4727,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'আমাদের ২০২৫-২৬ বার্ষিক রিপোর্টে ট্রাস্টের সমস্ত কাজ ও আর্থিক স্বচ্ছতার বিবরণ রয়েছে। এখন রিপোর্ট পেজে নিয়ে যাচ্ছি।'
+            ? 'আমাদের ২০২৫-২৬ বার্ষিক রিপোর্টে ট্রাস্টের সমস্ত কাজ ও আর্থিক স্বচ্ছতার বিবরণ রয়েছে। এখন রিপোর্ট পেজে নিয়ে যাচ্ছি।'
             : isHindi
             ? 'हमारी वार्षिक रिपोर्ट 2025-26 में सभी परियोजनाओं और वित्तीय विवरण की जानकारी है। रिपोर्ट पृष्ठ खोल रहा हूं।'
             : 'Our <strong>Annual Report 2025-26</strong> covers our social initiatives, financial transparency, and community outcomes. Now redirecting you to the Annual Report page.',
@@ -4734,7 +4742,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'আপনার প্রতিটি অনুদান অসহায় মানুষদের খাবার, শিক্ষা ও চিকিৎসায় সরাসরি কাজে লাগে। আমি এখন ডোনেশন ফর্মটি খুলে দিচ্ছি।'
+            ? 'আপনার প্রতিটি অনুদান অসহায় মানুষদের খাবার, শিক্ষা ও চিকিৎসায় সরাসরি কাজে লাগে। আমি এখন ডোনেশন ফর্মটি খুলে দিচ্ছি।'
             : isHindi
             ? 'आपका हर योगदान भोजन, शिक्षा और स्वास्थ्य सेवा में मदद करता है। मैं अब दान फॉर्म खोल रहा हूं।'
             : 'Your kindness creates real change! Every contribution directly supports meals, education, and medical aid. Opening our secure donation form now.',
@@ -4749,7 +4757,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'শ্যামাশ্রী শীতলা মা চ্যারিটেবল ট্রাস্ট পশ্চিমবঙ্গের হাওড়া জেলার একটি নিবন্ধিত সমাজসেবামূলক সংস্থা, যা নারী সুরক্ষা, শিক্ষা, স্বাস্থ্য ও ক্ষুধা নিবারণে কাজ করে। About Us সেকশনে নিয়ে যাচ্ছি।'
+            ? 'শ্যামাশ্রী শীতলা মা চ্যারিটেবল ট্রাস্ট পশ্চিমবঙ্গের হাওড়া জেলার একটি নিবন্ধিত সমাজসেবামূলক সংস্থা, যা নারী সুরক্ষা, শিক্ষা, স্বাস্থ্য ও ক্ষুধা নিবারণে কাজ করে। About Us সেকশনে নিয়ে যাচ্ছি।'
             : '<strong>Shyamashree Shitala Maa Charitable Trust (SSMCT)</strong> is a registered public charitable trust in Howrah, West Bengal, working on women’s safety, education, health, and hunger relief. Taking you to our About Us section.',
           actionLabel: 'View About Us →',
           action: () => scrollToSectionSmooth('#about'),
@@ -4762,7 +4770,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'আমাদের Eye Check-up Camp বিনামূল্যে চক্ষু পরীক্ষা ও চিকিৎসা প্রদান করে। এখন ওই পেজে নিয়ে যাচ্ছি।'
+            ? 'আমাদের Eye Check-up Camp বিনামূল্যে চক্ষু পরীক্ষা ও চিকিৎসা প্রদান করে। এখন ওই পেজে নিয়ে যাচ্ছি।'
             : 'Our <strong>Eye Check-up Camp</strong> offers free vision screening and eye care for underprivileged communities. Now redirecting you to the Eye Check-up Camp page.',
           actionLabel: 'Go to Eye Check-up Camp →',
           action: () => { window.location.href = ' Eye Check-up Camp.html'; },
@@ -4773,7 +4781,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'Books Distribution প্রকল্পের মাধ্যমে দুঃস্থ ছাত্রছাত্রীদের বিনামূল্যে বই ও শিক্ষাসামগ্রী দেওয়া হয়। পেজটি খুলছি।'
+            ? 'Books Distribution প্রকল্পের মাধ্যমে দুঃস্থ ছাত্রছাত্রীদের বিনামূল্যে বই ও শিক্ষাসামগ্রী দেওয়া হয়। পেজটি খুলছি।'
             : 'Through <strong>Books Distribution</strong>, we provide textbooks and study materials to students in need. Now redirecting you to the Books Distribution page.',
           actionLabel: 'Go to Books Distribution →',
           action: () => { window.location.href = ' Books Distribution.html'; },
@@ -4784,7 +4792,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'Child Education প্রকল্পের মাধ্যমে শিশুদের পড়াশোনা ও ভবিষ্যৎ গড়তে সাহায্য করা হয়। এখন পেজটি খুলছি।'
+            ? 'Child Education প্রকল্পের মাধ্যমে শিশুদের পড়াশোনা ও ভবিষ্যৎ গড়তে সাহায্য করা হয়। এখন পেজটি খুলছি।'
             : 'Our <strong>Child Education</strong> initiative empowers children with quality learning and academic support. Now redirecting you to the Child Education page.',
           actionLabel: 'Go to Child Education →',
           action: () => { window.location.href = 'Child Education.html'; },
@@ -4795,7 +4803,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'Women Empowerment ও প্রজেক্ট নির্ভয়িনীর মাধ্যমে মহিলাদের সুরক্ষা ও স্বনির্ভরতার প্রশিক্ষণ দেওয়া হয়। পেজটি খুলছি।'
+            ? 'Women Empowerment ও প্রজেক্ট নির্ভয়িনীর মাধ্যমে মহিলাদের সুরক্ষা ও স্বনির্ভরতার প্রশিক্ষণ দেওয়া হয়। পেজটি খুলছি।'
             : 'Our <strong>Women Empowerment</strong> program (including Project Nirbhoyini) promotes women’s safety, skills, and equality. Now redirecting you to the Women Empowerment page.',
           actionLabel: 'Go to Women Empowerment →',
           action: () => { window.location.href = 'Women Empowerment.html'; },
@@ -4806,7 +4814,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'আমাদের Health Check-up Camp বিনামূল্যে স্বাস্থ্য পরীক্ষা ও চিকিৎসা সেবা দেয়। এখন পেজটি খুলছি।'
+            ? 'আমাদের Health Check-up Camp বিনামূল্যে স্বাস্থ্য পরীক্ষা ও চিকিৎসা সেবা দেয়। এখন পেজটি খুলছি।'
             : 'Our <strong>Health Check-up Camp</strong> offers free medical consultations and primary healthcare. Now redirecting you to the Health Check-up Camp page.',
           actionLabel: 'Go to Health Check-up Camp →',
           action: () => { window.location.href = 'Health Check-up Camp.html'; },
@@ -4817,7 +4825,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'Free Medicine Distribution প্রকল্পে অসহায় পরিবারগুলোকে বিনামূল্যে প্রয়োজনীয় ওষুধ দেওয়া হয়। পেজটি খুলছি।'
+            ? 'Free Medicine Distribution প্রকল্পে অসহায় পরিবারগুলোকে বিনামূল্যে প্রয়োজনীয় ওষুধ দেওয়া হয়। পেজটি খুলছি।'
             : 'Through <strong>Free Medicine Distribution</strong>, essential medicines are supplied free of cost to families in need. Now redirecting you to that page.',
           actionLabel: 'Go to Free Medicine →',
           action: () => { window.location.href = 'Free Medicine Distribution.html'; },
@@ -4828,7 +4836,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'শীতলা ক্যান্টিন ও Free Food Distribution-এর মাধ্যমে পুষ্টিকর খাবার পরিবেশন করা হয়। এখন পেজটি খুলছি।'
+            ? 'শীতলা ক্যান্টিন ও Free Food Distribution-এর মাধ্যমে পুষ্টিকর খাবার পরিবেশন করা হয়। এখন পেজটি খুলছি।'
             : '<strong>Shitala Canteen &amp; Free Food Distribution</strong> serves nutritious meals (including ₹1 meals) to fight hunger with dignity. Now redirecting you to the Free Food Distribution page.',
           actionLabel: 'Go to Free Food Distribution →',
           action: () => { window.location.href = 'Free Food Distribution.html'; },
@@ -4839,7 +4847,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'আমাদের Tree Plantation উদ্যোগে পরিবেশ ও সবুজায়নের জন্য গাছ লাগানো ও যত্ন নেওয়া হয়। পেজটি খুলছি।'
+            ? 'আমাদের Tree Plantation উদ্যোগে পরিবেশ ও সবুজায়নের জন্য গাছ লাগানো ও যত্ন নেওয়া হয়। পেজটি খুলছি।'
             : 'Our <strong>Tree Plantation</strong> initiative nurtures greenery and environmental sustainability across communities. Now redirecting you to the Tree Plantation page.',
           actionLabel: 'Go to Tree Plantation →',
           action: () => { window.location.href = 'Tree Plantation.html'; },
@@ -4850,7 +4858,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'Talent Hunt Scholarship মেধাবী ছাত্রছাত্রীদের স্কলারশিপ সহায়তা দেয়। পেজটি খুলছি।'
+            ? 'Talent Hunt Scholarship মেধাবী ছাত্রছাত্রীদের স্কলারশিপ সহায়তা দেয়। পেজটি খুলছি।'
             : '<strong>Talent Hunt Scholarship</strong> identifies and supports bright young students with scholarships. Now redirecting you to the Talent Hunt Scholarship page.',
           actionLabel: 'Go to Talent Hunt →',
           action: () => { window.location.href = 'Talent Hunt Scholarship.html'; },
@@ -4861,7 +4869,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'Old Garments Distribution-এর মাধ্যমে প্রয়োজনীয় বস্ত্র বিতরণ করা হয়। পেজটি খুলছি।'
+            ? 'Old Garments Distribution-এর মাধ্যমে প্রয়োজনীয় বস্ত্র বিতরণ করা হয়। পেজটি খুলছি।'
             : '<strong>Old Garments Distribution</strong> provides clean clothing to underprivileged families. Now redirecting you to the Old Garments Distribution page.',
           actionLabel: 'Go to Garments Distribution →',
           action: () => { window.location.href = 'Old Garments Distribution.html'; },
@@ -4872,7 +4880,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'Project Antardrishti দৃষ্টিপ্রতিবন্ধীদের ব্রেইল ও সাদা ছড়ি দিয়ে সহায়তা করে। পেজটি খুলছি।'
+            ? 'Project Antardrishti দৃষ্টিপ্রতিবন্ধীদের ব্রেইল ও সাদা ছড়ি দিয়ে সহায়তা করে। পেজটি খুলছি।'
             : '<strong>Project Antardrishti</strong> provides braille kits and white canes to empower visually impaired individuals. Now redirecting you to Antardrishti.',
           actionLabel: 'Open Antardrishti →',
           action: () => { window.location.href = 'Antardrishtilearn.html'; },
@@ -4885,7 +4893,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'আমাদের ১০টি প্রধান উদ্যোগ রয়েছে—চক্ষু পরীক্ষা শিবির, বই বিতরণ, শিশু শিক্ষা, নারী ক্ষমতায়ন, স্বাস্থ্য শিবির, বিনামূল্যে ওষুধ, খাদ্য বিতরণ, বৃক্ষরোপণ, ট্যালেন্ট হান্ট স্কলারশিপ এবং বস্ত্র বিতরণ। প্রজেক্ট সেকশনে নিয়ে যাচ্ছি।'
+            ? 'আমাদের ১০টি প্রধান উদ্যোগ রয়েছে—চক্ষু পরীক্ষা শিবির, বই বিতরণ, শিশু শিক্ষা, নারী ক্ষমতায়ন, স্বাস্থ্য শিবির, বিনামূল্যে ওষুধ, খাদ্য বিতরণ, বৃক্ষরোপণ, ট্যালেন্ট হান্ট স্কলারশিপ এবং বস্ত্র বিতরণ। প্রজেক্ট সেকশনে নিয়ে যাচ্ছি।'
             : 'We run <strong>10 core initiatives</strong>: Eye Check-up Camp, Books Distribution, Child Education, Women Empowerment, Health Check-up Camp, Free Medicine, Free Food Distribution, Tree Plantation, Talent Hunt Scholarship, and Old Garments Distribution. Taking you to Our Initiatives!',
           actionLabel: 'Explore All Initiatives →',
           action: () => scrollToSectionSmooth('#projects'),
@@ -4898,7 +4906,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'এখন পর্যন্ত ১০,০০০-এর বেশি মানুষকে সহায়তা করা হয়েছে, ৫,০০০-এর বেশি বই ও খাবার বিতরণ করা হয়েছে এবং ১,০০০-এর বেশি গাছ লাগানো হয়েছে। Impact সেকশনে নিয়ে যাচ্ছি।'
+            ? 'এখন পর্যন্ত ১০,০০০-এর বেশি মানুষকে সহায়তা করা হয়েছে, ৫,০০০-এর বেশি বই ও খাবার বিতরণ করা হয়েছে এবং ১,০০০-এর বেশি গাছ লাগানো হয়েছে। Impact সেকশনে নিয়ে যাচ্ছি।'
             : 'So far, SSMCT has helped <strong>10,000+ people</strong>, distributed <strong>5,000+ books &amp; meals</strong>, and planted <strong>1,000+ trees</strong> across West Bengal. Scrolling to Our Impact.',
           actionLabel: 'View Our Impact →',
           action: () => scrollToSectionSmooth('#impact'),
@@ -4911,7 +4919,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'আমাদের টিমে আছেন সত্যজিৎ নন্দী, মৌসুমী নন্দী, অরিন্দম দাস, সোমা ঘোষ, দেবায়ন মুখোপাধ্যায় এবং তীর্থনু। টিম সেকশনে নিয়ে যাচ্ছি।'
+            ? 'আমাদের টিমে আছেন সত্যজিৎ নন্দী, মৌসুমী নন্দী, অরিন্দম দাস, সোমা ঘোষ, দেবায়ন মুখোপাধ্যায় এবং তীর্থনু। টিম সেকশনে নিয়ে যাচ্ছি।'
             : 'Our dedicated team includes <strong>Satyajit Nandy</strong> (President), <strong>Mousumi Nandy</strong> (Secretary), <strong>Arindam Das</strong> (Treasurer), <strong>Soma Ghosh</strong> (VP), <strong>Debayan Mukhopadhyay</strong> (Software Engineer), and <strong>Tirthanu</strong> (Executive Member). Taking you to Meet Our Team.',
           actionLabel: 'Meet Our Team →',
           action: () => scrollToSectionSmooth('#team'),
@@ -4935,7 +4943,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'আমাদের ঠিকানা হাওড়া জেলা, পশ্চিমবঙ্গ। ইমেইল: info@ssmctrust.org। এখন Contact Us পেজে নিয়ে যাচ্ছি।'
+            ? 'আমাদের ঠিকানা হাওড়া জেলা, পশ্চিমবঙ্গ। ইমেইল: info@ssmctrust.org। এখন Contact Us পেজে নিয়ে যাচ্ছি।'
             : 'We are located in <strong>Howrah District, West Bengal</strong>. You can email us at <strong>info@ssmctrust.org</strong> or visit our Contact Us page to volunteer or partner with us. Now redirecting you to Contact Us.',
           actionLabel: 'Open Contact Us →',
           action: () => { window.location.href = 'ContactUs.html'; },
@@ -4964,7 +4972,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'আমার নাম দেবু। আমি শ্যামাশ্রী শীতলা মা চ্যারিটেবল ট্রাস্টের ভয়েস ও চ্যাট গাইড।'
+            ? 'আমার নাম দেবু। আমি শ্যামাশ্রী শীতলা মা চ্যারিটেবল ট্রাস্টের ভয়েস ও চ্যাট গাইড।'
             : isHindi
             ? 'मेरा नाम देबू है। मैं श्यामश्री शीतला मां चैरिटेबल ट्रस्ट का गाइड असिस्टेंट हूं।'
             : 'My name is <strong>Debu</strong>! I am your guide assistant for Shyamashree Shitala Maa Charitable Trust.'
@@ -4974,7 +4982,7 @@
         return {
           lang: langCode,
           text: isBengali
-            ? 'তোমাকেও অনেক ধন্যবাদ! একসাথে আমরা আরও সুন্দর সমাজ গড়ে তুলব।'
+            ? 'তোমাকেও অনেক ধন্যবাদ! একসাথে আমরা আরও সুন্দর সমাজ গড়ে তুলব।'
             : isHindi
             ? 'बहुत-बहुत धन्यवाद! मिलकर एक बेहतर समाज बनाते हैं।'
             : 'You are most welcome! Together, we can build a kinder and healthier society. 💛'
@@ -5050,7 +5058,7 @@
       const langSelect = document.getElementById('debuLangSelect');
 
       if (!SpeechRec) {
-        appendDebuMessage('bot', 'এই ব্রাউজারে ভয়েস ইনপুট সাপোর্ট নেই। অনুগ্রহ করে নিচে লিখে প্রশ্ন করো।');
+        appendDebuMessage('bot', 'এই ব্রাউজারে ভয়েস ইনপুট সাপোর্ট নেই। অনুগ্রহ করে নিচে লিখে প্রশ্ন করো।');
         return;
       }
 
@@ -5077,7 +5085,7 @@
       };
 
       debuRecognition.onerror = function () {
-        statusEl.textContent = '⚠️ ঠিকমতো শোনা যায়নি, আবার মাইকে চাপো।';
+        statusEl.textContent = '⚠️ ঠিকমতো শোনা যায়নি, আবার মাইকে চাপো।';
         setTimeout(() => {
           statusEl.classList.remove('active');
           statusEl.textContent = '🎙️ শুনছি... কথা বলো';
