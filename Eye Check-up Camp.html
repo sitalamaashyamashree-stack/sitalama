@@ -134,7 +134,7 @@
       margin-bottom: 18px;
     }
 
-    /*.hero-left {
+    .hero-left {
       padding: 28px 30px;
       display: flex;
       flex-direction: column;
@@ -174,7 +174,7 @@
       font-size: 14.5px;
       color: #36493e;
       max-width: 450px;
-    }*/
+    }
 
     .hero-right {
       position: relative;
@@ -869,12 +869,12 @@
 
     <!-- 1. Hero Section -->
     <section class="project-hero">
-      <!--<div class="hero-left">
+      <div class="hero-left">
         <span class="initiative-pill">🌿 Our Health Initiative</span>
         <h1>Eye Check-up Project</h1>
         <div class="hero-script-sub">Clear Vision... Brighter Future...</div>
         <p>Bringing quality eye care, free vision screening, and spectacles to the underserved communities of West Bengal.</p>
-      </div>-->
+      </div>
       <div class="hero-right">
         <img src="Free Eye Check-Up Camp Banner.png" alt="Eye Check-up Camp">
       </div>
@@ -900,7 +900,7 @@
       <!-- Card 2: Dynamic Budget Utilisation (FY 25-26) -->
       <div class="info-box">
         <div class="info-box-header">
-          <span>📊</span> Budget Utilisation (FY 25-26)
+          <span>📊</span> Our Impact in FY 2025–26
         </div>
         <div class="info-box-body" id="fy25ChartContainer"></div>
         <div class="info-box-footer">Transparent and efficient use of funds.</div>
@@ -909,7 +909,7 @@
       <!-- Card 3: Dynamic FY 26-27 Budget -->
       <div class="info-box">
         <div class="info-box-header">
-          <span>📅</span> FY 26-27 Budget
+          <span>📅</span> Proposed Budget in FY 2026-27
         </div>
         <div class="info-box-body" id="fy26ChartContainer"></div>
         <div class="info-box-footer">Bigger Reach. Greater Impact.</div>
@@ -928,9 +928,9 @@
 
       <div class="beneficiaries-body">
         <div class="beneficiaries-stat">
-          <p>In our previous camps, we have provided free eye care services to over</p>
-          <div class="stat-big-number">500+ <span>people</span></div>
-          <p>from nearby rural communities.</p>
+          <p>Through our eye care camps held in February 2026, we provided free eye care services to</p>
+          <div class="stat-big-number">50+ <span>people</span></div>
+          <p>from rural communities in Patharpratima, South 24 Parganas, West Bengal.</p>
         </div>
 
         <div class="faces-row" id="beneficiaryFacesRow"></div>
@@ -1039,7 +1039,7 @@
     ========================================================================= */
     const budgetConfig = {
       fy25: {
-        totalAmount: "₹1,60,000",
+        totalAmount: "₹11,500",
         subtitle: "Total Budget",
         items: [
           { label: "Medical Camp & Treatment", percent: 60, color: "#133b26" },
@@ -1048,12 +1048,12 @@
         ]
       },
       fy26: {
-        totalAmount: "₹2,00,000",
+        totalAmount: "₹15,000",
         subtitle: "Planned Budget",
         items: [
-          { label: "Medical Camp & Treatment", percent: 65, color: "#133b26" },
-          { label: "Equipment", percent: 20, color: "#3b8c61" },
-          { label: "Awareness & Outreach", percent: 15, color: "#eab308" }
+          { label: "Your Support So Far", percent: 65, color: "#133b26" },
+          { label: "Funding Goal Remaining", percent: 35, color: "#3b8c61" },
+          /*{ label: "Awareness & Outreach", percent: 15, color: "#eab308" }*/
         ]
       }
     };
