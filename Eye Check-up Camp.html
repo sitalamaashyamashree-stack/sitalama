@@ -366,6 +366,15 @@
       font-weight: 800;
       color: var(--forest-dark);
       font-size: 11.5px;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .legend-amount {
+      display: block;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--forest-mid);
     }
 
     .info-box-footer {
@@ -513,7 +522,6 @@
       border-color: var(--forest-dark);
     }
 
-    /* Interactive Beneficiary Dropdown Story Drawer */
     .beneficiary-dropdown {
       max-height: 0;
       overflow: hidden;
@@ -867,7 +875,6 @@
 
   <div class="page-wrapper">
 
-    <!-- 1. Hero Section -->
     <section class="project-hero">
       <div class="hero-left">
         <span class="initiative-pill">🌿 Our Health Initiative</span>
@@ -880,10 +887,8 @@
       </div>
     </section>
 
-    <!-- 2. Dynamic Three-Column Vision & Budget Infographic Cards -->
     <section class="three-info-grid">
 
-      <!-- Card 1: Our Vision -->
       <div class="info-box">
         <div class="info-box-header">
           <span>👁️</span> Our Vision
@@ -897,7 +902,6 @@
         <div class="info-box-footer">Preventable blindness, curable with care.</div>
       </div>
 
-      <!-- Card 2: Dynamic Budget Utilisation (FY 25-26) -->
       <div class="info-box">
         <div class="info-box-header">
           <span>📊</span> Our Impact in FY 2025–26
@@ -906,7 +910,6 @@
         <div class="info-box-footer">Transparent and efficient use of funds.</div>
       </div>
 
-      <!-- Card 3: Dynamic FY 26-27 Budget -->
       <div class="info-box">
         <div class="info-box-header">
           <span>📅</span> Proposed Budget in FY 2026-27
@@ -917,7 +920,6 @@
 
     </section>
 
-    <!-- 3. Interactive Already Beneficiaries Section -->
     <section class="beneficiaries-card">
       <div class="beneficiaries-top-bar">
         <div class="beneficiaries-header">
@@ -936,7 +938,6 @@
         <div class="faces-row" id="beneficiaryFacesRow"></div>
       </div>
 
-      <!-- Expandable Dropdown Drawer for Beneficiary Details -->
       <div class="beneficiary-dropdown" id="beneficiaryDropdown">
         <div class="ben-dropdown-inner">
           <div class="ben-info-content">
@@ -952,7 +953,6 @@
       </div>
     </section>
 
-    <!-- 4. How Can You Contribute Section -->
     <section class="contribute-section">
       <div class="contribute-pill-title">
         <span>🤝</span> How Can You Contribute?
@@ -986,17 +986,15 @@
       </div>
     </section>
 
-    <!-- 5. Bottom CTA Banner -->
     <section class="bottom-cta-banner">
       <h2>Support Our Eye Care Mission</h2>
       <button type="button" class="cta-donate-btn" onclick="openEyeDonateModal()">
-        🤍 Donate Now
+        ❤️ Donate Now
       </button>
     </section>
 
   </div>
 
-  <!-- Direct Razorpay Donation Modal -->
   <div class="donate-modal" id="eyeDonateModal">
     <div class="donate-modal-box">
       <span style="position:absolute; top:12px; right:16px; font-size:24px; cursor:pointer; color:#666;" onclick="closeEyeDonateModal()">&times;</span>
@@ -1033,10 +1031,6 @@
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
   <script>
-    /* =========================================================================
-       1. DYNAMIC BUDGET DATA (Change amounts or percentages here anytime —
-          the pie/donut charts & legends update automatically!)
-    ========================================================================= */
     const budgetConfig = {
       fy25: {
         totalAmount: "₹11,500",
@@ -1050,16 +1044,21 @@
       fy26: {
         totalAmount: "₹15,000",
         subtitle: "Planned Budget",
+        showAmounts: true,
         items: [
           { label: "Your Support So Far", percent: 65, color: "#133b26" },
-          { label: "Funding Goal Remaining", percent: 35, color: "#3b8c61" },
-          /*{ label: "Awareness & Outreach", percent: 15, color: "#eab308" }*/
+          { label: "Funding Goal Remaining", percent: 35, color: "#3b8c61" }
         ]
       }
     };
 
+    function formatINR(num) {
+      return "₹" + Math.round(num).toLocaleString("en-IN");
+    }
+
     function renderDynamicDonut(containerId, data) {
       const container = document.getElementById(containerId);
+      const numericTotal = Number(String(data.totalAmount).replace(/[^0-9.]/g, "")) || 0;
       let cumulativePercent = 0;
       const gradientStops = data.items.map(item => {
         const start = cumulativePercent;
@@ -1067,15 +1066,21 @@
         return `${item.color} ${start}% ${cumulativePercent}%`;
       }).join(", ");
 
-      const legendHTML = data.items.map(item => `
-        <li title="${item.label}: ${item.percent}%">
-          <span class="legend-label">
-            <span class="dot-swatch" style="background:${item.color};"></span>
-            ${item.label}
-          </span>
-          <span class="legend-pct">${item.percent}%</span>
-        </li>
-      `).join("");
+      const legendHTML = data.items.map(item => {
+        const itemRupees = formatINR((numericTotal * item.percent) / 100);
+        return `
+          <li title="${item.label}: ${item.percent}% (${itemRupees})">
+            <span class="legend-label">
+              <span class="dot-swatch" style="background:${item.color};"></span>
+              ${item.label}
+            </span>
+            <span class="legend-pct">
+              ${item.percent}%
+              ${data.showAmounts ? `<span class="legend-amount">${itemRupees}</span>` : ""}
+            </span>
+          </li>
+        `;
+      }).join("");
 
       container.innerHTML = `
         <div class="chart-row">
@@ -1093,9 +1098,6 @@
     renderDynamicDonut("fy25ChartContainer", budgetConfig.fy25);
     renderDynamicDonut("fy26ChartContainer", budgetConfig.fy26);
 
-    /* =========================================================================
-       2. INTERACTIVE BENEFICIARY PROFILES (Click any photo to open dropdown)
-    ========================================================================= */
     const beneficiariesData = [
       {
         name: "Haripada Mondal (68)",
@@ -1176,9 +1178,6 @@
       activeBeneficiaryIndex = -1;
     }
 
-    /* =========================================================================
-       3. DIRECT RAZORPAY + CLOUDFLARE WORKER DONATION INTEGRATION
-    ========================================================================= */
     function openEyeDonateModal() {
       document.getElementById("eyeDonateModal").classList.add("active");
     }
