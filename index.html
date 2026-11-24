@@ -13,7 +13,7 @@
   <meta property="og:url" content="https://ssmctrust.org/">
   <meta property="og:image" content="https://www.ssmctrust.org/assets/og-home.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  
+
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="/favicon.png">
 
@@ -96,6 +96,11 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes leaderFadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @keyframes gentleAura {
       0%, 100% { box-shadow: 0 14px 34px rgba(19, 59, 38, 0.14); }
       50% { box-shadow: 0 20px 44px rgba(234, 179, 8, 0.22); }
@@ -104,7 +109,7 @@
     .reveal {
       opacity: 1;
       transform: translateY(0);
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
     .reveal.visible {
@@ -176,7 +181,7 @@
     }
 
     .logo {
-      height: 70px;
+      height: 78px;
       width: auto;
       flex-shrink: 0;
       transition: transform 0.3s ease;
@@ -1089,7 +1094,7 @@
       display: block;
     }
 
-    /* FOUNDER'S MESSAGE SECTION */
+    /* FOUNDER & PRESIDENT MESSAGE SECTION */
     .founder-section {
       background: linear-gradient(180deg, #ffffff 0%, #f6f2e7 100%);
       padding: 55px 36px;
@@ -1185,14 +1190,18 @@
       justify-content: space-between;
     }
 
+    .leader-transition-wrap {
+      animation: leaderFadeIn 0.55s ease;
+    }
+
     .founder-header-row {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 12px;
-      margin-bottom: 14px;
-      padding-bottom: 12px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
       border-bottom: 1px solid #efeade;
     }
 
@@ -1215,11 +1224,10 @@
       line-height: 1.15;
     }
 
-    .founder-switcher-group {
+    .leader-switch-tabs {
       display: flex;
-      align-items: center;
       gap: 8px;
-      flex-wrap: wrap;
+      align-items: center;
     }
 
     .leader-switch-btn {
@@ -1246,19 +1254,19 @@
       font-size: 25px;
       font-weight: 700;
       color: var(--forest-mid);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .founder-body-text p {
       font-size: 14.5px;
       color: #36493e;
       line-height: 1.62;
-      margin-bottom: 10px;
+      margin-bottom: 9px;
     }
 
     .founder-bottom-row {
-      margin-top: 14px;
-      padding-top: 14px;
+      margin-top: 12px;
+      padding-top: 12px;
       border-top: 1px dashed #d5cfc0;
       display: grid;
       grid-template-columns: auto 1fr;
@@ -1274,12 +1282,12 @@
     }
 
     .leader-signature-img {
-      height: 44px;
+      height: 42px;
       width: auto;
       max-width: 170px;
       object-fit: contain;
       display: block;
-      margin: 6px 0 4px;
+      margin: 6px 0 3px;
     }
 
     .founder-signoff .founder-person-name {
@@ -2602,7 +2610,7 @@
       }
 
       .logo {
-        height: 62px;
+        height: 70px;
       }
 
       .logo-text-wrap strong {
@@ -2794,7 +2802,7 @@
       }
 
       .logo {
-        height: 54px;
+        height: 60px;
       }
 
       .logo-text-wrap strong {
@@ -3683,7 +3691,7 @@ We believe that every individual deserves dignity, equal opportunities, and acce
               id="leaderPortraitImg"
               src="founder.png" 
               onerror="this.onerror=null; this.src='Shambhu Chakraborty.png';" 
-              alt="Mr. Shambhu Chakraborty - Founder, Shyamashree Shitala Maa Charitable Trust" 
+              alt="Founder - Shyamashree Shitala Maa Charitable Trust" 
             />
             <div class="founder-floating-tag" id="leaderFloatingTag">
               <span>💛</span> Founder, SSMCT
@@ -3693,16 +3701,16 @@ We believe that every individual deserves dignity, equal opportunities, and acce
       </div>
 
       <div class="founder-message-column">
-        <div>
+        <div id="leaderTransitionWrap" class="leader-transition-wrap">
           <div class="founder-header-row">
             <div>
               <span class="founder-eyebrow" id="leaderEyebrow">A MESSAGE FROM THE FOUNDER</span>
               <h2 id="leaderHeading">Founder’s Message</h2>
             </div>
 
-            <div class="founder-switcher-group">
-              <button type="button" class="leader-switch-btn active" id="btnShowFounder" onclick="selectLeadershipMessage(0, true)">Founder’s Message</button>
-              <button type="button" class="leader-switch-btn" id="btnShowPresident" onclick="selectLeadershipMessage(1, true)">President’s Message</button>
+            <div class="leader-switch-tabs">
+              <button type="button" class="leader-switch-btn active" id="btnLeader0" onclick="selectLeader(0, true)">Founder</button>
+              <button type="button" class="leader-switch-btn" id="btnLeader1" onclick="selectLeader(1, true)">President</button>
             </div>
           </div>
 
@@ -3820,7 +3828,7 @@ We believe that every individual deserves dignity, equal opportunities, and acce
             <span class="team-role-pill">Digital Marketing</span>
             <p>Leads digital outreach, social media, and online awareness campaigns.</p>
           </div>
-          
+
           <div class="team-card" onclick="openTeamLightbox(this, 'Sourav Mondal', 'Secretary', 'Ensuring responsible financial management, transparency, and 80G compliance.')">
             <div class="team-avatar-ring">
               <div class="team-avatar-inner">
@@ -4093,13 +4101,14 @@ We believe that every individual deserves dignity, equal opportunities, and acce
     <div class="debu-messages" id="debuMessages">
       <div class="debu-msg bot">
         নমস্কার! আমি <strong>দেবু (Debu)</strong>—শ্যামাশ্রী শীতলা মা চ্যারিটেবল ট্রাস্টের গাইড। 🌿<br><br>
-        আমাদের ট্রাস্ট, ফাউন্ডার, প্রজেক্টস, সার্টিফিকেট বা ডোনেশন—যেকোনো প্রশ্ন বাংলায়, ইংলিশে বা হিন্দিতে জিজ্ঞেস করতে পারো!
+        আমাদের ট্রাস্ট, ফাউন্ডার, প্রেসিডেন্ট, প্রজেক্টস, সার্টিফিকেট বা ডোনেশন—যেকোনো প্রশ্ন বাংলায়, ইংলিশে বা হিন্দিতে জিজ্ঞেস করতে পারো!
       </div>
     </div>
 
     <div class="debu-quick-chips">
       <button type="button" class="debu-chip" onclick="sendDebuPreset('তুমি কে?')">👋 তুমি কে?</button>
       <button type="button" class="debu-chip" onclick="sendDebuPreset('ফাউন্ডার কে?')">👤 ফাউন্ডার</button>
+      <button type="button" class="debu-chip" onclick="sendDebuPreset('প্রেসিডেন্ট কে?')">👑 প্রেসিডেন্ট</button>
       <button type="button" class="debu-chip" onclick="sendDebuPreset('আমাদের প্রজেক্টগুলো দেখাও')">🌱 প্রজেক্টস</button>
       <button type="button" class="debu-chip" onclick="sendDebuPreset('সার্টিফিকেট দেখাও')">📜 সার্টিফিকেট</button>
       <button type="button" class="debu-chip" onclick="sendDebuPreset('ডোনেট করতে চাই')">💛 ডোনেট</button>
@@ -4186,8 +4195,8 @@ We believe that every individual deserves dignity, equal opportunities, and acce
     }
 
     /* Auto-Rotating Founder & President Message Section */
-    (function initLeadershipMessages() {
-      const messages = [
+    (function initFounderPresidentRotation() {
+      const leaders = [
         {
           eyebrow: 'A MESSAGE FROM THE FOUNDER',
           heading: 'Founder’s Message',
@@ -4211,8 +4220,8 @@ We believe that every individual deserves dignity, equal opportunities, and acce
           heading: 'President’s Message',
           subheading: 'Together for a Better Tomorrow',
           tag: '<span>💛</span> President, SSMCT',
-          portrait: 'masi.png',
-          fallbackPortrait: 'founder.png',
+          portrait: 'ma.png',
+          fallbackPortrait: 'masi.png',
           paragraphs: [
             'At Shyamashree Shitala Maa Charitable Trust, we are committed to turning our vision into meaningful action through dedicated teamwork and community participation.',
             'We strive to make a lasting difference through initiatives in food security, education, healthcare, and women\'s empowerment, while ensuring transparency and accountability in every effort.',
@@ -4226,64 +4235,68 @@ We believe that every individual deserves dignity, equal opportunities, and acce
         }
       ];
 
-      let activeLeaderIndex = 0;
-      let autoRotateTimer = null;
+      let currentLeader = 0;
+      let rotateTimer = null;
 
-      function renderLeader(idx) {
-        activeLeaderIndex = idx % messages.length;
-        const item = messages[activeLeaderIndex];
+      function applyLeader(index) {
+        currentLeader = index % leaders.length;
+        const item = leaders[currentLeader];
 
-        const portraitImg = document.getElementById('leaderPortraitImg');
-        if (portraitImg) {
-          portraitImg.onerror = function() {
+        const wrap = document.getElementById('leaderTransitionWrap');
+        if (wrap) {
+          wrap.style.animation = 'none';
+          void wrap.offsetWidth;
+          wrap.style.animation = 'leaderFadeIn 0.55s ease';
+        }
+
+        const portrait = document.getElementById('leaderPortraitImg');
+        if (portrait) {
+          portrait.onerror = function() {
             this.onerror = null;
             this.src = item.fallbackPortrait;
           };
-          portraitImg.src = item.portrait;
-          portraitImg.alt = item.personName + ' - ' + item.roleTitle;
+          portrait.src = item.portrait;
+          portrait.alt = item.personName + ' - ' + item.roleTitle;
         }
 
         document.getElementById('leaderFloatingTag').innerHTML = item.tag;
         document.getElementById('leaderEyebrow').textContent = item.eyebrow;
         document.getElementById('leaderHeading').textContent = item.heading;
         document.getElementById('leaderSubheading').textContent = item.subheading;
-
-        const bodyEl = document.getElementById('leaderBodyText');
-        bodyEl.innerHTML = item.paragraphs.map(p => '<p>' + p + '</p>').join('');
-
+        document.getElementById('leaderBodyText').innerHTML = item.paragraphs.map(p => '<p>' + p + '</p>').join('');
         document.getElementById('leaderSignoffIntro').textContent = item.signoffIntro;
 
-        const sigImg = document.getElementById('leaderSignatureImg');
-        if (sigImg) {
-          sigImg.style.display = 'block';
-          sigImg.src = item.signature;
-          sigImg.alt = item.personName + ' Signature';
+        const sig = document.getElementById('leaderSignatureImg');
+        if (sig) {
+          sig.style.display = 'block';
+          sig.src = item.signature;
+          sig.alt = item.personName + ' Signature';
         }
 
         document.getElementById('leaderPersonName').textContent = item.personName;
         document.getElementById('leaderRoleTitle').textContent = item.roleTitle;
         document.getElementById('leaderQuoteBox').textContent = item.quote;
 
-        document.getElementById('btnShowFounder').classList.toggle('active', activeLeaderIndex === 0);
-        document.getElementById('btnShowPresident').classList.toggle('active', activeLeaderIndex === 1);
+        document.getElementById('btnLeader0').classList.toggle('active', currentLeader === 0);
+        document.getElementById('btnLeader1').classList.toggle('active', currentLeader === 1);
       }
 
-      function startAutoRotate() {
-        clearInterval(autoRotateTimer);
-        autoRotateTimer = setInterval(() => {
-          renderLeader((activeLeaderIndex + 1) % messages.length);
+      function startRotation() {
+        clearInterval(rotateTimer);
+        rotateTimer = setInterval(() => {
+          applyLeader((currentLeader + 1) % leaders.length);
         }, 7000);
       }
 
-      window.selectLeadershipMessage = function(idx, manual) {
-        renderLeader(idx);
+      window.selectLeader = function(index, manual) {
+        applyLeader(index);
         if (manual) {
-          startAutoRotate();
+          startRotation();
         }
       };
 
-      renderLeader(0);
-      startAutoRotate();
+      applyLeader(0);
+      startRotation();
     })();
 
     /* Team Member Lightbox Functions */
@@ -4588,7 +4601,7 @@ We believe that every individual deserves dignity, equal opportunities, and acce
     });
 
     /* ================= DEBU NATURAL VOICE, MULTILINGUAL & SELF-LEARNING ASSISTANT ================= */
-    const DEBU_WHATSAPP_NUMBER = '910000000000';
+    const DEBU_WHATSAPP_NUMBER = '919123340886';
     let debuVoiceEnabled = true;
     let debuRecognition = null;
     let debuIsListening = false;
@@ -4707,7 +4720,7 @@ We believe that every individual deserves dignity, equal opportunities, and acce
     }
 
     function debuSpeakAndThen(htmlOrText, langCode, onCompleteCallback) {
-      const cleanText = htmlOrText.replace(/<[^>]*>/g, '').replace(/[🙏🌱💛📜👤🏛️🤝✨✅🌿🧠🌐👋😊💬🔍]/g, '').trim();
+      const cleanText = htmlOrText.replace(/<[^>]*>/g, '').replace(/[🙏🌱💛📜👤🏛️🤝✨✅🌿🧠🌐👋😊💬🔍👑]/g, '').trim();
 
       if (!debuVoiceEnabled || !('speechSynthesis' in window) || !cleanText) {
         if (typeof onCompleteCallback === 'function') {
@@ -4947,8 +4960,8 @@ We believe that every individual deserves dignity, equal opportunities, and acce
             ? '<strong>শ্যামাশ্রী শীতলা মা চ্যারিটেবল ট্রাস্ট</strong>-এর প্রেসিডেন্ট হলেন <strong>লিপিকা চক্রবর্তী (Lipika Chakraborty)</strong>। আমি তোমাকে প্রেসিডেন্টের বার্তা সেকশনে নিয়ে যাচ্ছি।'
             : 'The President of <strong>Shyamashree Shitala Maa Charitable Trust</strong> is <strong>Lipika Chakraborty</strong>. Taking you to the Leadership Message section now.',
           actionLabel: isBengali ? 'প্রেসিডেন্টের বার্তা দেখুন →' : 'Read President’s Message →',
-          action: () => { window.selectLeadershipMessage(1, true); scrollToSectionSmooth('#founder'); },
-          onAfterAnswer: () => { window.selectLeadershipMessage(1, true); scrollToSectionSmooth('#founder'); }
+          action: () => { if (typeof window.selectLeader === 'function') window.selectLeader(1, true); scrollToSectionSmooth('#founder'); },
+          onAfterAnswer: () => { if (typeof window.selectLeader === 'function') window.selectLeader(1, true); scrollToSectionSmooth('#founder'); }
         };
       }
 
@@ -4964,8 +4977,8 @@ We believe that every individual deserves dignity, equal opportunities, and acce
                 '<strong>Mr. Shambhu Chakraborty</strong> founded SSMCT with the belief that humanity is the greatest service. Scrolling to his message now.'
               ]),
           actionLabel: isBengali ? 'ফাউন্ডারের বার্তা দেখুন →' : 'Read Founder’s Message →',
-          action: () => { window.selectLeadershipMessage(0, true); scrollToSectionSmooth('#founder'); },
-          onAfterAnswer: () => { window.selectLeadershipMessage(0, true); scrollToSectionSmooth('#founder'); }
+          action: () => { if (typeof window.selectLeader === 'function') window.selectLeader(0, true); scrollToSectionSmooth('#founder'); },
+          onAfterAnswer: () => { if (typeof window.selectLeader === 'function') window.selectLeader(0, true); scrollToSectionSmooth('#founder'); }
         };
       }
 
