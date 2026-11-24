@@ -176,7 +176,7 @@
     }
 
     .logo {
-      height: 58px;
+      height: 70px;
       width: auto;
       flex-shrink: 0;
       transition: transform 0.3s ease;
@@ -320,11 +320,6 @@
     .hero-slide:nth-child(1) { background-image: url('totest.png'); }
     .hero-slide:nth-child(2) { background-image: url('Hero Banner Slide 2.png'); }
     .hero-slide:nth-child(3) { background-image: url('Hero Banner Slide 3.png'); }
-    /* Commented Out Hero Slides 4, 5, 6 (Desktop)
-    .hero-slide:nth-child(4) { background-image: url('totest.png'); }
-    .hero-slide:nth-child(5) { background-image: url('totest.png'); }
-    .hero-slide:nth-child(6) { background-image: url('totest.png'); }
-    */
 
     .hero-overlay {
       position: absolute;
@@ -1192,12 +1187,12 @@
 
     .founder-header-row {
       display: flex;
-      align-items: baseline;
+      align-items: flex-start;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 12px;
-      padding-bottom: 10px;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
       border-bottom: 1px solid #efeade;
     }
 
@@ -1220,23 +1215,50 @@
       line-height: 1.15;
     }
 
+    .founder-switcher-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .leader-switch-btn {
+      background: #f3efe4;
+      color: var(--forest-dark);
+      border: 1.5px solid #d5cfc0;
+      padding: 5px 13px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .leader-switch-btn.active,
+    .leader-switch-btn:hover {
+      background: var(--forest-dark);
+      color: #ffffff;
+      border-color: var(--forest-dark);
+    }
+
     .founder-subheading {
       font-family: 'Caveat', cursive;
       font-size: 25px;
       font-weight: 700;
       color: var(--forest-mid);
+      margin-bottom: 10px;
     }
 
     .founder-body-text p {
       font-size: 14.5px;
       color: #36493e;
-      line-height: 1.6;
-      margin-bottom: 9px;
+      line-height: 1.62;
+      margin-bottom: 10px;
     }
 
     .founder-bottom-row {
-      margin-top: 12px;
-      padding-top: 12px;
+      margin-top: 14px;
+      padding-top: 14px;
       border-top: 1px dashed #d5cfc0;
       display: grid;
       grid-template-columns: auto 1fr;
@@ -1249,6 +1271,15 @@
       font-size: 13px;
       font-style: italic;
       color: var(--text-muted);
+    }
+
+    .leader-signature-img {
+      height: 44px;
+      width: auto;
+      max-width: 170px;
+      object-fit: contain;
+      display: block;
+      margin: 6px 0 4px;
     }
 
     .founder-signoff .founder-person-name {
@@ -1264,7 +1295,7 @@
     .founder-signoff strong {
       display: block;
       font-family: 'Playfair Display', serif;
-      font-size: 16.5px;
+      font-size: 16px;
       color: var(--forest-dark);
       line-height: 1.25;
     }
@@ -1272,13 +1303,13 @@
     .founder-quote-box {
       background: linear-gradient(135deg, var(--forest-dark) 0%, #194d32 100%);
       color: #ffffff;
-      padding: 12px 16px;
+      padding: 13px 16px;
       border-radius: 12px;
       border-left: 4px solid var(--gold-accent);
       font-family: 'Playfair Display', Georgia, serif;
       font-style: italic;
       font-size: 14px;
-      line-height: 1.48;
+      line-height: 1.5;
       box-shadow: 0 6px 18px rgba(19, 59, 38, 0.14);
     }
 
@@ -2571,7 +2602,7 @@
       }
 
       .logo {
-        height: 52px;
+        height: 62px;
       }
 
       .logo-text-wrap strong {
@@ -2763,7 +2794,7 @@
       }
 
       .logo {
-        height: 46px;
+        height: 54px;
       }
 
       .logo-text-wrap strong {
@@ -2831,15 +2862,9 @@
         width: 20px;
       }
 
-      /* Mobile hero slides (1st 3 active, 4-6 commented out) */
       .hero-slide:nth-child(1) { background-image: url('heromo.png'); }
       .hero-slide:nth-child(2) { background-image: url('Mobile Hero Banner Slide 2.png'); }
       .hero-slide:nth-child(3) { background-image: url('Mobile Hero Banner Slide 3.png'); }
-      /*
-      .hero-slide:nth-child(4) { background-image: url('heromo.png'); }
-      .hero-slide:nth-child(5) { background-image: url('heromo.png'); }
-      .hero-slide:nth-child(6) { background-image: url('heromo.png'); }
-      */
 
       .section-header-decorated {
         margin-bottom: 22px;
@@ -3191,18 +3216,6 @@
       <a href="#impact">Our Impact</a>
       <a href="#resources">Resources</a>
       <a href="ContactUs.html">Contact Us</a>
-      <!-- Commented Out Navbar Buttons as Requested
-      <a href="#founder">Founder’s Message</a>
-      <a href="#team">Our Team</a>
-      <a href="#testimonials">Testimonials</a>
-      <a href="ShitalaCanteen.html">Shitala Canteen</a>
-      <a href="Timer.html">Timer</a>
-      <a href="Live.html">Live</a>
-      <a href="Round1sc.html">Round1</a>
-      <a href="Round2.html">Round2</a>
-      <a href="watermark.html">watermark</a>
-      <a href="video.html">video</a>
-      -->
     </nav>
 
     <!-- Mobile Right: Donate + Hamburger -->
@@ -3221,18 +3234,6 @@
       <a href="#impact" onclick="closeMenu()">Our Impact</a>
       <a href="#resources" onclick="closeMenu()">Resources</a>
       <a href="ContactUs.html" onclick="closeMenu()">Contact Us</a>
-      <!-- Commented Out Mobile Navbar Buttons as Requested
-      <a href="#founder" onclick="closeMenu()">Founder’s Message</a>
-      <a href="#team" onclick="closeMenu()">Our Team</a>
-      <a href="#testimonials" onclick="closeMenu()">Testimonials</a>
-      <a href="ShitalaCanteen.html" onclick="closeMenu()">Shitala Canteen</a>
-      <a href="Timer.html" onclick="closeMenu()">Timer</a>
-      <a href="Live.html" onclick="closeMenu()">Live</a>
-      <a href="Round1sc.html" onclick="closeMenu()">Round1</a>
-      <a href="Round2.html" onclick="closeMenu()">Round2</a>
-      <a href="watermark.html" onclick="closeMenu()">watermark</a>
-      <a href="video.html" onclick="closeMenu()">video</a>
-      -->
     </nav>
   </header>
 
@@ -3271,11 +3272,6 @@
     <div class="hero-slide" data-link="#"></div>
     <div class="hero-slide" data-link="Shelearn.html"></div>
     <div class="hero-slide" data-link="ShitalaCanteen.html"></div>
-    <!-- Commented Out Hero Slides 4, 5, 6
-    <div class="hero-slide" data-link="Antardrishtilearn.html"></div>
-    <div class="hero-slide" data-link="Sparshlearn.html"></div>
-    <div class="hero-slide" data-link="Chhayalearn.html"></div>
-    -->
 
     <div class="hero-overlay"></div>
 
@@ -3298,11 +3294,6 @@
       <span class="hero-dot active" onclick="manualSlide(event, 0)"></span>
       <span class="hero-dot" onclick="manualSlide(event, 1)"></span>
       <span class="hero-dot" onclick="manualSlide(event, 2)"></span>
-      <!-- Commented Out Dots 4, 5, 6
-      <span class="hero-dot" onclick="manualSlide(event, 3)"></span>
-      <span class="hero-dot" onclick="manualSlide(event, 4)"></span>
-      <span class="hero-dot" onclick="manualSlide(event, 5)"></span>
-      -->
     </div>
   </section>
 
@@ -3315,7 +3306,6 @@
     </div>
 
     <div class="programme-grid" id="initiativesGrid">
-      <!-- 1. Eye Check-up Camp -->
       <a href=" Eye Check-up Camp.html" class="programme-card">
         <div class="card-thumb">
           <img class="cover-photo" src="card01.jpeg" alt="Eye Check-up Camp" />
@@ -3328,7 +3318,6 @@
         </div>
       </a>
 
-      <!-- 2. Books Distribution -->
       <a href=" Books Distribution.html" class="programme-card">
         <div class="card-thumb">
           <img class="cover-photo" src="Books Distribution.png" alt="Books Distribution" />
@@ -3341,7 +3330,6 @@
         </div>
       </a>
 
-      <!-- 3. Child Education -->
       <a href="Child Education.html" class="programme-card">
         <div class="card-thumb">
           <img class="cover-photo" src="card03.jpeg" alt="Child Education" />
@@ -3354,7 +3342,6 @@
         </div>
       </a>
 
-      <!-- 4. Women Empowerment -->
       <a href="Women Empowerment.html" class="programme-card">
         <div class="card-thumb">
           <img class="cover-photo" src="card04.jpeg" alt="Women Empowerment" />
@@ -3367,7 +3354,6 @@
         </div>
       </a>
 
-      <!-- 5. Health Check-up Camp -->
       <a href="Health Check-up Camp.html" class="programme-card">
         <div class="card-thumb">
           <img class="cover-photo" src="card05.jpeg" alt="Health Check-up Camp" />
@@ -3380,7 +3366,6 @@
         </div>
       </a>
 
-      <!-- 6. Free Medicine Distribution -->
       <a href="Free Medicine Distribution.html" class="programme-card">
         <div class="card-thumb">
           <img class="cover-photo" src="Free Medicine Distribution.jpeg" alt="Free Medicine Distribution" />
@@ -3393,7 +3378,6 @@
         </div>
       </a>
 
-      <!-- 7. Free Food Distribution -->
       <a href="Free Food Distribution.html" class="programme-card">
         <div class="card-thumb">
           <img class="cover-photo" src="Free Food Distribution.jpg" alt="Free Food Distribution" />
@@ -3406,7 +3390,6 @@
         </div>
       </a>
 
-      <!-- 8. Tree Plantation -->
       <a href="Tree Plantation.html" class="programme-card">
         <div class="card-thumb">
           <img class="cover-photo" src="Tree Plantation.jpeg" alt="Tree Plantation" />
@@ -3419,7 +3402,6 @@
         </div>
       </a>
 
-      <!-- 9. Talent Hunt Scholarship -->
       <a href="Talent Hunt Scholarship.html" class="programme-card">
         <div class="card-thumb">
           <img class="cover-photo" src="card09.jpeg" alt="Talent Hunt Scholarship" />
@@ -3432,7 +3414,6 @@
         </div>
       </a>
 
-      <!-- 10. Old Garments Distribution -->
       <a href="Old Garments Distribution.html" class="programme-card">
         <div class="card-thumb">
           <img class="cover-photo" src="Old Garments Distribution.png" alt="Old Garments Distribution" />
@@ -3449,7 +3430,6 @@
 
   <!-- 3-COLUMN SECTION: WHY SUPPORT US + RURAL ELDERLY GRANDMOTHER & CHILD PHOTO + OUR IMPACT -->
   <section class="why-impact-wrapper reveal" id="impact">
-    <!-- Left Column: Why Support Us -->
     <div class="why-donate-panel">
       <h2>Why Support Us?</h2>
       <p class="subtitle">Your kindness can create lasting change.</p>
@@ -3508,7 +3488,6 @@
       </div>
     </div>
 
-    <!-- Center Column -->
     <div class="center-hug-photo">
       <img 
         src="whysupport.jpeg" 
@@ -3518,7 +3497,6 @@
       <div class="center-photo-caption">Care, Dignity &amp; Love for Every Generation</div>
     </div>
 
-    <!-- Right Column: Our Impact -->
     <div class="our-impact-panel">
       <h2>Our Impact</h2>
 
@@ -3695,18 +3673,19 @@ We believe that every individual deserves dignity, equal opportunities, and acce
     </div>
   </section>
 
-  <!-- FOUNDER'S MESSAGE SECTION -->
+  <!-- FOUNDER & PRESIDENT MESSAGE SECTION (AUTO-ROTATING IN SAME STRUCTURE) -->
   <section class="founder-section reveal" id="founder">
     <div class="founder-container">
       <div class="founder-photo-column">
         <div class="founder-frame">
           <div class="founder-frame-inner">
             <img 
+              id="leaderPortraitImg"
               src="founder.png" 
-              onerror="this.onerror=null; this.src='founder.png';" 
-              alt="Founder - Shyamashree Shitala Maa Charitable Trust" 
+              onerror="this.onerror=null; this.src='Shambhu Chakraborty.png';" 
+              alt="Mr. Shambhu Chakraborty - Founder, Shyamashree Shitala Maa Charitable Trust" 
             />
-            <div class="founder-floating-tag">
+            <div class="founder-floating-tag" id="leaderFloatingTag">
               <span>💛</span> Founder, SSMCT
             </div>
           </div>
@@ -3717,40 +3696,41 @@ We believe that every individual deserves dignity, equal opportunities, and acce
         <div>
           <div class="founder-header-row">
             <div>
-              <span class="founder-eyebrow">A MESSAGE FROM THE FOUNDER</span>
-              <h2>Founder’s Message</h2>
+              <span class="founder-eyebrow" id="leaderEyebrow">A MESSAGE FROM THE FOUNDER</span>
+              <h2 id="leaderHeading">Founder’s Message</h2>
             </div>
-            <div class="founder-subheading">Together, We Can Make a Difference</div>
+
+            <div class="founder-switcher-group">
+              <button type="button" class="leader-switch-btn active" id="btnShowFounder" onclick="selectLeadershipMessage(0, true)">Founder’s Message</button>
+              <button type="button" class="leader-switch-btn" id="btnShowPresident" onclick="selectLeadershipMessage(1, true)">President’s Message</button>
+            </div>
           </div>
 
-          <div class="founder-body-text">
+          <div class="founder-subheading" id="leaderSubheading">Rooted in Tradition, Committed to Humanity</div>
+
+          <div class="founder-body-text" id="leaderBodyText">
             <p>
-              At <strong>Shyamashree Shitala Maa Charitable Trust</strong>, we believe that humanity is the greatest service. Every individual deserves to live with dignity, respect, equality, and hope, regardless of their social or economic background.
+              For over 300 years, Shyamashree Shitala Maa Mandir has carried forward a rich legacy of faith and tradition. Inspired by this heritage, we have been actively involved in social welfare activities for more than 30 years.
             </p>
             <p>
-              The inspiration behind establishing this Trust was a simple belief: a better society can only be built when we care for one another. There are many people around us who need a helping hand, a little encouragement, and an opportunity to move forward in life.
+              To extend our service beyond boundaries of caste, religion, and background, we established Shyamashree Shitala Maa Charitable Trust.
             </p>
             <p>
-              Our mission is to bring positive change to society through compassion, kindness, and collective efforts. We aspire to create a platform where people come together to support those in need and make meaningful contributions to humanity.
-            </p>
-            <p>
-              We understand that changing society is not an overnight journey. It requires dedication, honesty, commitment, and the support of people who share the same vision. I firmly believe that even a small contribution can create a big impact when it comes from the heart. Every helping hand, every act of kindness, and every effort towards humanity matters.
-            </p>
-            <p>
-              I warmly invite you to join us in this journey of compassion and social responsibility. Together, let us build a world where no one feels forgotten, where every life matters, and where kindness inspires change.
+              Our vision is to create a society where everyone has access to dignity, opportunity, and support. I believe that every act of kindness, however small, can make a meaningful difference.
             </p>
           </div>
         </div>
 
         <div class="founder-bottom-row">
           <div class="founder-signoff">
-            <span>With heartfelt gratitude,</span>
-            <span class="founder-person-name">Mr. Shambhu Chakraborty</span>
-            <strong>Founder, Shyamashree Shitala Maa Charitable Trust</strong>
+            <span id="leaderSignoffIntro">With gratitude and commitment,</span>
+            <img src="Signature.png" alt="Signature" class="leader-signature-img" id="leaderSignatureImg" onerror="this.style.display='none';" />
+            <span class="founder-person-name" id="leaderPersonName">Mr. Shambhu Chakraborty</span>
+            <strong id="leaderRoleTitle">Founder, Shyamashree Shitala Maa Charitable Trust</strong>
           </div>
 
-          <div class="founder-quote-box">
-            “Humanity is not just about helping others; it is about making sure that no one has to face life's challenges alone.”
+          <div class="founder-quote-box" id="leaderQuoteBox">
+            “Rooted in Tradition, Committed to Humanity — every act of kindness, however small, can make a meaningful difference.”
           </div>
         </div>
       </div>
@@ -3775,7 +3755,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
 
       <div class="team-viewport" id="teamViewport">
         <div class="team-track" id="teamTrack">
-          <!-- Member 1 -->
           <div class="team-card" onclick="openTeamLightbox(this, 'Shambhu Chakraborty', 'Founder & Treasurer', 'Leading our mission with dedication and grassroots commitment across West Bengal.')">
             <div class="team-avatar-ring">
               <div class="team-avatar-inner">
@@ -3787,7 +3766,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
             <p>Guides the Trust and oversees financial management and accountability.</p>
           </div>
 
-          <!-- Member 2 -->
           <div class="team-card" onclick="openTeamLightbox(this, 'Lipika Chakraborty', 'President', 'Coordinating our initiatives, outreach drives, and community welfare operations.')">
             <div class="team-avatar-ring">
               <div class="team-avatar-inner">
@@ -3799,7 +3777,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
             <p>Leads organisational activities and drives the Trust's social mission.</p>
           </div>
 
-          <!-- Member 3 -->
           <div class="team-card" onclick="openTeamLightbox(this, 'Satyajit Nandy', 'Secretary', 'Ensuring responsible financial management, transparency, and 80G compliance.')">
             <div class="team-avatar-ring">
               <div class="team-avatar-inner">
@@ -3811,7 +3788,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
             <p>Manages administration, documentation, communication, and organisational coordination.</p>
           </div>
 
-          <!-- Member 4 -->
           <div class="team-card" onclick="openTeamLightbox(this, 'Suita Nandy', 'Vice President', 'Supporting our social initiatives and women empowerment campaigns.')">
             <div class="team-avatar-ring">
               <div class="team-avatar-inner">
@@ -3823,7 +3799,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
             <p>Supports team coordination and implementation of social initiatives.</p>
           </div>
 
-          <!-- Member 5: Debayan Mukhopadhyay (Software Engineer) -->
           <div class="team-card" onclick="openTeamLightbox(this, 'Debayan Mukhopadhyay', 'Software Engineer', 'Architecting and maintaining our digital platform, online donation workflows, and technical outreach.')">
             <div class="team-avatar-ring">
               <div class="team-avatar-inner">
@@ -3834,7 +3809,7 @@ We believe that every individual deserves dignity, equal opportunities, and acce
             <span class="team-role-pill">Software Engineer</span>
             <p>Powering our digital platform &amp; web solutions.</p>
           </div>
-          <!-- Member 6: Tirthanu -->
+
           <div class="team-card" onclick="openTeamLightbox(this, 'Romita Chakraborty', 'Executive Member', 'Strengthening community engagement, field coordination, and social welfare drives.')">
             <div class="team-avatar-ring">
               <div class="team-avatar-inner">
@@ -3846,7 +3821,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
             <p>Leads digital outreach, social media, and online awareness campaigns.</p>
           </div>
           
-            <!-- Member 7 -->
           <div class="team-card" onclick="openTeamLightbox(this, 'Sourav Mondal', 'Secretary', 'Ensuring responsible financial management, transparency, and 80G compliance.')">
             <div class="team-avatar-ring">
               <div class="team-avatar-inner">
@@ -3857,7 +3831,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
             <span class="team-role-pill">Project Coordinator</span>
             <p>Supports project planning and coordinates community-level activities.</p>
           </div>
-
         </div>
       </div>
 
@@ -3899,7 +3872,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
 
       <div class="testimonial-viewport" id="testimonialViewport">
         <div class="testimonial-track" id="testimonialTrack">
-          <!-- Donor Testimonial 1 -->
           <div class="testimonial-card">
             <div class="donor-card-top">
               <div class="donor-photo-ring">
@@ -3920,7 +3892,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
             </div>
           </div>
 
-          <!-- Donor Testimonial 2 -->
           <div class="testimonial-card">
             <div class="donor-card-top">
               <div class="donor-photo-ring">
@@ -3941,7 +3912,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
             </div>
           </div>
 
-          <!-- Donor Testimonial 3 -->
           <div class="testimonial-card">
             <div class="donor-card-top">
               <div class="donor-photo-ring">
@@ -3962,7 +3932,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
             </div>
           </div>
 
-          <!-- Donor Testimonial 4 -->
           <div class="testimonial-card">
             <div class="donor-card-top">
               <div class="donor-photo-ring">
@@ -4048,13 +4017,9 @@ We believe that every individual deserves dignity, equal opportunities, and acce
         <h4>Quick Links</h4>
         <ul class="footer-links">
           <li><a href="#about">About Us</a></li>
-          <!--<li><a href="#founder">Founder’s Message</a></li>-->
-          <!--<li><a href="#team">Our Team</a></li>-->
           <li><a href="#projects">Our Initiatives</a></li>
           <li><a href="#impact">Our Impact</a></li>
-          <!--<li><a href="#testimonials">Testimonials</a></li>-->
           <li><a href="#resources">Resources</a></li>
-          <!--<li><a href="ShitalaCanteen.html">Shitala Canteen</a></li>-->
           <li><a href="ContactUs.html">Contact Us</a></li>
         </ul>
       </div>
@@ -4149,7 +4114,7 @@ We believe that every individual deserves dignity, equal opportunities, and acce
     </div>
   </div>
 
-  <!-- ORIGINAL SCRIPTS PRESERVED + TEAM & TESTIMONIALS TOUCH SWIPE SLIDERS -->
+  <!-- ORIGINAL SCRIPTS PRESERVED + AUTO-ROTATING FOUNDER & PRESIDENT MESSAGE -->
   <script>
     let slides = document.querySelectorAll('.hero-slide');
     let dots = document.querySelectorAll('.hero-dot');
@@ -4219,6 +4184,107 @@ We believe that every individual deserves dignity, equal opportunities, and acce
         closeGeneralModal();
       }
     }
+
+    /* Auto-Rotating Founder & President Message Section */
+    (function initLeadershipMessages() {
+      const messages = [
+        {
+          eyebrow: 'A MESSAGE FROM THE FOUNDER',
+          heading: 'Founder’s Message',
+          subheading: 'Rooted in Tradition, Committed to Humanity',
+          tag: '<span>💛</span> Founder, SSMCT',
+          portrait: 'founder.png',
+          fallbackPortrait: 'Shambhu Chakraborty.png',
+          paragraphs: [
+            'For over 300 years, Shyamashree Shitala Maa Mandir has carried forward a rich legacy of faith and tradition. Inspired by this heritage, we have been actively involved in social welfare activities for more than 30 years.',
+            'To extend our service beyond boundaries of caste, religion, and background, we established Shyamashree Shitala Maa Charitable Trust.',
+            'Our vision is to create a society where everyone has access to dignity, opportunity, and support. I believe that every act of kindness, however small, can make a meaningful difference.'
+          ],
+          signoffIntro: 'With gratitude and commitment,',
+          signature: 'Signature.png',
+          personName: 'Mr. Shambhu Chakraborty',
+          roleTitle: 'Founder, Shyamashree Shitala Maa Charitable Trust',
+          quote: '“Rooted in Tradition, Committed to Humanity — every act of kindness, however small, can make a meaningful difference.”'
+        },
+        {
+          eyebrow: 'A MESSAGE FROM THE PRESIDENT',
+          heading: 'President’s Message',
+          subheading: 'Together for a Better Tomorrow',
+          tag: '<span>💛</span> President, SSMCT',
+          portrait: 'masi.png',
+          fallbackPortrait: 'founder.png',
+          paragraphs: [
+            'At Shyamashree Shitala Maa Charitable Trust, we are committed to turning our vision into meaningful action through dedicated teamwork and community participation.',
+            'We strive to make a lasting difference through initiatives in food security, education, healthcare, and women\'s empowerment, while ensuring transparency and accountability in every effort.',
+            'I sincerely thank our donors, volunteers, and well-wishers for their continued trust and support. Together, we can build a more inclusive society where no one is left behind.'
+          ],
+          signoffIntro: 'With sincere regards,',
+          signature: 'Signature.png',
+          personName: 'Lipika Chakraborty',
+          roleTitle: 'President, Shyamashree Shitala Maa Charitable Trust',
+          quote: '“Together for a Better Tomorrow — through dedicated teamwork and community participation, we can build a more inclusive society where no one is left behind.”'
+        }
+      ];
+
+      let activeLeaderIndex = 0;
+      let autoRotateTimer = null;
+
+      function renderLeader(idx) {
+        activeLeaderIndex = idx % messages.length;
+        const item = messages[activeLeaderIndex];
+
+        const portraitImg = document.getElementById('leaderPortraitImg');
+        if (portraitImg) {
+          portraitImg.onerror = function() {
+            this.onerror = null;
+            this.src = item.fallbackPortrait;
+          };
+          portraitImg.src = item.portrait;
+          portraitImg.alt = item.personName + ' - ' + item.roleTitle;
+        }
+
+        document.getElementById('leaderFloatingTag').innerHTML = item.tag;
+        document.getElementById('leaderEyebrow').textContent = item.eyebrow;
+        document.getElementById('leaderHeading').textContent = item.heading;
+        document.getElementById('leaderSubheading').textContent = item.subheading;
+
+        const bodyEl = document.getElementById('leaderBodyText');
+        bodyEl.innerHTML = item.paragraphs.map(p => '<p>' + p + '</p>').join('');
+
+        document.getElementById('leaderSignoffIntro').textContent = item.signoffIntro;
+
+        const sigImg = document.getElementById('leaderSignatureImg');
+        if (sigImg) {
+          sigImg.style.display = 'block';
+          sigImg.src = item.signature;
+          sigImg.alt = item.personName + ' Signature';
+        }
+
+        document.getElementById('leaderPersonName').textContent = item.personName;
+        document.getElementById('leaderRoleTitle').textContent = item.roleTitle;
+        document.getElementById('leaderQuoteBox').textContent = item.quote;
+
+        document.getElementById('btnShowFounder').classList.toggle('active', activeLeaderIndex === 0);
+        document.getElementById('btnShowPresident').classList.toggle('active', activeLeaderIndex === 1);
+      }
+
+      function startAutoRotate() {
+        clearInterval(autoRotateTimer);
+        autoRotateTimer = setInterval(() => {
+          renderLeader((activeLeaderIndex + 1) % messages.length);
+        }, 7000);
+      }
+
+      window.selectLeadershipMessage = function(idx, manual) {
+        renderLeader(idx);
+        if (manual) {
+          startAutoRotate();
+        }
+      };
+
+      renderLeader(0);
+      startAutoRotate();
+    })();
 
     /* Team Member Lightbox Functions */
     function openTeamLightbox(cardEl, name, role, desc) {
@@ -4637,7 +4703,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
       }
     }
 
-    /* Speaks FULL answer naturally first, then triggers redirect/scroll ONLY AFTER speech completes */
     function debuSpeakAndThen(htmlOrText, langCode, onCompleteCallback) {
       const cleanText = htmlOrText.replace(/<[^>]*>/g, '').replace(/[🙏🌱💛📜👤🏛️🤝✨✅🌿🧠🌐👋😊💬🔍]/g, '').trim();
 
@@ -4802,7 +4867,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
       const q = rawQuery.toLowerCase().trim();
       debuTurnCount++;
 
-      // A. Explicit Teach Command: "teach: question = answer"
       const teachMatch = rawQuery.match(/^(?:teach|learn|remember|শেখো|মনে রাখো|सिखाओ)\s*:\s*(.+?)\s*=\s*(.+)$/i);
       if (teachMatch) {
         const newQ = teachMatch[1].trim();
@@ -4817,7 +4881,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
         };
       }
 
-      // 1. Natural Identity & Casual Conversation ("তুমি কে", "Who are you", "কেমন আছো")
       if (q.includes('your name') || q.includes('who are you') || q.includes('what are you') || q.includes('তোমার নাম') || q.includes('তুমি কে') || q.includes('আপনি কে') || q.includes('आप कौन हैं')) {
         return {
           lang: langCode,
@@ -4852,13 +4915,13 @@ We believe that every individual deserves dignity, equal opportunities, and acce
           text: isBengali
             ? pickVariant('bn_greet', [
                 'নমস্কার! আমি দেবু। বলো, আজ তোমাকে কীভাবে সাহায্য করতে পারি?',
-                'হ্যালো! স্বাগতম। ট্রাস্টের ফাউন্ডার, প্রজেক্টস, সার্টিফিকেট, ডোনেশন বা যেকোনো বিষয়ে কথা বলতে পারো!'
+                'হ্যালো! স্বাগতম। ট্রাস্টের ফাউন্ডার, প্রেসিডেন্ট, প্রজেক্টস, সার্টিফিকেট, ডোনেশন বা যেকোনো বিষয়ে কথা বলতে পারো!'
               ])
             : isHindi
             ? 'नमस्ते! मैं देबू हूं। बताइए आज मैं आपकी क्या सहायता कर सकता हूं?'
             : pickVariant('en_greet', [
                 'Hello! I am Debu. How can I assist you today?',
-                'Hi there! Feel free to ask me about our Founder, Initiatives, Certificates, Donations, or any general topic.'
+                'Hi there! Feel free to ask me about our Founder, President, Initiatives, Certificates, Donations, or any general topic.'
               ])
         };
       }
@@ -4874,7 +4937,18 @@ We believe that every individual deserves dignity, equal opportunities, and acce
         };
       }
 
-      // 2. Founder Queries
+      if (q.includes('president') || q.includes('lipika') || q.includes('প্রেসিডেন্ট') || q.includes('লিপিকা')) {
+        return {
+          lang: langCode,
+          text: isBengali
+            ? '<strong>শ্যামাশ্রী শীতলা মা চ্যারিটেবল ট্রাস্ট</strong>-এর প্রেসিডেন্ট হলেন <strong>লিপিকা চক্রবর্তী (Lipika Chakraborty)</strong>। আমি তোমাকে প্রেসিডেন্টের বার্তা সেকশনে নিয়ে যাচ্ছি।'
+            : 'The President of <strong>Shyamashree Shitala Maa Charitable Trust</strong> is <strong>Lipika Chakraborty</strong>. Taking you to the Leadership Message section now.',
+          actionLabel: isBengali ? 'প্রেসিডেন্টের বার্তা দেখুন →' : 'Read President’s Message →',
+          action: () => { window.selectLeadershipMessage(1, true); scrollToSectionSmooth('#founder'); },
+          onAfterAnswer: () => { window.selectLeadershipMessage(1, true); scrollToSectionSmooth('#founder'); }
+        };
+      }
+
       if (q.includes('founder') || q.includes('shambhu') || q.includes('who started') || q.includes('established') || q.includes('ফাউন্ডার') || q.includes('প্রতিষ্ঠাতা') || q.includes('শম্ভু') || q.includes('संस्थापक')) {
         return {
           lang: langCode,
@@ -4887,12 +4961,11 @@ We believe that every individual deserves dignity, equal opportunities, and acce
                 '<strong>Mr. Shambhu Chakraborty</strong> founded SSMCT with the belief that humanity is the greatest service. Scrolling to his message now.'
               ]),
           actionLabel: isBengali ? 'ফাউন্ডারের বার্তা দেখুন →' : 'Read Founder’s Message →',
-          action: () => scrollToSectionSmooth('#founder'),
-          onAfterAnswer: () => scrollToSectionSmooth('#founder')
+          action: () => { window.selectLeadershipMessage(0, true); scrollToSectionSmooth('#founder'); },
+          onAfterAnswer: () => { window.selectLeadershipMessage(0, true); scrollToSectionSmooth('#founder'); }
         };
       }
 
-      // 3. Certificates & Compliance
       if (q.includes('certificate') || q.includes('certification') || q.includes('12ab') || q.includes('80g') || q.includes('darpan') || q.includes('registration') || q.includes('legal') || q.includes('সার্টিফিকেট') || q.includes('प्रमाणपत्र')) {
         return {
           lang: langCode,
@@ -4907,7 +4980,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
         };
       }
 
-      // 4. Annual Report
       if (q.includes('annual report') || q.includes('report') || q.includes('financial') || q.includes('audit') || q.includes('রিপোর্ট') || q.includes('रिपोर्ट')) {
         return {
           lang: langCode,
@@ -4922,7 +4994,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
         };
       }
 
-      // 5. Donation / Razorpay
       if (q.includes('donate') || q.includes('donation') || q.includes('contribute') || q.includes('money') || q.includes('fund') || q.includes('razorpay') || q.includes('ডোনেট') || q.includes('দান') || q.includes('সাহায্য') || q.includes('दान')) {
         return {
           lang: langCode,
@@ -4937,7 +5008,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
         };
       }
 
-      // 6. About SSMCT
       if (q.includes('about') || q.includes('ssmct') || q.includes('shitala maa') || q.includes('about trust') || q.includes('about ngo') || q.includes('ট্রাস্ট সম্পর্কে')) {
         return {
           lang: langCode,
@@ -4950,7 +5020,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
         };
       }
 
-      // 7. Specific Initiatives
       if (q.includes('eye') || q.includes('চোখ') || q.includes('চক্ষু')) {
         return {
           lang: langCode,
@@ -5073,7 +5142,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
         };
       }
 
-      // 8. All Projects / Initiatives overview
       if (q.includes('project') || q.includes('initiative') || q.includes('program') || q.includes('প্রজেক্ট') || q.includes('কাজ')) {
         return {
           lang: langCode,
@@ -5086,12 +5154,11 @@ We believe that every individual deserves dignity, equal opportunities, and acce
         };
       }
 
-      // 9. Impact & Stats
       if (q.includes('impact') || q.includes('people helped') || q.includes('stat') || q.includes('achievement') || q.includes('প্রভাব')) {
         return {
           lang: langCode,
           text: isBengali
-            ? 'এখন পর্যন্ত ১৫টির বেশি উদ্যোগ সফলভাবে সম্পন্ন হয়েছে, ২ লক্ষ টাকার বেশি ফান্ড ব্যবহৃত হয়েছে এবং ৩,০০০-এর বেশি মানুষের সাথে সরাসরি সংযোগ স্থাপন করা হয়েছে। Impact সেকশনে নিয়ে যাচ্ছি।'
+            ? 'এখন পর্যন্ত ১৫টির বেশি উদ্যোগ সফলভাবে সম্পন্ন হয়েছে, ২ লক্ষ টাকার বেশি ফান্ড ব্যবহৃত হয়েছে এবং ৩,০০০-এর বেশি মানুষের সাথে সরাসরি সংযোগ স্থাপন করা হয়েছে। Impact সেকশনে নিয়ে যাচ্ছি।'
             : 'So far, SSMCT has completed <strong>15+ initiatives</strong>, utilized <strong>Rs 2 Lacs+</strong> funds, and reached <strong>3,000+ beneficiary interactions</strong> across West Bengal. Scrolling to Our Impact.',
           actionLabel: 'View Our Impact →',
           action: () => scrollToSectionSmooth('#impact'),
@@ -5099,8 +5166,7 @@ We believe that every individual deserves dignity, equal opportunities, and acce
         };
       }
 
-      // 10. Team
-      if (q.includes('team') || q.includes('member') || q.includes('debayan') || q.includes('satyajit') || q.includes('lipika') || q.includes('suita') || q.includes('sourav') || q.includes('romita') || q.includes('software engineer') || q.includes('টিম') || q.includes('সদস্য')) {
+      if (q.includes('team') || q.includes('member') || q.includes('debayan') || q.includes('satyajit') || q.includes('suita') || q.includes('sourav') || q.includes('romita') || q.includes('software engineer') || q.includes('টিম') || q.includes('সদস্য')) {
         return {
           lang: langCode,
           text: isBengali
@@ -5112,7 +5178,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
         };
       }
 
-      // 11. Testimonials
       if (q.includes('testimonial') || q.includes('review') || q.includes('donor say') || q.includes('feedback') || q.includes('মতামত')) {
         return {
           lang: langCode,
@@ -5125,7 +5190,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
         };
       }
 
-      // 12. Contact
       if (q.includes('contact') || q.includes('location') || q.includes('address') || q.includes('where') || q.includes('email') || q.includes('volunteer') || q.includes('join') || q.includes('যোগাযোগ') || q.includes('ঠিকানা')) {
         return {
           lang: langCode,
@@ -5138,7 +5202,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
         };
       }
 
-      // 13. Time / Date / Basic Natural Queries
       if (q.includes('time') || q.includes('date') || q.includes('today') || q.includes('সময়') || q.includes('তারিখ') || q.includes('আজ')) {
         const now = new Date();
         return {
@@ -5149,7 +5212,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
         };
       }
 
-      // 14. Check Self-Learned Memory
       const learned = findLearnedMatch(rawQuery);
       if (learned) {
         return {
@@ -5158,7 +5220,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
         };
       }
 
-      // 15. Any other Trust / Website / Donation related query -> Redirect directly to WhatsApp
       const isTrustRelatedOtherQuery = /(trust|ssmct|shitala|ngo|csr|partner|membership|receipt|tax|pan|helpline|camp|event|status|ট্রাস্ট|সংস্থা|সদস্যপদ|রসিদ|ক্যাম্প|হেল্পলাইন|ট্রাস্টি)/i.test(q);
       if (isTrustRelatedOtherQuery) {
         return {
@@ -5174,7 +5235,6 @@ We believe that every individual deserves dignity, equal opportunities, and acce
         };
       }
 
-      // 16. Outside Website / General Knowledge Query -> Open-Source Web Search (Wikipedia / Google)
       const webResult = await fetchOpenSourceWebAnswer(rawQuery, langCode);
       if (webResult.found) {
         return {
