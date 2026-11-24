@@ -13,7 +13,7 @@
   <meta property="og:url" content="https://ssmctrust.org/">
   <meta property="og:image" content="https://www.ssmctrust.org/assets/og-home.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  
+
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="/favicon.png">
 
@@ -176,7 +176,7 @@
     }
 
     .logo {
-      height: 58px;
+      height: 70px;
       width: auto;
       flex-shrink: 0;
       transition: transform 0.3s ease;
@@ -1094,7 +1094,7 @@
       display: block;
     }
 
-    /* FOUNDER'S MESSAGE SECTION */
+    /* FOUNDER'S & PRESIDENT'S MESSAGE SECTIONS */
     .founder-section {
       background: linear-gradient(180deg, #ffffff 0%, #f6f2e7 100%);
       padding: 55px 36px;
@@ -1108,6 +1108,17 @@
       margin: 0 auto;
       display: grid;
       grid-template-columns: 350px 1fr;
+      gap: 32px;
+      align-items: stretch;
+      position: relative;
+      z-index: 2;
+    }
+
+    .president-container {
+      max-width: 1260px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 350px;
       gap: 32px;
       align-items: stretch;
       position: relative;
@@ -1251,6 +1262,14 @@
       color: var(--text-muted);
     }
 
+    .signature-img {
+      display: block;
+      max-height: 48px;
+      width: auto;
+      margin: 6px 0;
+      object-fit: contain;
+    }
+
     .founder-signoff .founder-person-name {
       display: block;
       font-family: 'Playfair Display', serif;
@@ -1259,12 +1278,22 @@
       color: var(--forest-mid);
       line-height: 1.3;
       margin: 2px 0;
+      font-style: normal;
+    }
+
+    .founder-signoff .founder-role-line {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 700;
+      font-style: normal;
+      color: var(--forest-dark);
+      line-height: 1.25;
     }
 
     .founder-signoff strong {
       display: block;
       font-family: 'Playfair Display', serif;
-      font-size: 16.5px;
+      font-size: 15.5px;
       color: var(--forest-dark);
       line-height: 1.25;
     }
@@ -2558,6 +2587,7 @@
       .testimonial-carousel-wrapper,
       .about-container,
       .founder-container,
+      .president-container,
       .resources-container,
       .footer-grid,
       .footer-bottom-bar {
@@ -2571,7 +2601,7 @@
       }
 
       .logo {
-        height: 52px;
+        height: 62px;
       }
 
       .logo-text-wrap strong {
@@ -2637,6 +2667,11 @@
 
       .founder-container {
         grid-template-columns: 310px 1fr;
+        gap: 28px;
+      }
+
+      .president-container {
+        grid-template-columns: 1fr 310px;
         gap: 28px;
       }
 
@@ -2725,9 +2760,14 @@
       }
 
       .about-container,
-      .founder-container {
+      .founder-container,
+      .president-container {
         grid-template-columns: 1fr;
         gap: 28px;
+      }
+
+      .president-container .founder-photo-column {
+        order: -1;
       }
 
       .about-image-card {
@@ -2763,7 +2803,7 @@
       }
 
       .logo {
-        height: 46px;
+        height: 56px;
       }
 
       .logo-text-wrap strong {
@@ -3720,37 +3760,91 @@ We believe that every individual deserves dignity, equal opportunities, and acce
               <span class="founder-eyebrow">A MESSAGE FROM THE FOUNDER</span>
               <h2>Founder’s Message</h2>
             </div>
-            <div class="founder-subheading">Together, We Can Make a Difference</div>
+            <div class="founder-subheading">Rooted in Tradition, Committed to Humanity</div>
           </div>
 
           <div class="founder-body-text">
             <p>
-              At <strong>Shyamashree Shitala Maa Charitable Trust</strong>, we believe that humanity is the greatest service. Every individual deserves to live with dignity, respect, equality, and hope, regardless of their social or economic background.
+              For over 300 years, <strong>Shyamashree Shitala Maa Mandir</strong> has carried forward a rich legacy of faith and tradition. Inspired by this heritage, we have been actively involved in social welfare activities for more than 30 years.
             </p>
             <p>
-              The inspiration behind establishing this Trust was a simple belief: a better society can only be built when we care for one another. There are many people around us who need a helping hand, a little encouragement, and an opportunity to move forward in life.
+              To extend our service beyond boundaries of caste, religion, and background, we established <strong>Shyamashree Shitala Maa Charitable Trust</strong>.
             </p>
             <p>
-              Our mission is to bring positive change to society through compassion, kindness, and collective efforts. We aspire to create a platform where people come together to support those in need and make meaningful contributions to humanity.
-            </p>
-            <p>
-              We understand that changing society is not an overnight journey. It requires dedication, honesty, commitment, and the support of people who share the same vision. I firmly believe that even a small contribution can create a big impact when it comes from the heart. Every helping hand, every act of kindness, and every effort towards humanity matters.
-            </p>
-            <p>
-              I warmly invite you to join us in this journey of compassion and social responsibility. Together, let us build a world where no one feels forgotten, where every life matters, and where kindness inspires change.
+              Our vision is to create a society where everyone has access to dignity, opportunity, and support. I believe that every act of kindness, however small, can make a meaningful difference.
             </p>
           </div>
         </div>
 
         <div class="founder-bottom-row">
           <div class="founder-signoff">
-            <span>With heartfelt gratitude,</span>
+            <span>With gratitude and commitment,</span>
+            <img src="founder-signature.png" alt="Founder Signature" class="signature-img" />
             <span class="founder-person-name">Mr. Shambhu Chakraborty</span>
-            <strong>Founder, Shyamashree Shitala Maa Charitable Trust</strong>
+            <span class="founder-role-line">Founder</span>
+            <strong>Shyamashree Shitala Maa Charitable Trust</strong>
           </div>
 
           <div class="founder-quote-box">
             “Humanity is not just about helping others; it is about making sure that no one has to face life's challenges alone.”
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESIDENT'S MESSAGE SECTION -->
+  <section class="founder-section reveal" id="president">
+    <div class="president-container">
+      <div class="founder-message-column">
+        <div>
+          <div class="founder-header-row">
+            <div>
+              <span class="founder-eyebrow">A MESSAGE FROM THE PRESIDENT</span>
+              <h2>President’s Message</h2>
+            </div>
+            <div class="founder-subheading">Together for a Better Tomorrow</div>
+          </div>
+
+          <div class="founder-body-text">
+            <p>
+              At <strong>Shyamashree Shitala Maa Charitable Trust</strong>, we are committed to turning our vision into meaningful action through dedicated teamwork and community participation.
+            </p>
+            <p>
+              We strive to make a lasting difference through initiatives in food security, education, healthcare, and women's empowerment, while ensuring transparency and accountability in every effort.
+            </p>
+            <p>
+              I sincerely thank our donors, volunteers, and well-wishers for their continued trust and support. Together, we can build a more inclusive society where no one is left behind.
+            </p>
+          </div>
+        </div>
+
+        <div class="founder-bottom-row">
+          <div class="founder-signoff">
+            <span>With sincere regards,</span>
+            <img src="president-signature.png" alt="President Signature" class="signature-img" />
+            <span class="founder-person-name">Lipika Chakraborty</span>
+            <span class="founder-role-line">President</span>
+            <strong>Shyamashree Shitala Maa Charitable Trust</strong>
+          </div>
+
+          <div class="founder-quote-box">
+            “True progress begins when compassion turns into collective action, ensuring no one in our community is ever left behind.”
+          </div>
+        </div>
+      </div>
+
+      <div class="founder-photo-column">
+        <div class="founder-frame">
+          <div class="founder-frame-inner">
+            <img 
+              src="masi.png" 
+              onerror="this.onerror=null; this.src='masi.png';" 
+              alt="President - Lipika Chakraborty" 
+            />
+            <div class="founder-floating-tag">
+              <span>💛</span> President, SSMCT
+            </div>
           </div>
         </div>
       </div>
@@ -3845,7 +3939,7 @@ We believe that every individual deserves dignity, equal opportunities, and acce
             <span class="team-role-pill">Digital Marketing</span>
             <p>Leads digital outreach, social media, and online awareness campaigns.</p>
           </div>
-          
+
             <!-- Member 7 -->
           <div class="team-card" onclick="openTeamLightbox(this, 'Sourav Mondal', 'Secretary', 'Ensuring responsible financial management, transparency, and 80G compliance.')">
             <div class="team-avatar-ring">
@@ -5091,7 +5185,7 @@ We believe that every individual deserves dignity, equal opportunities, and acce
         return {
           lang: langCode,
           text: isBengali
-            ? 'এখন পর্যন্ত ১৫টির বেশি উদ্যোগ সফলভাবে সম্পন্ন হয়েছে, ২ লক্ষ টাকার বেশি ফান্ড ব্যবহৃত হয়েছে এবং ৩,০০০-এর বেশি মানুষের সাথে সরাসরি সংযোগ স্থাপন করা হয়েছে। Impact সেকশনে নিয়ে যাচ্ছি।'
+            ? 'এখন পর্যন্ত ১৫টির বেশি উদ্যোগ সফলভাবে সম্পন্ন হয়েছে, ২ লক্ষ টাকার বেশি ফান্ড ব্যবহৃত হয়েছে এবং ৩,০০০-এর বেশি মানুষের সাথে সরাসরি সংযোগ স্থাপন করা হয়েছে। Impact সেকশনে নিয়ে যাচ্ছি।'
             : 'So far, SSMCT has completed <strong>15+ initiatives</strong>, utilized <strong>Rs 2 Lacs+</strong> funds, and reached <strong>3,000+ beneficiary interactions</strong> across West Bengal. Scrolling to Our Impact.',
           actionLabel: 'View Our Impact →',
           action: () => scrollToSectionSmooth('#impact'),
