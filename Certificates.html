@@ -361,6 +361,44 @@
       flex-direction: column;
       border: 2px solid var(--gold-primary);
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
+      position: relative;
+    }
+
+    /* SCREENSHOT BLACKOUT SHIELD */
+    .screenshot-blackout {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      background-color: #000000 !important;
+      color: #ffffff;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 24px;
+    }
+
+    .screenshot-blackout.active {
+      display: flex !important;
+    }
+
+    .screenshot-blackout p {
+      font-size: 16px;
+      font-weight: 700;
+      color: #facc15;
+      margin-bottom: 14px;
+    }
+
+    .screenshot-blackout button {
+      background: var(--gold-primary);
+      color: var(--forest-deep);
+      border: none;
+      padding: 9px 20px;
+      border-radius: 22px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
     }
 
     .pdf-modal-header {
@@ -536,6 +574,12 @@
 </head>
 <body oncontextmenu="return false;">
 
+  <!-- Screenshot Blackout Shield -->
+  <div class="screenshot-blackout" id="screenshotBlackout">
+    <p>🔒 Screenshot &amp; Screen Capture Disabled for Protected Trust Documents</p>
+    <button type="button" onclick="dismissBlackoutShield()">Resume Viewing</button>
+  </div>
+
   <!-- Compact Top Navigation Bar -->
   <div class="top-nav-strip">
     <a href="index.html" class="brand-mini">
@@ -567,31 +611,15 @@
     <div class="security-notice">
       <div class="security-notice-text">
         <span>🔒</span>
-        <span>All official trust documents below are protected in <strong>Strict View-Only Mode</strong> (downloading &amp; saving disabled).</span>
+        <span>All official trust documents below are protected in <strong>Strict View-Only Mode</strong> (downloading, screenshots &amp; saving disabled).</span>
       </div>
       <span class="verified-tag">✓ Verified Public Charitable Trust</span>
     </div>
 
-    <!-- 8 Certificates Grid -->
+    <!-- 8 Certificates Grid (Ordered: Deed, Registration, E Pan, NGO Darpan, 12A, 80G, CSR1, Udyam) -->
     <div class="cert-grid">
 
-      <!-- 1. NPO Darpan -->
-      <div class="cert-card">
-        <div>
-          <div class="cert-top-row">
-            <div class="cert-icon-box">🏛️</div>
-            <span class="cert-badge">NITI Aayog</span>
-          </div>
-          <h3>NGO Darpan Registration</h3>
-          <span class="cert-reg-no">ID: WB/2025/0812025</span>
-          <p class="cert-desc">Official NITI Aayog NGO Darpan enrollment certificate issued on 10-09-2025.</p>
-        </div>
-        <button type="button" class="view-pdf-btn" onclick="openCertViewer('NPO Darpan.pdf', 'NGO Darpan Certificate (WB/2025/0812025)')">
-          👁️ View Certificate
-        </button>
-      </div>
-
-      <!-- 2. Trust Deed -->
+      <!-- 1. Trust Deed -->
       <div class="cert-card">
         <div>
           <div class="cert-top-row">
@@ -607,7 +635,7 @@
         </button>
       </div>
 
-      <!-- 3. Registration Certificate -->
+      <!-- 2. Registration Certificate -->
       <div class="cert-card">
         <div>
           <div class="cert-top-row">
@@ -623,7 +651,39 @@
         </button>
       </div>
 
-      <!-- 4. 12A Certificate -->
+      <!-- 3. e-PAN Card -->
+      <div class="cert-card">
+        <div>
+          <div class="cert-top-row">
+            <div class="cert-icon-box">🪪</div>
+            <span class="cert-badge">Income Tax PAN</span>
+          </div>
+          <h3>Trust e-PAN Card</h3>
+          <span class="cert-reg-no">PAN: ABMTS6624D</span>
+          <p class="cert-desc">Official Permanent Account Number issued to Shyamashree Shitala Maa Charitable Trust.</p>
+        </div>
+        <button type="button" class="view-pdf-btn" onclick="openCertViewer('UTIITSL_ePAN_ABMTS6624D.pdf', 'Trust e-PAN Card (ABMTS6624D)')">
+          👁️ View Certificate
+        </button>
+      </div>
+
+      <!-- 4. NPO Darpan -->
+      <div class="cert-card">
+        <div>
+          <div class="cert-top-row">
+            <div class="cert-icon-box">🏛️</div>
+            <span class="cert-badge">NITI Aayog</span>
+          </div>
+          <h3>NGO Darpan Registration</h3>
+          <span class="cert-reg-no">ID: WB/2025/0812025</span>
+          <p class="cert-desc">Official NITI Aayog NGO Darpan enrollment certificate issued on 10-09-2025.</p>
+        </div>
+        <button type="button" class="view-pdf-btn" onclick="openCertViewer('NPO Darpan.pdf', 'NGO Darpan Certificate (WB/2025/0812025)')">
+          👁️ View Certificate
+        </button>
+      </div>
+
+      <!-- 5. 12A Certificate -->
       <div class="cert-card">
         <div>
           <div class="cert-top-row">
@@ -639,7 +699,7 @@
         </button>
       </div>
 
-      <!-- 5. 80G Certificate -->
+      <!-- 6. 80G Certificate -->
       <div class="cert-card">
         <div>
           <div class="cert-top-row">
@@ -651,22 +711,6 @@
           <p class="cert-desc">Form No. 10AC 80G approval enabling donors to claim Income Tax exemption benefits.</p>
         </div>
         <button type="button" class="view-pdf-btn" onclick="openCertViewer('80G Certificate.pdf', 'Section 80G Tax Exemption Certificate')">
-          👁️ View Certificate
-        </button>
-      </div>
-
-      <!-- 6. e-PAN Card -->
-      <div class="cert-card">
-        <div>
-          <div class="cert-top-row">
-            <div class="cert-icon-box">🪪</div>
-            <span class="cert-badge">Income Tax PAN</span>
-          </div>
-          <h3>Trust e-PAN Card</h3>
-          <span class="cert-reg-no">PAN: ABMTS6624D</span>
-          <p class="cert-desc">Official Permanent Account Number issued to Shyamashree Shitala Maa Charitable Trust.</p>
-        </div>
-        <button type="button" class="view-pdf-btn" onclick="openCertViewer('UTIITSL_ePAN_ABMTS6624D.pdf', 'Trust e-PAN Card (ABMTS6624D)')">
           👁️ View Certificate
         </button>
       </div>
@@ -735,12 +779,24 @@
     const pdfModal = document.getElementById('pdfModal');
     const pdfModalTitle = document.getElementById('pdfModalTitle');
     const canvasScrollArea = document.getElementById('canvasScrollArea');
+    const screenshotBlackout = document.getElementById('screenshotBlackout');
+
+    function triggerBlackoutShield() {
+      if (pdfModal.classList.contains('active')) {
+        screenshotBlackout.classList.add('active');
+        canvasScrollArea.style.visibility = 'hidden';
+      }
+    }
+
+    function dismissBlackoutShield() {
+      screenshotBlackout.classList.remove('active');
+      canvasScrollArea.style.visibility = 'visible';
+    }
 
     async function renderAllPages(pdfDoc) {
       canvasScrollArea.innerHTML = '';
       for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
         const page = await pdfDoc.getPage(pageNum);
-        // Render at high crisp resolution (scale 1.6) and let CSS fit 100% width cleanly
         const viewport = page.getViewport({ scale: 1.6 });
 
         const wrapper = document.createElement('div');
@@ -770,6 +826,7 @@
 
     async function openCertViewer(fileName, title) {
       pdfModalTitle.textContent = title;
+      dismissBlackoutShield();
       canvasScrollArea.innerHTML = '<div class="loader-msg">Loading certificate securely...</div>';
       pdfModal.classList.add('active');
       document.body.style.overflow = 'hidden';
@@ -786,6 +843,7 @@
 
     function closeCertViewer() {
       pdfModal.classList.remove('active');
+      dismissBlackoutShield();
       canvasScrollArea.innerHTML = '';
       document.body.style.overflow = 'auto';
     }
@@ -803,7 +861,18 @@
       return false;
     }, true);
 
-    // Block Save (Ctrl+S), Print (Ctrl+P), View Source (Ctrl+U), Copy (Ctrl+C)
+    // Trigger Blackout Shield on Window Blur / Visibility Loss (Snipping Tool, Mobile Screenshot, Tab Switch)
+    window.addEventListener('blur', function () {
+      triggerBlackoutShield();
+    });
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        triggerBlackoutShield();
+      }
+    });
+
+    // Block Save (Ctrl+S), Print (Ctrl+P), View Source (Ctrl+U), Copy (Ctrl+C), and Screenshot Keys
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && pdfModal.classList.contains('active')) {
         closeCertViewer();
@@ -811,8 +880,25 @@
       if ((e.ctrlKey || e.metaKey) && ['s', 'p', 'u', 'c'].includes(e.key.toLowerCase())) {
         e.preventDefault();
       }
+      if (
+        e.key === 'PrintScreen' ||
+        (e.metaKey && e.shiftKey && ['3', '4', '5', 's'].includes(e.key.toLowerCase())) ||
+        (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 's')
+      ) {
+        e.preventDefault();
+        triggerBlackoutShield();
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText('').catch(() => {});
+        }
+      }
+    });
+
+    document.addEventListener('keyup', function (e) {
       if (e.key === 'PrintScreen') {
-        navigator.clipboard.writeText('');
+        triggerBlackoutShield();
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText('').catch(() => {});
+        }
       }
     });
   </script>
