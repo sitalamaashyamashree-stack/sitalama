@@ -102,9 +102,9 @@
     }
 
     .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
     .reveal.visible {
@@ -4551,6 +4551,9 @@ We believe that every individual deserves dignity, equal opportunities, and acce
     }
 
     /* Scroll Reveal & Impact Counter Trigger */
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    animateImpactCounters();
+
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -4560,7 +4563,7 @@ We believe that every individual deserves dignity, equal opportunities, and acce
           }
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.05 });
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
