@@ -401,6 +401,16 @@
       cursor: pointer;
     }
 
+    body.capture-blocked .pdf-modal-box,
+    body.capture-blocked .canvas-scroll-area {
+      background-color: #000000 !important;
+    }
+
+    body.capture-blocked .pdf-page-wrapper {
+      opacity: 0 !important;
+      visibility: hidden !important;
+    }
+
     .pdf-modal-header {
       background: linear-gradient(90deg, #0b2b1b, var(--forest-deep));
       color: #ffffff;
@@ -780,17 +790,38 @@
     const pdfModalTitle = document.getElementById('pdfModalTitle');
     const canvasScrollArea = document.getElementById('canvasScrollArea');
     const screenshotBlackout = document.getElementById('screenshotBlackout');
+    let focusGuardTimer = null;
 
     function triggerBlackoutShield() {
       if (pdfModal.classList.contains('active')) {
+        document.body.classList.add('capture-blocked');
         screenshotBlackout.classList.add('active');
         canvasScrollArea.style.visibility = 'hidden';
       }
     }
 
     function dismissBlackoutShield() {
+      document.body.classList.remove('capture-blocked');
       screenshotBlackout.classList.remove('active');
       canvasScrollArea.style.visibility = 'visible';
+    }
+
+    function startMobileFocusGuard() {
+      stopMobileFocusGuard();
+      focusGuardTimer = setInterval(function () {
+        if (pdfModal.classList.contains('active')) {
+          if (document.hidden || !document.hasFocus()) {
+            triggerBlackoutShield();
+          }
+        }
+      }, 150);
+    }
+
+    function stopMobileFocusGuard() {
+      if (focusGuardTimer) {
+        clearInterval(focusGuardTimer);
+        focusGuardTimer = null;
+      }
     }
 
     async function renderAllPages(pdfDoc) {
@@ -830,6 +861,7 @@
       canvasScrollArea.innerHTML = '<div class="loader-msg">Loading certificate securely...</div>';
       pdfModal.classList.add('active');
       document.body.style.overflow = 'hidden';
+      startMobileFocusGuard();
 
       try {
         const loadingTask = pdfjsLib.getDocument(encodeURI(fileName));
@@ -842,6 +874,7 @@
     }
 
     function closeCertViewer() {
+      stopMobileFocusGuard();
       pdfModal.classList.remove('active');
       dismissBlackoutShield();
       canvasScrollArea.innerHTML = '';
@@ -855,14 +888,33 @@
       }
     });
 
-    // Block Right-Click Everywhere
+    // Block Right-Click & Long-Press Context Menu Everywhere
     document.addEventListener('contextmenu', function (e) {
       e.preventDefault();
       return false;
     }, true);
 
-    // Trigger Blackout Shield on Window Blur / Visibility Loss (Snipping Tool, Mobile Screenshot, Tab Switch)
+    // Mobile Multi-Touch / 3-Finger Screenshot Gesture & System Overlay Detection
+    document.addEventListener('touchstart', function (e) {
+      if (pdfModal.classList.contains('active') && e.touches && e.touches.length >= 3) {
+        triggerBlackoutShield();
+      }
+    }, { passive: true });
+
+    document.addEventListener('touchcancel', function () {
+      triggerBlackoutShield();
+    }, { passive: true });
+
+    // Trigger Blackout Shield on Window Blur / Visibility Loss / Page Hide (Mobile Screenshot, Snipping Tool, App Switch)
     window.addEventListener('blur', function () {
+      triggerBlackoutShield();
+    });
+
+    window.addEventListener('pagehide', function () {
+      triggerBlackoutShield();
+    });
+
+    document.addEventListener('freeze', function () {
       triggerBlackoutShield();
     });
 
@@ -872,7 +924,7 @@
       }
     });
 
-    // Block Save (Ctrl+S), Print (Ctrl+P), View Source (Ctrl+U), Copy (Ctrl+C), and Screenshot Keys
+    // Block Save (Ctrl+S), Print (Ctrl+P), View Source (Ctrl+U), Copy (Ctrl+C), and Screenshot / Hardware Volume Keys
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && pdfModal.classList.contains('active')) {
         closeCertViewer();
@@ -882,6 +934,8 @@
       }
       if (
         e.key === 'PrintScreen' ||
+        e.key === 'VolumeDown' ||
+        e.key === 'AudioVolumeDown' ||
         (e.metaKey && e.shiftKey && ['3', '4', '5', 's'].includes(e.key.toLowerCase())) ||
         (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 's')
       ) {
@@ -894,7 +948,7 @@
     });
 
     document.addEventListener('keyup', function (e) {
-      if (e.key === 'PrintScreen') {
+      if (e.key === 'PrintScreen' || e.key === 'VolumeDown' || e.key === 'AudioVolumeDown') {
         triggerBlackoutShield();
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText('').catch(() => {});
